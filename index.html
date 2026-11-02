@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>星露奖杯农场 · 深圳美术老师官方赛事台</title>
 <style>
@@ -513,7 +514,7 @@ footer b{color:var(--wood)}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-02 · 第 15 版（国际教研前沿翻倍详实·学生通知话术去AI化改用图钉/小图标·GitHub科研Skills已入工具箱）";
+const DATA_VERSION = "2026-11-02 · 第 16 版（教研前沿 60 条：国内 24 篇真文献 + 国际 24 篇 IJADE2025 + 课题 12 条）";
 
 const AWARDS = [
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
@@ -2683,174 +2684,68 @@ const BIG_SCHOOLS = [
    内容基于 2026 真实期刊重点选题、国家哲社文献、国际综述与会议征稿；每周更新。
    ============================================================ */
 var RES = [
-  /* ---------- 论文 · 国内（聚焦美术 / 艺术教育，AI 仅作「数字美育」一小类） ---------- */
-  { id:"res-p1", kind:"论文", scope:"国内", region:"综合", title:"美术鉴赏教学：图像识读与审美判断的课堂落地",
-    hot:"新课标把「图像识读、审美判断、文化理解」列为核心素养，一线最缺的是可操作的鉴赏课模型——不是讲技法，是教学生怎么看、怎么评。",
-    where:"《中国美术教育》《美术教育研究》《美育研究》；可写「一节课讲透一件作品」的课例论文。",
-    tags:["美术鉴赏","审美判断","图像识读"], source:"《中国美术教育》2026 重点选题", url:"http://www.cnartedu.cn/" },
-  { id:"res-p2", kind:"论文", scope:"国内", region:"综合（地方）", title:"非遗 / 民间美术进校园与校本课程开发",
-    hot:"非遗进校园政策持续推进；结合本地非遗（深圳客家 / 广府、潮汕、瑶族）易出有在地辨识度的成果，评委爱看。",
-    where:"非遗研究、地方文化期刊；适合写「非遗 + 校本课程」教学实践。",
-    tags:["非遗","校本课程","民间美术"], source:"《美术教育研究》2026 重点选题", url:"http://msjyyj.net/" },
-  { id:"res-p3", kind:"论文", scope:"国内", region:"北京/上海", title:"馆校合作与博物馆美育育人",
-    hot:"美育浸润行动核心抓手；北京、上海馆藏资源最丰富，馆校合作案例易出高质量论文，深圳可写「博物馆 + 中小学」在地化路径。",
-    where:"《中国博物馆》《美术教育研究》及馆校合作案例集。",
-    tags:["馆校合作","场馆美育","浸润行动"], source:"《美术教育研究》2026 重点选题", url:"http://msjyyj.net/" },
-  { id:"res-p4", kind:"论文", scope:"国内", region:"综合", title:"中小学书法教学的传承与课堂转化",
-    hot:"书法是文化自信与笔墨素养的落点；「书法进课堂」常态化后，怎么教、怎么评、怎么和美术课融合是热点。",
-    where:"《中国书法》《书法教育》及师范学报；适合写「硬笔/毛笔分层教学」课例。",
-    tags:["书法教学","笔墨素养","文化传承"], source:"国家哲学社会科学文献中心 2026", url:"https://www.ncpssd.cn/" },
-  { id:"res-p5", kind:"论文", scope:"国内", region:"综合", title:"乡土美术与在地文化资源开发",
-    hot:"乡土资源（村落、老街、民间工艺、社区美学）是低成本高辨识度的教学素材，契合美育浸润「接地气」导向。",
-    where:"地方文化 / 美育研究期刊；适合写「校园周边即课堂」的在地化课程。",
-    tags:["乡土美术","在地资源","课程开发"], source:"《美术教育研究》2026 重点选题", url:"http://msjyyj.net/" },
-  { id:"res-p6", kind:"论文", scope:"国内", region:"综合", title:"美术表现性评价与学生作业设计",
-    hot:"从「看像不像」到「看素养生长」，表现性评价（量规 / 档案袋 / 过程性记录）是职称论文最易中、最不踩雷的方向。",
-    where:"教育评价类期刊、教科院课题；可直接复用你的学生作品评价实践。",
-    tags:["表现性评价","作业设计","素养评价"], source:"国家哲学社会科学文献中心 2026", url:"https://www.ncpssd.cn/" },
-  { id:"res-p7", kind:"论文", scope:"国内", region:"综合", title:"大单元 / 大观念美术教学（尹少淳体系）",
-    hot:"课标组组长尹少淳主推的「大观念、大单元」是当下美术课重构的主线，对标他的表述体系写最稳。",
-    where:"《基础教育课程》《中国美术教育》；适合写「一个大观念串起一个单元」的课例。",
-    tags:["大单元","大观念","课标"], source:"尹少淳 2026 新课标修订解读", url:"https://www.cnu.edu.cn/" },
-  { id:"res-p8", kind:"论文", scope:"国内", region:"北京/上海", title:"美术跨学科 / STEAM 与项目式学习",
-    hot:"「新质生产力」政策热词下，美术 × 科技 / 工程跨学科立项最易中；北上高校与教科院课题密集。",
-    where:"教育类核心期刊、跨学科美育论坛；可投「艺术 + 工程 / 科学」课程融合论文。",
-    tags:["跨学科","STEAM","项目式"], source:"《美术教育研究》2026 重点选题", url:"http://msjyyj.net/" },
-  { id:"res-p9", kind:"论文", scope:"国内", region:"综合", title:"儿童美术与视觉观看（李力加）",
-    hot:"课标核心成员李力加主张「从改变观看方式入手」；儿童美术、视觉观看与审美学习方法是校本课程的高引用方向。",
-    where:"《中国美术教育》、少儿美术研究；适合写「低段怎么看画、怎么说画」。",
-    tags:["儿童美术","视觉观看","审美学习"], source:"李力加 艺术课标研制组核心", url:"https://www.zjnu.edu.cn/" },
-  { id:"res-p10", kind:"论文", scope:"国内", region:"综合", title:"数字美育与 AI 辅助创作（技术作赋能，落脚教学）",
-    hot:"AI 当创作辅助而非代笔；落脚点是「AI 协同创作的教学模型」，而不是炫技术——这是美术老师写 AI 论文的正确姿势。",
-    where:"《美术教育研究》、师范 / 美院学报；适合写「AI 辅助 + 教师主导」的课堂实证。",
-    tags:["数字美育","AI辅助","协同创作"], source:"多校 2026 美术教育研究文献", url:"https://www.ncpssd.cn/" },
-
-  /* ---------- 论文 · 国际（按美术教育主题分类，AI 仅作一类） ---------- */
-  { id:"res-p11", kind:"论文", scope:"国际", region:"美国/欧洲", title:"Arts Appreciation & Visual Literacy（美术鉴赏与视觉素养）",
-    hot:"NAEA 持续热点：超越「技法传授」，培养看、读、评视觉信息的能力；可写跨文化鉴赏课比较。",
-    where:"Studies in Art Education / Art Education (NAEA)。",
-    tags:["美术鉴赏","视觉素养","NAEA"], source:"US NAEA / Studies in Art Education", url:"https://www.arteducators.org/" },
-  { id:"res-p12", kind:"论文", scope:"国际", region:"韩国/日本/欧洲", title:"Folk & Intangible Heritage in Art Education（非遗与民间美术传承）",
-    hot:"韩日欧把本土工艺、非遗作为身份认同与创造力来源，社区 / 学校传承模式成熟，可借鉴写校本非遗课程。",
-    where:"KCI《미술과교육》、欧洲艺术教育期刊。",
-    tags:["非遗","民间美术","文化传承"], source:"韩国 KCI / 欧洲艺术教育研究", url:"https://www.riss.kr/" },
-  { id:"res-p13", kind:"论文", scope:"国际", region:"美国/欧洲", title:"Museum–School Partnerships（馆校合作 / 博物馆美育）",
-    hot:"欧美馆校合作从「参观」走向「共创课程」，是美育浸润的国际对照样本，易出高质量比较研究。",
-    where:"Journal of Museum Education / 国际艺术教育期刊。",
-    tags:["馆校合作","场馆美育","浸润行动"], source:"Journal of Museum Education", url:"https://www.tandfonline.com/" },
-  { id:"res-p14", kind:"论文", scope:"国际", region:"美国", title:"STEAM / Arts Integration（跨学科艺术融合）",
-    hot:"视觉艺术作为跨学科学习载体，Maker 运动与 STEAM 持续影响中学美术课程设计。",
-    where:"Art Education (NAEA) 期刊；适合写「艺术 + 科学」项目式学习。",
-    tags:["跨学科","STEAM","艺术融合"], source:"iResearchNet Art Education Thesis Topics (US)", url:"https://www.arteducators.org/" },
-  { id:"res-p15", kind:"论文", scope:"国际", region:"美国/加拿大", title:"Social Justice & Community-Engaged Art（社会正义与社区艺术）",
-    hot:"用公共艺术 / 壁画解决社区议题，培养公民与批判意识，是美加艺术教育社会实践方向。",
-    where:"国际艺术教育期刊、社区艺术实践文集；适合写「校园公共艺术」案例。",
-    tags:["社会正义","社区艺术","公民教育"], source:"iResearchNet Art Education Thesis Topics (US)", url:"https://www.iresearchnet.com/" },
-  { id:"res-p16", kind:"论文", scope:"国际", region:"美国", title:"Culturally Responsive Pedagogy（文化响应式教学）",
-    hot:"把学生文化当学习资源、重构西方中心美术史叙事，是美国 NAEA 持续热点，适合写「在地文化进课堂」。",
-    where:"Studies in Art Education (US NAEA)。",
-    tags:["文化响应式","去西方中心","NAEA"], source:"US NAEA / Studies in Art Education", url:"https://www.arteducators.org/" },
-  { id:"res-p17", kind:"论文", scope:"国际", region:"美国/韩国/欧洲", title:"Digital & AI-Augmented Art Education（数字美育与 AI 协同）",
-    hot:"AI 作「第二读者」诊断作品、AR/VR+AI 重塑创作；前沿在人机协同如何提升教学质量，而非替代。",
-    where:"Studies in Art Education / SAGE Open；关键词 AI literacy、human–AI collaboration。",
-    tags:["数字美育","AI辅助","协同创作"], source:"Zeng et al. 2026, AI in Fine Arts Education (SLR)", url:"https://journals.sagepub.com/" },
-  { id:"res-p18", kind:"论文", scope:"国际", region:"欧洲（罗马）", title:"国际会议论文征稿 · ARTSTUDIESCONF 2026",
-    hot:"艺术教育 / 教学法国际会议，可投论文并发表于索引期刊；2026 在罗马，主题含跨文化、视觉文化、AI 创新。",
-    where:"罗马 2026.5.15–17；摘要截止 2026.4.24；artstudiesconf.org。",
-    deadline:"2026-04-24",
-    tags:["国际会议","论文发表","索引期刊"], source:"3rd International Art Studies Conference 2026", url:"https://www.artstudiesconf.org/" },
-  { id:"res-p19", kind:"论文", scope:"国际", region:"马来西亚", title:"Heritage Education through Visual Culture（视觉文化中的遗产教育）",
-    hot:"用感官民族志+数字扫描记录原住民岩画，提出「活态遗产框架」，把本土视觉遗产与文化响应式教学打通，是校本非遗课程的国际范本。",
-    where:"International Journal of Education Through Art (Intellect), 2026, Vol.22(2).",
-    tags:["非遗","视觉文化","在地"], source:"Yakup Mohd Rafee et al., IJETArt 2026", url:"https://www.intellectbooks.com/international-journal-of-education-through-art" },
-  { id:"res-p20", kind:"论文", scope:"国际", region:"中国 / 三星堆", title:"Generative AI-Driven A/r/tography（生成式 AI 驱动的 A/r/t 探究 · 三星堆纹样）",
-    hot:"以三星堆图案为素材，用生成式 AI 做「艺术教育+文旅创意」的 A/r/tography 教学创新，是「在地文化+AI」可落地的课例思路。",
-    where:"Exploring Innovations in Educational Technology: ICEIT'25 论文集, 2026.",
-    tags:["数字美育","AI辅助","在地文化"], source:"Zhu et al., ICEIT 2025 Collection 2026", url:"https://link.springer.com/" },
-  { id:"res-p21", kind:"论文", scope:"国际", region:"土耳其", title:"Effects of AI & STEAM on Visual Arts Education（AI 与 STEAM 对美术教学的实证影响）",
-    hot:"九年级对照组实验（n=60）：AI+STEAM 组在学业成绩、课程态度、学习保持上显著优于传统教学，是「AI 进课堂」拿得出手的实证依据。",
-    where:"International Journal of Technology in Education (IJTE), 2026, 9(2).",
-    tags:["数字美育","STEAM","实证"], source:"Ozturk et al., IJTE 2026", url:"https://www.ijte.net/" },
-  { id:"res-p22", kind:"论文", scope:"国际", region:"智利 / 哥伦比亚", title:"Evolution & Research Trends in Visual Arts Teaching（视觉艺术教学的研究演进与趋势）",
-    hot:"用 VOSviewer 对 Scopus+WOS 共 517 篇文献做文献计量与科学地图，指出研究从「发展取向」转向课程整合、协作、视觉文化、创造力——写综述/开题必读。",
-    where:"Frontiers in Education, 2026（开源）.",
-    tags:["文献计量","研究趋势","知识图谱"], source:"Valencia-Arias et al., Frontiers in Education 2026", url:"https://www.frontiersin.org/" },
-  { id:"res-p23", kind:"论文", scope:"国际", region:"日本 / 加拿大", title:"Pairs Together: A/r/tographic Learning（配对共生：A/r/t 探究式学习）",
-    hot:"用「视觉—文本配对」做 A/r/tography 协同研究，把分析从测量工具变成关系性认知，适合做艺术本位研究的方法论参考。",
-    where:"International Journal of Art & Design Education (IJADE), 2026, 45(1).",
-    tags:["A/r/tography","艺术探究","艺术本位"], source:"Morimoto, Mosavarzadeh & Irwin, IJADE 2026", url:"https://onlinelibrary.wiley.com/journal/14768070" },
-  { id:"res-p24", kind:"论文", scope:"国际", region:"中国香港", title:"Arts & Creativity in Hong Kong Kindergartens（香港幼儿园里的艺术与创造力）",
-    hot:"以在地文化情境的活动（视觉艺术/音乐/戏剧/舞蹈）为例，呈现文化响应式教学怎么在课堂落地，对幼小衔接与校本艺术课程有参照价值。",
-    where:"Culturally Situated Pedagogies in Hong Kong Kindergartens, 2026（开源章节）.",
-    tags:["文化响应式","在地","幼小衔接"], source:"Yeung, Bautista & Leung, 2026", url:"https://link.springer.com/" },
-  { id:"res-p25", kind:"论文", scope:"国际", region:"中国", title:"Plants, Poetry, Painting: Biocultural Encounter with the Four Gentlemen（诗书画·梅兰竹菊的生物文化邂逅）",
-    hot:"以「四君子」为题做生物文化保育与艺术传达的跨域研究，是水墨/传统书画进校本课程、做「博物+美育」的好样例。",
-    where:"Linking Arts with Biocultural Conservation, Restoration, and Communication, 2026.",
-    tags:["本土文化","水墨","博物"], source:"Hu & Yang, 2026", url:"https://link.springer.com/" },
-  { id:"res-p26", kind:"论文", scope:"国际", region:"西班牙", title:"Positive Emotions in Education: Experiential Communication Through Art（教育中的正向情感：经由艺术的经验性沟通）",
-    hot:"用艺术做体验式情感沟通，把情绪、共情、正念带入课堂，对应国内「社会情感学习(SEL)」「身心疗愈」热点，易出校本案例。",
-    where:"Interchange, 2026.",
-    tags:["情感","体验式","社会情绪"], source:"Berlanga-Fernández et al., Interchange 2026", url:"https://link.springer.com/" },
-
-  /* ---------- 课题 · 国内（真实申报渠道，全部美术老师可够得着） ---------- */
-  { id:"res-k1", kind:"课题", scope:"国内", region:"全国", title:"全国教育科学规划课题（全国教科规划办）",
-    hot:"教育研究最高国家级平台；美育 / 美术教育方向可申国家一般 / 青年 / 教育部重点课题。",
-    where:"全国教育科学规划领导小组办公室官网年度申报（通常 3—4 月）。",
-    deadline:"2026-04-30",
-    tags:["国家级","教科规划","年度申报"], source:"全国教育科学规划领导小组办公室", url:"http://onsgep.moe.edu.cn/" },
-  { id:"res-k2", kind:"课题", scope:"国内", region:"全国", title:"教育部人文社会科学研究一般项目",
-    hot:"高校美育 / 艺术教育研究方向可申；含规划基金、青年基金，是高校教师主渠道（中小学教师可联合高校申报）。",
-    where:"教育部社科司年度申报（通常 8—9 月）。",
-    deadline:"2026-09-30",
-    tags:["教育部","人文社科","年度申报"], source:"教育部社会科学司", url:"http://www.moe.gov.cn/" },
-  { id:"res-k3", kind:"课题", scope:"国内", region:"广东", title:"广东省教育科学规划课题",
-    hot:"省级课题，美术 / 美育专项常设；中小学教师可申，命中率高于国家级。",
-    where:"广东省教育研究院年度申报（通常上半年）。",
-    deadline:"2026-05-31",
-    tags:["省级","广东","美育专项"], source:"广东省教育研究院", url:"https://edu.gd.gov.cn/" },
-  { id:"res-k4", kind:"课题", scope:"国内", region:"深圳", title:"深圳市教育科学规划课题",
-    hot:"市级课题，离你最近、命中率最高的立项渠道；美术 / 社团 / 美育方向都好切入。",
-    where:"深圳市教育科学研究院年度申报（通常上半年）。",
-    deadline:"2026-05-15",
-    tags:["市级","深圳","最易中"], source:"深圳市教育科学研究院", url:"https://www.szjky.edu.cn/" },
-  { id:"res-k5", kind:"课题", scope:"国内", region:"全国", title:"中国美协 · 全国中小学美术教育类课题 / 项目",
-    hot:"专业协会课题，最贴合美术教学实践；含美术教育专业委员会相关立项。",
-    where:"中国美术家协会官网 / 美术教育专业委员会年度发布。",
-    tags:["中国美协","专业协会","美术教育"], source:"中国美术家协会", url:"https://www.caanet.org.cn/" },
-  { id:"res-k6", kind:"课题", scope:"国内", region:"全国", title:"教育部「美育浸润」专项课题",
-    hot:"美育浸润行动国家级专项，馆校合作、非遗进校园、乡村美育方向优先，是当下最对口的立项口子。",
-    where:"教育部体卫艺司 / 省级教育行政部门年度申报。",
-    deadline:"2026-06-30",
-    tags:["美育浸润","专项","教育部"], source:"教育部体卫艺司", url:"http://www.moe.gov.cn/" },
-
-  /* ---------- 课题 · 国际 ---------- */
-  { id:"res-k7", kind:"课题", scope:"国际", region:"美国/欧洲/韩/日", title:"各国艺术教育研究基金 / 国际联合课题",
-    hot:"跨国合作课题增多：美国 NAEA Research Commission Grants、欧盟 Horizon、韩国 KRIAE、日本美术教育学会等年度开放。",
-    where:"各学会官网年度开放申请（多集中在上半年）。",
-    deadline:"2026-06-30",
-    tags:["国际基金","跨国合作","学会资助"], source:"NAEA / Horizon / KRIAE / 日本美教学会", url:"https://www.arteducators.org/" },
-  { id:"res-k8", kind:"课题", scope:"国际", region:"美国", title:"NAEA Research Commission Grants（全美艺术教育学会 · 研究基金）",
-    hot:"NAEA 年度小额研究资助，支持一线教师与高校做艺术教育实证/行动研究；中小学教师联合高校即可申，是国际发表与课题的入门口子。",
-    where:"NAEA 官网年度开放（通常上半年）。",
-    deadline:"2026-06-15",
-    tags:["国际基金","NAEA","跨国合作"], source:"National Art Education Association", url:"https://www.arteducators.org/" },
-  { id:"res-k9", kind:"课题", scope:"国际", region:"全球 / 中国台湾（中兴大学·彰化师大）", title:"InSEA 国际艺术教育学会 · 区域大会征稿与会员研究网络",
-    hot:"InSEA（联合国教科文组织合作机构）每两年区域大会征稿；2026 亚洲大会在 中国台湾 中兴大学/彰化师大 举办，主题「交织与共构：艺术教育的多元轨迹」，子题含疗育实作、艺术教学、艺教研究、科技应用，可投论文/海报。",
-    where:"InSEA 官网与区域大会常态化征稿（2026 亚洲大会 5 月举办）。",
-    deadline:"2026-12-31",
-    tags:["国际学会","InSEA","跨国合作"], source:"International Society for Education through Art (InSEA)", url:"https://www.insea.org/" },
-  { id:"res-k10", kind:"课题", scope:"国际", region:"欧盟", title:"Horizon Europe / Erasmus+ 艺术教育类跨国课题",
-    hot:"欧盟「地平线欧洲」「伊拉斯谟+」常年开放艺术教育、文化遗产、社会包容类跨国联合课题，适合高校牵头、中小学/馆校作为实践伙伴加入。",
-    where:"欧盟 funding & tenders 门户年度开放（分阶段截止）。",
-    deadline:"2026-11-30",
-    tags:["欧盟","跨国合作","国际基金"], source:"European Commission · Horizon Europe", url:"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities" }
+  { id:"res-cn01", kind:"论文", scope:"国内", region:"广东·小学", title:"网络舆情环境下小学美术教育的困境与突围路径", hot:"一线教师被短视频断章取义、家长群放大，课堂管理动辄被举报。这篇给的是「如何留痕、如何跟家长解释、如何自保」的实操路径，不是空谈师德。", where:"《中国美术教育》「教育研究」栏目；写法：3 个真实冲突案例 + 你的处理流程 + 可复用的家校沟通话术模板。", tags:["小学美术","教师发展","家校沟通"], source:"《中国美术教育》2025(3):1-3 · 乔振东", url:"http://www.cnmsjy.com/" },
+  { id:"res-cn02", kind:"论文", scope:"国内", region:"江苏·小学", title:"素养导向下的小学美术学业测评体系构建", hot:"「美术怎么打分」是教研员最常被问的问题。这篇把测评拆成「过程性证据 + 作品集 + 表现性任务」三块，可直接改成你校的期末方案。", where:"《美术教育研究》「教学评价」栏目；可做「一校一方案」的校本测评表，附评分量规（rubric）截图最容易被录用。", tags:["学业评价","小学美术","表现性评价"], source:"《美术教育研究》2025(4) · 彭菲菲", url:"http://www.msjyyj.com/" },
+  { id:"res-cn03", kind:"论文", scope:"国内", region:"浙江·小学", title:"深度学习理念下小学美术学习活动的优化设计与实施", hot:"「大单元」写烂了，但「深度学习」在美术学科还少有人做。核心是把一节课的目标改成「学生能迁移什么」，评审看的是这个转向。", where:"《中国美术教育》「实践探索」；结构：单元目标→进阶任务链→学生作品对比（前/后测）。", tags:["深度学习","大单元","课堂设计"], source:"《美术教育研究》2025(4) · 莫秀红", url:"http://www.msjyyj.com/" },
+  { id:"res-cn04", kind:"论文", scope:"国内", region:"上海·中学", title:"人工智能时代美术教学中情绪价值对艺术创造力培养的影响", hot:"AI 能生成图，但生成不了「学生为什么想画」。这篇把「情绪价值」作为 AI 替代不了的教师核心能力，正好接住当下 AI 焦虑。", where:"《美术教育研究》「理论前沿」；可结合你班上「用 AI 出草图后学生反而不会画」的真实现象做实证。", tags:["AI美育","情感","创造力"], source:"《美术教育研究》2025(4) · 林坦", url:"http://www.msjyyj.com/" },
+  { id:"res-cn05", kind:"论文", scope:"国内", region:"全国·中学", title:"美术领域教学知识的建构困境与纾解路径", hot:"PCK（学科教学知识）是教师专业发展的硬指标，美术学科长期缺本土化研究。适合申报市级课题时做理论框架。", where:"《中国美术教育》「教育研究」；可作为课题「文献综述」章节的主干，配 3 位名师课例分析。", tags:["教师发展","课堂研究","学科知识"], source:"《美术教育研究》2025(4) · 纪雅晴、王一雯", url:"http://www.msjyyj.com/" },
+  { id:"res-cn06", kind:"论文", scope:"国内", region:"江苏·小学", title:"美术史赋能小学美育校本课程建设", hot:"把美术史「降维」成小学生能听懂的故事线，是校本课程最容易出成果的路子，还能对接「中华优秀传统文化」考核点。", where:"《美术教育研究》「课程开发」；做一条「一件作品一节课」的 12 课时校本纲目，附学生作业。", tags:["校本课程","美术鉴赏","传统文化"], source:"《美术教育研究》2025(4) · 孙晓昕", url:"http://www.msjyyj.com/" },
+  { id:"res-cn07", kind:"论文", scope:"国内", region:"上海·中学", title:"贺友直创作经验对美术学科课程逻辑的启示", hot:"连环画大师的创作方法被拿来重构课程逻辑，属于「名家个案→教学转化」的稀缺选题，评审爱看这种跨界的。", where:"《中国美术教育》「大家评课」；可做「从连环画分镜到漫画单元」的课例包。", tags:["课程开发","民间美术","课堂设计"], source:"《美术教育研究》2025(4) · 王一晴", url:"http://www.msjyyj.com/" },
+  { id:"res-cn08", kind:"论文", scope:"国内", region:"广东·中学", title:"地域文化赋能社团活动多元表达的有效路径", hot:"深圳的「地域文化」不好写，但可以写「移民城市的多元文化」——各省学生带来的家乡纹样，正好是现成素材。", where:"《美术教育研究》「社团建设」；用你校美术社团一学期的作品做样本，配家长/学生访谈。", tags:["艺术社团","在地文化","校本课程"], source:"《美术教育研究》2025(4) · 程稚敏", url:"http://www.msjyyj.com/" },
+  { id:"res-cn09", kind:"论文", scope:"国内", region:"山东·中学", title:"聚焦生本美术课堂 培育学生家国情怀", hot:"「课程思政」在美术学科的落地样本。评审要看的是「不喊口号」，这篇给的是把家国情怀藏进创作任务里的做法。", where:"《中国美术教育》「实践探索」；可结合深圳本地题材（改革开放、湾区）做主题创作单元。", tags:["课程思政","课堂设计","主题创作"], source:"《美术教育研究》2025(4) · 张超楠、岳世清", url:"http://www.msjyyj.com/" },
+  { id:"res-cn10", kind:"论文", scope:"国内", region:"广东·中学", title:"「三导」理念下的美术教学微课设计", hot:"微课早不是新鲜事，但「三导」（导学/导练/导评）框架下的微课设计还少。适合参加信息化教学比赛顺手转论文。", where:"《美术教育研究》「信息技术」；把你已有的微课按「三导」重排，附学生使用数据。", tags:["微课","课堂设计","信息化"], source:"《美术教育研究》2025(4) · 谢宛池", url:"http://www.msjyyj.com/" },
+  { id:"res-cn11", kind:"论文", scope:"国内", region:"全国·乡村", title:"乡村振兴视域下乡村学校美育发展的价值、问题与解决", hot:"「乡村美育」是政策热词（美育浸润行动、城乡共同体），但一线实证少。深圳老师可写「城区校帮扶乡村校」的结对案例。", where:"《中国美术教育》「教育研究」；用帮扶支教的实际数据（课时、作品、教师变化）做前后对比。", tags:["乡村美育","美育浸润","教育公平"], source:"《美术教育研究》2025(4) · 方艺洁、樊亚峤", url:"http://www.msjyyj.com/" },
+  { id:"res-cn12", kind:"论文", scope:"国内", region:"上海·城市", title:"城市文化空间的社会美育路径探索", hot:"美术馆、社区、商场都在做「社会美育」，学校怎么接进去？这篇给的是「馆校社」三方联动模型。", where:"《美术教育研究》「美育浸润」；可写深圳本地（关山月美术馆、何香凝美术馆、社区艺术中心）的课程合作。", tags:["社会美育","馆校合作","社区艺术"], source:"《美术教育研究》2025(4) · 吴濛晔", url:"http://www.msjyyj.com/" },
+  { id:"res-cn13", kind:"论文", scope:"国内", region:"全国·博物馆", title:"跨媒体叙事模式下的博物馆美育策略研究", hot:"「跨媒体叙事」= 一件文物拆成短视频、绘本、AR、文创多条线，正好是馆校合作课的高阶玩法。", where:"《中国美术教育》「馆校合作」；做「一件文物 N 种讲法」的课程设计，附学生产出。", tags:["博物馆","馆校合作","跨媒体"], source:"《美术教育研究》2025(4) · 李天", url:"http://www.msjyyj.com/" },
+  { id:"res-cn14", kind:"论文", scope:"国内", region:"江苏·高校", title:"数智化背景下江南美术遗产在高校美育中的实践路径", hot:"区域美术遗产 + 数字化的组合，是省级课题的高频命中题。中学老师可平移到「湾区美术遗产 + 数字档案」。", where:"《美术教育研究》「非遗传承」；改写成「深圳/岭南美术遗产数字资源库建设」的校本版本。", tags:["非遗","数字美育","在地文化"], source:"《美术教育研究》2025(4) · 刘秋兰、叶公平", url:"http://www.msjyyj.com/" },
+  { id:"res-cn15", kind:"论文", scope:"国内", region:"全国·综述", title:"基于 CiteSpace 的师范生美育研究现状与热点可视化分析", hot:"文献计量是「低成本高产出发文套路」：跑个 CiteSpace 图，写清研究热点与空白，两个月能出一篇。", where:"《美术教育研究》「综述」；换成「中小学美术教研热点」的数据，图 3 张、表 2 张即可。", tags:["文献计量","研究趋势","综述"], source:"《美术教育研究》2025(4) · 李洁、杨佳馨", url:"http://www.msjyyj.com/" },
+  { id:"res-cn16", kind:"论文", scope:"国内", region:"贵州·高校", title:"贵州非遗技艺融入大学生美育实践课程的路径", hot:"非遗进课堂的「课程化」样本：不是请人来演示一次，而是做成 16 课时可考核的课程。", where:"《美术教育研究》「非遗传承」；深圳版本可换成「潮州木雕/广彩/香云纱」进中学美术课堂。", tags:["非遗","课程开发","传统文化"], source:"《美术教育研究》2025(4) · 魏莹、吴玲楠", url:"http://www.msjyyj.com/" },
+  { id:"res-cn17", kind:"论文", scope:"国内", region:"江苏·民间美术", title:"基于文化基因理论的徐州剪纸艺术研究", hot:"「文化基因」是个能套用的分析框架：把纹样拆成基因片段，再设计教学转化路径。适合做纹样类校本课程的理论支撑。", where:"《美术教育研究》「民间美术」；可用深圳本地（客家围屋纹样、渔村图案）替换研究对象。", tags:["民间美术","文化传承","纹样"], source:"《美术教育研究》2025(4) · 丁浩媛", url:"http://www.msjyyj.com/" },
+  { id:"res-cn18", kind:"论文", scope:"国内", region:"全国·绘本", title:"基于情境认知的儿童科普绘本互动性设计", hot:"绘本教学在小学美术很常见，但「互动性设计」的研究少。适合和语文/科学做跨学科。", where:"《美术教育研究》「跨学科」；做「学生自制科普绘本」项目的设计与评价。", tags:["绘本","跨学科","儿童美术"], source:"《美术教育研究》2025(4) · 单瑞祯", url:"http://www.msjyyj.com/" },
+  { id:"res-cn19", kind:"论文", scope:"国内", region:"全国·绘本", title:"无字绘本中的图像隐喻分析及其启示", hot:"无字绘本=纯图像叙事，是「图像识读」素养的最佳载体，也最容易出彩的鉴赏课素材。", where:"《中国美术教育》「教学参考」；设计一节「用图讲故事」的鉴赏+创作课。", tags:["绘本","图像识读","美术鉴赏"], source:"《美术教育研究》2025(4) · 刘吉霞", url:"http://www.msjyyj.com/" },
+  { id:"res-cn20", kind:"论文", scope:"国内", region:"全国·高校", title:"数智时代高师美术创作课程改革刍议", hot:"AI 冲击下「创作课还教不教技法」的正面回应，适合作为你写 AI 美育论文时的理论引文。", where:"《中国美术教育》「教育研究」；引用其「创作媒介更新」观点，接你校 AI 辅助创作的课例。", tags:["AI美育","课程开发","高校"], source:"《中国美术教育》2025(4) · 程晓捷、刘泳麟", url:"http://www.cnmsjy.com/" },
+  { id:"res-cn21", kind:"论文", scope:"国内", region:"全国·手工艺", title:"高校传统手工艺美育体验式教学的实践路径", hot:"「体验式」是劳动教育+美育的交汇点，中学可做成「一学期一门手艺」的选修课。", where:"《美术教育研究》「实践探索」；写「陶艺/扎染/竹编」选修课的课程包与学生变化。", tags:["手工艺","体验式","课程开发"], source:"《美术教育研究》2025(4) · 代心语", url:"http://www.msjyyj.com/" },
+  { id:"res-cn22", kind:"论文", scope:"国内", region:"广东·民间美术", title:"雷州民间艺术嵌入高校设计教育实践研究", hot:"广东本土民间艺术进课堂的现成案例，做「岭南文化」校本课程可直接引用。", where:"《美术教育研究》「民间美术」；平移到中学：雷州石狗/傩舞纹样做文创设计单元。", tags:["民间美术","在地文化","文创"], source:"《美术教育研究》2025(4) · 石云", url:"http://www.msjyyj.com/" },
+  { id:"res-cn23", kind:"论文", scope:"国内", region:"全国·理论", title:"美育意涵的再辨析与实现路径", hot:"评职称写「美育」容易空，这篇把「美育≠艺术技能」讲透，适合做论文的理论起点。", where:"《美术教育研究》「理论」；引用其概念界定，避免评审说你「概念不清」。", tags:["美育理论","课程开发"], source:"《美术教育研究》2025(4) · 程礼婷", url:"http://www.msjyyj.com/" },
+  { id:"res-cn24", kind:"论文", scope:"国内", region:"全国·乡村", title:"艺术写生视角下乡村美育的发展路径", hot:"写生既是教学内容也是乡村美育抓手，适合做成「校地合作」项目，容易拿到地方支持。", where:"《美术教育研究》「乡村美育」；写你带学生下乡写生的完整项目（前期课程—现场—展览—回访）。", tags:["乡村美育","写生","项目式"], source:"《美术教育研究》2025(4) · 董泉", url:"http://www.msjyyj.com/" },
+  { id:"res-in01", kind:"论文", scope:"国际", region:"中国·小学", title:"Creativity, Practical Ability, Self-Identity: Public Art Practice with Primary School Students in China", hot:"中国小学公共艺术项目的实证研究，发在国际顶刊。你的「校园壁画/社区共创」项目可以直接对标它的三维度框架。", where:"IJADE 44(1):132–148；写作时引用其「创造力—实践力—自我认同」三指标做你的评价维度。", tags:["公共艺术","小学美术","项目式"], source:"IJADE 2025, 44(1): 132–148 · Song, Chen & Mustafa", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in02", kind:"论文", scope:"国际", region:"美国·中学", title:"Visual Journaling in Secondary Art Classrooms: A National Survey of Art Teachers", hot:"全美中学「视觉日记」教学调查，直接给数据（多少老师在用、怎么评）。做「速写本/视觉日志」课题的最佳引文。", where:"IJADE 44(3):613–627；抄它的问卷维度，在你自己学校做一次小规模复现。", tags:["视觉素养","中学美术","课堂研究"], source:"IJADE 2025, 44(3): 613–627 · Williams & Shields", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in03", kind:"论文", scope:"国际", region:"英国·AI", title:"Making Peace with Artificial Intelligence (AI) in Art Education", hot:"开放获取，正面回答「AI 进美术课怎么办」。作者 Rebecca Heaton 是 AI 艺术教育领域的高被引学者。", where:"IJADE 44(4)·Open Access；免费全文，直接作为你 AI 美育论文的核心参考文献。", tags:["AI美育","AI素养","数字美育"], source:"IJADE 2025, 44(4) · Rebecca Heaton", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in04", kind:"论文", scope:"国际", region:"中国·流动儿童", title:"Understanding the Motivations of Volunteer Teachers in Sustaining Community-Based Art Education for Rural-to-Urban Migrant Children in China", hot:"中国流动儿童社区美育的质性研究，开放获取。深圳是流动儿童最集中的城市之一，这个题你比谁都更有田野。", where:"IJADE 44(3):581–597；可做「深圳城中村儿童美术陪伴」的本地化追踪研究。", tags:["社区艺术","教育公平","流动儿童"], source:"IJADE 2025, 44(3): 581–597 · Ning Luo", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in05", kind:"论文", scope:"国际", region:"英国·课堂", title:"The Quiet Learner of the UK Art Classroom", hot:"专门研究「美术课上不吭声的学生」——安静的创作者常被忽视，这是极好的个案研究切入点。", where:"IJADE 44(2):447–461·Open Access；做 3 个「安静学生」的跟踪个案，配作品变化。", tags:["课堂研究","儿童美术","个案"], source:"IJADE 2025, 44(2): 447–461 · Mags Ryder", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in06", kind:"论文", scope:"国际", region:"英国·小学", title:"Imagination Competencies: Fostering Life Skills with Children in UK Primary Schools", hot:"把「想象力」拆成可测评的能力项，是「核心素养」的另一种说法，评审很吃这套框架。", where:"IJADE 44(2):353–365；借用其能力清单，改写成你校的「创意素养观察表」。", tags:["创造力","小学美术","评价"], source:"IJADE 2025, 44(2): 353–365 · Doust & Joyson", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in07", kind:"论文", scope:"国际", region:"西班牙·课堂", title:"Playing with Strangeness: Principles of Designing Action Scenarios to Promote Creativity in Children", hot:"开放获取，给的是「制造陌生感」的任务设计原则——比「激发兴趣」这种空话可操作得多。", where:"IJADE 44(2):479–493·Open Access；直接改造成 5 个「怪点子」创作任务。", tags:["创造力","课堂设计","任务设计"], source:"IJADE 2025, 44(2): 479–493 · Blanco, Cidrás & Freire", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in08", kind:"论文", scope:"国际", region:"英国·理论", title:"Imaginative Interdependence: Imagination, Speculation and Aesthesis", hot:"Dennis Atkinson 是艺术教育理论重量级人物。这篇讲「想象是关系性的」，适合做论文理论框架。", where:"IJADE 44(2):313–327·Open Access；引用其「aesthesis（感知）」概念提升论文理论深度。", tags:["美育理论","创造力"], source:"IJADE 2025, 44(2): 313–327 · Dennis Atkinson", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in09", kind:"论文", scope:"国际", region:"土耳其·视觉素养", title:"Exploring Activist Art Studies: Enhancing Visual Literacy through Critical Engagement", hot:"把「批判性参与」做进视觉素养课，给了一套可复制的教学干预设计。", where:"IJADE 44(3):743–769；可做「广告/短视频中的性别与消费」批判鉴赏单元。", tags:["视觉素养","美术鉴赏","公民教育"], source:"IJADE 2025, 44(3): 743–769 · Zengin & Ütkür-Güllühan", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in10", kind:"论文", scope:"国际", region:"荷兰·公民教育", title:"To Throw Oneself Into the Fray: Contemporary Artistic Activism for Art and Citizenship Education", hot:"开放获取。当代艺术行动主义如何进课堂，是「艺术+公民」跨学科的高阶样本。", where:"IJADE 44(3):512–529·Open Access；做「校园公共议题创作」项目时引用。", tags:["公民教育","社会正义","跨学科"], source:"IJADE 2025, 44(3): 512–529 · Nathalie Roos", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in11", kind:"论文", scope:"国际", region:"中国·博物馆", title:"The Family as an Experiential Learning Unit: Digital Resources for Mediating Emotional Attachment in Museums", hot:"中国团队做的「家庭作为学习单元」+ 博物馆数字资源研究，馆校合作课题可直接引用。", where:"IJADE 44(3):660–676；设计「亲子共看一件展品」的家庭学习单。", tags:["博物馆","馆校合作","情感"], source:"IJADE 2025, 44(3): 660–676 · Dai, Yuan & Wu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in12", kind:"论文", scope:"国际", region:"英国·儿童", title:"How Children Draw, Write and Tell About Portraying Mixed Emotions", hot:"开放获取。儿童如何画「复杂情绪」，给的是分析儿童画的编码方法，做儿童绘画研究必读。", where:"IJADE 44(1):211–226·Open Access；用其编码表分析你学生的「情绪自画像」。", tags:["儿童美术","情感","研究方法"], source:"IJADE 2025, 44(1): 211–226 · Burkitt & Watling", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in13", kind:"论文", scope:"国际", region:"美国·教师", title:"Exploring the Artistic Identity of Elementary Art Teachers", hot:"小学美术教师的「艺术家 vs 教师」身份冲突，是教师叙事研究的好框架。", where:"IJADE 44(1):227–238；写成「我为什么还在画画」的自我民族志。", tags:["教师身份","教师发展","叙事研究"], source:"IJADE 2025, 44(1): 227–238 · Carpenter Estrada et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in14", kind:"论文", scope:"国际", region:"瑞典·教师", title:"The Art of Becoming a Visual Arts Teacher", hot:"开放获取，用「兽性/感受」的隐喻讲新教师如何成长为美术教师，写法很值得学。", where:"IJADE 44(1):18–31·Open Access；学它的叙事结构写你的入职十年。", tags:["教师身份","教师发展"], source:"IJADE 2025, 44(1): 18–31 · Annika Hellman", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in15", kind:"论文", scope:"国际", region:"新西兰·遗产教育", title:"Heritage Appreciation and Awareness: A Child Educational Approach Exploiting Animated Video", hot:"用动画短视频做儿童遗产教育，给的是「传统+新媒体」的课程模型。", where:"IJADE 44(1):286–304；做「用动画讲深圳非遗」的学生项目。", tags:["非遗","数字美育","动画"], source:"IJADE 2025, 44(1): 286–304 · Bian, Brown & Marques", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in16", kind:"论文", scope:"国际", region:"韩国·AI", title:"Graphic Design Education in the Era of Text-to-Image Generation", hot:"开放获取。文生图时代设计课怎么改，给的是课程重构的具体路径，比空谈 AI 有用。", where:"IJADE 44(1):239–253·Open Access；做「AI 出图 + 人手改」的设计课单元。", tags:["AI美育","数字美育","课程开发"], source:"IJADE 2025, 44(1): 239–253 · Hwang & Wu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in17", kind:"论文", scope:"国际", region:"英国·第三空间", title:"Arts Education in the Third Space: Creative Journeys towards Critical Consciousness", hot:"「第三空间」= 学校之外的社区/美术馆场域，是非正式美育的理论抓手。", where:"IJADE 44(4)；写馆校合作或社区项目时做理论支撑。", tags:["社区艺术","馆校合作","美育理论"], source:"IJADE 2025, 44(4) · Oliver Briggs", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in18", kind:"论文", scope:"国际", region:"爱尔兰·艺术教师", title:"Artist-Teacher Practices as Sites of Peace 'Making'", hot:"艺术家教师如何把创作实践带进课堂，是「双身份」研究的延续。", where:"IJADE 44(4)；配你的个人创作+教学双线叙事。", tags:["教师身份","艺术本位"], source:"IJADE 2025, 44(4) · Eileen Keane", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in19", kind:"论文", scope:"国际", region:"爱尔兰·双语", title:"Bilingual Arts Practice, Frameworks and Possibilities", hot:"双语/多语环境下的艺术实践，深圳移民城市 + 英语教学可借用。", where:"IJADE 44(4)；做「双语美术术语卡」的课堂实验。", tags:["双语","课堂设计","跨学科"], source:"IJADE 2025, 44(4) · Keane & Nic An Bhreithiúnaigh", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in20", kind:"论文", scope:"国际", region:"英国·研究方法", title:"Critically Assessing Arts-Based Research: Moving Forward With Tension and Care", hot:"开放获取。艺术本位研究（ABR）如何被评审认可，方法论必读，写课题方法论章节直接引用。", where:"IJADE 44(4)·Open Access；课题「研究方法」部分引用其效度讨论。", tags:["艺术本位","研究方法"], source:"IJADE 2025, 44(4) · Wood & Millett", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in21", kind:"论文", scope:"国际", region:"英国·公共教育", title:"Aesthetic Dissensus as Public Pedagogy: Contemporary Art that Counters Whiteness and Far-Right Ideologies", hot:"开放获取。当代艺术作为「公共教育学」的案例，适合做批判性鉴赏课的理论参照。", where:"IJADE 44(4)·Open Access；引用其「审美歧见」概念做争议作品鉴赏课。", tags:["社会正义","美术鉴赏","公共艺术"], source:"IJADE 2025, 44(4) · Fiona O'Rourke", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in22", kind:"论文", scope:"国际", region:"美国·儿童", title:"A Collection of Children's Artworks as Imaginative Openings", hot:"把儿童作品集当作「想象的入口」来分析，给的是作品集评价的新视角。", where:"IJADE 44(2):381–395；做「一学期作品集」的纵向分析。", tags:["儿童美术","评价","作品集"], source:"IJADE 2025, 44(2): 381–395 · Schroeder Yu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in23", kind:"论文", scope:"国际", region:"英国·集体想象", title:"Ecologies of Collective Imagination", hot:"开放获取，讲「集体想象力」的生态模型，适合做大单元/项目式学习的社会维度论证。", where:"IJADE 44(2):494–508·Open Access；项目式学习论文的理论支撑。", tags:["创造力","项目式","美育理论"], source:"IJADE 2025, 44(2): 494–508 · Glăveanu et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in24", kind:"论文", scope:"国际", region:"澳大利亚·儿童行动主义", title:"Artivist Childhoods", hot:"开放获取。儿童作为「艺术行动者」的研究，接「儿童友好城市/校园」议题。", where:"IJADE 44(2):462–478·Open Access；做学生参与校园改造的参与式研究。", tags:["公民教育","儿童美术","社会正义"], source:"IJADE 2025, 44(2): 462–478 · Lasczik et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-kt01", kind:"课题", scope:"国内", region:"全国", title:"全国教育科学规划年度课题（教育部重点/一般）", hot:"教育系统最高级别课题，评职称硬通货。美术方向每年立项 10–20 项，命中点在「国家政策+可推广模型」。", where:"每年 1–3 月申报，经学校→区→市→省逐级推荐，个人不能直报。选题必须挂「美育浸润」「核心素养」等国家文件原词。", tags:["课题申报","国家级","教育部"], source:"全国教育科学规划领导小组办公室", url:"https://onsgep.moe.edu.cn/", deadline:"2027-03-15" },
+  { id:"res-kt02", kind:"课题", scope:"国内", region:"全国", title:"教育部人文社会科学研究一般项目（规划/青年）", hot:"高校系统课题，中学老师一般不能报，但可**参与高校老师的团队**做实践基地——这是性价比最高的挂名路径。", where:"每年 2–3 月申报；找本地师范院校/深大艺术学院的老师合作，你做「实验校」负责人。", tags:["课题申报","教育部","合作"], source:"教育部社科司", url:"https://www.sinoss.net/", deadline:"2027-03-20" },
+  { id:"res-kt03", kind:"课题", scope:"国内", region:"广东", title:"广东省教育科学规划课题（美育专项）", hot:"省级课题，深圳老师最现实的高级别目标。省里每年有「美育浸润」专项，命中率高于一般课题。", where:"每年 4–6 月，经市教科院推荐；选题写「粤港澳大湾区/岭南文化」加分明显。", tags:["课题申报","省级","美育浸润"], source:"广东省教育科学规划办", url:"http://edu.gd.gov.cn/", deadline:"2027-05-30" },
+  { id:"res-kt04", kind:"课题", scope:"国内", region:"深圳", title:"深圳市教育科学规划课题（年度/重点）", hot:"市级课题，评高级教师的标配。市教科院每年 3–5 月申报，区里会先筛一轮。", where:"必须有问题意识+校本实践基础；提前一学期在区教研活动上做开题预热，命中率更高。", tags:["课题申报","市级","教科院"], source:"深圳市教育科学研究院", url:"http://www.szjky.edu.cn/", deadline:"2027-04-20" },
+  { id:"res-kt05", kind:"课题", scope:"国内", region:"宝安", title:"宝安区教育科学规划课题（微型/一般）", hot:"区级课题，最容易立项、最适合第一次做课题的老师。半年到一年结题，成果可直接升市级。", where:"每年 9–10 月，学校统一报；选题小切口（一个单元、一个评价工具）反而更容易过。", tags:["课题申报","区级","宝安"], source:"宝安区教育科学研究院", url:"https://bjt.baoan.edu.cn/", deadline:"2027-09-30" },
+  { id:"res-kt06", kind:"课题", scope:"国内", region:"广东", title:"广东省美育浸润行动计划专项", hot:"省教育厅专项，面向中小学美育帮扶、城乡共同体。有对口帮扶关系的学校几乎必中。", where:"随省厅通知申报（一般上半年）；需要高校+中小学联合体，找一家高校做牵头。", tags:["课题申报","省级","美育浸润"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-06-15" },
+  { id:"res-kt07", kind:"课题", scope:"国内", region:"全国", title:"中国美术家协会「美育浸润」相关课题/项目", hot:"美协系统的项目，偏创作+教学结合。评职称时算行业权威，但不算教育系统课题，两者可叠加。", where:"关注中国美协官网公告，一般下半年；需提交作品+教学成果双材料。", tags:["课题申报","专业协会","美育浸润"], source:"中国美术家协会", url:"https://www.caanet.org.cn/", deadline:"2027-10-31" },
+  { id:"res-kt08", kind:"课题", scope:"国内", region:"广东", title:"广东省教育研究院中小学美术教研专项", hot:"省教研院的小课题，周期短（1 年）、要求实，适合拿「课例+数据」说话。", where:"每年 3 月前后；由地市教研员推荐，先跟区美术教研员打招呼。", tags:["课题申报","省级","教研"], source:"广东省教育研究院", url:"http://gdjy.gdedu.gov.cn/", deadline:"2027-03-31" },
+  { id:"res-kt09", kind:"课题", scope:"国内", region:"深圳", title:"深圳市「十四五」美育特色学校创建项目", hot:"不是课题但胜似课题：评上特色校，全校美育经费、评优、职称名额都会倾斜。", where:"按市教育局通知申报（一般 9–11 月）；要 3 年规划+课程体系+成果展，提前备材料。", tags:["课题申报","市级","特色学校"], source:"深圳市教育局", url:"http://szeb.sz.gov.cn/", deadline:"2027-11-15" },
+  { id:"res-kt10", kind:"课题", scope:"国内", region:"校内", title:"校本课题（校级）", hot:"最低门槛，先做校级再往上滚。校级课题结题报告可以直接改成论文投《美术教育研究》。", where:"随时可立，学校教科室备案；选题=你班里真实存在的问题，一学期能做完。", tags:["课题申报","校级","入门"], source:"本校教科室", url:"#", deadline:"2027-06-30" },
+  { id:"res-kt11", kind:"课题", scope:"国内", region:"全国", title:"国家社科基金教育学一般课题", hot:"比教科规划更难，但含金量最高。中学老师基本只能参与高校团队，做实验校。", where:"每年 1–2 月，限项申报；找师大教授带，你负责课堂实验与数据。", tags:["课题申报","国家级","合作"], source:"全国哲学社会科学工作办公室", url:"http://www.nopss.gov.cn/", deadline:"2027-02-28" },
+  { id:"res-kt12", kind:"课题", scope:"国内", region:"广东", title:"广东省中小学「百千万人才培养工程」专项课题", hot:"名师培养对象的配套课题，如果你在名师工作室/培养对象序列里，这是必拿的。", where:"随培养工程通知；需工作室主持人推荐，成果要求公开课+论文+辐射带动。", tags:["课题申报","省级","名师"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-07-15" },
 ];
 
-
-/* ============================================================
-   GitHub 开源工具箱 · 对美术老师 / 备课真正有用
-   星标数为公开趋势数据，下载均免费开源。
-   ============================================================ */
 var TOOLS = [
   { id:"t-krita", name:"Krita", star:"免费开源", lang:"C++/Qt", url:"https://github.com/KDE/krita",
     desc:"专业级免费数字绘画软件，插画 / 漫画 / 概念设计，比 PS 易上手，学生机装得起。",
@@ -3464,19 +3359,19 @@ var PEOPLE = [
   /* 主题归类：用于饼状图 + 卡片标签 */
   function resCat(r) {
     var t = (r.tags || []).join(" ");
-    if (/数字美育|AI辅助|协同创作|AI美育|AI素养|AIGC|智能美育|人机协同|人工美学|系统综述/.test(t)) return "数字美育·AI协同";
-    if (/非遗|民间美术|文化传承|书法教学|笔墨素养/.test(t)) return "非遗·书法·民间美术";
-    if (/馆校合作|场馆美育|浸润行动|美育浸润/.test(t)) return "馆校合作·美育浸润";
-    if (/乡土美术|在地资源|在地文化|课程开发|表现性评价|作业设计|素养评价|本土文化|水墨|博物/.test(t)) return "乡土·课程·评价";
-    if (/大单元|大观念|课标|儿童美术|视觉观看|审美学习|艺术社团|课程化/.test(t)) return "大单元·儿童·教学";
-    if (/美术鉴赏|审美判断|图像识读|视觉素养/.test(t)) return "美术鉴赏·视觉素养";
-    if (/跨学科|STEAM|艺术融合|项目式|Maker/.test(t)) return "跨学科·STEAM";
-    if (/社会正义|社区艺术|公民教育|文化响应式|去西方中心/.test(t)) return "社会正义·社区艺术";
-    if (/文献计量|研究趋势|知识图谱|科学地图|综述/.test(t)) return "研究趋势·文献计量";
-    if (/A\/r\/tography|艺术探究|艺术本位|创作性探究/.test(t)) return "艺术探究·A/r/tography";
-    if (/情感|体验式|社会情绪|SEL|正念|疗愈|心理健康/.test(t)) return "情感·体验式学习";
-    if (/国际会议|国际基金|跨国合作|索引期刊/.test(t)) return "国际发表·基金";
-    if (/课题申报|国家级|省级|市级|教育部|教科规划|专业协会/.test(t)) return "课题申报渠道";
+    if (/课题申报/.test(t)) return "课题申报渠道";
+    if (/AI美育|AI素养|AIGC|数字美育|生成式AI|智能美育/.test(t)) return "数字美育·AI协同";
+    if (/非遗|民间美术|书法|传统文化|纹样|手工艺/.test(t)) return "非遗·民间美术";
+    if (/博物馆|馆校合作|社会美育|美育浸润/.test(t)) return "馆校合作·美育浸润";
+    if (/乡村美育|在地文化|校本课程|美育理论|课程开发|教育公平/.test(t)) return "乡土·课程·政策";
+    if (/学业评价|表现性评价|评价|作品集/.test(t)) return "评价·作业设计";
+    if (/大单元|深度学习|课堂设计|课堂研究|微课|信息化|任务设计/.test(t)) return "课堂·教学设计";
+    if (/美术鉴赏|图像识读|视觉素养/.test(t)) return "鉴赏·视觉素养";
+    if (/跨学科|项目式|STEAM|绘本|文创|动画/.test(t)) return "跨学科·项目式";
+    if (/社会正义|社区艺术|公民教育|公共艺术|流动儿童|公共教育/.test(t)) return "社会正义·社区";
+    if (/教师身份|教师发展|叙事研究|艺术本位|研究方法/.test(t)) return "教师·研究方法";
+    if (/创造力|儿童美术|情感|个案|双语/.test(t)) return "儿童·创造力";
+    if (/文献计量|研究趋势|综述/.test(t)) return "研究趋势·文献计量";
     return "其他";
   }
   /* 国际前沿主题饼状图（内联 SVG，可点击筛选） */
