@@ -6,6 +6,8 @@
 
   // 默认远程数据源（公开 CDN，跨域友好；单位网络通时刷新即拉最新，不通则回退本地）
   var DEFAULT_UPDATE_URL = "https://cdn.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js";
+  // 版本比较：解析「YYYY-MM-DD · 第 N 版」，远程不新于本地时不覆盖（避免回退）
+  function verKey(v) { var m = String(v || "").match(/(\d{4}-\d{2}-\d{2})[^\d]*第\s*(\d+)\s*版/); return m ? (m[1].replace(/-/g, "") + ("000" + m[2]).slice(-4)) : String(v || ""); }
 
   var LS = {
     mine: "hf_mine_v1",
@@ -139,7 +141,7 @@
   }
 
   /* ---------- 渲染卡片 ---------- */
-  var state = { tier: "all", aud: "教师", q: "", status: "all", sort: "value", mode: "tch", rec: false, resKind: "论文", resScope: "国内", resCat: null };
+  var state = { tier: "all", aud: "教师", q: "", status: "all", effort: "all", sort: "value", mode: "tch", rec: false, resKind: "论文", resScope: "国内", resCat: null };
   var TIER_CLS = { "区": "b-qu", "市": "b-shi", "省": "b-sheng", "国": "b-guo" };
   var TIER_TXT = { "区": "区级", "市": "市级", "省": "省级", "国": "国家级" };
 
@@ -159,6 +161,9 @@
         if (state.status === "open") return k === "open" || k === "hot";
         return k === state.status;
       });
+    }
+    if (state.effort !== "all") {
+      list = list.filter(function (a) { return effortOf(a) === state.effort; });
     }
     if (state.rec) {
       list = list.filter(function (a) { return shouldJoin(a); });
@@ -188,18 +193,79 @@
     var hard = /报名表|申请表|申报表|汇总表|视频|设计说明|创作报告|论文|方案|课件|教案|原件|证书|授权书|推荐表|Word|word|公示|佐证|总结|案例|申报书/;
     return m.every(function (x) { return !hard.test(x); });
   }
-  /* 建议参加：国家级 / 认可度高 / 低门槛好上手 */
+  /* 难度：简单=传图即投 / 中等=填表+简短说明 / 难=录微课·视频·课件·课题·论文 */
+  function effortOf(a) {
+    if (a.effort) return a.effort;
+    var t = [].concat(a.materials || [], a.steps || [], a.win || [], [a.name || "", a.subject || ""]).join(" ");
+    var hard = /微课|视频|录像|实录|课件|教案|说课|申报书|课题|答辩|任务单|学习单|录制|剪辑|作业样本|命题|知识测评|设计说明|微课时长|ppt|PPT|pptx|课堂实录|微课视频|教学实录|长材料|佐证材料/;
+    var easy = /作品图片|作品照片|高清图|电子稿|书画|绘画|书法|摄影|创作稿|原作|实物|照片|jpg|jpeg|信息卡|登记表|报名表|承诺书|简历|原创声明|创作年份/;
+    if (hard.test(t)) return "难";
+    if (easy.test(t)) return "简单";
+    return "中等";
+  }
+  /* 赛道：专业创作 / 教学能力 / 论文课题 / 指导学生 / 综合 */
+  function trackOf(a) {
+    if (a.track) return a.track;
+    var t = (a.name || "") + (a.subject || "") + (a.short || "");
+    if (/论文|课题|教研|研究|规划办/.test(t)) return "论文·课题";
+    if (/微课|课件|说课|精品课|课程育人|教学能力|资源|命题|基本功/.test(t)) return "教学能力";
+    if (/指导|带学生|学生绘画|学生书法|学生赛/.test(t)) return "指导学生";
+    if (/绘画|书法|摄影|美展|创作|书画|美术作品|工艺/.test(t)) return "专业创作";
+    return "综合";
+  }
+  /* 投稿渠道：优先用显式 to（具体邮箱/入口），否则退回 portal */
+  function toOf(a) { return a.to || a.portal || "见主办方通知（关注其官方渠道）"; }
+  /* 建议：显式 advice 优先；否则按 难度×级别×是否推荐 兜底生成 */
+  function adviceOf(a) {
+    if (a.advice) return a.advice;
+    var ef = effortOf(a);
+    var lvl = { "区": 1, "市": 2, "省": 3, "国": 4 }[a.tier] || 1;
+    if (lvl <= 1 && ef === "难") return "⚠️ 区级+耗时，性价比低，按需";
+    if (shouldJoin(a) && ef === "简单") return (lvl >= 3 ? "⭐ 最推荐·好进高含金量" : "🟢 好进·值得投");
+    if (shouldJoin(a)) return "⭐ 含金量高（投入较大，权衡后冲）";
+    if (ef === "难") return "🔴 难度高·耗时，非必要不冲";
+    return "可投：看个人时间与方向";
+  }
+  /* 建议参加：优先「简单 + 市/省/国家级」，区级难的不推 */
   function shouldJoin(a) {
     if (a.aud === "学生") return (a.rate && a.rate.value >= 4) || isEasy(a);
-    return a.tier === "国" || (a.credit || 0) >= 4 || (isEasy(a) && (a.credit || 0) >= 3);
+    var ef = effortOf(a);
+    var lvl = { "区": 1, "市": 2, "省": 3, "国": 4 }[a.tier] || 1;
+    var cr = a.credit || 0;
+    if (ef === "简单" && lvl >= 2) return true;          // 市/省/国级 + 传图 → 最值得（市级也推）
+    if (a.tier === "国" && cr >= 4) return true;          // 国家级硬通货（即使难，标出来让用户权衡）
+    if (lvl >= 2 && cr >= 4 && ef !== "难") return true;   // 市及以上 + 高含金量 + 非难
+    if (lvl <= 1 && ef === "难") return false;             // 区级 + 难（如微课）→ 不推
+    if (cr >= 4 && ef !== "难") return true;
+    return false;
   }
-  /* 含金量 / 推荐综合分（越大越靠前） */
+  /* 你该报吗 · 怎么报：把「逐级报送」翻译成具体动作，消除歧义 */
+  function joinDecision(a) {
+    var adv = a.advice || "";
+    if (/禁赛|不参加|明确禁赛|跳过|不接收个人参赛|专业教师(明确)?(不|禁)|只限专业/.test(adv + (a.notes || "")))
+      return { go: false, txt: "❌ 不用报：该赛事明确不接收在职美术教师（专业教师禁赛），投了也不算数" };
+    if (a.aud === "学生") return { go: true, txt: "✅ 你做指导老师带学生投，按下方步骤发通知即可" };
+    var am = applyMode(a);
+    if (am.ok) return { go: true, txt: "✅ 该报：可个人直报，按入口自己投，不用走单位" };
+    var lvl = { "区": 1, "市": 2, "省": 3, "国": 4 }[a.tier] || 1;
+    var chain = ["航瑞中学（找学校工会 / 教研处报名）"];
+    if (lvl >= 2) chain.push("宝安区教育工会 / 教科院");
+    if (lvl >= 3) chain.push("深圳市教育工会");
+    if (lvl >= 4) chain.push("广东省教科文卫工会");
+    var dd = daysTo(a.deadline);
+    var hint = (dd != null && dd >= 0) ? "；在截稿前约 2 周把作品 + 报名表交学校，给单位留出逐级汇总时间" : "（时间待公布，先和校工会打招呼占位）";
+    return { go: true, txt: "✅ 该报：你是教师，经单位报送即可，不等于「不能报」。路径：" + chain.join(" → ") + hint };
+  }
+  /* 含金量 / 推荐综合分（越大越靠前；难度高扣分，简单加分） */
   function priorityScore(a) {
     var tw = { "国": 4, "省": 3, "市": 2, "区": 1 }[a.tier] || 0;
     var s = tw * 10;
     if (a.aud === "学生") s += (a.rate ? a.rate.value : 0) * 2;
     else s += (a.credit || 0) * 2;
-    if (isEasy(a)) s += 6;
+    var ef = effortOf(a);
+    if (ef === "简单") s += 8;
+    if (ef === "中等") s += 3;
+    if (ef === "难") s -= 6;
     var k = statusOf(a).key;
     if (k === "done") s -= 20;
     if (k === "soon") s -= 4;
@@ -273,6 +339,11 @@
     var offTag = a.official ? '<span class="badge off">官方已发</span>' : '<span class="badge off2">待发布</span>';
     var audTag = a.aud === "学生" ? '<span class="badge" style="background:#8b4fa8">学生·我指导</span>' : "";
     var recTag = shouldJoin(a) ? '<span class="badge" style="background:#c4442e">⭐ 建议参加</span>' : "";
+    var ef = effortOf(a);
+    var efTag = ef === "简单" ? '<span class="badge" style="background:#2f9e44">🟢 简单·传图即投</span>'
+              : ef === "中等" ? '<span class="badge" style="background:#e8a33d">🟡 中等</span>'
+              : '<span class="badge" style="background:#d9453b">🔴 难·需录制/长材料</span>';
+    var trTag = '<span class="badge" style="background:#6c5ce7">' + esc(trackOf(a)) + "</span>";
     var easyTag = isEasy(a) ? '<span class="badge" style="background:#4f9d3a">📷 门槛低·发照片即可</span>' : "";
     var am = applyMode(a);
     var applyTag = '<span class="badge" style="background:' + (am.ok ? "#4f9d3a" : "#e07b00") + '">' + esc(am.txt) + "</span>";
@@ -280,7 +351,7 @@
     return '<div class="card px" data-id="' + esc(a.id) + '">' +
       '<div class="row1">' +
         '<span class="badge ' + (TIER_CLS[a.tier] || "b-qu") + '">' + (TIER_TXT[a.tier] || a.tier) + "</span>" +
-        audTag + applyTag + recTag + easyTag + mineTag + offTag +
+        trTag + audTag + applyTag + efTag + recTag + easyTag + mineTag + offTag +
         "<h3>" + esc(a.name) + "</h3>" +
       "</div>" +
       '<div class="org">主办：' + esc(a.org) + "</div>" +
@@ -297,6 +368,9 @@
       proofHTML +
       typesHTML +
       bigHTML +
+      '<div class="to-line">📮 <b>投到：</b>' + esc(toOf(a)) + '</div>' +
+      '<div class="advice-line">💡 ' + esc(adviceOf(a)) + '</div>' +
+      (function () { var j = joinDecision(a); return '<div class="decide-line ' + (j.go ? "go" : "nogo") + '">🚦 ' + esc(j.txt) + '</div>'; })() +
       '<div class="acts">' +
         '<button class="btn gold sm" data-act="detail">详情</button>' +
         (a.aud === "学生"
@@ -398,11 +472,8 @@
     var box = $("#recBanner");
     if (!box) return;
     var rec = ALL.filter(function (a) { return shouldJoin(a) && statusOf(a).key !== "done"; })
-      .sort(function (x, y) {
-        var dx = daysTo(x.deadline) == null ? 9999 : daysTo(x.deadline);
-        var dy = daysTo(y.deadline) == null ? 9999 : daysTo(y.deadline);
-        return dx - dy;
-      }).slice(0, 4);
+      .sort(function (x, y) { return priorityScore(y) - priorityScore(x); })
+      .slice(0, 4);
     if (!rec.length) { box.style.display = "none"; return; }
     var nums = ["①", "②", "③", "④"];
     var items = rec.map(function (a, i) {
@@ -952,6 +1023,11 @@
       "<div><b>本轮窗口：</b>" + esc(a.window || "—") + "</div>" +
       "<div><b>当前状态：</b>" + st.text + (d != null && d >= 0 ? "（T-" + d + "）" : "") + "</div>" +
       "</div></div>";
+    h += (function () { var j = joinDecision(a); return '<div class="sec ' + (j.go ? "decide-go" : "decide-nogo") + '"><h5>🚦 你该报吗 · 怎么报（先看这条）</h5><div class="mini" style="font-size:15px;line-height:1.9;font-weight:700">' + esc(j.txt) + '</div></div>'; })();
+    h += '<div class="sec" style="border-left:4px solid var(--blue);background:#fff6df"><h5>📮 投到哪（邮箱 / 入口）· 一目了然</h5><div class="mini" style="font-size:14px;line-height:1.85;font-weight:600;color:var(--ink)">' + esc(toOf(a)) + '</div>' +
+      (a.url ? '<a class="btn blue sm" style="margin-top:6px" href="' + esc(a.url) + '" target="_blank" rel="noopener">🔗 主办方官网</a>' : '') +
+      '</div>';
+    h += '<div class="sec" style="border-left:4px solid var(--gold);background:#fff0cf"><h5>💡 我的建议（先帮你筛一遍）</h5><div class="mini" style="font-size:14.5px;font-weight:700;color:#7a3b00;line-height:1.8">' + esc(adviceOf(a)) + '</div></div>';
     if (a.schoolProof) {
       h += '<div class="sec"><h5>学校认不认 · 实证</h5><div class="proof" style="border-left-color:#4f9d3a">' +
         "<b>本校上学年 " + (a.schoolProof.count || 0) + " 人次获奖</b><br>最高：" + esc(a.schoolProof.best || "—") +
@@ -1787,6 +1863,7 @@
 
   function syncStatusTags() {
     $$(".stfilter").forEach(function (el) { el.classList.toggle("on", el.dataset.status === state.status); });
+    $$(".steffort").forEach(function (el) { el.classList.toggle("on", el.dataset.effort === state.effort); });
   }
   ["q", "fStatus", "fSort"].forEach(function (id) {
     var el = document.getElementById(id);
@@ -1803,6 +1880,12 @@
       state.status = (state.status === el.dataset.status) ? "all" : el.dataset.status;
       var sel = $("#fStatus"); if (sel) sel.value = state.status;
       syncStatusTags(); render(); beep(600, .05);
+    });
+  });
+  $$(".steffort").forEach(function (el) {
+    el.addEventListener("click", function () {
+      state.effort = (state.effort === el.dataset.effort) ? "all" : el.dataset.effort;
+      syncStatusTags(); render(); beep(660, .05);
     });
   });
 
@@ -1838,32 +1921,45 @@
     var self = this;
     self.textContent = "刷新中…";
     var S = loadSet();
-    var url = (S.updateUrl && S.updateUrl.trim()) ? S.updateUrl.trim() : DEFAULT_UPDATE_URL;
-    fetch(url, { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-      .then(function (txt) {
-        var got = new Function(txt + "\n;return {AWARDS:typeof AWARDS!=='undefined'?AWARDS:null,WHITELIST:typeof WHITELIST!=='undefined'?WHITELIST:null,BIG_SCHOOLS:typeof BIG_SCHOOLS!=='undefined'?BIG_SCHOOLS:null,RES:typeof RES!=='undefined'?RES:null,TOOLS:typeof TOOLS!=='undefined'?TOOLS:null,PEOPLE:typeof PEOPLE!=='undefined'?PEOPLE:null,DATA_VERSION:typeof DATA_VERSION!=='undefined'?DATA_VERSION:null};")();
-        if (!got.DATA_VERSION) throw new Error("远程文件不含数据");
-        if (got.DATA_VERSION === DATA_VERSION) {
-          toast("已是最新（" + got.DATA_VERSION.split("·")[0].trim() + "）");
-          self.textContent = "刷新"; return;
-        }
-        if (got.AWARDS) { ALL = [].concat(got.AWARDS, custom); }
-        if (got.WHITELIST) { WL = got.WHITELIST; }
-        if (got.BIG_SCHOOLS) { BS = got.BIG_SCHOOLS; }
-        if (got.RES) { RES = got.RES; }
-        if (got.TOOLS) { TOOLS = got.TOOLS; }
-        if (got.PEOPLE) { PEOPLE = got.PEOPLE; }
-        render(); renderSide();
-        $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-        $("#verTag").textContent = "数据 " + got.DATA_VERSION.split("·")[0].trim();
+    var sources = [
+      (S.updateUrl && S.updateUrl.trim()) ? S.updateUrl.trim() : null,
+      "https://cdn.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js",
+      "https://gcore.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js",
+      "https://raw.githubusercontent.com/Leslyxu/stardew-award-farm/main/data.js"
+    ].filter(Boolean);
+    function tryNext(i) {
+      if (i >= sources.length) {
         self.textContent = "刷新";
-        toast("已更新到新版本：" + got.DATA_VERSION.split("·")[0].trim());
-        beep(1046, .07); setTimeout(function () { beep(1318, .07); }, 80);
-      })
-      .catch(function (e) {
-        self.textContent = "刷新";
-        toast("联网更新失败（可能网络受限）· 仍用本地内置数据，联网后可再点刷新");
-      });
+        $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false }) + "·失败";
+        toast("联网更新失败（网络受限）· 仍用本地内置 " + DATA_VERSION.split("·")[0].trim() + "，联网后可再点刷新");
+        return;
+      }
+      fetch(sources[i], { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+        .then(function (txt) {
+          var got = new Function(txt + "\n;return {AWARDS:typeof AWARDS!=='undefined'?AWARDS:null,WHITELIST:typeof WHITELIST!=='undefined'?WHITELIST:null,BIG_SCHOOLS:typeof BIG_SCHOOLS!=='undefined'?BIG_SCHOOLS:null,RES:typeof RES!=='undefined'?RES:null,TOOLS:typeof TOOLS!=='undefined'?TOOLS:null,PEOPLE:typeof PEOPLE!=='undefined'?PEOPLE:null,DATA_VERSION:typeof DATA_VERSION!=='undefined'?DATA_VERSION:null};")();
+          if (!got.DATA_VERSION) throw new Error("远程文件不含数据");
+          if (verKey(got.DATA_VERSION) <= verKey(DATA_VERSION)) {
+            self.textContent = "刷新";
+            $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
+            toast("已是最新（本地 " + DATA_VERSION.split("·")[0].trim() + "，无需更新）");
+            return;
+          }
+          if (got.AWARDS) { ALL = [].concat(got.AWARDS, custom); }
+          if (got.WHITELIST) { WL = got.WHITELIST; }
+          if (got.BIG_SCHOOLS) { BS = got.BIG_SCHOOLS; }
+          if (got.RES) { RES = got.RES; }
+          if (got.TOOLS) { TOOLS = got.TOOLS; }
+          if (got.PEOPLE) { PEOPLE = got.PEOPLE; }
+          render(); renderSide();
+          $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
+          $("#verTag").textContent = "数据 " + got.DATA_VERSION.split("·")[0].trim();
+          self.textContent = "刷新";
+          toast("✅ 已更新到新版本：" + got.DATA_VERSION.split("·")[0].trim());
+          beep(1046, .07); setTimeout(function () { beep(1318, .07); }, 80);
+        })
+        .catch(function () { tryNext(i + 1); });
+    }
+    tryNext(0);
   });
 
   $("#btnMine").addEventListener("click", openMine);

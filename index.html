@@ -16,10 +16,9 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:"Zpix","Fusion Pixel","SimSun","宋体","Songti SC","Microsoft YaHei",monospace;
-  font-size:17px;line-height:1.95;color:var(--ink);font-weight:700;
-  background:#2b1a0e;letter-spacing:.4px;
-  -webkit-font-smoothing:none;image-rendering:pixelated;
+  font-family:"Microsoft YaHei","微软雅黑","PingFang SC","Hiragino Sans GB","Heiti SC","Source Han Sans SC",sans-serif;
+  font-size:18.5px;line-height:1.85;color:var(--ink);font-weight:600;
+  background:#2b1a0e;letter-spacing:.3px;
   min-height:100vh;padding-bottom:40px;
   transition:background .6s;
 }
@@ -68,7 +67,7 @@ input:focus,select:focus,textarea:focus{background:#fff8e0}
 textarea{resize:vertical;min-height:70px;line-height:1.6}
 input::placeholder,textarea::placeholder{color:#bda882;opacity:1}
 
-.wrap{max-width:1720px;margin:0 auto;padding:16px 26px;position:relative;z-index:2}
+.wrap{max-width:1680px;margin:0 auto;padding:14px 18px;position:relative;z-index:2}
 
 /* 顶部 */
 header{
@@ -77,7 +76,7 @@ header{
   box-shadow:inset 0 6px 0 rgba(255,255,255,.2), inset 0 -8px 0 rgba(0,0,0,.3), 0 6px 0 rgba(0,0,0,.35);
 }
 .logo{width:54px;height:54px;flex:none}
-h1{font-size:20px;color:var(--gold);text-shadow:2px 2px 0 #000,0 0 14px rgba(255,207,77,.35);letter-spacing:2px;line-height:1.25}
+h1{font-family:"Zpix","Fusion Pixel",monospace;font-size:20px;color:var(--gold);text-shadow:2px 2px 0 #000,0 0 14px rgba(255,207,77,.35);letter-spacing:2px;line-height:1.25}
 .sub{font-size:10px;color:#f2d9a8;text-shadow:1px 1px 0 #000;letter-spacing:1px;white-space:nowrap}
 .hr{margin-left:auto;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
 #clock{background:#1b1008;border:4px solid var(--wood-dark);padding:5px 11px;color:var(--gold);
@@ -85,18 +84,20 @@ h1{font-size:20px;color:var(--gold);text-shadow:2px 2px 0 #000,0 0 14px rgba(255
 #clock b{font-size:16px;color:#fff3c9;letter-spacing:1px}
 
 /* 状态条 */
-.statbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:9px 11px;margin-bottom:12px;font-size:14px}
+.statbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;padding:8px 10px;margin-bottom:12px;font-size:15px}
 .statbar .sp{flex:1}
 .statbar .tag{max-width:100%}
-.tag{background:var(--white);border:3px solid var(--wood-dark);padding:2px 9px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:5px;cursor:default}
-.tag.stfilter{cursor:pointer}
-.tag.stfilter:hover{background:#ffe9bf}
-.tag.stfilter.on{background:var(--gold);color:var(--ink);border-color:var(--red);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.tag{background:var(--white);border:3px solid var(--wood-dark);padding:2px 9px;font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:5px;cursor:default}
+.flabel{font-size:14px;font-weight:700;color:var(--wood);align-self:center;margin-left:6px}
+.tag.stfilter,.tag.steffort{cursor:pointer;border-radius:7px;padding:5px 13px;font-size:14.5px;border-width:3px;user-select:none;transition:transform .05s}
+.tag.stfilter:hover,.tag.steffort:hover{background:#ffe9bf}
+.tag.stfilter:active,.tag.steffort:active{transform:translateY(1px)}
+.tag.stfilter.on,.tag.steffort.on{background:var(--gold);color:var(--ink);border-color:var(--red);box-shadow:0 3px 0 rgba(0,0,0,.28)}
 .dot{width:9px;height:9px;border:2px solid var(--wood-dark);display:inline-block;flex:none}
 .dot.open{background:var(--green)} .dot.soon{background:var(--gold)} .dot.done{background:#9b8b76} .dot.hot{background:var(--red)}
 
 /* 主栅格 */
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 302px;gap:13px;align-items:start}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:13px;align-items:start}
 .layout>div{min-width:0}
 @media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr)}}
 
@@ -122,12 +123,19 @@ h1{font-size:20px;color:var(--gold);text-shadow:2px 2px 0 #000,0 0 14px rgba(255
 .card{padding:11px 12px;position:relative;display:flex;flex-direction:column;gap:7px;min-width:0}
 .card:hover{background:#fff3d2}
 .card .row1{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
-.card h3{font-size:19px;line-height:1.5;letter-spacing:.6px;flex:1 1 100%;min-width:0;word-break:break-word;margin-top:2px;font-weight:700}
+.card h3{font-size:20.5px;line-height:1.45;letter-spacing:.6px;flex:1 1 100%;min-width:0;word-break:break-word;margin-top:2px;font-weight:700}
 .badge{font-size:11.5px;padding:2px 8px;font-weight:700;border:3px solid var(--wood-dark);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.35);flex:none;letter-spacing:.5px}
 .b-qu{background:#7a8c3f} .b-shi{background:var(--blue)} .b-sheng{background:var(--purple)} .b-guo{background:var(--red)}
-.org{font-size:14.5px;color:var(--ink-2)}
-.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:14.5px;color:var(--ink-2)}
+.org{font-size:15.5px;color:var(--ink-2)}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-size:15.5px;color:var(--ink-2)}
 .meta b{color:var(--ink)}
+.to-line{font-size:15px;color:var(--ink-2);background:#fff6df;border-left:4px solid var(--blue);padding:6px 9px;line-height:1.75}
+.to-line b{color:var(--blue)}
+.advice-line{font-size:15px;font-weight:700;color:#7a3b00;background:#fff0cf;border-left:4px solid var(--gold);padding:6px 9px;line-height:1.75}
+.decide-line{font-size:15px;font-weight:700;color:#1d6b2e;background:#e4f7e3;border-left:4px solid var(--green);padding:7px 9px;line-height:1.75;margin-top:2px}
+.decide-line.nogo{color:#9c2b1e;background:#fde6e1;border-left-color:var(--red)}
+.decide-go{background:#e4f7e3;border-left-color:var(--green)}
+.decide-nogo{background:#fde6e1;border-left-color:var(--red)}
 .badge.off{background:#4f9d3a}
 .badge.off2{background:#c99a17;color:#3b2412;text-shadow:none}
 /* 教研 / 工具箱 新增徽标 */
@@ -190,7 +198,7 @@ h1{font-size:20px;color:var(--gold);text-shadow:2px 2px 0 #000,0 0 14px rgba(255
 
 /* 侧栏 */
 .side{display:flex;flex-direction:column;gap:11px;position:sticky;top:10px;align-self:start}
-.panel{padding:10px 11px}
+.panel{padding:9px 10px;margin:0}
 .panel h4{font-size:13px;color:var(--wood);border-bottom:3px dashed var(--parch-3);padding-bottom:5px;margin-bottom:7px;letter-spacing:1px}
 .stat-line{display:flex;justify-content:space-between;font-size:11.5px;padding:2px 0;gap:6px}
 .stat-line span:first-child{color:var(--ink-2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -328,14 +336,18 @@ footer b{color:var(--wood)}
   </header>
 
   <div class="statbar px">
+    <span class="flabel">筛选状态：</span>
     <span class="tag stfilter" data-status="open"><i class="dot open"></i>征集中 <b id="nOpen">0</b></span>
     <span class="tag stfilter" data-status="hot"><i class="dot hot"></i>即将截止 <b id="nHot">0</b></span>
     <span class="tag stfilter" data-status="soon"><i class="dot soon"></i>待公布 <b id="nSoon">0</b></span>
     <span class="tag stfilter" data-status="done"><i class="dot done"></i>已截止 <b id="nDone">0</b></span>
+    <span class="flabel">难度：</span>
+    <span class="tag steffort" data-effort="简单"><i class="dot open"></i>🟢 简单·传图</span>
+    <span class="tag steffort" data-effort="中等"><i class="dot soon"></i>🟡 中等</span>
+    <span class="tag steffort" data-effort="难"><i class="dot done"></i>🔴 难·录制</span>
     <span class="sp"></span>
-    <span class="tag" style="color:#4a2809">点上面标签可筛选 · 绿=在收 · 红=快截止 · 黄=待定 · 灰=已停</span>
-    <span class="tag" id="verTag">数据 2026-11-01</span>
-    <span class="tag">上次刷新 <b id="lastRefresh">--</b></span>
+    <span class="tag" id="verTag">数据 2026-11-02</span>
+    <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
   </div>
 
     <div class="banner px">
