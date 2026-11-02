@@ -349,13 +349,24 @@
       $("#grid").innerHTML = '<div class="px" style="padding:26px;text-align:center;color:#6d4a2a">这块地还没种东西 —— 换个筛选条件试试。</div>';
     } else if (state.tier === "all") {
       /* 按级别分组展示，含金量高的（国家级）放最前 */
-      var order = ["国", "省", "市", "区"];
+      var groups = [
+        { t:"国", label:"🏆 国家级" },
+        { t:"省", label:"🌏 广东省级" },
+        { t:"深", label:"🏙 深圳市级" },
+        { t:"区", label:"🏫 宝安区级" },
+        { t:"外", label:"📍 其他地市（非深圳·仅供参考）" }
+      ];
+      function tierOf(a) {
+        if (a.tier === "市") return /深圳/.test(a.name + (a.org || "")) ? "深" : "外";
+        return a.tier;
+      }
       var html = "";
-      order.forEach(function (t) {
-        var grp = list.filter(function (a) { return a.tier === t; }).sort(function (x, y) { return priorityScore(y) - priorityScore(x); });
+      groups.forEach(function (g) {
+        var grp = list.filter(function (a) { return tierOf(a) === g.t; })
+          .sort(function (x, y) { return priorityScore(y) - priorityScore(x); });
         if (!grp.length) return;
         var recN = grp.filter(shouldJoin).length;
-        html += '<div class="group-h">' + (TIER_TXT[t] || t) + ' · ' + grp.length + ' 项' + (recN ? '　⭐建议参加 ' + recN : '') + '</div>';
+        html += '<div class="group-h">' + g.label + ' · ' + grp.length + ' 项' + (recN ? '　⭐建议参加 ' + recN : '') + '</div>';
         html += grp.map(cardHTML).join("");
       });
       $("#grid").innerHTML = html;
