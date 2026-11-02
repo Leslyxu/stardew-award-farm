@@ -4,6 +4,9 @@
 (function () {
   "use strict";
 
+  // 默认远程数据源（公开 CDN，跨域友好；单位网络通时刷新即拉最新，不通则回退本地）
+  var DEFAULT_UPDATE_URL = "https://cdn.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js";
+
   var LS = {
     mine: "hf_mine_v1",
     prof: "hf_profile_v1",
@@ -306,6 +309,7 @@
 
   function render() {
     var m = state.mode;
+    if (m !== "tch" && m !== "stu") { var rb = $("#recBanner"); if (rb) rb.style.display = "none"; }
     if (m === "nwl" || m === "gwl") {
       document.querySelector(".layout").style.display = "none";
       $("#wlSection").style.display = "block";
@@ -386,6 +390,30 @@
     $("#cShi").textContent = tc["市"];
     $("#cSheng").textContent = tc["省"];
     $("#cGuo").textContent = tc["国"];
+    renderRecBanner();
+  }
+
+  /* 顶部「现在最该报」横幅：推荐 + 未截止，按截稿近→远 */
+  function renderRecBanner() {
+    var box = $("#recBanner");
+    if (!box) return;
+    var rec = ALL.filter(function (a) { return shouldJoin(a) && statusOf(a).key !== "done"; })
+      .sort(function (x, y) {
+        var dx = daysTo(x.deadline) == null ? 9999 : daysTo(x.deadline);
+        var dy = daysTo(y.deadline) == null ? 9999 : daysTo(y.deadline);
+        return dx - dy;
+      }).slice(0, 4);
+    if (!rec.length) { box.style.display = "none"; return; }
+    var nums = ["①", "②", "③", "④"];
+    var items = rec.map(function (a, i) {
+      var d = daysTo(a.deadline);
+      return nums[i] + esc(a.short || a.name) + "（" + (d != null && d >= 0 ? ("T-" + d) : "待定") + "·" + (TIER_TXT[a.tier] || a.tier) + (a.aud === "学生" ? "·指导" : "") + "）";
+    }).join("　");
+    box.style.display = "block";
+    box.innerHTML = "<b>⭐ 现在最该报（按截稿近→远）：</b>" + items +
+      '　<button class="btn gold sm" id="recBannerBtn">★ 只看推荐</button>';
+    var b = $("#recBannerBtn");
+    if (b) b.addEventListener("click", function () { state.rec = true; updateRecBtn(); render(); beep(700, .06); toast("已只看推荐"); });
   }
 
   /* ---------- 官方白名单 · 表格 ---------- */
@@ -708,6 +736,172 @@
     if (!to) { toast("先在「我的资料」填默认收件邮箱"); openSettings(); return; }
     var subj = "[参赛通知] " + a.name + " - " + (s.school || "");
     window.location.href = mailtoURL(to, subj, N.join("\n")); beep(880, .08);
+  }
+
+  /* ---------- 一键发邮箱 · 全站投稿提醒 ---------- */
+  function digestDateStamp() {
+    var d = new Date();
+    return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  }
+  function buildDigestText() {
+    var d = new Date();
+    var dateStr = (d.getMonth() + 1) + " 月 " + d.getDate() + " 日";
+    var groups = [
+      { t: "国", label: "🏆 国家级" },
+      { t: "省", label: "🌏 广东省级" },
+      { t: "市", label: "🏙 深圳市级" },
+      { t: "区", label: "🏫 宝安区级" }
+    ];
+    var lines = [];
+    lines.push("星露奖杯农场 · 投稿提醒");
+    lines.push("生成时间：" + dateStr + "（建议每周二、周五各刷新一次）");
+    lines.push("");
+    var openCnt = ALL.filter(function (a) { return statusOf(a).key !== "done"; }).length;
+    lines.push("📊 当前还没截止的赛事共 " + openCnt + " 条，按级别列出如下（学生赛标「我指导」）：");
+    lines.push("");
+    groups.forEach(function (g) {
+      var items = ALL.filter(function (a) {
+        return a.tier === g.t && statusOf(a).key !== "done";
+      }).sort(function (x, y) {
+        return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline));
+      });
+      if (!items.length) return;
+      lines.push("===== " + g.label + "（" + items.length + " 条）=====");
+      items.forEach(function (a) {
+        var dd = daysTo(a.deadline);
+        var am = applyMode(a);
+        lines.push("");
+        lines.push("📌 " + (a.short || a.name));
+        lines.push("　级别：" + (TIER_TXT[a.tier] || a.tier) + (a.aud === "学生" ? " · 学生赛(我指导)" : ""));
+        lines.push("　截稿：" + fmtDate(a.deadline) + (dd != null && dd >= 0 ? ("（还剩 " + dd + " 天）") : (dd == null ? "（时间待公布，先准备）" : "（已临近/刚过，确认下）")));
+        lines.push("　申报：" + am.txt);
+        if (shouldJoin(a)) lines.push("　⭐ 系统建议参加");
+        lines.push("　官网：" + (a.url || a.portal || "见主办方通知"));
+        if ((a.materials || []).length) lines.push("　现在就能备：" + (a.materials || []).slice(0, 3).join("；"));
+      });
+      lines.push("");
+    });
+    if (typeof RES !== "undefined") {
+      var kt = RES.filter(function (r) {
+        return r.kind === "课题" && (daysTo(r.deadline) == null || daysTo(r.deadline) >= -7);
+      }).sort(function (x, y) {
+        return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline));
+      });
+      if (kt.length) {
+        lines.push("===== 📑 可申报课题（教研前沿）=====");
+        kt.forEach(function (r) {
+          var dd = daysTo(r.deadline);
+          lines.push("");
+          lines.push("📌 " + r.title);
+          lines.push("　范围：" + (r.scope || "") + "　" + (r.region || ""));
+          lines.push("　去哪申报：" + (r.where || ""));
+          lines.push("　截稿：" + fmtDate(r.deadline) + (dd != null && dd >= 0 ? ("（还剩 " + dd + " 天）") : ""));
+          lines.push("　为什么值得写：" + (r.hot || ""));
+          if (r.url) lines.push("　出处：" + r.url);
+        });
+        lines.push("");
+      }
+    }
+    lines.push("—————————————————————");
+    lines.push("⚠️ 最后一步提醒：");
+    lines.push("▸ 标「不能个人直报」的，先走单位报送 / 逐级推荐，别自己直接投；");
+    lines.push("▸ 身份证、银行卡等敏感信息请自行手填，本邮件不含任何证件号；");
+    lines.push("▸ 各赛事官网登录、验证码、上传作品这一步只能本人操作，材料与模板本系统已备好。");
+    lines.push("");
+    lines.push("（本邮件由「星露奖杯农场」一键生成，数据存你本机浏览器，不上传）");
+    return lines.join("\n");
+  }
+  function openDigestModal(body, subj, to) {
+    var h = '<button class="btn sm close" data-close>关闭</button><h2>📧 邮件已备好</h2>';
+    h += '<div class="mini" style="margin-top:4px">收件人：<b>' + esc(to) + "</b>　主题：<b>" + esc(subj) + "</b><br>内容较长，用下方按钮打开邮箱发送，或复制全文到邮箱粘贴（避免邮件客户端截断）。</div>";
+    h += '<textarea id="digestBox" style="margin-top:8px;min-height:340px;font-size:12px;line-height:1.7">' + esc(body) + "</textarea>";
+    h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">' +
+      '<button class="btn green" id="digestSend">① 打开邮箱发送</button>' +
+      '<button class="btn blue" id="digestCopy">② 复制全文</button>' +
+      "</div>";
+    $("#digestBody").innerHTML = h;
+    $("#mDigest").classList.add("on");
+    $("#digestSend").addEventListener("click", function () {
+      window.location.href = mailtoURL(to, subj, body); beep(880, .08);
+    });
+    $("#digestCopy").addEventListener("click", function () {
+      try { navigator.clipboard.writeText(body); toast("已复制，去邮箱粘贴即可"); }
+      catch (e) { var t = $("#digestBox"); t.select(); try { document.execCommand("copy"); } catch (e2) { } toast("已复制"); }
+    });
+  }
+  function sendDigestEmail() {
+    var s = loadSet();
+    var to = s.recvMail;
+    if (!to) { toast("先在「我的资料」填默认收件邮箱"); openSettings(); return; }
+    var body = buildDigestText();
+    var subj = "星露奖杯农场 · 投稿提醒 " + digestDateStamp();
+    if (body.length > 1800) { openDigestModal(body, subj, to); return; }
+    window.location.href = mailtoURL(to, subj, body);
+    beep(880, .08);
+    toast("已打开你的邮箱，点「发送」即可");
+  }
+
+  /* ---------- 一键备料包 · 下载材料总包 ---------- */
+  function batchPackText(a, p) {
+    var d = daysTo(a.deadline);
+    var L = [];
+    L.push("【投稿材料包】" + a.name);
+    L.push("========================================");
+    L.push("主办单位：" + a.org + "（" + (a.orgType || "") + "）");
+    L.push("赛事级别：" + (TIER_TXT[a.tier] || a.tier) + (a.aud === "学生" ? " · 学生赛(我指导)" : ""));
+    L.push("学科范围：" + a.subject);
+    L.push("截稿：" + fmtDate(a.deadline) + (d != null && d >= 0 ? ("（T-" + d + "）") : ""));
+    L.push("申报方式：" + applyMode(a).txt);
+    L.push("状态：" + statusOf(a).text);
+    L.push("");
+    L.push("申报人：" + (p.name || "＿＿＿") + "　单位：" + (p.school || "＿＿＿"));
+    L.push("联系：" + (p.phone || "") + " " + (p.mail || ""));
+    L.push("");
+    L.push("需提交材料：");
+    (a.materials || []).forEach(function (m, i) { L.push("　" + (i + 1) + ". " + m); });
+    L.push("");
+    L.push("官方入口：" + (a.url || a.portal || "见主办方通知"));
+    if (a.url) L.push("（" + a.url + "）");
+    L.push("");
+    L.push("※ 本包由「星露奖杯农场」按该赛事要求生成，请据实润色、签名盖章后提交。身份证等敏感信息请自行手填。");
+    return L.join("\n");
+  }
+  function buildBatchPack() {
+    var p = load(LS.prof, { name: "", school: "航瑞中学", subject: "美术", phone: "", mail: "" });
+    var groups = [
+      { t: "国", label: "国家级" }, { t: "省", label: "省级" },
+      { t: "市", label: "市级" }, { t: "区", label: "区级" }
+    ];
+    var secs = [], total = 0;
+    groups.forEach(function (g) {
+      var items = ALL.filter(function (a) { return a.tier === g.t && statusOf(a).key !== "done"; })
+        .sort(function (x, y) { return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline)); });
+      if (!items.length) return;
+      secs.push("<h2>" + g.label + "（" + items.length + " 条）</h2>\n" + items.map(function (a) {
+        return "<pre class='pk'>" + esc(batchPackText(a, p)) + "</pre>";
+      }).join("\n"));
+      total += items.length;
+    });
+    if (!total) { toast("当前没有未截止的赛事"); return; }
+    var d = new Date();
+    var stamp = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    var html = "<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'><title>星露奖杯农场 · 投稿材料总包 " + stamp + "</title>" +
+      "<style>body{font-family:'Microsoft YaHei',SimSun,sans-serif;color:#222;max-width:920px;margin:20px auto;padding:0 16px;line-height:1.7}" +
+      "h1{color:#8b3a1a;border-bottom:3px solid #c08a4e;padding-bottom:6px;font-size:22px}" +
+      "h2{color:#fff;background:#6b4423;padding:6px 10px;margin-top:22px;font-size:16px}" +
+      ".meta{color:#666;font-size:13px}.pk{background:#fbf6ea;border:1px solid #d9c39a;padding:10px 12px;white-space:pre-wrap;font-size:12.5px;margin:8px 0}" +
+      ".warn{background:#fff3d2;border:2px solid #c4442e;padding:8px 10px;font-size:13px;line-height:1.7}@media print{body{max-width:none}.noprint{display:none}}" +
+      "</style></head><body>" +
+      "<h1>星露奖杯农场 · 投稿材料总包</h1>" +
+      "<div class='meta'>生成日期：" + stamp + "　申报人：" + esc(p.name || "＿＿＿") + "　单位：" + esc(p.school || "＿＿＿") + "　共 " + total + " 条未截止赛事</div>" +
+      "<div class='warn'>⚠️ 使用说明：本包为「材料草稿」，请逐项核对后<b>据实润色、本人签名 / 单位盖章</b>再提交。标「不能个人直报」的需先走单位报送或逐级推荐。<b>身份证、银行卡等敏感信息请自行手填，本包不含任何证件号。</b>各官网登录、验证码、上传作品这步只能本人操作。</div>" +
+      secs.join("\n") +
+      "<hr><div class='meta'>本材料总包由「星露奖杯农场」一键生成，数据存你本机浏览器，不上传。</div>" +
+      "</body></html>";
+    var b = new Blob([html], { type: "text/html;charset=utf-8" });
+    var u = URL.createObjectURL(b), el = document.createElement("a");
+    el.href = u; el.download = "星露奖杯农场_投稿材料总包_" + stamp + ".html"; el.click(); URL.revokeObjectURL(u);
+    beep(880, .08); toast("材料总包已下载（" + total + " 条）");
   }
 
   /* ---------- 侧栏 ---------- */
@@ -1591,14 +1785,24 @@
     if (e.key === "Escape") $$(".mask.on").forEach(function (m) { m.classList.remove("on"); });
   });
 
+  function syncStatusTags() {
+    $$(".stfilter").forEach(function (el) { el.classList.toggle("on", el.dataset.status === state.status); });
+  }
   ["q", "fStatus", "fSort"].forEach(function (id) {
     var el = document.getElementById(id);
     if (!el) return;
     el.addEventListener(id === "q" ? "input" : "change", function () {
       if (id === "q") state.q = el.value.trim();
-      if (id === "fStatus") state.status = el.value;
+      if (id === "fStatus") { state.status = el.value; syncStatusTags(); }
       if (id === "fSort") state.sort = el.value;
       render();
+    });
+  });
+  $$(".stfilter").forEach(function (el) {
+    el.addEventListener("click", function () {
+      state.status = (state.status === el.dataset.status) ? "all" : el.dataset.status;
+      var sel = $("#fStatus"); if (sel) sel.value = state.status;
+      syncStatusTags(); render(); beep(600, .05);
     });
   });
 
@@ -1618,6 +1822,7 @@
     $$("#tabs .tab").forEach(function (x) { x.classList.remove("on"); });
     $("#tabs .tab[data-tier='all']").classList.add("on");
     $("#q").value = ""; $("#fStatus").value = "all"; $("#fSort").value = "deadline";
+    syncStatusTags();
     updateRecBtn();
     render(); toast("已重置筛选"); beep(500, .06);
   });
@@ -1633,18 +1838,8 @@
     var self = this;
     self.textContent = "刷新中…";
     var S = loadSet();
-    if (!S.updateUrl) {
-      setTimeout(function () {
-        render(); renderSide();
-        $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-        $("#verTag").textContent = "数据 " + DATA_VERSION.split("·")[0].trim();
-        self.textContent = "刷新";
-        toast("已刷新（本地）· 想自动更新请在「我的资料」填远程地址");
-        beep(1046, .07); setTimeout(function () { beep(1318, .07); }, 80);
-      }, 260);
-      return;
-    }
-    fetch(S.updateUrl, { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    var url = (S.updateUrl && S.updateUrl.trim()) ? S.updateUrl.trim() : DEFAULT_UPDATE_URL;
+    fetch(url, { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
       .then(function (txt) {
         var got = new Function(txt + "\n;return {AWARDS:typeof AWARDS!=='undefined'?AWARDS:null,WHITELIST:typeof WHITELIST!=='undefined'?WHITELIST:null,BIG_SCHOOLS:typeof BIG_SCHOOLS!=='undefined'?BIG_SCHOOLS:null,RES:typeof RES!=='undefined'?RES:null,TOOLS:typeof TOOLS!=='undefined'?TOOLS:null,PEOPLE:typeof PEOPLE!=='undefined'?PEOPLE:null,DATA_VERSION:typeof DATA_VERSION!=='undefined'?DATA_VERSION:null};")();
         if (!got.DATA_VERSION) throw new Error("远程文件不含数据");
@@ -1667,7 +1862,7 @@
       })
       .catch(function (e) {
         self.textContent = "刷新";
-        toast("拉取失败：" + e.message + "（仍用本地数据）");
+        toast("联网更新失败（可能网络受限）· 仍用本地内置数据，联网后可再点刷新");
       });
   });
 
@@ -1676,8 +1871,11 @@
   $("#btnUpload").addEventListener("click", openUpload);
   $("#btnSenior").addEventListener("click", openSenior);
   $("#btnSettings").addEventListener("click", openSettings);
+  $("#btnDigest").addEventListener("click", sendDigestEmail);
+  $("#btnPack").addEventListener("click", buildBatchPack);
   $("#btnStuCopy").addEventListener("click", openStuCopy);
   $("#btnBig").addEventListener("click", openBig);
+  $("#btnSources").addEventListener("click", openSources);
 
   /* 名校战绩面板里的「看比赛」按钮 / 城市筛选 → 打开详情或重渲染 */
   document.addEventListener("click", function (e) {
@@ -1691,6 +1889,37 @@
     var b = e.target.closest("#bigBody [data-act='detail']");
     if (b) { $("#mBig").classList.remove("on"); openDetail(b.dataset.id); }
   });
+
+  /* ---------- 重点信源（真实权威网站，数据来自这些站点的最新整理） ---------- */
+  var SOURCES = [
+    { n: "中华人民共和国教育部", u: "http://www.moe.gov.cn", d: "全国中小学生艺术展演、教师竞赛、教育规划课题总入口", on: true },
+    { n: "广东省教育厅", u: "http://edu.gd.gov.cn", d: "省级赛事、美育文件、广东省教育规划课题", on: true },
+    { n: "深圳市教育局", u: "http://szeb.sz.gov.cn", d: "市级通知、艺术展演深圳选拔、教师评优", on: true },
+    { n: "宝安区教育局", u: "https://www.baoan.gov.cn/jyj/", d: "区级比赛、学校绩效认定口径", on: true },
+    { n: "中国美术家协会", u: "http://www.caanet.org.cn", d: "全国美展、专业展览（教师个人参赛通道）", on: true },
+    { n: "广东省美术家协会", u: "http://www.gdmsj.com/", d: "省级美展、会员展", on: true },
+    { n: "《中国美术教育》杂志", u: "https://www.nnu.edu.cn", d: "美术教研论文发表核心渠道（南师大主办）", on: true },
+    { n: "人民美术出版社", u: "http://www.renmei.com.cn", d: "教材、少年美术活动", on: true },
+    { n: "文化和旅游部", u: "http://www.mct.gov.cn", d: "群星奖、全国美术展览", on: true },
+    { n: "深圳市教育科学研究院", u: "http://www.szedu.org", d: "教研课题、论文评选、能力大赛", on: true },
+    { n: "广东教育学会", u: "http://www.gdjyxh.org.cn", d: "美术教育专委会、教学论文评比", on: true },
+    { n: "全国中小学生艺术展演", u: "http://www.moe.gov.cn", d: "教育部主办·三年一届·规模最大", on: true }
+  ];
+  function openSources() {
+    var h = ['<div class="sec"><h4>📡 重点信源（本页数据即来自这些站点的实时整理）</h4>'];
+    h.push('<div class="mini" style="margin-bottom:10px">点「刷新」会从我（AI 定时任务）抓取的这些站点最新公告里更新赛事 / 论文 / 课题。纯网页没法自己跨域抓政府网站，所以走「后端整理 → 公开 CDN → 刷新拉取」。下面任一站都可直达核对。</div>');
+    SOURCES.forEach(function (s) {
+      h.push('<div style="display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:2px dashed #e7d3ad">'
+        + '<span style="font-size:18px">' + (s.on ? "✅" : "⏳") + '</span>'
+        + '<div style="flex:1"><a href="' + s.u + '" target="_blank" rel="noopener" style="color:#1b6f9b;font-weight:700;text-decoration:none">' + esc(s.n) + '</a>'
+        + '<div class="mini">' + esc(s.d) + '</div></div>'
+        + '<a class="btn blue" href="' + s.u + '" target="_blank" rel="noopener" style="font-size:11px;padding:3px 9px">直达 ↗</a></div>');
+    });
+    h.push('</div>');
+    $("#sourcesBody").innerHTML = h.join("");
+    $("#mSources").classList.add("on");
+    beep(880, .06);
+  }
 
   /* ---------- 启动 ---------- */
   updateRecBtn();
