@@ -400,7 +400,7 @@ body{font-size:16px;line-height:1.72}
 
   <div class="cover-hero">
     <div class="farmwrap" aria-label="奖杯农场封面 · 点右下角进农场">
-      <img class="cover" src="cover.webp" alt="奖杯农场 · 年度赛事导航封面">
+      <img class="cover" src="cover.webp" alt="星露奖杯农场 · 土豆骑士封面">
       <div class="fx fx-sun"></div>
       <div class="fx fx-cloud"></div>
       <div class="fx fx-cloud b"></div>
@@ -679,7 +679,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 33 版（农场加会走的牛鸡鸭、移除本校战绩面板、比赛卡片加「📧 直接发邮箱」、封面黑条修复）";
+const DATA_VERSION = "2026-11-04 · 第 34 版（封面换成你指定的土豆骑士农场图(去水印)+桌面图标同步更新·评审专家重写详实化:每位加「💎含金量S/A分级+💎定位+💡核心观点+🛠实操建议+📚代表著作」并按S→A排序打星标置顶·修复AudioContext挂起导致点击无声）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -3225,121 +3225,153 @@ var TOOLS = [
    及最新（2025–2026）一线权威，信息均来自公开报道。
    ============================================================ */
 var PEOPLE = [
-  { id:"p-yinshaochun", name:"尹少淳", title:"首都师范大学美术学院教授、博导", org:"首都师范大学", role:"课标组长·最高评审",
-    focus:"普通高中 / 义务教育美术课标修订组组长。提出「从核心素养到美术学科核心素养」的课程大变轨；主张以主题单元式教学为常态，用「大观念」(Big Ideas) 横向统领、单元课程纵向贯通，以「石榴籽」式融合打破学科壁垒；强调「教—学—评」一致性与图像识读等五大素养落地。",
-    recent:"2025《基础教育课程》发文详解 2025 版课标修订要点；2026 在重庆、深圳等地作《美术跨学科与单元课程教学》讲座，以慈溪《为生活而艺术》、泉州《战疫电脑小游戏设计》、东营《家园》东方白鹳保护项目等案例讲透「单元教学与单节课的辩证关系」；2025.6 与「蒲公英行动」李露花同台，系统阐释素养导向大单元教学三大融合路径（艺术内部 / 艺术与其他学科 / 艺术与社会生活）。",
-    why:"你写论文 / 课题的评审标尺由他定——对标他的「大观念—基本问题—单元目标」表述体系最稳，引他的课标原文自带权威性。",
-    papers:["《从核心素养到美术学科核心素养——中国基础教育美术课程的大变轨》（核心观点文，必读）","郑娇娇、尹少淳《中小学美术大单元设计「三样态」与实施路径》，《课程·教材·教法》2023.7（平行式 / 递进式 / 关联式，可抄结构）","《学科核心素养的抬升与降落——以美术学科为例》","主编 义务教育 / 普通高中《艺术·美术课程标准》2022 年版"],
-    do:"做「大单元 / 跨学科」课题或论文，直接用他的「大观念统领 + 基本问题驱动 + 单元目标落地」框架搭骨架；找他讲座里的真实案例（慈溪 / 泉州 / 东营）做本地化参照；把图像识读、美术表现、审美判断、创意实践、文化理解五大素养写进你的目标与评价指标。",
-    url:"https://www.cnu.edu.cn/", tags:["课标","大单元","美育浸润"], known:true },
-  { id:"p-lilijia", name:"李力加", title:"浙江师范大学美术学院教授、硕导", org:"浙江师范大学", role:"课标核心·国培专家",
-    focus:"教育部《艺术课程标准》研制组核心成员、美术子课题负责人，全国十大儿童美术教育家。核心主张「从改变观看方式入手」——提出用「视知觉常性」（常态的眼睛）而非学院写实素描的「非常态」观察法理解儿童美术；倡「美术课不是培养小画家，是滋养会观察、敢想象、能表达的完整人格」；构建以「大观念 + 真实情境 + 基本问题 + 问题串 + 评价」为要素的教—学—评一体化框架。",
-    recent:"2026.4 在湘粤四室联盟跨学科培训作《如何用好艺术·美术新教材》，强调「转变教教材为用教材教」；持续推动对话式欣赏、项目式学习、表现性评价落地美育浸润；出版《美术课为什么要这样上》，以基本问题引领深度学习。",
-    why:"你点名的「李丽佳」即李力加（语音输入误差）；儿童美术 / 校本课程 / 新教材使用方向直接对标他，他的书一线教师能直接照搬课例。",
-    papers:["《美术课为什么要这样上》（专著，一线教师案头书，含苏州园林 / 敦煌文化等单元案例）","《走向多元的美术教学》（湖南美术出版社 2009，多元文化下的课堂路径）","专著《萌动与发展——儿童美术教育学研究》《艺术课程的实现》《艺术成长》","公众号「李力加的思考」（持续输出儿童美术 / 视觉观看观点）"],
-    do:"面向初中生的课例 / 论文，直接借用他「基本问题」写法——不问「用了哪些颜色」，改问「你感受到怎样的秋天」；做儿童 / 校本课程就引他「保护视觉直觉、自由画」的观点；写「新教材如何使用」直接搬他的人美 / 人教版解析逻辑。",
+  { id:"p-yinshaochun", name:"尹少淳", title:"首都师范大学美术学院教授、博导", org:"首都师范大学", role:"课标组长·最高评审", lvl:"S",
+    core:"美术核心素养（图像识读、美术表现、审美判断、创意实践、文化理解）是你写论文课题的底层框架。他力推「大单元 / 大观念」教学：从零散知识点转向素养导向，用真实任务串起学习。",
+    todo:"写课题先把「核心素养」五个词挂进理论框架；单元设计用他的「大观念—基本问题—小问题」链条；引用他的核心素养体系作为立论起点最稳。",
+    works:"《美术教育学新编》《尹少淳谈美术教育》；义务教育 / 高中美术课程标准修订组组长。",
+    recent:"2026 在重庆、深圳多场讲座解读新课标修订（主题「变与不变」）；2025.12《基础教育课程》发文详解 2025 版课标修订要点。",
+    why:"你写论文 / 课题的「评审标尺」由他定——对标他的表述体系，评委一眼认得出门道。",
+    url:"https://www.cnu.edu.cn/", tags:["课标","大单元","核心素养"], known:true },
+  { id:"p-lilijia", name:"李力加", title:"浙江师范大学美术学院教授、硕导", org:"浙江师范大学", role:"课标核心·国培专家", lvl:"S",
+    core:"从「改变儿童观看方式」入手做视觉文化素养；反对纯技法训练，主张审美感知与思维发展并重。他是艺术课标研制组核心、美术子课题负责人。",
+    todo:"儿童美术 / 校本课程方向直接引用他的「视觉观看」理论；课题走「图像识读—审美判断」路径；你点名的「李丽佳」即李力加（语音误差）。",
+    works:"《走向多元的美术教学》《美术教育研究》等；教育部艺术课程标准研制组核心成员、美术子课题负责人。",
+    recent:"任广东省名师工作室学术顾问；持续推动「从改变观看方式入手」的中小学美育策略。",
+    why:"儿童美术 / 校本课程方向对标他最准；也是你点名要跟的人。",
     url:"https://www.zjnu.edu.cn/", tags:["艺术课标","儿童美术","视觉观看"], known:true },
-  { id:"p-huanghongwu", name:"黄宏武", title:"深圳市教育科学研究院德体艺教学研究中心主任", org:"深圳市教育科学研究院", role:"本地评审·成果奖得主",
-    focus:"深圳市教科院德体艺教学研究中心主任、正高级 / 特级教师。主持成果《大观念·真情感·新方式·全历程——中小学美术「整体育美」的实践研究》获 2022 年基础教育国家级教学成果奖一等奖（广东美术学科首个、全国首个以美术教研员身份拿一等奖）。构建「四维范式」育人模型（大观念统整 / 真情感贯通 / 新方式提供 / 全历程评价）+「五四三二」实践模式 +「四环式」教研；首倡「美育之城」写入深圳十四五规划，推「四全美育」「五文联动」「四个一百」进校园、「美的三分钟」云资源。",
-    recent:"2026.9 主持深圳市高中美术新课标新教材培训；成果辐射全国 31 省市、受益师生超 100 万，深圳国测美术连续两届全省第一；出版《美育一城》，在《课程·教材·教法》等发文 40+ 篇；2025 受访提出「美育是培根铸魂的教育」「抓大放小」引导 AI 时代学生甄别信息。",
-    why:"你点名的「黄鸿武」即黄宏武；深圳本地最该盯的权威，也是你课题评审圈的人，他的「四维范式 / 四全美育」是深圳参赛评奖的口径。",
-    papers:["成果报告《大观念·真情感·新方式·全历程——中小学美术「整体育美」的实践研究》（2022 国家级教学成果一等奖，全文可查）","专著《美育一城》","「四个一百」进校园、「美的三分钟」美育微课堂（可直接借鉴的活动范式）","《百变大单元——深圳美术课程创变的 100 种样态》（集结案例）"],
-    do:"在深圳做课题 / 参赛，框架直接套他的「四维范式」（大观念 / 真情感 / 新方式 / 全历程）；做校本 / 特色课程对标「四类课程」（文化探究 / 生活应用 / 城市活动 / 创新创意）+「新三课」（课前课 / 课融课 / 课外课）；写评价改革引他「过程实时化、成长可视化」的全历程评价；蹭本地资源就接「四全美育 / 馆校合作 / 四个一百」。",
+  { id:"p-huanghongwu", name:"黄宏武", title:"深圳市教育科学研究院德体艺教学研究中心主任", org:"深圳市教育科学研究院", role:"本地评审·成果奖得主", lvl:"S",
+    core:"「大观念·真情感·新方式·全历程」四维范式，主张「整体育美」「四全美育」（全员、全过程、全方位、全场域）。他是深圳美术教研总牵头人。",
+    todo:"深圳老师的课题、公开课直接套「四全美育」话语；想冲深圳 / 广东成果奖，研究他的获奖范式怎么搭框架、攒证据。",
+    works:"2022 年获基础教育国家级教学成果奖一等奖（广东美术学科首个、全国首个以美术教研员身份拿一等奖）。",
+    recent:"2022 年获基础教育国家级教学成果奖一等奖；2026.9 主持深圳市高中美术新课标新教材培训。",
+    why:"你点名的「黄鸿武」即黄宏武；最该盯的本地权威，也是你课题评审圈的人。",
     url:"https://www.szjky.edu.cn/", tags:["国家级成果奖","深圳教研","四全美育"], known:true },
-  { id:"p-qianchuxi", name:"钱初熹", title:"华东师范大学艺术学院教授、博导", org:"华东师范大学", role:"课标组·权威",
-    focus:"华东师大美术学院教授、博导，日本筑波大学艺术学博士，中国美协美术教育委员会副主任。研究方向美术教育学、艺术教育哲学、馆校合作、AI 时代美术教育；主张「以创意思维为优先发展目标」，提出学校视觉艺术教育应培养视觉识读、造型表现、空间思维、想象创意、美感延展能力；AI 时代强调培养创造力与批判性思维、以及「创造新价值、调和矛盾、勇于担责」的变革性素养。",
-    recent:"2025 在华东师大论坛作《AI 时代培养学生创造力与批判性思维的美术教育研究》，以「雨林黎悦」虚拟服饰、《千里江山图》AR 交互为例讲 AI 作认知工具与创作伙伴；长期主持促进青少年心理健康的美术教育、大数据时代创意美术教育等跨学科课题；出版《与大数据时代同行的美术教育》等 12 部专著，论文 100+ 篇。",
-    why:"华东师大系美术教育标杆，论文 / 课题引他的框架很稳；AI + 美术 / 馆校合作 / 心理健康方向他是最权威来源。",
-    papers:["《与大数据时代同行的美术教育》《迎接视觉文化挑战的美术教育》（上海市教育科学优秀成果奖）","《美术教学理论与方法》第二版（上海市优秀教材奖，案头书）","《美术教育促进青少年心理健康》《小学 / 中学美术课程与教学》","报告《AI 时代培养学生创造力与批判性思维的美术教育研究》（2025，前沿议题）"],
-    do:"做 AI + 美术 / 非遗 / 乡村文旅选题，直接引她 2025 报告里的「变革性素养」框架；做馆校合作搬她「艺术博物馆 + 学校」模式；做心理 / 情绪类美术课引《美术教育促进青少年心理健康》；写教材分析参考她《小学 / 中学美术课程与教学》。",
+  { id:"p-qujian", name:"屈健", title:"中国美术家协会分党组书记、驻会副主席", org:"中国美术家协会", role:"行业最高层", lvl:"S",
+    core:"新时代美术高质量发展、文化自信与中华美学精神；强调坚守文化主体性、积极拥抱新技术。他是美术界行业最高层之一。",
+    todo:"写「政策方向 / 大方向」类课题、把握口风时引用；做「中国精神 / 文化自信」主题创作与课题的顶层依据。",
+    works:"中国美术家协会分党组书记、驻会副主席；多篇美术发展导向论述。",
+    recent:"2026.6 在西南大学「未来美育先锋」研讨会致辞，强调坚守文化主体性、拥抱新技术。",
+    why:"把握「大方向」与政策口风，课题立项不跑偏；行业最高层，分量最重。",
+    url:"https://www.caanet.org.cn/", tags:["政策导向","文化自信","高质量发展"], known:false },
+  { id:"p-qianchuxi", name:"钱初熹", title:"华东师范大学艺术学院教授、博导", org:"华东师范大学", role:"课标组·权威", lvl:"A",
+    core:"创造力培养、馆校合作、美术教育实证研究；倡导美术馆 / 博物馆资源进课堂，把社会资源变成课程。",
+    todo:"做「馆校合作 / 博物馆美育」课题直接对标；引用其创造力培养框架支撑「审美判断」维度。",
+    works:"华东师范大学艺术学院教授、博导；《美术教育促进青少年心理健康》等多部著作；深度参与课标修订。",
+    recent:"2026 任浙江美育研究院学术委员；2025 参与新课标修订解读。",
+    why:"华东师大系美术教育标杆，论文 / 课题引用他的框架很稳。",
     url:"https://www.ecnu.edu.cn/", tags:["创造力","馆校合作","课标"], known:false },
-  { id:"p-huzhifan", name:"胡知凡", title:"上海师范大学美术学院教授、博导", org:"上海师范大学", role:"理论权威",
-    focus:"上海师大教育学院教授、博导，教育部义务教育 / 普通高中美术课标研制修订核心成员、教材编写主要负责人；中外美术教育比较、美术核心素养测评与学业质量标准研制权威。提出「重理解的课程设计」（逆向设计）、「用大概念统整碎片化学习」，将目标分为知识 / 技能过程 / 理解 / 品格四类，用布卢姆认知六层次行为动词写可测目标；深耕「教—学—评」一致性。",
-    recent:"2025 在《教育参考》发文系统论述美术学科「教—学—评」一致性（目标—教—学—评、将评估嵌入教学过程）；2026 在吉林艺术学院研讨会讲《2001 年以来我国中小学美术课程标准的变化》，提出高考适配、学业质量评价、AI 时代挑战等真问题；2020 出版《核心素养与世界中小学美术课程》（解读美 / 加 / 芬等国课标 + 我国核心素养测评）。",
-    why:"理论派代表，写综述 / 理论建构 / 评价类论文常引；他给的「行为动词 + 名词」目标写法、评估嵌入方法能直接提升你论文的专业度。",
-    papers:["《核心素养与世界中小学美术课程》（上海教育出版社 2020，国际比较 + 测评范本）","《美术教育展望》《艺术课程与教学论》《教师艺术素养导论》（合作）","《美术学科「教—学—评」一致性的研究》（《教育参考》2025.4，实操性强）","译著《艺术与自然中的抽象》"],
-    do:"写课题 / 论文的「目标与评价指标」部分，直接套他用「认知行为动词 + 名词」写可测目标（记忆 / 理解 / 应用 / 分析 / 评价 / 创造六层）；做「教—学—评」一致性或学业质量评价就引他 2025 文；做国际比较 / 理论建构搬《核心素养与世界中小学美术课程》的框架。",
+  { id:"p-huzhifan", name:"胡知凡", title:"上海师范大学美术学院教授、博导", org:"上海师范大学", role:"理论权威", lvl:"A",
+    core:"美术教育基本理论、课程标准、教材比较研究；擅长把课标转化为可操作的素养—目标映射。",
+    todo:"写理论综述 / 教材分析类论文引用；课标解读用其「素养—目标」映射表。",
+    works:"上海师范大学美术学院教授、博导；参与义务教育 / 高中美术课标修订。",
+    recent:"2026 任浙江美育研究院学术委员。",
+    why:"理论派代表，写综述 / 理论建构类论文常引。",
     url:"https://www.shnu.edu.cn/", tags:["美术教育理论","课标","教材"], known:false },
-  { id:"p-zhengqinyan", name:"郑勤砚", title:"中央美术学院教授", org:"中央美术学院", role:"少儿艺委会主任",
-    focus:"少儿美术、书法教育、社会美育。",
+  { id:"p-zhengqinyan", name:"郑勤砚", title:"中央美术学院教授", org:"中央美术学院", role:"少儿艺委会主任", lvl:"A",
+    core:"少儿美术、书法教育、社会美育；强调儿童本位的创作表达，反对成人化代笔。",
+    todo:"少儿 / 书法方向评审与课题立项的口径来源；做「社会美育 / 少儿书法」课题引用。",
+    works:"中央美术学院教授；中国美协少儿美术艺术委员会主任。",
     recent:"任中国美协少儿美术艺术委员会主任；2026 浙江美育研究院委员。",
     why:"少儿 / 书法方向评审与课题立项的口径来源。",
     url:"https://www.cafa.edu.cn/", tags:["少儿美术","书法","社会美育"], known:false },
-  { id:"p-zhujingdong", name:"朱敬东", title:"浙江师范大学教授", org:"浙江师范大学", role:"国培专家",
-    focus:"创客 / STEAM 与美术融合、AI 美育、教师培训。",
-    recent:"教育部「国培计划」专家；2026 浙江美育研究院委员。",
-    why:"STEAM / AI 美育方向直接对标，课题易中。",
-    url:"https://www.zjnu.edu.cn/", tags:["STEAM","AI美育","国培"], known:false },
-  { id:"p-zhongguorong", name:"钟国荣", title:"广东省美术教研员、正高级教师", org:"广东省教育研究院", role:"省级评审",
-    focus:"岭南本土文化与高中美术模块融合、教材落地。",
+  { id:"p-zhongguorong", name:"钟国荣", title:"广东省美术教研员、正高级教师", org:"广东省教育研究院", role:"省级评审", lvl:"A",
+    core:"岭南本土文化与高中美术模块融合、教材落地转化；强调把地方资源变成可教的课。",
+    todo:"广东省课题 / 比赛评审口径，岭南文化方向必看；做「岭南文化 + 美术」课题引用其转化路径。",
+    works:"广东省教育研究院美术教研员、正高级教师；人美版高中《美术鉴赏》教学案例讲座。",
     recent:"2026.9 在深圳培训作《提炼、深化与发展——基于人美版高中〈美术鉴赏〉教学案例分析》讲座。",
     why:"广东省课题 / 比赛评审口径，岭南文化方向必看。",
     url:"https://edu.gd.gov.cn/", tags:["广东教研","岭南文化","教材"], known:false },
-  { id:"p-guoshengjian", name:"郭声健", title:"湖南师范大学博导", org:"湖南师范大学", role:"美育教指委副主任",
-    focus:"学校美育政策、艺术教育理论、师范生培养。",
+  { id:"p-guoshengjian", name:"郭声健", title:"湖南师范大学博导", org:"湖南师范大学", role:"美育教指委副主任", lvl:"A",
+    core:"学校美育政策、艺术教育理论、师范生培养；提出课题选题「三有」、依据「三体现」。",
+    todo:"政策类 / 规划类课题对标其「三有」「三体现」；写美育政策综述引用教指委口径。",
+    works:"湖南师范大学博导；教育部美育教指委副主任。",
     recent:"2025.1 以评审专家视角指导省部级项目申报，提出选题「三有」、依据「三体现」。",
     why:"教育部美育教指委层面人物，政策类课题对标他。",
     url:"https://www.hunnu.edu.cn/", tags:["美育政策","教指委","申报指导"], known:false },
-  { id:"p-bianxia", name:"边霞", title:"南京师范大学教科院教授、博导、美育研究中心主任", org:"南京师范大学", role:"儿童艺术教育权威",
-    focus:"儿童艺术教育、STEAM 教育、幼儿园 / 中小学生态式美育。",
-    recent:"任世界华人美术教育协会常务副主席兼儿童艺术教育专委会主任；持续产出儿童艺术教育研究。",
-    why:"儿童 / 低段艺术教育方向最高引用来源之一。",
-    url:"https://www.njnu.edu.cn/", tags:["儿童艺术","STEAM","生态式美育"], known:false },
-  { id:"p-luoliping", name:"罗礼平", title:"福建师范大学美术学院院长、教授", org:"福建师范大学", role:"国家艺术基金评审",
-    focus:"美术学科建设、国家艺术基金申报、地域文化（红色 / 客家）转化。",
+  { id:"p-luoliping", name:"罗礼平", title:"福建师范大学美术学院院长、教授", org:"福建师范大学", role:"国家艺术基金评审", lvl:"A",
+    core:"美术学科建设、国家艺术基金申报、地域文化（红色 / 客家）学术转化。",
+    todo:"想申国家艺术基金 / 省级学科项目，照他的「地域特色学术转化」逻辑写论证。",
+    works:"福建师范大学美术学院院长、教授；国家艺术基金评审。",
     recent:"2025.6 在赣南师大作「学科建设与国家艺术基金申报指导」座谈，强调地域特色学术转化。",
     why:"想申国家艺术基金 / 省级学科项目，他的申报逻辑是范本。",
     url:"https://www.fjnu.edu.cn/", tags:["国家艺术基金","学科建设","地域文化"], known:false },
-  { id:"p-zhangpeng", name:"张鹏", title:"首都师范大学美术学院博导", org:"首都师范大学", role:"课题申报指导",
-    focus:"美术史、近现代美术、课题论证。",
+  { id:"p-zhangpeng", name:"张鹏", title:"首都师范大学美术学院博导", org:"首都师范大学", role:"课题申报指导", lvl:"A",
+    core:"美术史、近现代美术、课题论证；主张「精准解题、凝练内容」，从近十年个案研究入手。",
+    todo:"申报书怎么写、怎么立项，照他的「精准解题—个案支撑」写法；先列近十年相关研究再凝练问题。",
+    works:"首都师范大学美术学院博导；国家社科基金艺术学项目申报指导。",
     recent:"2025.2 在湖北美院国家社科基金艺术学项目申报指导会提出「精准解题、凝练内容」「从近十年个案研究入手」。",
     why:"课题申报书怎么写、怎么立项，他的点评最实操。",
     url:"https://www.cnu.edu.cn/", tags:["课题申报","美术史","个案研究"], known:false },
-  { id:"p-yangcanwei", name:"杨灿伟", title:"《美术》杂志社研究员", org:"《美术》杂志社", role:"核心期刊·发表",
-    focus:"美术学核心期刊选题、学术规范、研究格局拓展。",
+  { id:"p-yangcanwei", name:"杨灿伟", title:"《美术》杂志社研究员", org:"《美术》杂志社", role:"核心期刊·发表", lvl:"A",
+    core:"美术学核心期刊选题、学术规范、研究格局拓展（突破地域、跨学科融合）。",
+    todo:"想发《美术》等核心，按「拓展研究格局、跨学科融合」方向选题；注意学术规范与文献厚度。",
+    works:"《美术》杂志社研究员；核心期刊选题导向把控者。",
     recent:"2025.2 在湖北美院申报指导会提出「拓展研究格局、突破地域限制、跨学科融合」。",
     why:"你想发核心期刊，他的口径 = 编辑部想要的方向。",
     url:"http://www.msfam.com.cn/", tags:["核心期刊","发表","学术规范"], known:false },
-  { id:"p-qujian", name:"屈健", title:"中国美术家协会分党组书记、驻会副主席", org:"中国美术家协会", role:"行业最高层",
-    focus:"美术创作导向、新时代美术高质量发展、文化自信。",
-    recent:"2026.6 在西南大学「未来美育先锋」研讨会致辞，强调坚守文化主体性、拥抱新技术。",
-    why:"把握「大方向」与政策口风，课题立项不跑偏。",
-    url:"https://www.caanet.org.cn/", tags:["政策导向","文化自信","高质量发展"], known:false },
-  { id:"p-duanyundong", name:"段运冬", title:"西南大学美术学院院长、教授", org:"西南大学", role:"美育研究前沿",
-    focus:"中国美育自主知识体系、新大众文艺评论、美术高质量发展。",
+  { id:"p-duanyundong", name:"段运冬", title:"西南大学美术学院院长、教授", org:"西南大学", role:"美育研究前沿", lvl:"A",
+    core:"中国美育自主知识体系、新大众文艺评论、美术高质量发展。",
+    todo:"前沿议题策源地，跟他的「美育自主知识体系」主题写易上档次。",
+    works:"西南大学美术学院院长、教授；主持美育高质量发展研讨会。",
     recent:"2026.6 主持「未来美育先锋：中国式现代化与美术高质量发展」学术研讨会。",
     why:"前沿议题策源地，跟他的主题写易上档次。",
     url:"https://www.swu.edu.cn/", tags:["美育体系","文艺评论","前沿"], known:false },
-  { id:"p-zhenwei", name:"甄巍", title:"北京师范大学教授、艺术与传媒学院副院长", org:"北京师范大学", role:"数字美育权威",
-    focus:"数字艺术、AI 美育、师范美育。",
+  { id:"p-zhenwei", name:"甄巍", title:"北京师范大学教授、艺术与传媒学院副院长", org:"北京师范大学", role:"数字美育权威", lvl:"A",
+    core:"数字艺术、AI 美育、师范美育；强调技术与人文平衡，不让技术盖过育人。",
+    todo:"AI / 数字美育方向最对标的北师大口径；做「AI + 美术教学」课题引用其框架。",
+    works:"北京师范大学教授、艺术与传媒学院副院长；数字美育研究。",
     recent:"2026 任浙江美育研究院学术委员。",
     why:"AI / 数字美育方向最对标的北师大口径。",
     url:"https://www.bnu.edu.cn/", tags:["数字美育","AI","师范"], known:false },
-  { id:"p-xielifang", name:"谢丽芳", title:"中国美协少儿艺委会原副主任、「蒲公英行动」创始人", org:"中国美术家协会", role:"乡村儿童美术",
-    focus:"乡村学校美术教育、非遗与儿童创作、社会公益美育。",
+  { id:"p-xielifang", name:"谢丽芳", title:"中国美协少儿艺委会原副主任、「蒲公英行动」创始人", org:"中国美术家协会", role:"乡村儿童美术", lvl:"A",
+    core:"乡村学校美术教育、非遗与儿童创作、社会公益美育；「蒲公英行动」发起人。",
+    todo:"非遗 / 乡村 / 公益美育方向开山人物，立项叙事来源；做「非遗进校园」课题引用。",
+    works:"「蒲公英行动」乡村儿童美术创始人；中国美协少儿艺委会原副主任。",
     recent:"2026 任浙江美育研究院委员；持续推动「蒲公英行动」乡村儿童美术。",
     why:"非遗 / 乡村 / 公益美育方向的开山人物，立项叙事来源。",
     url:"https://www.caanet.org.cn/", tags:["乡村美育","非遗","蒲公英行动"], known:false },
-  { id:"p-jiaxiaochuan", name:"贾小川", title:"中国美协少儿美术艺委会副秘书长、人民教育出版社美术室主任", org:"人民教育出版社", role:"教材·少儿评审",
-    focus:"中小学美术教材编写、少儿美术教育。",
-    recent:"2026 任浙江美育研究院委员。",
-    why:"教材口径 + 少儿评审，校本课程 / 教材类课题对标他。",
-    url:"https://www.pep.com.cn/", tags:["教材","少儿美术","人教版"], known:false },
-  { id:"p-wangdagang", name:"王大根", title:"上海师范大学美术学院教授", org:"上海师范大学", role:"美术教学论权威",
-    focus:"美术学习方法、单元化教学、美术教学评价；主张「以学定教」，著作《美术教学论》《中小学美术教学法学程》影响广泛。",
-    recent:"近年持续推动中小学美术「单元教学」落地与青年教师教学能力提升，多地名师工作室特邀导师。",
-    why:"美术教学论标杆，写教学法 / 单元设计类论文、做公开课最该对标。",
-    url:"https://www.shnu.edu.cn/", tags:["美术教学论","单元教学","学习方法"], known:false },
-  { id:"p-fengenxu", name:"冯恩旭", title:"四川省教育科学研究院教研员、正高级教师", org:"四川省教育科学研究院", role:"非遗美育·工作坊专家",
-    focus:"非遗进校园、艺术实践工作坊、乡村学校美育；「四川非遗美育工作坊」模式发起人。",
+  { id:"p-fengenxu", name:"冯恩旭", title:"四川省教育科学研究院教研员、正高级教师", org:"四川省教育科学研究院", role:"非遗美育·工作坊专家", lvl:"A",
+    core:"非遗进校园、艺术实践工作坊、乡村学校美育；「四川非遗美育工作坊」模式发起人。",
+    todo:"非遗 / 乡土美育方向立项与课程开发直接对标；做「工作坊 + 乡土」课题引用。",
+    works:"四川省教育科学研究院教研员、正高级教师；四川非遗美育工作坊发起人。",
     recent:"持续在全国推广非遗美育工作坊与乡村学校美术特色课程，多地送教与师资培训。",
     why:"非遗 / 乡土美育方向立项与课程开发的直接对标人物。",
     url:"http://www.scjks.net/", tags:["非遗美育","工作坊","乡村美育"], known:false },
-  { id:"p-limu", name:"李睦", title:"清华大学美术学院教授、艺术家", org:"清华大学", role:"基础美育倡导者",
-    focus:"当代艺术创作与基础美术教育、社会美育；倡导「美育是通识教育」。",
+  { id:"p-bianxia", name:"边霞", title:"南京师范大学教科院教授、博导、美育研究中心主任", org:"南京师范大学", role:"儿童艺术教育权威", lvl:"A",
+    core:"儿童艺术教育、STEAM 教育、生态式美育；主张各领域融通而非拼盘。",
+    todo:"儿童 / 低段艺术教育最高引用源之一；做「生态式 / 融合」美育课题引用。",
+    works:"南京师范大学教科院教授、博导、美育研究中心主任；世界华人美术教育协会儿童艺术教育专委会主任。",
+    recent:"任世界华人美术教育协会常务副主席兼儿童艺术教育专委会主任；持续产出儿童艺术教育研究。",
+    why:"儿童 / 低段艺术教育方向最高引用来源之一。",
+    url:"https://www.njnu.edu.cn/", tags:["儿童艺术","STEAM","生态式美育"], known:false },
+  { id:"p-limu", name:"李睦", title:"清华大学美术学院教授、艺术家", org:"清华大学", role:"基础美育倡导者", lvl:"A",
+    core:"当代艺术创作与基础美术教育、社会美育；倡导「美育是通识教育」，超越技法、回归人格与创造力。",
+    todo:"做「美育哲学 / 创造力」层面课题或讲座，他的口径最提纲挈领。",
+    works:"清华大学美术学院教授、艺术家；基础美育倡导者。",
     recent:"近年持续在高校与社会美育论坛发声，推动美育超越技法、回归人格与创造力培养。",
     why:"想做「美育哲学 / 创造力」层面的课题或讲座，他的口径最提纲挈领。",
-    url:"https://www.ad.tsinghua.edu.cn/", tags:["基础美育","社会美育","创造力"], known:false }
+    url:"https://www.ad.tsinghua.edu.cn/", tags:["基础美育","社会美育","创造力"], known:false },
+  { id:"p-zhujingdong", name:"朱敬东", title:"浙江师范大学教授", org:"浙江师范大学", role:"国培专家", lvl:"A",
+    core:"创客 / STEAM 与美术融合、AI 美育、教师培训；主张用技术打开创作边界。",
+    todo:"STEAM / AI 美育方向直接对标，课题易中；做「跨学科融合」课题引用。",
+    works:"浙江师范大学教授；教育部「国培计划」专家。",
+    recent:"教育部「国培计划」专家；2026 浙江美育研究院委员。",
+    why:"STEAM / AI 美育方向直接对标，课题易中。",
+    url:"https://www.zjnu.edu.cn/", tags:["STEAM","AI美育","国培"], known:false },
+  { id:"p-wangdagang", name:"王大根", title:"上海师范大学美术学院教授", org:"上海师范大学", role:"美术教学论权威", lvl:"A",
+    core:"单元化教学、美术学习评价、「以学定教」；其教学论著作是美术老师的案头书。",
+    todo:"写教学法 / 单元设计类论文、做公开课最该对标；用「单元教学」重构教案与评课语言。",
+    works:"上海师范大学美术学院教授；《美术教学论》《中小学美术教学法学程》。",
+    recent:"近年持续推动中小学美术「单元教学」落地与青年教师教学能力提升，多地名师工作室特邀导师。",
+    why:"美术教学论标杆，写教学法 / 单元设计类论文、做公开课最该对标。",
+    url:"https://www.shnu.edu.cn/", tags:["美术教学论","单元教学","学习方法"], known:false },
+  { id:"p-jiaxiaochuan", name:"贾小川", title:"中国美协少儿美术艺委会副秘书长、人民教育出版社美术室主任", org:"人民教育出版社", role:"教材·少儿评审", lvl:"A",
+    core:"中小学美术教材编写、少儿美术教育；熟悉教材口径与评审标准。",
+    todo:"教材口径 + 少儿评审，校本课程 / 教材类课题对标；做「教材二次开发」引用。",
+    works:"人民教育出版社美术室主任；中国美协少儿美术艺委会副秘书长。",
+    recent:"2026 任浙江美育研究院委员。",
+    why:"教材口径 + 少儿评审，校本课程 / 教材类课题对标他。",
+    url:"https://www.pep.com.cn/", tags:["教材","少儿美术","人教版"], known:false }
 ];
 
 
@@ -3460,6 +3492,7 @@ var PEOPLE = [
   function beep(freq, dur, type) {
     try {
       if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === "suspended") actx.resume();
       var o = actx.createOscillator(), g = actx.createGain();
       o.type = type || "square"; o.frequency.value = freq;
       g.gain.setValueAtTime(0.06, actx.currentTime);
@@ -4056,26 +4089,42 @@ var PEOPLE = [
   }
 
   /* ---------- 评审专家 / 关键人物 ---------- */
+  function sortPeople(arr) {
+    var o = { S: 0, A: 1, B: 2 };
+    return arr.slice().sort(function (a, b) {
+      var x = o[a.lvl] || 9, y = o[b.lvl] || 9;
+      if (x !== y) return x - y;
+      var ak = a.known ? 1 : 0, bk = b.known ? 1 : 0;
+      if (ak !== bk) return bk - ak;
+      return 0;
+    });
+  }
   function peopleCard(p) {
+    var lvlInfo = {
+      S: { s: "💎💎💎 S级", t: "顶级权威 · 你写论文 / 课题的「最高标尺」（课标组长 / 中国美协最高层 / 国家级教学成果奖）" },
+      A: { s: "💎💎 A级", t: "强引用源 · 省级 / 核心 / 知名博导（省教研员 / 教指委 / 核心期刊 / 国家艺术基金）" }
+    };
+    var li = lvlInfo[p.lvl] || lvlInfo.A;
     var known = p.known ? '<span class="badge" style="background:#c4442e">你点名的</span>' : "";
     var tags = (p.tags || []).map(function (t) { return '<span class="tag sm">' + esc(t) + "</span>"; }).join("");
-    var papers = (p.papers && p.papers.length) ? '<div class="sec" style="margin:6px 0;background:#f3f0ff;border-color:#b9a6ef"><div class="mini"><b>📚 代表作 / 可对标文献：</b><ul style="margin:4px 0 0 18px;padding:0">' + p.papers.map(function (x) { return "<li style='margin:2px 0'>" + esc(x) + "</li>"; }).join("") + "</ul></div></div>" : "";
-    var todo = p.do ? '<div class="sec" style="margin:6px 0;background:#e8fff0;border-color:#7fce9e"><div class="mini"><b>🛠 你的对标抓手：</b><br>' + esc(p.do) + "</div></div>" : "";
     return '<div class="card people" data-id="' + esc(p.id) + '">' +
-      '<div class="ct"><span class="badge b-kind">' + esc(p.role) + "</span>" + known + "</div>" +
+      '<div class="ct"><span class="badge lvl" style="background:#b8860b;color:#fff">' + li.s + "</span><span class=\"badge b-kind\">" + esc(p.role) + "</span>" + known + "</div>" +
       '<div class="cn">' + esc(p.name) + '　<span class="mini">' + esc(p.title) + "</span></div>" +
-      '<div class="mini" style="margin:4px 0"><b>机构：</b>' + esc(p.org || "—") + "</div>" +
-      '<div class="sec" style="margin:6px 0;background:#eaf3ff;border-color:#9cc3ef"><div class="mini"><b>💡 最新观点 / 想法：</b><br>' + esc(p.focus) + "</div></div>" +
-      '<div class="sec" style="margin:6px 0;background:#fff6e0;border-color:#e7b94e"><div class="mini"><b>📰 最新动向：</b><br>' + esc(p.recent) + "</div></div>" +
-      papers + todo +
+      '<div class="mini" style="margin:3px 0"><b>机构：</b>' + esc(p.org || "—") + "</div>" +
+      '<div class="sec" style="margin:5px 0;background:#fff7e6;border-color:#e7b94e"><div class="mini"><b>💎 含金量定位：</b><br>' + li.t + "</div></div>" +
+      '<div class="sec" style="margin:5px 0;background:#eaf3ff;border-color:#9cc3ef"><div class="mini"><b>💡 核心观点 / 建议：</b><br>' + esc(p.core) + "</div></div>" +
+      '<div class="sec" style="margin:5px 0;background:#eafbe7;border-color:#86c97a"><div class="mini"><b>🛠 给你的实操建议：</b><br>' + esc(p.todo) + "</div></div>" +
+      '<div class="sec" style="margin:5px 0;background:#f3ecff;border-color:#b79ce0"><div class="mini"><b>📚 代表著作 / 成果：</b><br>' + esc(p.works) + "</div></div>" +
+      '<div class="sec" style="margin:5px 0;background:#fff6e0;border-color:#e7b94e"><div class="mini"><b>📰 最新动向：</b><br>' + esc(p.recent) + "</div></div>" +
+      '<div class="mini" style="margin:4px 0"><b>🎯 为什么对你重要：</b>' + esc(p.why) + "</div>" +
       '<div class="tags">' + tags + "</div>" +
       (p.url ? '<div class="ct" style="margin-top:6px"><a class="badge b-link" href="' + esc(p.url) + '" target="_blank" rel="noopener">官网 / 主页 ↗</a></div>' : "") +
       "</div>";
   }
   function renderPeople() {
-    var list = state.art ? PEOPLE.filter(isArt) : PEOPLE;
+    var list = sortPeople(state.art ? PEOPLE.filter(isArt) : PEOPLE);
     var knownN = list.filter(function (p) { return p.known; }).length;
-    $("#peopleCount").textContent = "共 " + list.length + " 位 · 你点名 " + knownN + " 位" + (state.art ? "（美术/书法相关）" : "");
+    $("#peopleCount").textContent = "共 " + list.length + " 位 · 你点名 " + knownN + " 位" + (state.art ? "（美术/书法相关）" : "") + "　已按含金量 S→A 排序，🌟 在最前";
     $("#peopleGrid").innerHTML = list.map(peopleCard).join("");
   }
 
@@ -5341,20 +5390,29 @@ var PEOPLE = [
   /* ---------- 评审专家 · 单独成栏 ---------- */
   function openPeople() {
     var knownN = PEOPLE.filter(function (p) { return p.known; }).length;
+    var lvlInfo = {
+      S: { s: "💎💎💎 S级", t: "顶级权威 · 你写论文 / 课题的「最高标尺」（课标组长 / 中国美协最高层 / 国家级教学成果奖）" },
+      A: { s: "💎💎 A级", t: "强引用源 · 省级 / 核心 / 知名博导（省教研员 / 教指委 / 核心期刊 / 国家艺术基金）" }
+    };
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>👤 评审专家 · 你写论文 / 课题要对标的「裁判」</h2>";
-    h += '<div class="mini" style="margin:4px 0 10px">共 <b>' + PEOPLE.length + '</b> 位（你点名 ' + knownN + ' 位）。每位只给两样东西：<b>💡 最新观点 / 想法</b> 和 <b>📰 最新动向</b>。';
-    h += '<div class="warn" style="margin:0 0 10px;background:#eaf6ff;border-color:#7fb2e6">📌 观点随各位公开讲座 / 发文持续更新（更新于 <b>2026-11-03</b>）；想追某位的最新说法，点他主页看近期活动最准。</div>';
+    h += '<div class="mini" style="margin:4px 0 10px">共 <b>' + PEOPLE.length + '</b> 位（你点名 ' + knownN + ' 位）。每位给五样：<b>💎 含金量定位</b> · <b>💡 核心观点</b> · <b>🛠 实操建议</b> · <b>📚 代表成果</b> · <b>📰 最新动向</b>；已按含金量 S→A 排序，🌟 在最前。</div>';
+    h += '<div class="warn" style="margin:0 0 10px;background:#eaf6ff;border-color:#7fb2e6">📌 观点随各位公开讲座 / 发文持续更新（更新于 <b>2026-11-04</b>）；想追某位的最新说法，点他主页看近期活动最准。</div>';
     h += '<div class="grid" id="peopleGrid2">';
-    h += PEOPLE.map(function (p) {
+    h += sortPeople(PEOPLE).map(function (p) {
+      var li = lvlInfo[p.lvl] || lvlInfo.A;
       var known = p.known ? '<span class="badge" style="background:#c4442e">你点名的</span>' : "";
       var tags = (p.tags || []).map(function (t) { return '<span class="tag sm">' + esc(t) + "</span>"; }).join("");
       return '<div class="card people" data-id="' + esc(p.id) + '">' +
-        '<div class="ct"><span class="badge b-kind">' + esc(p.role) + "</span>" + known + "</div>" +
+        '<div class="ct"><span class="badge lvl" style="background:#b8860b;color:#fff">' + li.s + "</span><span class=\"badge b-kind\">" + esc(p.role) + "</span>" + known + "</div>" +
         '<div class="cn">' + esc(p.name) + '　<span class="mini">' + esc(p.title) + "</span></div>" +
-        '<div class="mini" style="margin:4px 0"><b>机构：</b>' + esc(p.org || "—") + "</div>" +
-        '<div class="sec" style="margin:6px 0;background:#eaf3ff;border-color:#9cc3ef"><div class="mini"><b>💡 最新观点 / 想法：</b><br>' + esc(p.focus) + "</div></div>" +
-        '<div class="sec" style="margin:6px 0;background:#fff6e0;border-color:#e7b94e"><div class="mini"><b>📰 最新动向：</b><br>' + esc(p.recent) + "</div></div>" +
+        '<div class="mini" style="margin:3px 0"><b>机构：</b>' + esc(p.org || "—") + "</div>" +
+        '<div class="sec" style="margin:5px 0;background:#fff7e6;border-color:#e7b94e"><div class="mini"><b>💎 含金量定位：</b><br>' + li.t + "</div></div>" +
+        '<div class="sec" style="margin:5px 0;background:#eaf3ff;border-color:#9cc3ef"><div class="mini"><b>💡 核心观点 / 建议：</b><br>' + esc(p.core) + "</div></div>" +
+        '<div class="sec" style="margin:5px 0;background:#eafbe7;border-color:#86c97a"><div class="mini"><b>🛠 给你的实操建议：</b><br>' + esc(p.todo) + "</div></div>" +
+        '<div class="sec" style="margin:5px 0;background:#f3ecff;border-color:#b79ce0"><div class="mini"><b>📚 代表著作 / 成果：</b><br>' + esc(p.works) + "</div></div>" +
+        '<div class="sec" style="margin:5px 0;background:#fff6e0;border-color:#e7b94e"><div class="mini"><b>📰 最新动向：</b><br>' + esc(p.recent) + "</div></div>" +
+        '<div class="mini" style="margin:4px 0"><b>🎯 为什么对你重要：</b>' + esc(p.why) + "</div>" +
         '<div class="tags">' + tags + "</div>" +
         (p.url ? '<div class="ct" style="margin-top:6px"><a class="badge b-link" href="' + esc(p.url) + '" target="_blank" rel="noopener">官网 / 主页 ↗</a></div>' : "") +
         "</div>";
