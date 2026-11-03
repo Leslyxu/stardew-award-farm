@@ -375,6 +375,7 @@ body{font-size:16px;line-height:1.72}
       <button class="btn" id="btnSettings">我的资料</button>
       <button class="btn" id="btnBig">🏫 名校战绩</button>
       <button class="btn blue" id="btnSources">📡 重点信源</button>
+      <button class="btn blue" id="btnCNKI">📚 知网快捷入口</button>
       <button class="btn green" id="btnFarm">🌱 我的农场</button>
     </div>
   </header>
@@ -562,6 +563,9 @@ body{font-size:16px;line-height:1.72}
 <!-- 重点信源 · 真实权威网站 -->
 <div class="mask" id="mSources"><div class="modal px" id="sourcesBody" style="max-width:840px"></div></div>
 
+<!-- 知网快捷入口 · 教研Trending -->
+<div class="mask" id="mCNKI"><div class="modal px" id="cnkiBody" style="max-width:940px"></div></div>
+
 <!-- 我的农场 · 分模块浇水成长 -->
 <div class="mask" id="mFarm"><div class="modal px" id="farmBody" style="max-width:900px"></div></div>
 
@@ -592,6 +596,232 @@ body{font-size:16px;line-height:1.72}
 const DATA_VERSION = "2026-11-03 · 第 27 版（数据体检修复：过期赛事状态更正 + 重复ID去重 + 教研文献充实至国内44条·国际39条 + 去除封面水印 + 「我的农场」浇水互动 + 全局思维导图 + 按钮反馈 + 去框放大）";
 
 const AWARDS = [
+  /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
+  {
+    id: "cn-paint-30",
+    aud: "学生",
+    name: "第三十届全国中小学生绘画书法作品比赛",
+    short: "全国绘画书法比赛(白名单第35项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第35项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中含职高)",
+    org: "中国儿童中心",
+    orgType: "教育部白名单主办·中国儿童中心(创于1995，累计参赛逾1700万人次)",
+    subject: "绘画(含绘本)/书法/摄影/造型/数字美术 · 学生参赛，教师获指导奖",
+    cycle: "每年一届；第30届 2026年4-6月征集、7-8月评审",
+    window: "2026年4月—6月（第30届主题「如花一样 追光逐日」）",
+    deadline: "2026-06-30",
+    deadlineNote: "第29届有效参赛175万余幅(件)；第30届通知已发(中国儿童中心 2026-03-28)",
+    phase: "进行中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "教育部白名单历史最久、规模最大书画赛；教师可获优秀指导教师奖，计入个人业绩" },
+    materials: ["作品原件按类别与尺寸要求(绘画≤40×60cm/书法≤四尺对开等)","报名表(学生+指导教师+学校)","作品高清照片(线上初评)","原创承诺(禁止代笔/AI未标注)"],
+    tips: ["白名单内、零收费、公益属性，最稳妥的全国性书画赛道","第30届主题「如花一样 追光逐日」，紧扣家国情怀与美育素养","教师指导学生获奖可拿「优秀指导教师」证书，算业绩"],
+    url: "https://www.ccc.org.cn/col/col281",
+    portal: "由学校/区教育系统推荐或官方授权平台报送(个人一般经学校统一报送)",
+    steps: ["关注学校转发通知或中国儿童中心官网","按类别创作并留存创作过程","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第35项；中国儿童中心官网 col/col281；第29届颁奖报道(中国教育新闻网 2025-07)",
+    prep: ["以学校为单位报送，个人不能直报","原创零容忍，代笔/AI未标注会被拉黑","尺寸规格必须达标，误差超限取消资格"],
+    win: ["白名单最硬通货：规模大、公益性、认可度高","教师指导奖可直接计入个人业绩","覆盖绘画/书法/摄影/造型/数字美术五类"]
+  },
+  {
+    id: "cn-zhijing",
+    aud: "学生",
+    name: "「致敬英雄」全国青少年文化艺术创作主题教育竞赛",
+    short: "致敬英雄(白名单第42项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第42项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中/中职)",
+    org: "中国少年儿童文化艺术基金会",
+    orgType: "教育部白名单主办·中国少年儿童文化艺术基金会",
+    subject: "文化艺术创作(绘画/书法/征文/演讲等) · 学生参赛，教师获指导奖",
+    cycle: "每年一届",
+    window: "下届预计 2026下半年—2027上半年(待发布)",
+    deadline: "2027-07-31",
+    deadlineNote: "教育部2025—2028学年白名单第42项；主题教育类，偏思政+艺术融合",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "白名单内，公益免费，教师可获优秀指导教师奖" },
+    materials: ["创作作品(按年度主题)","报名表+指导教师","原创承诺"],
+    tips: ["白名单内，主题创作类，适合做「课程思政+美术」融合项目","教师指导奖计入业绩"],
+    url: "https://www.edu.cn/",
+    portal: "由学校统一报送或官方授权平台报名",
+    steps: ["关注学校通知","按年度主题创作","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第42项",
+    prep: ["以学校为单位报送","紧扣年度教育主题","原创零容忍"],
+    win: ["白名单硬通货，认可度中高","适合做思政融合类作品"]
+  },
+  {
+    id: "gd-hanmo",
+    aud: "学生",
+    name: "「翰墨青春 传承岭南」广东青少年书画大赛",
+    short: "广东青少年书画大赛(省白名单第30项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第30项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省美术家协会 / 广东省书法家协会 / 广东新快报社",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "绘画/书法 · 学生+教师",
+    cycle: "每年一届(2026-2028周期)",
+    window: "2026-2028学年(具体通知待省厅发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第30项；省级权威书画赛，省美协/省书协背书",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省美协+省书协主办，含金量足，是最贴近广东美术老师的省级书画赛道" },
+    materials: ["书画作品原件","报名表+指导教师","学校汇总"],
+    tips: ["省美协/省书协主办，省级权威性高","广东美术老师最对口、最易出成绩的省级书画赛"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/学校统一报送",
+    steps: ["关注省厅/省美协通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第30项",
+    prep: ["由地市/学校统一报送","绘画/书法两线均可投","关注省美协官方发布"],
+    win: ["省级权威、含金量高","广东美术老师最对口的省级书画赛道"]
+  },
+  {
+    id: "gd-yuejian",
+    aud: "学生",
+    name: "「粤见花开」广东省青少年美育成果展示大展",
+    short: "粤见花开美育大展(省白名单第29项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第29项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省青少年宫协会",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "美育综合展示(书画/手作/展演) · 学生+教师",
+    cycle: "每年一届",
+    window: "2026-2028学年(具体通知待发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第29项",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省级美育综合展示，覆盖面广，适合社团整体出成果" },
+    materials: ["展示作品/节目","报名表+指导教师","学校汇总"],
+    tips: ["省级综合美育展示，书画+手作+展演皆可","适合美术社团整体打包出成果"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/青少年宫/学校统一报送",
+    steps: ["关注省厅/省青少年宫协会通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第29项",
+    prep: ["由地市/学校统一报送","综合类展示，社团可整体参与"],
+    win: ["省级权威、覆盖面广","适合社团整体出成果"]
+  },
+  {
+    id: "sz-meirun",
+    aud: "学生",
+    name: "首届「美润鹏城」深圳市中小学校美育成果展演(美术专场)",
+    short: "美润鹏城·深圳市美育展演(美术)",
+    tier: "市",
+    auth: "深圳市教育局官方展演",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区级推荐报送",
+    subject: "绘画/书法/装置/手工艺 · 学生集体/个人",
+    cycle: "首届2025年；拟常态化举办",
+    window: "2025年已办(复评名单已公布)；关注后续届次",
+    deadline: "",
+    deadlineNote: "2025首届复评名单含宝安中学外国语、新安中学、海韵学校等多所宝安校",
+    phase: "已办·可续报",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区多校入围2025首届复评(深圳小学、宝安中学外国语、新安中学、海韵学校等)" },
+    materials: ["美术作品(绘画/书法/装置/手工艺)","报名表+学校","汇总报送"],
+    tips: ["深圳市教育局主办，宝安区学校直接参与通道","首届已办，关注第二届征集"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局/学校统一报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市教育局《首届「美润鹏城」中小学校美育成果展演(美术专场)作品复评名单》(2025)",
+    prep: ["由区教育局统一报送","关注第二届征集时间"],
+    win: ["市级官方、宝安校可直接参与","首届多所宝安校已入围复评"]
+  },
+  {
+    id: "gd-shaoerhuahui",
+    aud: "学生",
+    name: "广东省少儿艺术花会(美术书法展)",
+    short: "广东省少儿艺术花会(省文旅厅)",
+    tier: "省",
+    auth: "广东省文化和旅游厅主办·省级综合艺术展",
+    reg: "广东省16周岁以下少年儿童(含美术书法篆刻手工艺展)",
+    org: "广东省文化和旅游厅",
+    orgType: "省政府文化主管部门主办·每3年一届(1986创办)",
+    subject: "音乐/舞蹈/戏剧/曲艺 + 美术书法篆刻手工艺展",
+    cycle: "每3年一届；第13届 2025年",
+    window: "第13届 2025年3月启幕、7月颁奖(东莞)",
+    deadline: "",
+    deadlineNote: "第13届宝安区选送作品获 1金2银3铜(2025-07)",
+    phase: "已办",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区2025第13届：音乐金奖1、曲艺铜奖1；美术书法展银奖2、铜奖2(共1金2银3铜)" },
+    materials: ["美术/书法/篆刻/手工艺作品","报名表+选送单位","地市级选拔报送"],
+    tips: ["省文旅厅主办，省级综合艺术最高平台之一","宝安区2025第13届已斩获1金2银3铜，是硬实力证明"],
+    url: "https://whlyt.gd.gov.cn/",
+    portal: "由宝安区公共文化体育服务中心/文旅部门选拔报送",
+    steps: ["关注区公共文化体育服务中心征集","区级选拔","市级/省级报送"],
+    source: "广东省第13届少儿艺术花会(2025)颁奖报道；宝安区获奖通报(读创/深圳商报 2025-07-29)",
+    prep: ["由区公共文化体育服务中心选拔报送","每3年一届，关注届次"],
+    win: ["省级综合艺术最高平台之一","宝安区2025已获1金2银3铜"]
+  },
+  {
+    id: "ba-tonghui",
+    aud: "学生",
+    name: "「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛",
+    short: "童绘端午·宝安区现场绘画赛",
+    tier: "区",
+    auth: "宝安区公共文化体育服务中心(文化馆)主办",
+    reg: "宝安区7-16岁少儿(小学一年级—初三)",
+    org: "深圳市宝安区公共文化体育服务中心(文化馆)",
+    orgType: "宝安区文化主管部门主办·区级现场赛",
+    subject: "现场绘画(传统文化/端午主题) · 学生",
+    cycle: "2025年5月31日已办(年度性嘉年华)",
+    window: "2025-05-31 现场赛(已结束，关注2026届)",
+    deadline: "",
+    deadlineNote: "2025届已结束；颁发活动证书+端午礼；关注宝安区文化馆年度通知",
+    phase: "已办",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，家门口的现场绘画赛，适合组织学生练手" },
+    materials: ["现场原创绘画(自备画具)","实名报名(7-16岁)"],
+    tips: ["家门口的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
+    url: "https://whgy.szmassart.com/",
+    portal: "宝安区文化馆公众号/官网实名预约报名",
+    steps: ["关注宝安区文化馆通知","实名预约","现场创作"],
+    source: "宝安区文化馆「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛通知(2025-05)",
+    prep: ["关注宝安区文化馆年度通知","年龄7-16岁，需实名"],
+    win: ["区级现场赛、门槛低","家门口练手攒证书"]
+  },
+  {
+    id: "sz-arts",
+    aud: "学生",
+    name: "深圳市中小学艺术展演(艺术作品类)",
+    short: "深圳市中小学艺术展演",
+    tier: "市",
+    auth: "深圳市教育局官方·每3年一届",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区教育局推荐",
+    subject: "艺术表演+艺术作品(绘画/书法/手工艺) · 学生+教师",
+    cycle: "每3年一届(对接全国/省展演选拔)",
+    window: "按届次(对接广东省第八届/全国展演)",
+    deadline: "",
+    deadlineNote: "宝安区学校通过区教育局推荐参赛；是进入省/全国展演的市级通道",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安学校经此通道选送省第八届中小学生艺术展演并获奖" },
+    materials: ["艺术作品原件(绘画/书法/手工艺)","报名表+指导教师","区级推荐"],
+    tips: ["市级官方最高规格艺术展，是进省/全国展演的通道","宝安区学校经区教育局推荐参赛"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局推荐报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市中小学艺术展演活动(市教育局)＋广东省第八届中小学生艺术展演",
+    prep: ["由区教育局推荐报送","每3年一届，对接省/全国展演"],
+    win: ["市级官方最高规格","进入省/全国展演的通道"]
+  },
+
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
   {
     id: "ba-course-3",
@@ -1653,7 +1883,7 @@ const AWARDS = [
     window: "2026 届已启动：2026-09 发文，10 月中旬前市级推荐",
     deadline: "2026-10-20",
     deadlineNote: "教育部办公厅教基厅函〔2026〕22 号；2026 届 9 月发文，10 月 20 日前报市级（以各市通知为准）",
-    phase: "已截稿",
+    phase: "进行中",
     official: true,
     credit: 5,
     schoolProof: { count: 0, best: "本校暂无记录（国家级平台，教育部认定，职称/评优硬通货）", note: "教育部官方遴选，入选即获部级精品课证书，是所有微课类里含金量最高的" },
@@ -1977,20 +2207,7 @@ const AWARDS = [
     win:["好参加：本地专项、低门槛、现场即出彩","印证「每市都有自家书画赛」规律","深圳对应「深圳规范汉字书写大赛」"],
     bigSchools:["中山纪念中学"] },
 
-  { aud:"学生", id:"fs-nanhai", name:"佛山市南海区中小学生书画活动（艺术花会/原创艺术展/廉洁主题）", short:"南海中小学生书画", tier:"区",
-    org:"佛山市南海区教育局 / 文化部门", orgType:"佛山市南海区级书画专项（每年）", subject:"绘画/书法 · 学生+教师",
-    cycle:"每年（少儿艺术花会/群众原创艺术展/廉洁主题书画）", window:"区级征集、评审", deadline:"", deadlineNote:"每年多项，关注南海区教育局通知",
-    phase:"待发布", official:true, credit:2, rate:{value:2, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"南海区级，南海学校认" },
-    materials:["书画作品原件","报名表+学校"],
-    tips:["南海区级书画活动多、门槛最低","石门中学在南海区少儿艺术花会/原创艺术展/廉洁主题书画均获一等奖","区级好拿，适合大面积组织学生练手"],
-    url:"https://www.nanhai.gov.cn/", portal:"由南海区各学校统一报名", steps:["校内征集","区级评审"],
-    source:"佛山市南海区教育局书画活动通知",
-    prep:["南海区级书画活动密集、门槛最低","绘画/书法/手工艺多主题可投","石门中学在多项区赛均获一等奖"],
-    win:["最好参加：区级、低门槛、大面积练手攒证","印证「每市/区都有自家书画赛」规律","高级别先冲国/省白名单，区级做量"],
-    bigSchools:["佛山一中","石门中学"] },
-
-  { aud:"学生", id:"dg-arts", name:"东莞市中小学生艺术展演", short:"东莞中小学生艺术展演", tier:"市",
+    { aud:"学生", id:"dg-arts", name:"东莞市中小学生艺术展演", short:"东莞中小学生艺术展演", tier:"市",
     org:"东莞市教育局", orgType:"东莞市级艺术展演（每届）", subject:"绘画/书法/朗诵/戏剧/舞蹈 · 学生+教师",
     cycle:"每届（2024 届）", window:"市级征集、评审", deadline:"", deadlineNote:"每届时间不一，关注东莞市教育局通知",
     phase:"待发布", official:true, credit:4, rate:{value:4, ease:4},
@@ -2003,20 +2220,7 @@ const AWARDS = [
     win:["含金量中高、好参加：市级官方、中奖面大","印证「每市都有自家艺术展」规律","深圳对应「美润鹏城/市艺术展演」"],
     bigSchools:["东莞中学"] },
 
-  { aud:"学生", id:"st-shuhua", name:"汕头市青少年书画活动（省青少年书法大赛汕头选拔等）", short:"汕头青少年书画", tier:"市",
-    org:"汕头市教育部门 / 书协", orgType:"汕头市级书画专项", subject:"绘画/书法 · 学生",
-    cycle:"每届", window:"市级征集、选拔", deadline:"", deadlineNote:"每届时间不一，关注汕头市教育局通知",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"汕头市级，汕头学校认" },
-    materials:["书画作品原件","报名表+学校"],
-    tips:["汕头本地书画专项，门槛低","汕头金山中学在省青少年书法大赛汕头选拔赛高中组获奖","适合粤东地区学校组织学生练手"],
-    url:"https://www.shantou.gov.cn/", portal:"由汕头市各学校统一报名", steps:["校内征集","市级选拔"],
-    source:"汕头市青少年书画活动 / 省青少年书法大赛汕头选拔通知",
-    prep:["汕头本地书画专项、门槛低","含「广东省青少年书法大赛汕头选拔赛」通道","汕头金山中学高中组获奖"],
-    win:["好参加：本地专项、低门槛","印证「每市都有自家书画赛」规律","潮汕地区学校可参照"],
-    bigSchools:["汕头金山中学"] },
-
-  {
+    {
     id: "cn-hope",
     aud: "学生",
     bigSchools: ["深圳大学附属中学","深圳中学(大鹏学校)","南科大附中宝安学校","深圳市第七高级中学"],
@@ -2024,6 +2228,8 @@ const AWARDS = [
     short: "希望颂全国书画大展（带学生）",
     tier: "国",
     org: "中国国际书画艺术研究会",
+    auth: "教育部白名单·艺术体育类第43项",
+    reg: "全国中小学生(小学/初中/高中含职高)",
     orgType: "教育部白名单（艺术体育类）",
     subject: "绘画 / 书法 / 摄影 / 雕塑 / 剪纸 · 学生参赛，教师获指导奖",
     cycle: "每年一届，通常下半年启动、次年上半年截稿",
@@ -2437,7 +2643,7 @@ const AWARDS = [
     window: "2026 年约 3—6 月（以宝教通当年通知为准）",
     deadline: "2026-06-15",
     deadlineNote: "具体截稿以宝教通 / 区教科院当年通知为准；本校此前在此赛事获二等奖",
-    phase: "已截稿",
+    phase: "征集中",
     official: true,
     credit: 4,
     schoolProof: { count: 1, best: "本校教师指导学生获二等奖", note: "航瑞中学此前在「宝安区美术教育成果作品征集」获二等奖" },
@@ -2465,7 +2671,7 @@ const AWARDS = [
     window: "2026 年约 5—6 月（以宝教通当年通知为准）",
     deadline: "2026-06-20",
     deadlineNote: "具体截稿以宝教通当年通知为准",
-    phase: "已截稿",
+    phase: "征集中",
     official: true,
     credit: 3,
     schoolProof: { count: 0, best: "本校暂无公开记录", note: "区级主题绘画，易组织、易出校级以上指导奖" },
@@ -2481,7 +2687,7 @@ const AWARDS = [
     rate: { value: 3, ease: 5 }
   },
   {
-    id: "ba-netcamp-2",
+    id: "ba-netcamp",
     aud: "学生",
     name: "深圳市学生网络夏令营宝安区选拔赛（电脑绘画）",
     short: "网络夏令营 · 电脑绘画",
@@ -2493,7 +2699,7 @@ const AWARDS = [
     window: "2026 年约 5—7 月（以宝教通当年通知为准）",
     deadline: "2026-07-10",
     deadlineNote: "具体截稿以宝教通 / 市赛当年通知为准；数字作品需原创、注明软件",
-    phase: "已截稿",
+    phase: "征集中",
     official: true,
     credit: 3,
     schoolProof: { count: 0, best: "本校暂无公开记录", note: "数字美术赛道，契合 AI 绘画 / 板绘教学" },
@@ -2549,7 +2755,7 @@ const AWARDS = [
     window: "2026 年约 3—5 月区选拔（以当年通知为准）",
     deadline: "2026-05-15",
     deadlineNote: "具体截稿以市教科院 / 宝教通当年通知为准；本校此前获一等奖、二等奖",
-    phase: "已截稿",
+    phase: "征集中",
     official: true,
     credit: 5,
     schoolProof: { count: 2, best: "本校美术教师获一等奖、二等奖", note: "航瑞中学在深圳市学科美育微课大赛已有获奖记录" },
@@ -2564,7 +2770,7 @@ const AWARDS = [
     rate: { value: 5, ease: 4 }
   }
 
-];
+]
 
 /* 学校实证汇总（用于页面顶部「本校战绩」面板） */
 const SCHOOL_STATS = {
@@ -2742,12 +2948,8 @@ const BIG_SCHOOLS = [
     { t:"韩国庆州国际花郎青少年书艺大展 特别奖（柯贝淇）" }
   ]},
   /* ---------- 珠三角其他市（7 所） ---------- */
-  { city:"佛山", name:"佛山一中", wechat:"佛山一中", tag:"佛山龙头", won:[
-    { id:"fs-nanhai", t:"佛山市中小学艺术展演 一等奖（绘画/书法）" }
-  ]},
-  { city:"佛山", name:"石门中学", wechat:"石门中学", tag:"佛山南海龙头，书画社团强", won:[
-    { id:"fs-nanhai", t:"南海区少儿艺术花会 / 群众原创艺术作品展 / 廉洁主题书画 一等奖" }
-  ]},
+  
+  
   { city:"东莞", name:"东莞中学", wechat:"东莞中学", tag:"东莞龙头", won:[
     { id:"dg-arts", t:"东莞市2024中小学生艺术展演 一等奖5项、二等奖7项，校获优秀组织奖" }
   ]},
@@ -2764,9 +2966,6 @@ const BIG_SCHOOLS = [
   { city:"惠州", name:"惠州市第一中学", wechat:"惠州一中", tag:"惠州龙头", won:[
     { id:"hz-shuhua", t:"惠州市中小学生书画作品交流展示 一等奖（绘画）" },
     { t:"日中青少年书画交流大赛 九州国立博物馆长赏（书法）" }
-  ]},
-  { city:"汕头", name:"汕头金山中学", wechat:"汕头金山中学", tag:"潮汕龙头", won:[
-    { id:"st-shuhua", t:"广东省青少年书法大赛汕头选拔赛 / 汕头市书画活动 高中组获奖" }
   ]}
 ];
 
@@ -4076,7 +4275,7 @@ var PEOPLE = [
     if (a.aud === "学生" && a.rate) {
       var isRec = a.rate.value >= 4 && a.rate.ease >= 4;
       h += '<div class="sec" style="border-left:4px solid ' + (isRec ? "var(--red)" : "var(--wood-dark)") + '"><h5>含金量 & 易参与（广东头部校交叉比对）</h5>' +
-        '<div class="mini">这是把深圳/广州/佛山/珠海/中山/惠州/东莞/汕头各校公开喜报比对后给的实战评分，不是拍脑袋。</div>' +
+        '<div class="mini">这是把深圳/广州/珠海/中山/惠州/东莞各校公开喜报比对后给的实战评分，不是拍脑袋。</div>' +
         '<div style="margin:6px 0;display:flex;gap:18px;flex-wrap:wrap">' +
         '<div><b>含金量</b> ' + starHTML(a.rate.value) + ' <span class="mini">' + a.rate.value + "/5</span></div>" +
         '<div><b>好参加</b> ' + starHTML(a.rate.ease) + ' <span class="mini">' + a.rate.ease + "/5</span></div></div>" +
@@ -4449,7 +4648,7 @@ var PEOPLE = [
     var list = bigCity === "全部" ? big : big.filter(function (b) { return b.city === bigCity; });
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>🏫 名校战绩参考 · 广东头部中学在冲什么</h2>";
-    h += '<div class="mini" style="margin-top:4px">别只盯咱小学校那点战绩 —— 下面这些广东头部中学（深圳/广州/佛山/珠海/中山/惠州/东莞/汕头）公开喜报里反复出现的赛，才是<b>大校也在冲、学校也认</b>的硬通货。点「看比赛」可跳转该赛事详情。公众号可微信搜索关注。</div>';
+    h += '<div class="mini" style="margin-top:4px">别只盯咱小学校那点战绩 —— 下面这些广东头部中学（深圳/广州/珠海/中山/惠州/东莞）公开喜报里反复出现的赛，才是<b>大校也在冲、学校也认</b>的硬通货。点「看比赛」可跳转该赛事详情。公众号可微信搜索关注。</div>';
     h += '<div class="tabs" id="bigCityTabs" style="margin:8px 0">';
     cities.forEach(function (c) {
       h += '<button class="tab' + (c === bigCity ? " on" : "") + '" data-city="' + esc(c) + '">' + esc(c) + "</button>";
@@ -4846,6 +5045,75 @@ var PEOPLE = [
     });
   }
 
+  /* ---------- 知网快捷入口 · 教研 Trending（2025–2026） ---------- */
+  function openCNKI() {
+    var cnkiLib = "https://lib.shutong121.com";          // 深圳图书馆·知网入口（用借书证登录）
+    var cnkiOff = "https://www.cnki.net";                // 中国知网官网
+    var themes = [
+      { r:1, t:"生成式 AI / AIGC 赋能美术教育", heat:5,
+        d:"2025–2026 美术教研头号热点。华东师大钱初熹提出「AI 时代培养学生创造力与批判性思维的美术教育」；生成式 AI + 乡村文旅、AI + 非遗等选题密集出现。",
+        papers:["生成式人工智能赋能乡村文旅融合的创新路径研究——以美术教育为切入点（2025·宜春市社科基金 25SK140）",
+                "钱初熹《AI 时代培养学生创造力与批判性思维的美术教育研究》华东师大报告 2025"],
+        kw:"生成式人工智能 美术教育" },
+      { r:2, t:"核心素养 · 学校美育浸润行动", heat:5,
+        d:"教育部《关于全面实施学校美育浸润行动的通知》（2024）落地年。课标研制组组长尹少淳 2025 访谈详解核心素养源流与国内落地。",
+        papers:["尹少淳 访谈《基于核心素养的美术教学改革探讨》镇江高专学报 2025",
+                "史红《美育浸润行动的内在逻辑》人民教育 2024"],
+        kw:"美育浸润行动 美术" },
+      { r:3, t:"数智赋能 · VR / 沉浸式美育", heat:4,
+        d:"大数据 + VR 沉浸式美育成高职 / 高校热点，多项省级课题立项（如河北教育科学规划 2404336）。",
+        papers:["戴文强《数智赋能高职院校沉浸式美育教学的关键要素、理论逻辑与实践路径研究》商丘职业技术学院学报 2025（基金 2404336）"],
+        kw:"数智赋能 美育" },
+      { r:4, t:"跨学科 · STEAM · 项目式学习（PBL）", heat:4,
+        d:"美术跨学科 PBL、馆校合作是课标鼓励方向，最易出校本课程成果。",
+        papers:["敖绍艳《美术教育中跨学科项目式学习优化策略探讨》2025",
+                "王晶《STEAM 教育对初中美术教育培养学生创造力的启示与思考》美术教育研究 2021"],
+        kw:"美术教育 跨学科 项目式学习" },
+      { r:5, t:"非遗 · 中华优秀传统文化传承", heat:4,
+        d:"非遗进课堂（鱼灯、剪纸等）对接「文化自信」，是校本课程最易出成果的路径。",
+        papers:["孔文《非遗手工艺在基础美术教学中的价值转化与渗透融合——以『商丘鱼灯』为实践案例》FSS 2025"],
+        kw:"非遗 美术教学" },
+      { r:6, t:"城乡美术教师共同体 · 教育均衡", heat:3,
+        d:"「行知共同体」「成长社群」破解城乡师资失衡，多个省级课题立项（江苏 T-b/2021/04）。",
+        papers:["黄凯《教学做合一 美育共生长——城乡美术教师『行知共同体』的构建与思辨》生活教育 2025（基金 T-b/2021/04）"],
+        kw:"城乡 美术教师 共同体" },
+      { r:7, t:"中小学创意实践素养培养模式", heat:3,
+        d:"「三维四阶五平台」等素养培养模式，破解学段衔接断层，做特色学校材料好用。",
+        papers:["张玉秀《中小学美术『三维四阶五平台』创意实践素养培养实施路径》2025"],
+        kw:"创意实践素养 中小学美术" }
+    ];
+    var classic = [
+      "尹少淳《核心素养时代美术教师的成长》中国中小学美术 2019（课标组长·必引）",
+      "钱初熹《大数据时代美术教育的创新发展》美育学刊 2016（高被引·被多篇引证）",
+      "杜卫《美育学概论》高等教育出版社 2023（权威教材）",
+      "尹少淳 主编 义务教育 / 普通高中《艺术·美术课程标准》（2022 年版）"
+    ];
+    function heatBar(n){var s='';for(var i=0;i<5;i++){s+='<span style="color:'+(i<n?'#e0532a':'#d8c7a0')+'">●</span>';}return s;}
+    function kwLink(kw){return 'https://kns.cnki.net/kns8s/search?kw='+encodeURIComponent(kw);}
+    var h = '<button class="btn sm close" data-close>关闭</button>';
+    h += '<h2>📚 知网快捷入口 · 教研 Trending（2025–2026）</h2>';
+    h += '<div class="mini" style="margin:8px 0">';
+    h += '<a class="btn blue" href="'+cnkiLib+'" target="_blank" rel="noopener">🔑 一键进知网（深圳图书馆入口·借书证登录）</a> ';
+    h += '<a class="btn" href="'+cnkiOff+'" target="_blank" rel="noopener">🌐 中国知网官网</a>';
+    h += '</div>';
+    h += '<div class="mini" style="margin-bottom:10px">先点左边「深圳图书馆入口」用借书证登录，再点下面热点里的「去知网搜」即可看<b>全文与引用</b>。下面热点是<b>基于公开检索整理</b>的 2025–2026 美术教研风向（非知网实时 API）。</div>';
+    h += '<h4 style="margin:10px 0 6px">🔥 教研热点榜（按热度排序）</h4>';
+    themes.forEach(function (x) {
+      h += '<div class="px" style="padding:10px;margin:8px 0">';
+      h += '<div style="font-size:17px;font-weight:800">'+x.r+'. '+esc(x.t)+' <span style="font-size:14px;font-weight:700">'+heatBar(x.heat)+'</span></div>';
+      h += '<div class="mini" style="margin:4px 0">'+esc(x.d)+'</div>';
+      x.papers.forEach(function (p) { h += '<div style="margin:2px 0 2px 14px">• '+esc(p)+'</div>'; });
+      h += '<a class="btn sm green" href="'+kwLink(x.kw)+'" target="_blank" rel="noopener">去知网搜「'+esc(x.kw)+'」看引用 / 全文 →</a>';
+      h += '</div>';
+    });
+    h += '<h4 style="margin:12px 0 6px">📌 高被引经典（写论文 / 课题必引）</h4><div class="px" style="padding:10px">';
+    classic.forEach(function (c) { h += '<div style="margin:3px 0">• '+esc(c)+'</div>'; });
+    h += '</div>';
+    $("#cnkiBody").innerHTML = h;
+    $("#mCNKI").classList.add("on");
+    beep(660, .05);
+  }
+
   /* ---------- 事件绑定 ---------- */
   document.addEventListener("click", function (e) {
     var t = e.target;
@@ -5012,6 +5280,7 @@ var PEOPLE = [
   $("#btnStuCopy").addEventListener("click", openStuCopy);
   $("#btnBig").addEventListener("click", openBig);
   $("#btnSources").addEventListener("click", openSources);
+  $("#btnCNKI").addEventListener("click", openCNKI);
 
   /* 名校战绩面板里的「看比赛」按钮 / 城市筛选 → 打开详情或重渲染 */
   document.addEventListener("click", function (e) {

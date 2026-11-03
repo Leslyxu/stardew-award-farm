@@ -1,28 +1,237 @@
 /* ============================================================
-   星露奖杯农场 · 赛事数据库
-   数据版本：2026-11-01（第 2 版 · 全部按官方已发布信息修订）
-   ------------------------------------------------------------
-   【状态字段说明】
-   aud  ：教师 / 学生（学生类=学生参赛、教师获指导奖；教师类=教师本人参赛/参评）
-   phase：进行中 / 已截稿 / 已结束 / 待发布
-     · 进行中 = 本周期官方通知已发、窗口未关
-     · 已截稿 = 本周期官方截止已过，等下一届
-     · 已结束 = 本周期活动已收官（含公示/颁奖）
-     · 待发布 = 往年常规举办，但本年官方通知尚未检索到
-   official：true 表示「本周期官方通知已检索到真实出处」
-   source：官方出处的说明或链接（点卡片「来源」可看）
-   portal：官方投稿/报送入口（真实网址或平台名，能直接打开的才填）
-   steps ：本站替你整理的「提交步骤」（政府平台需本人账号+短信验证，
-           我无法替你点最后一步「提交」，但前面所有环节都备好了）
-
-   怎么更新：改 AWARDS 任意一条刷新即生效；或网页顶部「数据」→「导入 JSON」。
-   schoolProof 数字来自 航瑞中学 2025-2026 学年《教师个人专业赛事获奖情况
-   汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
+   星露奖杯农场 · 数据文件
+   由 index.html 内联数据重建，与线上版完全一致。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-02 · 第 23 版（筛选按钮可见可点 + 字号放大 + 收窄留白 + 刷新多源容错·透明报告）";
+const DATA_VERSION = "2026-11-03 · 第 27 版（数据体检修复：过期赛事状态更正 + 重复ID去重 + 教研文献充实至国内44条·国际39条 + 去除封面水印 + 「我的农场」浇水互动 + 全局思维导图 + 按钮反馈 + 去框放大）";
 
 const AWARDS = [
+  /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
+  {
+    id: "cn-paint-30",
+    aud: "学生",
+    name: "第三十届全国中小学生绘画书法作品比赛",
+    short: "全国绘画书法比赛(白名单第35项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第35项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中含职高)",
+    org: "中国儿童中心",
+    orgType: "教育部白名单主办·中国儿童中心(创于1995，累计参赛逾1700万人次)",
+    subject: "绘画(含绘本)/书法/摄影/造型/数字美术 · 学生参赛，教师获指导奖",
+    cycle: "每年一届；第30届 2026年4-6月征集、7-8月评审",
+    window: "2026年4月—6月（第30届主题「如花一样 追光逐日」）",
+    deadline: "2026-06-30",
+    deadlineNote: "第29届有效参赛175万余幅(件)；第30届通知已发(中国儿童中心 2026-03-28)",
+    phase: "进行中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "教育部白名单历史最久、规模最大书画赛；教师可获优秀指导教师奖，计入个人业绩" },
+    materials: ["作品原件按类别与尺寸要求(绘画≤40×60cm/书法≤四尺对开等)","报名表(学生+指导教师+学校)","作品高清照片(线上初评)","原创承诺(禁止代笔/AI未标注)"],
+    tips: ["白名单内、零收费、公益属性，最稳妥的全国性书画赛道","第30届主题「如花一样 追光逐日」，紧扣家国情怀与美育素养","教师指导学生获奖可拿「优秀指导教师」证书，算业绩"],
+    url: "https://www.ccc.org.cn/col/col281",
+    portal: "由学校/区教育系统推荐或官方授权平台报送(个人一般经学校统一报送)",
+    steps: ["关注学校转发通知或中国儿童中心官网","按类别创作并留存创作过程","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第35项；中国儿童中心官网 col/col281；第29届颁奖报道(中国教育新闻网 2025-07)",
+    prep: ["以学校为单位报送，个人不能直报","原创零容忍，代笔/AI未标注会被拉黑","尺寸规格必须达标，误差超限取消资格"],
+    win: ["白名单最硬通货：规模大、公益性、认可度高","教师指导奖可直接计入个人业绩","覆盖绘画/书法/摄影/造型/数字美术五类"]
+  },
+  {
+    id: "cn-zhijing",
+    aud: "学生",
+    name: "「致敬英雄」全国青少年文化艺术创作主题教育竞赛",
+    short: "致敬英雄(白名单第42项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第42项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中/中职)",
+    org: "中国少年儿童文化艺术基金会",
+    orgType: "教育部白名单主办·中国少年儿童文化艺术基金会",
+    subject: "文化艺术创作(绘画/书法/征文/演讲等) · 学生参赛，教师获指导奖",
+    cycle: "每年一届",
+    window: "下届预计 2026下半年—2027上半年(待发布)",
+    deadline: "2027-07-31",
+    deadlineNote: "教育部2025—2028学年白名单第42项；主题教育类，偏思政+艺术融合",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "白名单内，公益免费，教师可获优秀指导教师奖" },
+    materials: ["创作作品(按年度主题)","报名表+指导教师","原创承诺"],
+    tips: ["白名单内，主题创作类，适合做「课程思政+美术」融合项目","教师指导奖计入业绩"],
+    url: "https://www.edu.cn/",
+    portal: "由学校统一报送或官方授权平台报名",
+    steps: ["关注学校通知","按年度主题创作","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第42项",
+    prep: ["以学校为单位报送","紧扣年度教育主题","原创零容忍"],
+    win: ["白名单硬通货，认可度中高","适合做思政融合类作品"]
+  },
+  {
+    id: "gd-hanmo",
+    aud: "学生",
+    name: "「翰墨青春 传承岭南」广东青少年书画大赛",
+    short: "广东青少年书画大赛(省白名单第30项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第30项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省美术家协会 / 广东省书法家协会 / 广东新快报社",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "绘画/书法 · 学生+教师",
+    cycle: "每年一届(2026-2028周期)",
+    window: "2026-2028学年(具体通知待省厅发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第30项；省级权威书画赛，省美协/省书协背书",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省美协+省书协主办，含金量足，是最贴近广东美术老师的省级书画赛道" },
+    materials: ["书画作品原件","报名表+指导教师","学校汇总"],
+    tips: ["省美协/省书协主办，省级权威性高","广东美术老师最对口、最易出成绩的省级书画赛"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/学校统一报送",
+    steps: ["关注省厅/省美协通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第30项",
+    prep: ["由地市/学校统一报送","绘画/书法两线均可投","关注省美协官方发布"],
+    win: ["省级权威、含金量高","广东美术老师最对口的省级书画赛道"]
+  },
+  {
+    id: "gd-yuejian",
+    aud: "学生",
+    name: "「粤见花开」广东省青少年美育成果展示大展",
+    short: "粤见花开美育大展(省白名单第29项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第29项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省青少年宫协会",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "美育综合展示(书画/手作/展演) · 学生+教师",
+    cycle: "每年一届",
+    window: "2026-2028学年(具体通知待发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第29项",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省级美育综合展示，覆盖面广，适合社团整体出成果" },
+    materials: ["展示作品/节目","报名表+指导教师","学校汇总"],
+    tips: ["省级综合美育展示，书画+手作+展演皆可","适合美术社团整体打包出成果"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/青少年宫/学校统一报送",
+    steps: ["关注省厅/省青少年宫协会通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第29项",
+    prep: ["由地市/学校统一报送","综合类展示，社团可整体参与"],
+    win: ["省级权威、覆盖面广","适合社团整体出成果"]
+  },
+  {
+    id: "sz-meirun",
+    aud: "学生",
+    name: "首届「美润鹏城」深圳市中小学校美育成果展演(美术专场)",
+    short: "美润鹏城·深圳市美育展演(美术)",
+    tier: "市",
+    auth: "深圳市教育局官方展演",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区级推荐报送",
+    subject: "绘画/书法/装置/手工艺 · 学生集体/个人",
+    cycle: "首届2025年；拟常态化举办",
+    window: "2025年已办(复评名单已公布)；关注后续届次",
+    deadline: "",
+    deadlineNote: "2025首届复评名单含宝安中学外国语、新安中学、海韵学校等多所宝安校",
+    phase: "已办·可续报",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区多校入围2025首届复评(深圳小学、宝安中学外国语、新安中学、海韵学校等)" },
+    materials: ["美术作品(绘画/书法/装置/手工艺)","报名表+学校","汇总报送"],
+    tips: ["深圳市教育局主办，宝安区学校直接参与通道","首届已办，关注第二届征集"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局/学校统一报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市教育局《首届「美润鹏城」中小学校美育成果展演(美术专场)作品复评名单》(2025)",
+    prep: ["由区教育局统一报送","关注第二届征集时间"],
+    win: ["市级官方、宝安校可直接参与","首届多所宝安校已入围复评"]
+  },
+  {
+    id: "gd-shaoerhuahui",
+    aud: "学生",
+    name: "广东省少儿艺术花会(美术书法展)",
+    short: "广东省少儿艺术花会(省文旅厅)",
+    tier: "省",
+    auth: "广东省文化和旅游厅主办·省级综合艺术展",
+    reg: "广东省16周岁以下少年儿童(含美术书法篆刻手工艺展)",
+    org: "广东省文化和旅游厅",
+    orgType: "省政府文化主管部门主办·每3年一届(1986创办)",
+    subject: "音乐/舞蹈/戏剧/曲艺 + 美术书法篆刻手工艺展",
+    cycle: "每3年一届；第13届 2025年",
+    window: "第13届 2025年3月启幕、7月颁奖(东莞)",
+    deadline: "",
+    deadlineNote: "第13届宝安区选送作品获 1金2银3铜(2025-07)",
+    phase: "已办",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区2025第13届：音乐金奖1、曲艺铜奖1；美术书法展银奖2、铜奖2(共1金2银3铜)" },
+    materials: ["美术/书法/篆刻/手工艺作品","报名表+选送单位","地市级选拔报送"],
+    tips: ["省文旅厅主办，省级综合艺术最高平台之一","宝安区2025第13届已斩获1金2银3铜，是硬实力证明"],
+    url: "https://whlyt.gd.gov.cn/",
+    portal: "由宝安区公共文化体育服务中心/文旅部门选拔报送",
+    steps: ["关注区公共文化体育服务中心征集","区级选拔","市级/省级报送"],
+    source: "广东省第13届少儿艺术花会(2025)颁奖报道；宝安区获奖通报(读创/深圳商报 2025-07-29)",
+    prep: ["由区公共文化体育服务中心选拔报送","每3年一届，关注届次"],
+    win: ["省级综合艺术最高平台之一","宝安区2025已获1金2银3铜"]
+  },
+  {
+    id: "ba-tonghui",
+    aud: "学生",
+    name: "「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛",
+    short: "童绘端午·宝安区现场绘画赛",
+    tier: "区",
+    auth: "宝安区公共文化体育服务中心(文化馆)主办",
+    reg: "宝安区7-16岁少儿(小学一年级—初三)",
+    org: "深圳市宝安区公共文化体育服务中心(文化馆)",
+    orgType: "宝安区文化主管部门主办·区级现场赛",
+    subject: "现场绘画(传统文化/端午主题) · 学生",
+    cycle: "2025年5月31日已办(年度性嘉年华)",
+    window: "2025-05-31 现场赛(已结束，关注2026届)",
+    deadline: "",
+    deadlineNote: "2025届已结束；颁发活动证书+端午礼；关注宝安区文化馆年度通知",
+    phase: "已办",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，家门口的现场绘画赛，适合组织学生练手" },
+    materials: ["现场原创绘画(自备画具)","实名报名(7-16岁)"],
+    tips: ["家门口的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
+    url: "https://whgy.szmassart.com/",
+    portal: "宝安区文化馆公众号/官网实名预约报名",
+    steps: ["关注宝安区文化馆通知","实名预约","现场创作"],
+    source: "宝安区文化馆「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛通知(2025-05)",
+    prep: ["关注宝安区文化馆年度通知","年龄7-16岁，需实名"],
+    win: ["区级现场赛、门槛低","家门口练手攒证书"]
+  },
+  {
+    id: "sz-arts",
+    aud: "学生",
+    name: "深圳市中小学艺术展演(艺术作品类)",
+    short: "深圳市中小学艺术展演",
+    tier: "市",
+    auth: "深圳市教育局官方·每3年一届",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区教育局推荐",
+    subject: "艺术表演+艺术作品(绘画/书法/手工艺) · 学生+教师",
+    cycle: "每3年一届(对接全国/省展演选拔)",
+    window: "按届次(对接广东省第八届/全国展演)",
+    deadline: "",
+    deadlineNote: "宝安区学校通过区教育局推荐参赛；是进入省/全国展演的市级通道",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安学校经此通道选送省第八届中小学生艺术展演并获奖" },
+    materials: ["艺术作品原件(绘画/书法/手工艺)","报名表+指导教师","区级推荐"],
+    tips: ["市级官方最高规格艺术展，是进省/全国展演的通道","宝安区学校经区教育局推荐参赛"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局推荐报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市中小学艺术展演活动(市教育局)＋广东省第八届中小学生艺术展演",
+    prep: ["由区教育局推荐报送","每3年一届，对接省/全国展演"],
+    win: ["市级官方最高规格","进入省/全国展演的通道"]
+  },
+
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
   {
     id: "ba-course-3",
@@ -1408,20 +1617,7 @@ const AWARDS = [
     win:["好参加：本地专项、低门槛、现场即出彩","印证「每市都有自家书画赛」规律","深圳对应「深圳规范汉字书写大赛」"],
     bigSchools:["中山纪念中学"] },
 
-  { aud:"学生", id:"fs-nanhai", name:"佛山市南海区中小学生书画活动（艺术花会/原创艺术展/廉洁主题）", short:"南海中小学生书画", tier:"区",
-    org:"佛山市南海区教育局 / 文化部门", orgType:"佛山市南海区级书画专项（每年）", subject:"绘画/书法 · 学生+教师",
-    cycle:"每年（少儿艺术花会/群众原创艺术展/廉洁主题书画）", window:"区级征集、评审", deadline:"", deadlineNote:"每年多项，关注南海区教育局通知",
-    phase:"待发布", official:true, credit:2, rate:{value:2, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"南海区级，南海学校认" },
-    materials:["书画作品原件","报名表+学校"],
-    tips:["南海区级书画活动多、门槛最低","石门中学在南海区少儿艺术花会/原创艺术展/廉洁主题书画均获一等奖","区级好拿，适合大面积组织学生练手"],
-    url:"https://www.nanhai.gov.cn/", portal:"由南海区各学校统一报名", steps:["校内征集","区级评审"],
-    source:"佛山市南海区教育局书画活动通知",
-    prep:["南海区级书画活动密集、门槛最低","绘画/书法/手工艺多主题可投","石门中学在多项区赛均获一等奖"],
-    win:["最好参加：区级、低门槛、大面积练手攒证","印证「每市/区都有自家书画赛」规律","高级别先冲国/省白名单，区级做量"],
-    bigSchools:["佛山一中","石门中学"] },
-
-  { aud:"学生", id:"dg-arts", name:"东莞市中小学生艺术展演", short:"东莞中小学生艺术展演", tier:"市",
+    { aud:"学生", id:"dg-arts", name:"东莞市中小学生艺术展演", short:"东莞中小学生艺术展演", tier:"市",
     org:"东莞市教育局", orgType:"东莞市级艺术展演（每届）", subject:"绘画/书法/朗诵/戏剧/舞蹈 · 学生+教师",
     cycle:"每届（2024 届）", window:"市级征集、评审", deadline:"", deadlineNote:"每届时间不一，关注东莞市教育局通知",
     phase:"待发布", official:true, credit:4, rate:{value:4, ease:4},
@@ -1434,20 +1630,7 @@ const AWARDS = [
     win:["含金量中高、好参加：市级官方、中奖面大","印证「每市都有自家艺术展」规律","深圳对应「美润鹏城/市艺术展演」"],
     bigSchools:["东莞中学"] },
 
-  { aud:"学生", id:"st-shuhua", name:"汕头市青少年书画活动（省青少年书法大赛汕头选拔等）", short:"汕头青少年书画", tier:"市",
-    org:"汕头市教育部门 / 书协", orgType:"汕头市级书画专项", subject:"绘画/书法 · 学生",
-    cycle:"每届", window:"市级征集、选拔", deadline:"", deadlineNote:"每届时间不一，关注汕头市教育局通知",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"汕头市级，汕头学校认" },
-    materials:["书画作品原件","报名表+学校"],
-    tips:["汕头本地书画专项，门槛低","汕头金山中学在省青少年书法大赛汕头选拔赛高中组获奖","适合粤东地区学校组织学生练手"],
-    url:"https://www.shantou.gov.cn/", portal:"由汕头市各学校统一报名", steps:["校内征集","市级选拔"],
-    source:"汕头市青少年书画活动 / 省青少年书法大赛汕头选拔通知",
-    prep:["汕头本地书画专项、门槛低","含「广东省青少年书法大赛汕头选拔赛」通道","汕头金山中学高中组获奖"],
-    win:["好参加：本地专项、低门槛","印证「每市都有自家书画赛」规律","潮汕地区学校可参照"],
-    bigSchools:["汕头金山中学"] },
-
-  {
+    {
     id: "cn-hope",
     aud: "学生",
     bigSchools: ["深圳大学附属中学","深圳中学(大鹏学校)","南科大附中宝安学校","深圳市第七高级中学"],
@@ -1455,6 +1638,8 @@ const AWARDS = [
     short: "希望颂全国书画大展（带学生）",
     tier: "国",
     org: "中国国际书画艺术研究会",
+    auth: "教育部白名单·艺术体育类第43项",
+    reg: "全国中小学生(小学/初中/高中含职高)",
     orgType: "教育部白名单（艺术体育类）",
     subject: "绘画 / 书法 / 摄影 / 雕塑 / 剪纸 · 学生参赛，教师获指导奖",
     cycle: "每年一届，通常下半年启动、次年上半年截稿",
@@ -1995,9 +2180,8 @@ const AWARDS = [
     rate: { value: 5, ease: 4 }
   }
 
-];
+]
 
-/* 学校实证汇总（用于页面顶部「本校战绩」面板） */
 const SCHOOL_STATS = {
   school: "航瑞中学",
   year: "2025-2026 学年（2025.09.01 — 2026.08.30）",
@@ -2024,8 +2208,7 @@ const SCHOOL_STATS = {
     { who: "本校教师指导学生", what: "宝安区美术教育成果作品征集", level: "二等奖" }
   ]
 };
-/* 官方白名单 · 教育部2025-2028（47项）+ 广东省教育厅2025-2028（30项） */
-/* 面向「中小学生」的全国性/全省性竞赛白名单；art=true 为美术老师可指导/拿指导奖的赛道。 */
+
 const WHITELIST = [
   { no:1, name:"全国青少年人工智能创新挑战赛", org:"中国少年儿童发展服务中心", scope:"小学、初中、高中、中职", cat:"自然科学素养类", level:"国", art:false, channel:"主办单位官网 / 全国校外教育培训监管与服务综合平台查询；经学校或授权组织单位报名，不接受个人直报。不得收费、不与升学挂钩。", url:"https://www.moe.gov.cn/", note:"教育部2025—2028学年白名单" },
   { no:2, name:"世界机器人大会青少年机器人设计与信息素养大赛", org:"中国电子学会", scope:"小学、初中、高中、中职", cat:"自然科学素养类", level:"国", art:false, channel:"主办单位官网 / 全国校外教育培训监管与服务综合平台查询；经学校或授权组织单位报名，不接受个人直报。不得收费、不与升学挂钩。", url:"https://www.moe.gov.cn/", note:"教育部2025—2028学年白名单" },
@@ -2107,11 +2290,6 @@ const WHITELIST = [
   { no:30, name:"“中山颂”广东青少年高水平音乐舞蹈作品大赛", org:"广东省卓越质量促进中心", scope:"小学、初中、高中", cat:"艺术体育类", level:"省", art:true, channel:"音乐/舞蹈高水平作品，学校/地市推荐。", url:"https://edu.gd.gov.cn/ztzlnew/xxl/tzgg/content/post_4856962.html", note:"广东省教育厅2025—2028学年白名单" },
 ];
 
-/* ============================================================
-   名校战绩参考（深圳头部中学）· 来自各校官网/公众号公开喜报
-   用途：小学校别只盯着自己那点战绩，大校在冲的赛才是
-   值得带学生投、学校也认的「硬通货」。公众号可关注。
-   ============================================================ */
 const BIG_SCHOOLS = [
   /* ---------- 深圳（原 8 所，补 city） ---------- */
   { city:"深圳", name:"深圳大学附属中学", wechat:"深大附中", tag:"老牌美术强校，白名单赛批量产出", won:[
@@ -2173,12 +2351,8 @@ const BIG_SCHOOLS = [
     { t:"韩国庆州国际花郎青少年书艺大展 特别奖（柯贝淇）" }
   ]},
   /* ---------- 珠三角其他市（7 所） ---------- */
-  { city:"佛山", name:"佛山一中", wechat:"佛山一中", tag:"佛山龙头", won:[
-    { id:"fs-nanhai", t:"佛山市中小学艺术展演 一等奖（绘画/书法）" }
-  ]},
-  { city:"佛山", name:"石门中学", wechat:"石门中学", tag:"佛山南海龙头，书画社团强", won:[
-    { id:"fs-nanhai", t:"南海区少儿艺术花会 / 群众原创艺术作品展 / 廉洁主题书画 一等奖" }
-  ]},
+  
+  
   { city:"东莞", name:"东莞中学", wechat:"东莞中学", tag:"东莞龙头", won:[
     { id:"dg-arts", t:"东莞市2024中小学生艺术展演 一等奖5项、二等奖7项，校获优秀组织奖" }
   ]},
@@ -2195,21 +2369,12 @@ const BIG_SCHOOLS = [
   { city:"惠州", name:"惠州市第一中学", wechat:"惠州一中", tag:"惠州龙头", won:[
     { id:"hz-shuhua", t:"惠州市中小学生书画作品交流展示 一等奖（绘画）" },
     { t:"日中青少年书画交流大赛 九州国立博物馆长赏（书法）" }
-  ]},
-  { city:"汕头", name:"汕头金山中学", wechat:"汕头金山中学", tag:"潮汕龙头", won:[
-    { id:"st-shuhua", t:"广东省青少年书法大赛汕头选拔赛 / 汕头市书画活动 高中组获奖" }
   ]}
 ];
 
-/* ============================================================
-   教研前沿 · 论文 / 课题（2026 实时追踪）
-   kind: 论文 | 课题
-   scope: 国内（含中国香港 / 中国澳门 / 中国台湾 / 上海 / 北京等先进地区）| 国际（美国 / 加拿大 / 意大利 / 韩国 / 日本 / 欧洲）
-   内容基于 2026 真实期刊重点选题、国家哲社文献、国际综述与会议征稿；每周更新。
-   ============================================================ */
 var RES = [
-  { id:"res-sr01", kind:"课题", scope:"国内", region:"广东·课题", title:"广东教育学会「十五五」教育科研规划课题申报（美术/美育方向可报）", hot:"省级学会课题，难度低于省规划办但认可度够评职称/绩效；美术教师可报「美育浸润」「艺术素养评价」「馆校合作」等方向。每年常态申报，是性价比最高的课题入口之一。", where:"广东教育学会官网「课题管理」栏目在线申报（http://www.gdjyxh.org.cn/ketimm/）；需单位盖章推荐，不能个人直报。", tags:["课题申报","广东","美育","评职称"], source:"广东教育学会官网 · 关于开展「十五五」教育科研规划课题申报工作的通知", url:"http://www.gdjyxh.org.cn/yuedu/3985.html" },
-  { id:"res-sr02", kind:"政策", scope:"国内", region:"广东·政策", title:"《广东省中小学教学装备配置指南》印发（含美术教室/美育空间配置标准）", hot:"文件明确了美术教室、书法教室、美育展陈空间的装备底线，建美术功能室、申请采购、写特色学校申报材料都要照它来，比拍脑袋写方案硬得多。", where:"广东省教育厅官网「规范性文件」栏目查阅全文；做功能室建设方案 / 装备采购论证时直接引用。", tags:["政策","广东","美术教室","装备配置"], source:"广东省教育厅 · 关于印发《广东省中小学教学装备配置指南》的通知", url:"https://edu.gd.gov.cn/zwgknew/jyzcfg/dfjyzcfg/content/post_4954072.htm" },
+  { id:"res-sr01", kind:"课题", scope:"国内", region:"广东·课题", title:"广东教育学会「十五五」教育科研规划课题申报（美术/美育方向可报）", hot:"省级学会课题，难度低于省规划办但认可度够评职称/绩效；美术教师可报「美育浸润」「艺术素养评价」「馆校合作」等方向。每年常态申报，是性价比最高的课题入口之一。", where:"广东教育学会官网「课题管理」栏目在线申报（http://www.gdjyxh.org.cn/ketimm/）；需单位盖章推荐，不能个人直报。（「十五五」2026—2030，首轮申报约 2026 年上/下半年，以官网通知为准）", tags:["课题申报","广东","美育","评职称"], source:"广东教育学会官网 · 关于开展「十五五」教育科研规划课题申报工作的通知", url:"http://www.gdjyxh.org.cn/yuedu/3985.html" },
+  { id:"res-sr02", kind:"政策", scope:"国内", region:"广东·政策", title:"《广东省中小学教学装备配置指南》印发（含美术教室/美育空间配置标准）", hot:"文件明确了美术教室、书法教室、美育展陈空间的装备底线，建美术功能室、申请采购、写特色学校申报材料都要照它来，比拍脑袋写方案硬得多。", where:"广东省教育厅官网「规范性文件」栏目查阅全文；做功能室建设方案 / 装备采购论证时直接引用。（指南 2025 年印发，现行有效）", tags:["政策","广东","美术教室","装备配置"], source:"广东省教育厅 · 关于印发《广东省中小学教学装备配置指南》的通知", url:"https://edu.gd.gov.cn/zwgknew/jyzcfg/dfjyzcfg/content/post_4954072.htm" },
   { id:"res-cn01", kind:"论文", scope:"国内", region:"广东·小学", title:"网络舆情环境下小学美术教育的困境与突围路径", hot:"一线教师被短视频断章取义、家长群放大，课堂管理动辄被举报。这篇给的是「如何留痕、如何跟家长解释、如何自保」的实操路径，不是空谈师德。", where:"《中国美术教育》「教育研究」栏目；写法：3 个真实冲突案例 + 你的处理流程 + 可复用的家校沟通话术模板。", tags:["小学美术","教师发展","家校沟通"], source:"《中国美术教育》2025(3):1-3 · 乔振东", url:"http://www.cnmsjy.com/" },
   { id:"res-cn02", kind:"论文", scope:"国内", region:"江苏·小学", title:"素养导向下的小学美术学业测评体系构建", hot:"「美术怎么打分」是教研员最常被问的问题。这篇把测评拆成「过程性证据 + 作品集 + 表现性任务」三块，可直接改成你校的期末方案。", where:"《美术教育研究》「教学评价」栏目；可做「一校一方案」的校本测评表，附评分量规（rubric）截图最容易被录用。", tags:["学业评价","小学美术","表现性评价"], source:"《美术教育研究》2025(4) · 彭菲菲", url:"http://www.msjyyj.com/" },
   { id:"res-cn03", kind:"论文", scope:"国内", region:"浙江·小学", title:"深度学习理念下小学美术学习活动的优化设计与实施", hot:"「大单元」写烂了，但「深度学习」在美术学科还少有人做。核心是把一节课的目标改成「学生能迁移什么」，评审看的是这个转向。", where:"《中国美术教育》「实践探索」；结构：单元目标→进阶任务链→学生作品对比（前/后测）。", tags:["深度学习","大单元","课堂设计"], source:"《美术教育研究》2025(4) · 莫秀红", url:"http://www.msjyyj.com/" },
@@ -2270,6 +2435,30 @@ var RES = [
   { id:"res-kt10", kind:"课题", scope:"国内", region:"校内", title:"校本课题（校级）", hot:"最低门槛，先做校级再往上滚。校级课题结题报告可以直接改成论文投《美术教育研究》。", where:"随时可立，学校教科室备案；选题=你班里真实存在的问题，一学期能做完。", tags:["课题申报","校级","入门"], source:"本校教科室", url:"#", deadline:"2027-06-30" },
   { id:"res-kt11", kind:"课题", scope:"国内", region:"全国", title:"国家社科基金教育学一般课题", hot:"比教科规划更难，但含金量最高。中学老师基本只能参与高校团队，做实验校。", where:"每年 1–2 月，限项申报；找师大教授带，你负责课堂实验与数据。", tags:["课题申报","国家级","合作"], source:"全国哲学社会科学工作办公室", url:"http://www.nopss.gov.cn/", deadline:"2027-02-28" },
   { id:"res-kt12", kind:"课题", scope:"国内", region:"广东", title:"广东省中小学「百千万人才培养工程」专项课题", hot:"名师培养对象的配套课题，如果你在名师工作室/培养对象序列里，这是必拿的。", where:"随培养工程通知；需工作室主持人推荐，成果要求公开课+论文+辐射带动。", tags:["课题申报","省级","名师"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-07-15" },
+
+
+  { id:"res-in25", kind:"论文", scope:"国际", region:"土耳其·生成式AI", title:"An Innovative Approach in Arts Education: Student Experiences of Abstract Art Practices Supported by Generative Artificial Intelligence", hot:"2025 实证：12 名艺术教育高年级生参与 12 周生成式AI辅助抽象艺术创作，初抵触、后转正向，AI 成灵感与构图向导（SAGE Open, 15(3)）。", where:"SAGE Open (2025, 15(3))；DOI 10.1177/21582440251382812。用于「AI+美术创作」课例的理论与案例支撑。", tags:["AI","生成式AI","高等教育","创造力","土耳其"], source:"SAGE Open · Yahya Hiçyilmaz (2025)", url:"https://journals.sagepub.com/doi/10.1177/21582440251382812" },
+  { id:"res-in26", kind:"论文", scope:"国际", region:"拉脱维亚·生成式AI", title:"Generative Artificial Intelligence as a Catalyst for Change in Higher Education Art Study Programs", hot:"2025 实证：10 名艺术生于构图课同时用传统法与 GenAI，认为其是构思/概念导师而非精密创作工具（Computers, MDPI）。", where:"Computers (MDPI, 2025, 4(154))；DOI 10.3390/computers14040154。论证「AI 作为灵感伙伴」的课堂定位。", tags:["AI","生成式AI","高等教育","构图","拉脱维亚"], source:"MDPI Computers · Ansone et al. (2025)", url:"https://www.mdpi.com/2073-431X/14/4/154" },
+  { id:"res-in27", kind:"论文", scope:"国际", region:"中国·ChatGPT", title:"Interaction between Students and Artificial Intelligence in the Context of Creative Potential Development", hot:"2025 实证：美术/文学/服装三方向学生用 ChatGPT-4 辅助创意，TTCT 图形测验显示创造力潜能显著增长（Interactive Learning Environments）。", where:"Interactive Learning Environments (2025, 33(7):4460-4475)；ERIC EJ1501138。可用于「AI 助教与创造力」课题论证。", tags:["AI","ChatGPT","创造力","实验","中国"], source:"Taylor & Francis · Ming Xu (2025)", url:"https://eric.ed.gov/?id=EJ1501138" },
+  { id:"res-in28", kind:"论文", scope:"国际", region:"中国·GAN", title:"Enhancing art creation through AI-based generative adversarial networks in educational auxiliary system", hot:"2025 实证：GAN 辅助艺术创作系统，60 名本科生创作质量提升 35.4%、参与度提升 42.7%（Scientific Reports, Nature）。", where:"Scientific Reports (2025, Nature)；DOI 10.1038/s41598-025-14164-z。做「AI 评图反馈」系统的技术参照。", tags:["AI","GAN","艺术创作","系统","中国"], source:"Scientific Reports (Nature) · He & Zhang (2025)", url:"https://www.nature.com/articles/s41598-025-14164-z" },
+  { id:"res-in29", kind:"论文", scope:"国际", region:"中国·AI图像", title:"Effects of AI-generated images in visual art education on students' classroom engagement, self-efficacy and cognitive load", hot:"2025 实验：78 名五年级生分组，AI 生成图像组课堂参与度与自我效能显著更高，认知负荷无差异（Hum & Soc Sci Communications）。", where:"Humanities and Social Sciences Communications (2025, 12(1))；DOI 10.1057/s41599-025-05860-2。小学 AI 图像教学的直接实证。", tags:["AI","AI图像","参与度","自我效能","中国"], source:"Springer HSSC · Bian et al. (2025)", url:"https://www.nature.com/articles/s41599-025-05860-2" },
+  { id:"res-in30", kind:"论文", scope:"国际", region:"西班牙·神经超现实", title:"The generative artificial intelligence of images as a collaborator for creativity: a group case study", hot:"2025 混合研究：55 名西国大学生以 GenAI 协助梦境视觉化，自我表达满意度 72.4%，缓解「空白画布恐惧」（Arte, Individuo y Sociedad）。", where:"Arte, Individuo y Sociedad (2025, 37(2):339-351)；DOI 10.5209/aris.99030。接「AI 作为共创伙伴」叙事。", tags:["AI","生成式AI","自我表达","创造力","西班牙"], source:"Arte Individuo y Sociedad · Gil-Ruiz & Domínguez-Lloria (2025)", url:"https://doi.org/10.5209/aris.99030" },
+  { id:"res-in31", kind:"论文", scope:"国际", region:"波黑/克罗地亚·艺术治疗", title:"Integration of Visual Arts Methods in Education: Reducing Stress, Enhancing Introspection, and Emotional Well-being", hot:"2025 实证：视觉艺术工作坊降低压力、提升情绪稳定性，100% 参与者报告压力下降（Multidisciplinarni pristupi, 7(9)）。", where:"Multidisciplinarni pristupi (2025, 7(9):81-91)；DOI 10.59519/mper7108。情绪/心理维度艺术教育实证。", tags:["艺术治疗","幸福感","压力","情绪","波黑"], source:"Multidisciplinarni pristupi · Žmukić et al. (2025)", url:"https://www.multidisciplinarni-pristupi.com/" },
+  { id:"res-in32", kind:"论文", scope:"国际", region:"乌兹别克斯坦·心理", title:"Visual arts and psychology: emotional and creative development of general secondary school students", hot:"2025 实证：50 名 5–7 年级学生，规律视觉艺术活动提升情绪稳定与创造力（Inter education & global study, 6）。", where:"Inter education & global study (2025, 6:533-540)。中小学艺术心理发展实证。", tags:["心理学","情绪","创造力","中小学","乌兹别克"], source:"Inter education & global study · Bahriddinova (2025)", url:"https://researcher.uz/" },
+  { id:"res-in33", kind:"论文", scope:"国际", region:"美国·社会情感", title:"Promoting the Social and Emotional Well-Being of Young Adolescents in Visual Arts Classrooms", hot:"2025 著作章节：美国两所初中视觉艺术课堂的 SEL 策略——协作氛围与创作自主促进青少年社会情感能力（Routledge）。", where:"Routledge (2025)；DOI 10.4324/9781003562047-16。社会情感学习 SEL 与美术课堂结合。", tags:["社会情感","SEL","中小学","美国","幸福感"], source:"Routledge · Yuan, Elias & Blatt (2025)", url:"https://www.taylorfrancis.com/books/9781003562047/chapters/10.4324/9781003562047-16" },
+  { id:"res-in34", kind:"论文", scope:"国际", region:"印尼/马来西亚·可持续", title:"Visual and Narrative Engagements with the 'Subak' System: A Thematic Analysis of Sustainability Learning through Creative Interpretation in Bali", hot:"2025 现象图析：新加坡大学生以绘画+叙事解读巴厘岛原住民生态知识 Subak，呈现去殖民与在地化学习（JKB, 15(3)）。", where:"Jurnal Kajian Bali (2025, 15(3):14)；DOI 10.24843/JKB.2025.v15.i03.p14。生态/非遗跨文化艺术学习。", tags:["可持续","去殖民","在地","生态","印尼"], source:"JKB · Surata et al. (2025)", url:"https://irep.iium.edu.my/125838/" },
+  { id:"res-in35", kind:"论文", scope:"国际", region:"芬兰·北极工艺", title:"Felted Futures: crafting transformative learning experiences in the Arctic", hot:"2025 艺术本位行动研究：高校师生与北极村落共创羊毛毡工艺，推动循环经济和转型可持续教育（Education in the North）。", where:"Education in the North (2025, 32(3):204-227)；DOI 10.26203/ehk3-1b93。传统工艺+可持续+社区艺术教育。", tags:["可持续","工艺","行动研究","社群","芬兰"], source:"Education in the North · Huhmarniemi et al. (2025)", url:"https://www.abdn.ac.uk/eitn" },
+  { id:"res-in36", kind:"论文", scope:"国际", region:"印度·去殖民课程", title:"Graphic narratives as pedagogical tools: Diversifying the curriculum of science in schools", hot:"2025：以印度 Gond 艺术家图像叙事挑战气候危机中的殖民式人类中心叙事，主张课程多元化（Journal of Applied Learning & Teaching）。", where:"Journal of Applied Learning & Teaching (2025, 8(S1.3))；DOI 10.37074/jalt.2025.8.S1.3。图像叙事/生态艺术进课堂。", tags:["去殖民","图像叙事","生态","课程","印度"], source:"JALT · Saraswat & Das (2025)", url:"https://dx.doi.org/10.37074/jalt.2025.8.S1.3" },
+  { id:"res-in37", kind:"论文", scope:"国际", region:"越南/英国·气候参与", title:"Hope in Folded Pages: Zine-Making, Decolonial Praxis and the Power of Participatory Arts for 'a Peaceful and Sustainable Life'", hot:"2025 参与式艺术研究：越南青年以 Zine 制作表达气候韧性，跨越语言/代际隔阂，青年成知识共创者（Geographical Journal）。", where:"The Geographical Journal (2025, 192(1))；Wiley Open Access。参与式艺术+气候行动+去殖民框架。", tags:["参与式艺术","气候","去殖民","青年","越南"], source:"Geographical Journal · River of Hope (2025)", url:"https://hull-repository.worktribe.com/output/5487772" },
+  ,{ id:"res-cn41", kind:"论文", scope:"国内", region:"深圳·福田", title:"数智视域下的中小学美术教育革新——深圳市福田区中小学「人工智能艺术」研学共同体的实践与研究", hot:"深圳本地实证：福田区以「六个基于」原则建人工智能艺术研学共同体，开发个性化课程、建 AI 艺术实验室、做跨学科融合与项目式学习，是湾区 AI+美术 一线可复制样本。", where:"《中国美术》2025 年第 5 期，p.113-116；DOI 10.3969/j.issn.0256-212X.2025.05.016。", tags:["AI美术","深圳","实证研究","研学共同体"], source:"《中国美术》2025 年第 5 期", url:"https://lib.cqytxy.edu.cn/articlesearch/web_searchingDetail?id=2031624042454" }
+  ,{ id:"res-cn42", kind:"论文", scope:"国内", region:"高校·美育", title:"基于人工智能设计拓展大学生美育的探索与实践", hot:"CSSCI《中国大学教学》2026 年第 2-3 期；提出「感官扩增—实时交互—虚实融合」三维框架，论证 AI 设计推动美育从艺术鉴赏向具身认知范式转型，高校美育方向高引参考。", where:"《中国大学教学》2026 年第 2-3 期（教育部主管，CSSCI 来源期刊，复合影响因子 4.826）。", tags:["AI美育","CSSCI","高校","范式转型"], source:"山东大学艺术学院 · 赵鹏团队", url:"https://www.art.sdu.edu.cn/info/1300/18406.htm" }
+  ,{ id:"res-cn43", kind:"论文", scope:"国内", region:"高校·造型", title:"生成式人工智能赋能造型艺术基础教学的路径探索——基于色彩规律实验课程的实证研究", hot:"以西安美院「色彩规律」实验课为对象，用生成式 AI 重构造型基础教学，揭示其在提升实践效率、培养视觉素养与重构艺术认知范式中的作用，附「技术赋能 vs 人文价值平衡」路径。", where:"DOI 10.13772/j.cnki.61-1042/j.2026.02.018；2026-06-10 发表，2026-07-09 网络首发。", tags:["生成式AI","造型基础","实证研究","视觉素养"], source:"知网首发 · 西安美术学院教育教学改革项目(2025JY012)阶段成果", url:"https://cfed.cnki.net/inds/litdetail?FDk9Q0BWbUhIOmQ26weGWZPNr2sXgSdJpXk4O5CDJDzPaGM2sogTkUvXTkeHX3facb9b6JErH34inl0G3DRfuoQUs0PpfwsOWGI8LvFnvyH19rs2DytdIIrUOL6ott" }
+  ,{ id:"res-cn44", kind:"论文", scope:"国内", region:"小学·跨学科", title:"在地美食文化邂逅教育智能体——小学美术跨学科教学的创意实践", hot:"上海虹口曲阳四小以「智学魔方」智能体 + 「4+N」版画创意教学模式，解决传统版画媒材选择盲目、分层指导难、评价单一问题，是小学美术+AI 跨学科的鲜活案例。", where:"《中小学数字化教学》2026 年第 2 期。", tags:["教育智能体","小学美术","跨学科","版画"], source:"知网阅读 · 姚迩", url:"https://read.cnki.net/web/Organization/Subject?orgcode=0840059&subcode=H127" }
+  ,{ id:"res-kt13", kind:"课题", scope:"国内", region:"广东·省级重点", title:"传习与创生：高中工笔画项目式学习数智化双轨创新实践研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；以工笔画项目式学习 + 数智化双轨为路径，是美术教师做省级重点课题的标杆样本。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞外国语学校 王柴慧。", tags:["省级重点","工笔画","项目式","数智化"], source:"东莞外国语学校喜报 · 广东省教育科学规划 2026 年度重点项目立项", url:"https://dgfls.dgjy.net/info/2172/278664.htm" }
+  ,{ id:"res-kt14", kind:"课题", scope:"国内", region:"广东·省级重点", title:"区域中小学美术教师「七彩计划」实施研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；面向区域中小学美术教师队伍建设，是「教师发展」类课题的可报方向参考。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞市教育局教研室 詹逸然。", tags:["省级重点","教师发展","区域教研"], source:"东莞市拟推荐 2026 年度省规划重点名单", url:"https://edu.dg.gov.cn/attachment/0/348/348170/4404929.xlsx" }
+  ,{ id:"res-in38", kind:"论文", scope:"国际", region:"韩国·设计教育", title:"Graphic Design Education in the Era of Text-to-Image Generation: Transitioning to Contents Creator", hot:"基于 2023 年「视觉文化与当代艺术」课程工作坊，用 Midjourney/DALL·E + TPCK 模型让学生生成欧洲设计史海报；证实生成式 AI 时代图形设计教育需重构目标与方法，学生须具备 AI 视觉素养与创意关键词能力。", where:"International Journal of Art & Design Education, 2025, 44(1), p.239-253；DOI 10.1111/jade.12558（Wiley, peer-reviewed）。", tags:["生成式AI","设计教育","视觉素养","TPCK"], source:"International Journal of Art & Design Education (Wiley)", url:"https://eric.ed.gov/?id=ej1460436" }
+  ,{ id:"res-in39", kind:"论文", scope:"国际", region:"土耳其·建筑教育", title:"An analysis of text-to-image generative models as creativity support tools", hot:"28 名建筑系大一学生用文生图模型做提示词工程生成建筑表征，配创造力支持指数(CSI)问卷；发现结构化提示词显著提升产出质量，但学生在复杂视觉概念表达与构图控制上仍吃力，呼吁加强提示词训练。", where:"International Journal of Arts and Technology, 2025；DOI 10.1504/IJART.2025.147855。", tags:["文生图","提示词工程","创造力支持","建筑教育"], source:"International Journal of Arts and Technology", url:"https://acikerisim.msgsu.edu.tr/xmlui/handle/20.500.14124/10258" }
+
 ];
 
 var TOOLS = [
@@ -2342,11 +2531,6 @@ var TOOLS = [
     use:"偏工程，但文档写作、代码化课件这类长文产出质量高，值得借。" }
 ];
 
-/* ============================================================
-   关键人物 / 评审专家 · 你写论文课题要对标的「裁判」
-   含你点名的三位（李力加=李丽佳 · 尹少淳=尹绍成 · 黄宏武=黄鸿武）
-   及最新（2025–2026）一线权威，信息均来自公开报道。
-   ============================================================ */
 var PEOPLE = [
   { id:"p-yinshaochun", name:"尹少淳", title:"首都师范大学美术学院教授、博导", org:"首都师范大学", role:"课标组长·最高评审",
     focus:"普通高中美术课程标准修订组组长；大单元 / 大观念教学、美育浸润、图像识读与美术核心素养体系。",
@@ -2440,4 +2624,4 @@ var PEOPLE = [
     url:"https://www.pep.com.cn/", tags:["教材","少儿美术","人教版"], known:false }
 ];
 
-
+var DEFAULT_UPDATE_URL = "https://cdn.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js";
