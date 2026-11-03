@@ -300,6 +300,22 @@ footer b{color:var(--wood)}
 .cover-hero .cover{display:block;width:100%;max-height:460px;object-fit:contain;background:#16100a;border:5px solid var(--gold);border-radius:14px;box-shadow:0 7px 0 rgba(0,0,0,.28),0 0 0 3px var(--wood-dark),0 0 26px rgba(255,207,77,.25);image-rendering:auto;-webkit-user-drag:none}
 @media(max-width:760px){.cover-hero .cover{max-height:230px;border-width:4px}}
 </style>
+<style id="uxTweak">
+body{font-size:16px;line-height:1.72}
+.card h3{font-size:23px}
+.mini{font-size:15px}
+.meta,.org{font-size:16.5px}
+.tab{font-size:15px;letter-spacing:1px}
+.side .panel{border:1px solid #e6d3a8;box-shadow:none;background:#fffdf6}
+.panel h4{border-bottom:1px solid #ecdfc4}
+.card{border:1px solid #ecdfc4;box-shadow:none}
+.card.res,.card.tool{background:#fffdf8}
+.group-h{border-width:2px}
+.toolbar{box-shadow:none;border:1px solid #ecdfc4}
+.btn,.tab{transition:transform .08s ease}
+.mm-svg{background:#fffdf6;border-radius:12px}
+#btnGlobalMind:active{transform:scale(.94)}
+</style>
 </head>
 <body class="s-autumn">
 <div id="grass"></div>
@@ -486,8 +502,11 @@ footer b{color:var(--wood)}
 <!-- 详情弹窗 -->
 <div class="mask" id="mDetail"><div class="modal px" id="detailBody"></div></div>
 
-<!-- 教研思维导图弹窗 -->
+<!-- 教研思维导图弹窗（单条速览） -->
 <div class="mask" id="mResMind"><div class="modal px" id="mResMindBody" style="max-width:760px"></div></div>
+
+<!-- 全局教研思维导图（可下钻导航） -->
+<div class="mask" id="mGlobalMind"><div class="modal px" id="globalMindBody" style="max-width:820px"></div></div>
 
 <!-- 投稿向导 -->
 <div class="mask" id="mSubmit"><div class="modal px" id="submitBody"></div></div>
@@ -546,7 +565,7 @@ footer b{color:var(--wood)}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-02 · 第 23 版（筛选按钮可见可点 + 字号放大 + 收窄留白 + 刷新多源容错·透明报告）";
+const DATA_VERSION = "2026-11-03 · 第 24 版（国际文献扩至37条·真实可溯源 + 全局思维导图 + 按钮按压反馈 + 去框放大）";
 
 const AWARDS = [
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
@@ -2796,6 +2815,21 @@ var RES = [
   { id:"res-kt10", kind:"课题", scope:"国内", region:"校内", title:"校本课题（校级）", hot:"最低门槛，先做校级再往上滚。校级课题结题报告可以直接改成论文投《美术教育研究》。", where:"随时可立，学校教科室备案；选题=你班里真实存在的问题，一学期能做完。", tags:["课题申报","校级","入门"], source:"本校教科室", url:"#", deadline:"2027-06-30" },
   { id:"res-kt11", kind:"课题", scope:"国内", region:"全国", title:"国家社科基金教育学一般课题", hot:"比教科规划更难，但含金量最高。中学老师基本只能参与高校团队，做实验校。", where:"每年 1–2 月，限项申报；找师大教授带，你负责课堂实验与数据。", tags:["课题申报","国家级","合作"], source:"全国哲学社会科学工作办公室", url:"http://www.nopss.gov.cn/", deadline:"2027-02-28" },
   { id:"res-kt12", kind:"课题", scope:"国内", region:"广东", title:"广东省中小学「百千万人才培养工程」专项课题", hot:"名师培养对象的配套课题，如果你在名师工作室/培养对象序列里，这是必拿的。", where:"随培养工程通知；需工作室主持人推荐，成果要求公开课+论文+辐射带动。", tags:["课题申报","省级","名师"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-07-15" },
+
+
+  { id:"res-in25", kind:"论文", scope:"国际", region:"土耳其·生成式AI", title:"An Innovative Approach in Arts Education: Student Experiences of Abstract Art Practices Supported by Generative Artificial Intelligence", hot:"2025 实证：12 名艺术教育高年级生参与 12 周生成式AI辅助抽象艺术创作，初抵触、后转正向，AI 成灵感与构图向导（SAGE Open, 15(3)）。", where:"SAGE Open (2025, 15(3))；DOI 10.1177/21582440251382812。用于「AI+美术创作」课例的理论与案例支撑。", tags:["AI","生成式AI","高等教育","创造力","土耳其"], source:"SAGE Open · Yahya Hiçyilmaz (2025)", url:"https://journals.sagepub.com/doi/10.1177/21582440251382812" },
+  { id:"res-in26", kind:"论文", scope:"国际", region:"拉脱维亚·生成式AI", title:"Generative Artificial Intelligence as a Catalyst for Change in Higher Education Art Study Programs", hot:"2025 实证：10 名艺术生于构图课同时用传统法与 GenAI，认为其是构思/概念导师而非精密创作工具（Computers, MDPI）。", where:"Computers (MDPI, 2025, 4(154))；DOI 10.3390/computers14040154。论证「AI 作为灵感伙伴」的课堂定位。", tags:["AI","生成式AI","高等教育","构图","拉脱维亚"], source:"MDPI Computers · Ansone et al. (2025)", url:"https://www.mdpi.com/2073-431X/14/4/154" },
+  { id:"res-in27", kind:"论文", scope:"国际", region:"中国·ChatGPT", title:"Interaction between Students and Artificial Intelligence in the Context of Creative Potential Development", hot:"2025 实证：美术/文学/服装三方向学生用 ChatGPT-4 辅助创意，TTCT 图形测验显示创造力潜能显著增长（Interactive Learning Environments）。", where:"Interactive Learning Environments (2025, 33(7):4460-4475)；ERIC EJ1501138。可用于「AI 助教与创造力」课题论证。", tags:["AI","ChatGPT","创造力","实验","中国"], source:"Taylor & Francis · Ming Xu (2025)", url:"https://eric.ed.gov/?id=EJ1501138" },
+  { id:"res-in28", kind:"论文", scope:"国际", region:"中国·GAN", title:"Enhancing art creation through AI-based generative adversarial networks in educational auxiliary system", hot:"2025 实证：GAN 辅助艺术创作系统，60 名本科生创作质量提升 35.4%、参与度提升 42.7%（Scientific Reports, Nature）。", where:"Scientific Reports (2025, Nature)；DOI 10.1038/s41598-025-14164-z。做「AI 评图反馈」系统的技术参照。", tags:["AI","GAN","艺术创作","系统","中国"], source:"Scientific Reports (Nature) · He & Zhang (2025)", url:"https://www.nature.com/articles/s41598-025-14164-z" },
+  { id:"res-in29", kind:"论文", scope:"国际", region:"中国·AI图像", title:"Effects of AI-generated images in visual art education on students' classroom engagement, self-efficacy and cognitive load", hot:"2025 实验：78 名五年级生分组，AI 生成图像组课堂参与度与自我效能显著更高，认知负荷无差异（Hum & Soc Sci Communications）。", where:"Humanities and Social Sciences Communications (2025, 12(1))；DOI 10.1057/s41599-025-05860-2。小学 AI 图像教学的直接实证。", tags:["AI","AI图像","参与度","自我效能","中国"], source:"Springer HSSC · Bian et al. (2025)", url:"https://www.nature.com/articles/s41599-025-05860-2" },
+  { id:"res-in30", kind:"论文", scope:"国际", region:"西班牙·神经超现实", title:"The generative artificial intelligence of images as a collaborator for creativity: a group case study", hot:"2025 混合研究：55 名西国大学生以 GenAI 协助梦境视觉化，自我表达满意度 72.4%，缓解「空白画布恐惧」（Arte, Individuo y Sociedad）。", where:"Arte, Individuo y Sociedad (2025, 37(2):339-351)；DOI 10.5209/aris.99030。接「AI 作为共创伙伴」叙事。", tags:["AI","生成式AI","自我表达","创造力","西班牙"], source:"Arte Individuo y Sociedad · Gil-Ruiz & Domínguez-Lloria (2025)", url:"https://doi.org/10.5209/aris.99030" },
+  { id:"res-in31", kind:"论文", scope:"国际", region:"波黑/克罗地亚·艺术治疗", title:"Integration of Visual Arts Methods in Education: Reducing Stress, Enhancing Introspection, and Emotional Well-being", hot:"2025 实证：视觉艺术工作坊降低压力、提升情绪稳定性，100% 参与者报告压力下降（Multidisciplinarni pristupi, 7(9)）。", where:"Multidisciplinarni pristupi (2025, 7(9):81-91)；DOI 10.59519/mper7108。情绪/心理维度艺术教育实证。", tags:["艺术治疗","幸福感","压力","情绪","波黑"], source:"Multidisciplinarni pristupi · Žmukić et al. (2025)", url:"https://www.multidisciplinarni-pristupi.com/" },
+  { id:"res-in32", kind:"论文", scope:"国际", region:"乌兹别克斯坦·心理", title:"Visual arts and psychology: emotional and creative development of general secondary school students", hot:"2025 实证：50 名 5–7 年级学生，规律视觉艺术活动提升情绪稳定与创造力（Inter education & global study, 6）。", where:"Inter education & global study (2025, 6:533-540)。中小学艺术心理发展实证。", tags:["心理学","情绪","创造力","中小学","乌兹别克"], source:"Inter education & global study · Bahriddinova (2025)", url:"https://researcher.uz/" },
+  { id:"res-in33", kind:"论文", scope:"国际", region:"美国·社会情感", title:"Promoting the Social and Emotional Well-Being of Young Adolescents in Visual Arts Classrooms", hot:"2025 著作章节：美国两所初中视觉艺术课堂的 SEL 策略——协作氛围与创作自主促进青少年社会情感能力（Routledge）。", where:"Routledge (2025)；DOI 10.4324/9781003562047-16。社会情感学习 SEL 与美术课堂结合。", tags:["社会情感","SEL","中小学","美国","幸福感"], source:"Routledge · Yuan, Elias & Blatt (2025)", url:"https://www.taylorfrancis.com/books/9781003562047/chapters/10.4324/9781003562047-16" },
+  { id:"res-in34", kind:"论文", scope:"国际", region:"印尼/马来西亚·可持续", title:"Visual and Narrative Engagements with the 'Subak' System: A Thematic Analysis of Sustainability Learning through Creative Interpretation in Bali", hot:"2025 现象图析：新加坡大学生以绘画+叙事解读巴厘岛原住民生态知识 Subak，呈现去殖民与在地化学习（JKB, 15(3)）。", where:"Jurnal Kajian Bali (2025, 15(3):14)；DOI 10.24843/JKB.2025.v15.i03.p14。生态/非遗跨文化艺术学习。", tags:["可持续","去殖民","在地","生态","印尼"], source:"JKB · Surata et al. (2025)", url:"https://irep.iium.edu.my/125838/" },
+  { id:"res-in35", kind:"论文", scope:"国际", region:"芬兰·北极工艺", title:"Felted Futures: crafting transformative learning experiences in the Arctic", hot:"2025 艺术本位行动研究：高校师生与北极村落共创羊毛毡工艺，推动循环经济和转型可持续教育（Education in the North）。", where:"Education in the North (2025, 32(3):204-227)；DOI 10.26203/ehk3-1b93。传统工艺+可持续+社区艺术教育。", tags:["可持续","工艺","行动研究","社群","芬兰"], source:"Education in the North · Huhmarniemi et al. (2025)", url:"https://www.abdn.ac.uk/eitn" },
+  { id:"res-in36", kind:"论文", scope:"国际", region:"印度·去殖民课程", title:"Graphic narratives as pedagogical tools: Diversifying the curriculum of science in schools", hot:"2025：以印度 Gond 艺术家图像叙事挑战气候危机中的殖民式人类中心叙事，主张课程多元化（Journal of Applied Learning & Teaching）。", where:"Journal of Applied Learning & Teaching (2025, 8(S1.3))；DOI 10.37074/jalt.2025.8.S1.3。图像叙事/生态艺术进课堂。", tags:["去殖民","图像叙事","生态","课程","印度"], source:"JALT · Saraswat & Das (2025)", url:"https://dx.doi.org/10.37074/jalt.2025.8.S1.3" },
+  { id:"res-in37", kind:"论文", scope:"国际", region:"越南/英国·气候参与", title:"Hope in Folded Pages: Zine-Making, Decolonial Praxis and the Power of Participatory Arts for 'a Peaceful and Sustainable Life'", hot:"2025 参与式艺术研究：越南青年以 Zine 制作表达气候韧性，跨越语言/代际隔阂，青年成知识共创者（Geographical Journal）。", where:"The Geographical Journal (2025, 192(1))；Wiley Open Access。参与式艺术+气候行动+去殖民框架。", tags:["参与式艺术","气候","去殖民","青年","越南"], source:"Geographical Journal · River of Hope (2025)", url:"https://hull-repository.worktribe.com/output/5487772" },
 ];
 
 var TOOLS = [
@@ -5004,6 +5038,63 @@ var PEOPLE = [
   })();
 })();
 
+</script>
+<script>
+function openGlobalMind(){
+  var data=(typeof RES!=='undefined')?RES:[];
+  var tm={};
+  data.forEach(function(r){(r.tags||[]).forEach(function(t){(tm[t]=tm[t]||[]).push(r);});});
+  var themes=Object.keys(tm).map(function(k){return{name:k,n:tm[k].length,items:tm[k]};}).sort(function(a,b){return b.n-a.n;}).slice(0,12);
+  var box=document.getElementById('globalMindBody');
+  var W=760,H=430,cx=W/2,cy=H/2;
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function drawOverview(){
+    var svg='<svg viewBox="0 0 '+W+' '+H+'" class="mm-svg" style="width:100%;max-width:'+W+'px">';
+    svg+='<circle cx="'+cx+'" cy="'+cy+'" r="48" fill="#7a5230"/><text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:bold">教研前沿</text>';
+    var N=themes.length,R=162;
+    themes.forEach(function(th,i){
+      var ang=-Math.PI/2+i*2*Math.PI/N;
+      var x=cx+Math.cos(ang)*R,y=cy+Math.sin(ang)*R;
+      svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="#b8936a" stroke-width="2"/>';
+      svg+='<g class="mm-theme" data-theme="'+esc(th.name)+'" style="cursor:pointer"><rect x="'+(x-64)+'" y="'+(y-17)+'" width="128" height="34" rx="17" fill="#fff3d6" stroke="#7a5230" stroke-width="2"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" style="font-size:12.5px;fill:#3b2412">'+esc(th.name)+' ('+th.n+')</text></g>';
+    });
+    svg+='</svg>';
+    box.innerHTML='<div class="mini" style="margin-bottom:6px">点击任意 <b>主题</b> 下钻查看该方向的全部文献 ↓</div><div class="mm-chart">'+svg+'</div><div id="mmList"></div>';
+    box.querySelectorAll('.mm-theme').forEach(function(g){g.addEventListener('click',function(){drawTheme(g.getAttribute('data-theme'));});});
+  }
+  function drawTheme(name){
+    var th=themes.filter(function(t){return t.name===name;})[0]; if(!th)return;
+    var items=th.items.slice(0,14);
+    var svg='<svg viewBox="0 0 '+W+' '+H+'" class="mm-svg" style="width:100%;max-width:'+W+'px">';
+    svg+='<g class="mm-back" data-back style="cursor:pointer"><rect x="12" y="12" width="74" height="30" rx="15" fill="#7a5230"/><text x="49" y="32" text-anchor="middle" fill="#fff" style="font-size:12.5px">← 返回</text></g>';
+    svg+='<circle cx="120" cy="'+cy+'" r="42" fill="#7a5230"/><text x="120" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" style="font-size:13px;font-weight:bold">'+esc(name)+'</text>';
+    items.forEach(function(r,i){
+      var y=44+i*27;
+      svg+='<line x1="162" y1="'+cy+'" x2="205" y2="'+y+'" stroke="#b8936a" stroke-width="2"/>';
+      var t=(r.title.length>48?r.title.slice(0,48)+'…':r.title);
+      svg+='<g class="mm-leaf" data-id="'+esc(r.id)+'" style="cursor:pointer"><rect x="205" y="'+(y-13)+'" width="535" height="26" rx="8" fill="#fff" stroke="#8a5fb0" stroke-width="2"/><text x="215" y="'+(y+4)+'" style="font-size:11.5px;fill:#3b2412">'+esc(t)+'</text></g>';
+    });
+    svg+='</svg>';
+    box.innerHTML='<div class="mini" style="margin:4px 0">「'+esc(name)+'」共 <b>'+th.items.length+'</b> 条 · 点击右侧文献查看详情 ↓</div><div class="mm-chart">'+svg+'</div><div id="mmList"></div>';
+    var bk=box.querySelector('[data-back]'); if(bk)bk.addEventListener('click',drawOverview);
+    box.querySelectorAll('.mm-leaf').forEach(function(g){g.addEventListener('click',function(){if(typeof openResMind==='function')openResMind(g.getAttribute('data-id'));});});
+  }
+  drawOverview();
+  var m=document.getElementById('mGlobalMind'); if(m)m.classList.add('on');
+  if(typeof beep==='function')beep(660,.05);
+  if(typeof toast==='function')toast('🧠 全局思维导图 · 点主题下钻');
+}
+(function(){
+  var b=document.createElement('button');
+  b.id='btnGlobalMind'; b.textContent='🧠 全局图谱';
+  b.style.cssText='position:fixed;right:16px;bottom:16px;z-index:45;background:#7a5230;color:#fff;border:3px solid #e0a01c;padding:10px 15px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.3);border-radius:12px;font-family:inherit';
+  b.addEventListener('click',function(){openGlobalMind();});
+  document.body.appendChild(b);
+  document.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('.btn,.tab,.tag,[data-act]');
+    if(t){t.style.transform='scale(.95)';setTimeout(function(){if(t)t.style.transform='';},120);}
+  });
+})();
 </script>
 </body>
 </html>
