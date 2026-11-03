@@ -369,7 +369,8 @@ body{font-size:16px;line-height:1.72}
       <button class="btn" id="btnData">数据</button>
       <button class="btn gold" id="btnUpload">★ 我要传什么</button>
       <button class="btn purple" id="btnSenior">评高级教师</button>
-      <button class="btn blue" id="btnStuCopy">🎨 学生赛·一键文案</button>
+      <button class="btn blue" id="btnStuCopy">📋 赛事通知文案</button>
+      <button class="btn green" id="btnSubmit">📤 学生作品投稿</button>
       <button class="btn gold" id="btnDigest">📧 一键发我邮箱</button>
       <button class="btn green" id="btnPack">📦 一键备料包</button>
       <button class="btn" id="btnSettings">我的资料</button>
@@ -391,7 +392,7 @@ body{font-size:16px;line-height:1.72}
     <span class="tag steffort" data-effort="中等"><i class="dot soon"></i>🟡 中等</span>
     <span class="tag steffort" data-effort="难"><i class="dot done"></i>🔴 难·录制</span>
     <span class="sp"></span>
-    <span class="tag" id="verTag">数据 2026-11-02</span>
+    <span class="tag" id="verTag">数据 2026-11-03</span>
     <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
   </div>
 
@@ -401,7 +402,7 @@ body{font-size:16px;line-height:1.72}
   <div class="banner px" id="recBanner" style="display:none"></div>
   <div class="tabs mode" id="modeTabs">
     <button class="tab on" data-mode="tch">👩‍🏫 教师赛事</button>
-    <button class="tab" data-mode="stu">🎨 学生赛事</button>
+    <button class="tab" data-mode="stu">🎨 中小学生赛道</button>
     <button class="tab" data-mode="nwl">📋 教育部白名单·47</button>
     <button class="tab" data-mode="gwl">📋 广东省白名单·30</button>
     <button class="tab" data-mode="res">📚 教研前沿</button>
@@ -554,6 +555,9 @@ body{font-size:16px;line-height:1.72}
 <!-- 学生赛 · 一键生成文案 -->
 <div class="mask" id="mStuCopy"><div class="modal px" id="stuCopyBody"></div></div>
 
+<!-- 学生作品投稿 · 自助通道 -->
+<div class="mask" id="mSubmit"><div class="modal px" id="submitBody"></div></div>
+
 <!-- 名校战绩参考 -->
 <div class="mask" id="mBig"><div class="modal px" id="bigBody"></div></div>
 
@@ -593,7 +597,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-03 · 第 27 版（数据体检修复：过期赛事状态更正 + 重复ID去重 + 教研文献充实至国内44条·国际39条 + 去除封面水印 + 「我的农场」浇水互动 + 全局思维导图 + 按钮反馈 + 去框放大）";
+const DATA_VERSION = "2026-11-03 · 第 28 版（数据体检修复：过期赛事状态更正 + 重复ID去重 + 教研文献充实至国内44条·国际39条 + 去除封面水印 + 「我的农场」浇水互动 + 全局思维导图 + 按钮反馈 + 去框放大 + 学生自助投稿通道 + 弱化学生向表述）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -783,7 +787,7 @@ const AWARDS = [
     phase: "已办",
     official: true,
     credit: 3,
-    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，家门口的现场绘画赛，适合组织学生练手" },
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，家门口的现场绘画赛，教师可组织选送练手" },
     materials: ["现场原创绘画(自备画具)","实名报名(7-16岁)"],
     tips: ["家门口的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
     url: "https://whgy.szmassart.com/",
@@ -4445,8 +4449,8 @@ var PEOPLE = [
     var N = [];
     N.push("【" + a.name + "】参赛通知");
     N.push("");
-    N.push("各位家长、同学：");
-    N.push("我校将组织学生参加「" + a.name + "」（主办：" + a.org + "，级别：" + (TIER_TXT[a.tier] || a.tier) + "）。欢迎同学们积极投稿，老师将统一指导、择优报送。");
+    N.push("各位老师、家长：");
+    N.push("本赛事为中小学生赛道（主办：" + a.org + "，级别：" + (TIER_TXT[a.tier] || a.tier) + "），由教师组织选送，学生创作、教师计指导业绩。有意参赛者请按下方步骤提交作品。");
     N.push("");
     N.push("📌 参赛对象：" + (/白名单|中小/.test(a.orgType + a.org) ? "全国 / 全省中小学生（分小学、初中、高中组）" : "本校在校学生"));
     N.push("📌 作品类别：" + (a.subject.split("·")[0] || "绘画 / 书法 / 摄影"));
@@ -4458,7 +4462,7 @@ var PEOPLE = [
     N.push("");
     N.push("⚠️ 重要提醒：");
     N.push("　▸ 作品须学生本人原创，禁止代笔，初评会查重；");
-    N.push("　▸ 请于截稿前至少 3 天把作品交给指导老师，留出盖章、扫描、上传时间；");
+    N.push("　▸ 建议提前 3 天收齐学生作品，留出盖章、扫描、上传时间；");
     N.push("　▸ 作品卡上的「创作说明」请写学生自己想说的话。");
     N.push("");
     N.push("指导教师：" + (prof.school || "本校") + "　（联系方式见班级群）");
@@ -4466,7 +4470,7 @@ var PEOPLE = [
 
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>学生参赛通知 · " + esc(a.short || a.name) + "</h2>";
-    h += '<div class="mini" style="margin-top:4px">面向<b>中小学生</b>的赛事：学生创作，你作为<b>指导教师</b>拿指导奖。下面这份可直接发班级群 / 家长群。</div>';
+    h += '<div class="mini" style="margin-top:4px">本赛事为<b>中小学生赛道</b>：学生创作，教师组织选送并计<b>指导业绩</b>。下面这份是按教师口吻整理的参赛说明草稿，供你参考 / 改写后使用。</div>';
     h += '<div class="sec"><h5>① 可直接发的通知</h5><div class="notice-box" id="noticeText">' + esc(N.join("\n")) + "</div>" +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">' +
       '<button class="btn gold sm" id="btnCopyNotice">复制通知</button>' +
@@ -4563,9 +4567,9 @@ var PEOPLE = [
     var S = loadSet();
     var sign = (S.sign && S.sign.trim()) || (S.name && S.name.trim()) || "你们的美术老师";
     var L = [];
-    L.push("同学们：");
+    L.push("【备赛清单 · 教师自用草稿】");
     L.push("");
-    L.push("给你们挑了几个最近还能投的美术比赛 👇 都是官方正规赛事，挑感兴趣的课后直接来找我就行，我帮你们统一指导、报送。");
+    L.push("以下为近期可投的中小学生美术赛事，供你组织学生选送时参考；挑感兴趣的，可让学生课后向我报名 / 交作品，我统一指导、报送。");
     L.push("");
     L.push("（共 " + list.length + " 项，按截止时间从近到远）");
     L.push("");
@@ -4586,10 +4590,10 @@ var PEOPLE = [
 
     L.push("⚠️ 几点提醒：");
     L.push("　▸ 作品必须是你自己画的，不能代笔，初评会查重；");
-    L.push("　▸ 截稿前至少提前 3 天交给我，好留出盖章、扫描、上传的时间；");
+    L.push("　▸ 建议提前 3 天收齐学生作品，好留出盖章、扫描、上传的时间；");
     L.push("　▸ 创作说明写你自己的话，别让家长代写。");
     L.push("");
-    L.push("挑好了就告诉我，期待看到你们的作品，加油 🎨");
+    L.push("确认选送后按步骤报送即可，期待学生作品亮相 🎨（也可让学生走站点「📤 学生作品投稿」自助通道，不用来找你）。");
     L.push("");
     L.push("—— " + sign);
     L.push("（数据 " + DATA_VERSION.split("·")[0].trim() + "）");
@@ -4599,8 +4603,8 @@ var PEOPLE = [
   function openStuCopy() {
     var txt = studentCopyText();
     var h = '<button class="btn sm close" data-close>关闭</button>';
-    h += "<h2>🎨 学生赛 · 一键生成文案</h2>";
-    h += '<div class="mini" style="margin-top:4px">下面是<b>最近可投</b>的学生官方赛事，已按<b>老师发给学生</b>的通知口吻写好（开头"同学们"、每条"老师提醒"、结尾落款）。点「复制全文」直接发班级群 / 贴公告栏，落款默认用「我的资料」里填的签名。</div>';
+    h += "<h2>📋 赛事通知文案（教师备赛草稿）</h2>";
+    h += '<div class="mini" style="margin-top:4px">下面是<b>最近可投</b>的中小学生官方赛事，按<b>教师发通知</b>的口吻整理好（开头、要点、落款）。这是给你<b>自己备赛 / 起草通知</b>用的草稿，落款默认用「我的资料」里填的签名，可按需改写后再发。</div>';
     h += '<div class="sec"><h5>① 整份文案（可直接复制 / 下载）</h5>' +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px">' +
       '<button class="btn gold sm" id="btnCopyStu">复制全文</button>' +
@@ -5114,6 +5118,69 @@ var PEOPLE = [
     beep(660, .05);
   }
 
+  /* ---------- 学生作品投稿 · 自助通道 ---------- */
+  function studentCompOptions() {
+    var seen = {}, arr = [];
+    ALL.forEach(function (a) { if (a.aud === "学生" && a.name && !seen[a.name]) { seen[a.name] = 1; arr.push(a.name); } });
+    return arr;
+  }
+  function openSubmit() {
+    var opts = studentCompOptions().map(function (n) { return '<option value="' + esc(n) + '">' + esc(n) + '</option>'; }).join("");
+    var h = '<button class="btn sm close" data-close>关闭</button>';
+    h += "<h2>📤 学生作品投稿 · 自助通道</h2>";
+    h += '<div class="mini" style="margin-top:4px">同学你好，这里是<b>自助投稿通道</b>：填好信息点「提交」，就会生成一份投稿单，<b>不用专门来找老师</b>。老师会在后台统一查看、统一报送。带 <span style="color:#c0392b">*</span> 为必填。</div>';
+    h += '<div class="sec"><form id="submitForm" onsubmit="return false">'
+      + '<div class="fld"><label>学生姓名 <span style="color:#c0392b">*</span></label><input id="sfName" maxlength="20" placeholder="如：张三"></div>'
+      + '<div class="fld"><label>班级</label><input id="sfClass" maxlength="20" placeholder="如：初二(3)班"></div>'
+      + '<div class="fld"><label>参赛赛事 <span style="color:#c0392b">*</span></label><input id="sfComp" list="sfCompList" maxlength="40" placeholder="选下方或手填，如：全国中小学生绘画书法作品比赛"><datalist id="sfCompList">' + opts + '</datalist></div>'
+      + '<div class="fld"><label>作品名称 <span style="color:#c0392b">*</span></label><input id="sfWork" maxlength="40" placeholder="如：我的家乡"></div>'
+      + '<div class="fld"><label>指导教师</label><input id="sfTeacher" maxlength="20" placeholder="选填"></div>'
+      + '<div class="fld" style="grid-column:1/-1"><label>作品说明</label><textarea id="sfDesc" maxlength="300" placeholder="画了什么、用了什么材料、想表达什么（选填）"></textarea></div>'
+      + '<div class="fld"><label>联系方式</label><input id="sfContact" maxlength="40" placeholder="QQ/微信/手机，方便老师联系（选填）"></div>'
+      + '<div style="display:flex;gap:8px;margin-top:10px">'
+      + '<button class="btn green" id="btnDoSubmit">提交投稿</button>'
+      + '<button class="btn" id="btnCopySubmit">复制投稿内容</button>'
+      + '</div></form></div>';
+    h += '<div class="mini">提交后会打开 GitHub 投稿页，登录（或免费注册）后点「Submit new issue」即可。老师不在这收件，只在后台统一处理。</div>';
+    $("#submitBody").innerHTML = h;
+    $("#mSubmit").classList.add("on");
+
+    function buildTitle() {
+      var w = ($("#sfWork").value || "未命名作品").trim();
+      var c = ($("#sfComp").value || "").trim();
+      return "[学生投稿] " + w + (c ? " · " + c : "");
+    }
+    function buildBody() {
+      var rows = [
+        "**投稿人：** " + ($("#sfName").value.trim() || "（未填）") + ($("#sfClass").value.trim() ? " / " + $("#sfClass").value.trim() : ""),
+        "**参赛赛事：** " + ($("#sfComp").value.trim() || "（未填）"),
+        "**作品名称：** " + ($("#sfWork").value.trim() || "（未填）"),
+        "**指导教师：** " + ($("#sfTeacher").value.trim() || "（未填）"),
+        "**作品说明：** " + ($("#sfDesc").value.trim() || "（无）"),
+        "**联系方式：** " + ($("#sfContact").value.trim() || "（未留）"),
+        "",
+        "_—— 本投稿由「星露奖杯农场 · 学生自助通道」生成_"
+      ];
+      return rows.join(String.fromCharCode(10));
+    }
+    $("#btnDoSubmit").addEventListener("click", function () {
+      if (!$("#sfName").value.trim() || !$("#sfComp").value.trim() || !$("#sfWork").value.trim()) {
+        toast("请填好 姓名 / 参赛赛事 / 作品名称"); beep(220, .12); return;
+      }
+      var url = "https://github.com/leslyxu/stardew-award-farm/issues/new?title="
+        + encodeURIComponent(buildTitle()) + "&body=" + encodeURIComponent(buildBody());
+      window.open(url, "_blank", "noopener");
+      toast("已打开投稿页，登录后提交即可"); beep(1046, .08);
+    });
+    $("#btnCopySubmit").addEventListener("click", function () {
+      var txt = buildTitle() + String.fromCharCode(10) + String.fromCharCode(10) + buildBody();
+      var done = function () { toast("已复制投稿内容"); beep(1046, .08); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function () { toast("复制失败，请手动复制"); });
+      } else { toast("复制失败，请手动复制"); }
+    });
+  }
+
   /* ---------- 事件绑定 ---------- */
   document.addEventListener("click", function (e) {
     var t = e.target;
@@ -5278,6 +5345,7 @@ var PEOPLE = [
   $("#btnDigest").addEventListener("click", sendDigestEmail);
   $("#btnPack").addEventListener("click", buildBatchPack);
   $("#btnStuCopy").addEventListener("click", openStuCopy);
+  $("#btnSubmit").addEventListener("click", openSubmit);
   $("#btnBig").addEventListener("click", openBig);
   $("#btnSources").addEventListener("click", openSources);
   $("#btnCNKI").addEventListener("click", openCNKI);
