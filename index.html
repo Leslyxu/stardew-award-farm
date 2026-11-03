@@ -300,9 +300,9 @@ footer b{color:var(--wood)}
 .sen-sec{margin:12px 0 6px;font-weight:bold;color:var(--green-d);font-size:13.5px;border-bottom:3px dashed #e2c489;padding-bottom:3px}
 .notice-box{background:#fffaf0;border:3px solid var(--wood-dark);padding:10px;white-space:pre-wrap;font-size:12.5px;line-height:1.8}
 .cover-hero{margin:0 0 12px;text-align:center}
-.cover-hero .cover{display:block;width:100%;max-height:460px;object-fit:contain;background:#16100a;border:5px solid var(--gold);border-radius:14px;box-shadow:0 7px 0 rgba(0,0,0,.28),0 0 0 3px var(--wood-dark),0 0 26px rgba(255,207,77,.25);image-rendering:auto;-webkit-user-drag:none}
+.cover-hero .cover{display:block;width:100%;max-height:460px;object-fit:cover;background:transparent;border:5px solid var(--gold);border-radius:14px;box-shadow:0 7px 0 rgba(0,0,0,.28),0 0 0 3px var(--wood-dark),0 0 26px rgba(255,207,77,.25);image-rendering:auto;-webkit-user-drag:none}
 .cover-hero .farmwrap{position:relative;display:inline-block;width:100%;max-width:980px;margin:0 auto}
-.cover-hero .cover{display:block;width:100%;max-height:460px;object-fit:contain;background:#16100a;border:5px solid var(--gold);border-radius:14px;box-shadow:0 7px 0 rgba(0,0,0,.28),0 0 0 3px var(--wood-dark),0 0 26px rgba(255,207,77,.25);image-rendering:auto;-webkit-user-drag:none;animation:coverBreath 6s ease-in-out infinite}
+.cover-hero .cover{display:block;width:100%;max-height:460px;object-fit:cover;background:transparent;border:5px solid var(--gold);border-radius:14px;box-shadow:0 7px 0 rgba(0,0,0,.28),0 0 0 3px var(--wood-dark),0 0 26px rgba(255,207,77,.25);image-rendering:auto;-webkit-user-drag:none;animation:coverBreath 6s ease-in-out infinite}
 .cover-hero .fx{position:absolute;pointer-events:none;will-change:transform,opacity}
 .cover-hero .fx-sun{top:6%;right:9%;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle,#fff3b0 34%,#ffd34d 58%,rgba(255,211,77,0) 70%);animation:spin 18s linear infinite;box-shadow:0 0 26px 8px rgba(255,211,77,.5)}
 .cover-hero .fx-cloud{top:11%;width:80px;height:28px;background:radial-gradient(circle at 50% 100%,#fff 54%,rgba(255,255,255,0) 56%);opacity:.92;animation:drift 26s linear infinite}
@@ -328,6 +328,18 @@ footer b{color:var(--wood)}
 .farm-plot .plant{animation:plantbob 3.2s ease-in-out infinite}
 @keyframes plantbob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
 .farm-plot.harvest .plant{animation:harvestpop .6s ease}
+/* QQ农场风·会走的牛鸡鸭 */
+.farm-anim{position:relative;height:66px;margin:8px 0 10px;background:linear-gradient(180deg,#cdeeb0,#a6db82);border-radius:12px;overflow:hidden;border:1px solid #7cc04a}
+.farm-anim .ground{position:absolute;left:0;right:0;bottom:0;height:14px;background:#6b4a23}
+.farm-anim .ani{position:absolute;bottom:13px;will-change:transform;filter:drop-shadow(0 2px 0 rgba(0,0,0,.18))}
+.farm-anim .a1{font-size:32px;animation:walkA 12s linear infinite}
+.farm-anim .a2{font-size:24px;bottom:15px;animation:walkB 15s linear infinite}
+.farm-anim .a3{font-size:22px;bottom:15px;animation:walkC 10s linear infinite}
+.farm-anim .a4{font-size:26px;animation:walkD 18s linear infinite}
+@keyframes walkA{0%{transform:translateX(-12%)}50%{transform:translateX(104%) translateY(-4px)}100%{transform:translateX(-12%)}}
+@keyframes walkB{0%{transform:translateX(104%)}50%{transform:translateX(-12%) translateY(-3px)}100%{transform:translateX(104%)}}
+@keyframes walkC{0%{transform:translateX(-12%)}45%{transform:translateX(60%) translateY(-5px)}100%{transform:translateX(-12%)}}
+@keyframes walkD{0%{transform:translateX(104%)}50%{transform:translateX(-12%) translateY(-4px)}100%{transform:translateX(104%)}}
 @keyframes harvestpop{0%{transform:scale(1)}40%{transform:scale(1.4) rotate(-8deg)}100%{transform:scale(1.1)}}
 .farm-rec{margin-top:10px;border:3px solid #e0a01c;background:#fffdf3;border-radius:12px;padding:10px 12px}
 .farm-rec h4{margin:0 0 6px;font-size:15px;color:#7a4a18}
@@ -511,10 +523,7 @@ body{font-size:16px;line-height:1.72}
     </div>
 
     <div class="side">
-      <div class="panel px">
-        <h4>▍本校战绩（绩效认定口径）</h4>
-        <div class="mini" id="sideStats"></div>
-      </div>
+      <!-- 本校战绩面板已按需求移除 -->
       <div class="panel px">
         <h4>▍美术老师最该盯的 3 条</h4>
         <div class="mini" id="sideTop"></div>
@@ -670,7 +679,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-03 · 第 32 版（内嵌奖杯农场桌面图标 favicon/apple-touch-icon/manifest，去掉外部文件依赖）";
+const DATA_VERSION = "2026-11-04 · 第 33 版（农场加会走的牛鸡鸭、移除本校战绩面板、比赛卡片加「📧 直接发邮箱」、封面黑条修复）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -3739,6 +3748,7 @@ var PEOPLE = [
         (a.aud === "学生"
           ? '<button class="btn green sm" data-act="notice">生成参赛通知</button>'
           : '<button class="btn green sm" data-act="submit">一键投稿</button>') +
+        '<button class="btn blue sm" data-act="mail" data-id="' + esc(a.id) + '">📧 直接发邮箱</button>' +
         '<button class="btn sm" data-act="track">加入我的赛程</button>' +
       "</div>" +
     "</div>";
@@ -4111,6 +4121,15 @@ var PEOPLE = [
   function mailtoURL(to, subj, body) {
     return "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
   }
+  function firstEmail(str){ var m=(str||"").match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/); return m?m[0]:""; }
+  function openMail(id){
+    var a = (typeof ALL!=="undefined"?ALL:[]).filter(function(x){return x.id===id;})[0];
+    if(!a) return;
+    var to = firstEmail(toOf(a)) || "";
+    var subj = "【投稿】" + a.name + "（截稿 " + fmtDate(a.deadline) + "）";
+    var body = "老师好：\n\n拟投稿：" + a.name + "\n主办：" + (a.org||"") + "\n截稿：" + fmtDate(a.deadline) + "\n投到：" + toOf(a) + "\n官方：" + (a.url||"（见官方通知）") + "\n\n【需附材料】\n" + ((a.materials&&a.materials.length)?a.materials.map(function(m,i){return (i+1)+". "+m;}).join("\n"):"（见官方通知）") + "\n\n请附上常用投稿材料：报名表 / 作品高清图(JPG 2-5MB,≥300dpi) / 作者信息表。\n\n—— 来自「奖杯农场」一键投稿";
+    window.location.href = mailtoURL(to, subj, body); beep(880,.08);
+  }
   function openSettings() {
     var s = loadSet();
     var h = '<button class="btn sm close" data-close>关闭</button><h2>我的资料 · 常用信息</h2>';
@@ -4356,7 +4375,7 @@ var PEOPLE = [
       });
       h += '<div style="margin-top:7px;font-size:11px;color:#6d4a2a;border-top:3px dashed #e2c489;padding-top:6px">结论：<b>区教科院 + 区教育局</b>占了 ' +
         Math.round((S.byOrg[0].n + S.byOrg[1].n) / S.total * 100) + "% 的获奖，先把这两家的赛事打满，再谈省市。</div>";
-      $("#sideStats").innerHTML = h;
+      var _ss = $("#sideStats"); if (_ss) _ss.innerHTML = h;
 
       var top = ALL.filter(function (a) { return (a.schoolProof && a.schoolProof.count) > 0 && (a.tier === "市" || a.tier === "区"); })
         .sort(function (x, y) { return y.schoolProof.count - x.schoolProof.count; }).slice(0, 3);
@@ -5393,6 +5412,7 @@ var PEOPLE = [
       if (act.dataset.act === "submit") { $("#mDetail").classList.remove("on"); openSubmit(id); }
       if (act.dataset.act === "notice") { $("#mDetail").classList.remove("on"); openNotice(id); }
       if (act.dataset.act === "track") track(id);
+      if (act.dataset.act === "mail") { $("#mDetail").classList.remove("on"); openMail(id); }
       return;
     }
 
@@ -5758,6 +5778,7 @@ function openFarmHome(){
   var h = '<button class="btn sm close" data-close>关闭</button>';
   h += '<h3 style="margin:0 0 2px">🌱 奖杯农场 · 主页</h3>';
   h += '<div class="farm-meter">农场繁荣度 <b style="color:#4f9d3a">'+L.name+'</b> <span class="bar"><i style="width:'+Math.round(L.total/L.max*100)+'%"></i></span> <span class="mini">'+L.total+'/'+L.max+'</span> <button class="btn green sm" id="goGame">🍎 去收菜小游戏</button></div>';
+  h += '<div class="farm-anim"><div class="ground"></div><div class="ani a1">🐄</div><div class="ani a2">🐔</div><div class="ani a3">🐤</div><div class="ani a4">🦆</div></div>';
   h += '<div class="farm-grid">';
   FARM_MODS.forEach(function(m){
     var g = s[m.id]||0;
