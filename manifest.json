@@ -1,0 +1,14 @@
+{
+  "name": "星露奖杯农场 · 美术老师赛事台",
+  "short_name": "星露奖杯农场",
+  "description": "深圳美术老师官方赛事、课题、论文、专家一站通",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1c130b",
+  "theme_color": "#caa12f",
+  "icons": [
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "favicon.ico", "sizes": "256x256 128x128 64x64 48x48 32x32 16x16", "type": "image/x-icon", "purpose": "any" }
+  ]
+}
