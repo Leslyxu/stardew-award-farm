@@ -589,7 +589,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-03 · 第 26 版（去除封面水印 + 新增「我的农场」分模块浇水成长互动 + 国际文献37条 + 全局思维导图 + 按钮反馈 + 去框放大）";
+const DATA_VERSION = "2026-11-03 · 第 27 版（数据体检修复：过期赛事状态更正 + 重复ID去重 + 教研文献充实至国内44条·国际39条 + 去除封面水印 + 「我的农场」浇水互动 + 全局思维导图 + 按钮反馈 + 去框放大）";
 
 const AWARDS = [
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
@@ -1653,7 +1653,7 @@ const AWARDS = [
     window: "2026 届已启动：2026-09 发文，10 月中旬前市级推荐",
     deadline: "2026-10-20",
     deadlineNote: "教育部办公厅教基厅函〔2026〕22 号；2026 届 9 月发文，10 月 20 日前报市级（以各市通知为准）",
-    phase: "进行中",
+    phase: "已截稿",
     official: true,
     credit: 5,
     schoolProof: { count: 0, best: "本校暂无记录（国家级平台，教育部认定，职称/评优硬通货）", note: "教育部官方遴选，入选即获部级精品课证书，是所有微课类里含金量最高的" },
@@ -2437,7 +2437,7 @@ const AWARDS = [
     window: "2026 年约 3—6 月（以宝教通当年通知为准）",
     deadline: "2026-06-15",
     deadlineNote: "具体截稿以宝教通 / 区教科院当年通知为准；本校此前在此赛事获二等奖",
-    phase: "征集中",
+    phase: "已截稿",
     official: true,
     credit: 4,
     schoolProof: { count: 1, best: "本校教师指导学生获二等奖", note: "航瑞中学此前在「宝安区美术教育成果作品征集」获二等奖" },
@@ -2465,7 +2465,7 @@ const AWARDS = [
     window: "2026 年约 5—6 月（以宝教通当年通知为准）",
     deadline: "2026-06-20",
     deadlineNote: "具体截稿以宝教通当年通知为准",
-    phase: "征集中",
+    phase: "已截稿",
     official: true,
     credit: 3,
     schoolProof: { count: 0, best: "本校暂无公开记录", note: "区级主题绘画，易组织、易出校级以上指导奖" },
@@ -2481,7 +2481,7 @@ const AWARDS = [
     rate: { value: 3, ease: 5 }
   },
   {
-    id: "ba-netcamp",
+    id: "ba-netcamp-2",
     aud: "学生",
     name: "深圳市学生网络夏令营宝安区选拔赛（电脑绘画）",
     short: "网络夏令营 · 电脑绘画",
@@ -2493,7 +2493,7 @@ const AWARDS = [
     window: "2026 年约 5—7 月（以宝教通当年通知为准）",
     deadline: "2026-07-10",
     deadlineNote: "具体截稿以宝教通 / 市赛当年通知为准；数字作品需原创、注明软件",
-    phase: "征集中",
+    phase: "已截稿",
     official: true,
     credit: 3,
     schoolProof: { count: 0, best: "本校暂无公开记录", note: "数字美术赛道，契合 AI 绘画 / 板绘教学" },
@@ -2549,7 +2549,7 @@ const AWARDS = [
     window: "2026 年约 3—5 月区选拔（以当年通知为准）",
     deadline: "2026-05-15",
     deadlineNote: "具体截稿以市教科院 / 宝教通当年通知为准；本校此前获一等奖、二等奖",
-    phase: "征集中",
+    phase: "已截稿",
     official: true,
     credit: 5,
     schoolProof: { count: 2, best: "本校美术教师获一等奖、二等奖", note: "航瑞中学在深圳市学科美育微课大赛已有获奖记录" },
@@ -2777,8 +2777,8 @@ const BIG_SCHOOLS = [
    内容基于 2026 真实期刊重点选题、国家哲社文献、国际综述与会议征稿；每周更新。
    ============================================================ */
 var RES = [
-  { id:"res-sr01", kind:"课题", scope:"国内", region:"广东·课题", title:"广东教育学会「十五五」教育科研规划课题申报（美术/美育方向可报）", hot:"省级学会课题，难度低于省规划办但认可度够评职称/绩效；美术教师可报「美育浸润」「艺术素养评价」「馆校合作」等方向。每年常态申报，是性价比最高的课题入口之一。", where:"广东教育学会官网「课题管理」栏目在线申报（http://www.gdjyxh.org.cn/ketimm/）；需单位盖章推荐，不能个人直报。", tags:["课题申报","广东","美育","评职称"], source:"广东教育学会官网 · 关于开展「十五五」教育科研规划课题申报工作的通知", url:"http://www.gdjyxh.org.cn/yuedu/3985.html" },
-  { id:"res-sr02", kind:"政策", scope:"国内", region:"广东·政策", title:"《广东省中小学教学装备配置指南》印发（含美术教室/美育空间配置标准）", hot:"文件明确了美术教室、书法教室、美育展陈空间的装备底线，建美术功能室、申请采购、写特色学校申报材料都要照它来，比拍脑袋写方案硬得多。", where:"广东省教育厅官网「规范性文件」栏目查阅全文；做功能室建设方案 / 装备采购论证时直接引用。", tags:["政策","广东","美术教室","装备配置"], source:"广东省教育厅 · 关于印发《广东省中小学教学装备配置指南》的通知", url:"https://edu.gd.gov.cn/zwgknew/jyzcfg/dfjyzcfg/content/post_4954072.htm" },
+  { id:"res-sr01", kind:"课题", scope:"国内", region:"广东·课题", title:"广东教育学会「十五五」教育科研规划课题申报（美术/美育方向可报）", hot:"省级学会课题，难度低于省规划办但认可度够评职称/绩效；美术教师可报「美育浸润」「艺术素养评价」「馆校合作」等方向。每年常态申报，是性价比最高的课题入口之一。", where:"广东教育学会官网「课题管理」栏目在线申报（http://www.gdjyxh.org.cn/ketimm/）；需单位盖章推荐，不能个人直报。（「十五五」2026—2030，首轮申报约 2026 年上/下半年，以官网通知为准）", tags:["课题申报","广东","美育","评职称"], source:"广东教育学会官网 · 关于开展「十五五」教育科研规划课题申报工作的通知", url:"http://www.gdjyxh.org.cn/yuedu/3985.html" },
+  { id:"res-sr02", kind:"政策", scope:"国内", region:"广东·政策", title:"《广东省中小学教学装备配置指南》印发（含美术教室/美育空间配置标准）", hot:"文件明确了美术教室、书法教室、美育展陈空间的装备底线，建美术功能室、申请采购、写特色学校申报材料都要照它来，比拍脑袋写方案硬得多。", where:"广东省教育厅官网「规范性文件」栏目查阅全文；做功能室建设方案 / 装备采购论证时直接引用。（指南 2025 年印发，现行有效）", tags:["政策","广东","美术教室","装备配置"], source:"广东省教育厅 · 关于印发《广东省中小学教学装备配置指南》的通知", url:"https://edu.gd.gov.cn/zwgknew/jyzcfg/dfjyzcfg/content/post_4954072.htm" },
   { id:"res-cn01", kind:"论文", scope:"国内", region:"广东·小学", title:"网络舆情环境下小学美术教育的困境与突围路径", hot:"一线教师被短视频断章取义、家长群放大，课堂管理动辄被举报。这篇给的是「如何留痕、如何跟家长解释、如何自保」的实操路径，不是空谈师德。", where:"《中国美术教育》「教育研究」栏目；写法：3 个真实冲突案例 + 你的处理流程 + 可复用的家校沟通话术模板。", tags:["小学美术","教师发展","家校沟通"], source:"《中国美术教育》2025(3):1-3 · 乔振东", url:"http://www.cnmsjy.com/" },
   { id:"res-cn02", kind:"论文", scope:"国内", region:"江苏·小学", title:"素养导向下的小学美术学业测评体系构建", hot:"「美术怎么打分」是教研员最常被问的问题。这篇把测评拆成「过程性证据 + 作品集 + 表现性任务」三块，可直接改成你校的期末方案。", where:"《美术教育研究》「教学评价」栏目；可做「一校一方案」的校本测评表，附评分量规（rubric）截图最容易被录用。", tags:["学业评价","小学美术","表现性评价"], source:"《美术教育研究》2025(4) · 彭菲菲", url:"http://www.msjyyj.com/" },
   { id:"res-cn03", kind:"论文", scope:"国内", region:"浙江·小学", title:"深度学习理念下小学美术学习活动的优化设计与实施", hot:"「大单元」写烂了，但「深度学习」在美术学科还少有人做。核心是把一节课的目标改成「学生能迁移什么」，评审看的是这个转向。", where:"《中国美术教育》「实践探索」；结构：单元目标→进阶任务链→学生作品对比（前/后测）。", tags:["深度学习","大单元","课堂设计"], source:"《美术教育研究》2025(4) · 莫秀红", url:"http://www.msjyyj.com/" },
@@ -2854,8 +2854,16 @@ var RES = [
   { id:"res-in35", kind:"论文", scope:"国际", region:"芬兰·北极工艺", title:"Felted Futures: crafting transformative learning experiences in the Arctic", hot:"2025 艺术本位行动研究：高校师生与北极村落共创羊毛毡工艺，推动循环经济和转型可持续教育（Education in the North）。", where:"Education in the North (2025, 32(3):204-227)；DOI 10.26203/ehk3-1b93。传统工艺+可持续+社区艺术教育。", tags:["可持续","工艺","行动研究","社群","芬兰"], source:"Education in the North · Huhmarniemi et al. (2025)", url:"https://www.abdn.ac.uk/eitn" },
   { id:"res-in36", kind:"论文", scope:"国际", region:"印度·去殖民课程", title:"Graphic narratives as pedagogical tools: Diversifying the curriculum of science in schools", hot:"2025：以印度 Gond 艺术家图像叙事挑战气候危机中的殖民式人类中心叙事，主张课程多元化（Journal of Applied Learning & Teaching）。", where:"Journal of Applied Learning & Teaching (2025, 8(S1.3))；DOI 10.37074/jalt.2025.8.S1.3。图像叙事/生态艺术进课堂。", tags:["去殖民","图像叙事","生态","课程","印度"], source:"JALT · Saraswat & Das (2025)", url:"https://dx.doi.org/10.37074/jalt.2025.8.S1.3" },
   { id:"res-in37", kind:"论文", scope:"国际", region:"越南/英国·气候参与", title:"Hope in Folded Pages: Zine-Making, Decolonial Praxis and the Power of Participatory Arts for 'a Peaceful and Sustainable Life'", hot:"2025 参与式艺术研究：越南青年以 Zine 制作表达气候韧性，跨越语言/代际隔阂，青年成知识共创者（Geographical Journal）。", where:"The Geographical Journal (2025, 192(1))；Wiley Open Access。参与式艺术+气候行动+去殖民框架。", tags:["参与式艺术","气候","去殖民","青年","越南"], source:"Geographical Journal · River of Hope (2025)", url:"https://hull-repository.worktribe.com/output/5487772" },
-];
+  ,{ id:"res-cn41", kind:"论文", scope:"国内", region:"深圳·福田", title:"数智视域下的中小学美术教育革新——深圳市福田区中小学「人工智能艺术」研学共同体的实践与研究", hot:"深圳本地实证：福田区以「六个基于」原则建人工智能艺术研学共同体，开发个性化课程、建 AI 艺术实验室、做跨学科融合与项目式学习，是湾区 AI+美术 一线可复制样本。", where:"《中国美术》2025 年第 5 期，p.113-116；DOI 10.3969/j.issn.0256-212X.2025.05.016。", tags:["AI美术","深圳","实证研究","研学共同体"], source:"《中国美术》2025 年第 5 期", url:"https://lib.cqytxy.edu.cn/articlesearch/web_searchingDetail?id=2031624042454" }
+  ,{ id:"res-cn42", kind:"论文", scope:"国内", region:"高校·美育", title:"基于人工智能设计拓展大学生美育的探索与实践", hot:"CSSCI《中国大学教学》2026 年第 2-3 期；提出「感官扩增—实时交互—虚实融合」三维框架，论证 AI 设计推动美育从艺术鉴赏向具身认知范式转型，高校美育方向高引参考。", where:"《中国大学教学》2026 年第 2-3 期（教育部主管，CSSCI 来源期刊，复合影响因子 4.826）。", tags:["AI美育","CSSCI","高校","范式转型"], source:"山东大学艺术学院 · 赵鹏团队", url:"https://www.art.sdu.edu.cn/info/1300/18406.htm" }
+  ,{ id:"res-cn43", kind:"论文", scope:"国内", region:"高校·造型", title:"生成式人工智能赋能造型艺术基础教学的路径探索——基于色彩规律实验课程的实证研究", hot:"以西安美院「色彩规律」实验课为对象，用生成式 AI 重构造型基础教学，揭示其在提升实践效率、培养视觉素养与重构艺术认知范式中的作用，附「技术赋能 vs 人文价值平衡」路径。", where:"DOI 10.13772/j.cnki.61-1042/j.2026.02.018；2026-06-10 发表，2026-07-09 网络首发。", tags:["生成式AI","造型基础","实证研究","视觉素养"], source:"知网首发 · 西安美术学院教育教学改革项目(2025JY012)阶段成果", url:"https://cfed.cnki.net/inds/litdetail?FDk9Q0BWbUhIOmQ26weGWZPNr2sXgSdJpXk4O5CDJDzPaGM2sogTkUvXTkeHX3facb9b6JErH34inl0G3DRfuoQUs0PpfwsOWGI8LvFnvyH19rs2DytdIIrUOL6ott" }
+  ,{ id:"res-cn44", kind:"论文", scope:"国内", region:"小学·跨学科", title:"在地美食文化邂逅教育智能体——小学美术跨学科教学的创意实践", hot:"上海虹口曲阳四小以「智学魔方」智能体 + 「4+N」版画创意教学模式，解决传统版画媒材选择盲目、分层指导难、评价单一问题，是小学美术+AI 跨学科的鲜活案例。", where:"《中小学数字化教学》2026 年第 2 期。", tags:["教育智能体","小学美术","跨学科","版画"], source:"知网阅读 · 姚迩", url:"https://read.cnki.net/web/Organization/Subject?orgcode=0840059&subcode=H127" }
+  ,{ id:"res-kt13", kind:"课题", scope:"国内", region:"广东·省级重点", title:"传习与创生：高中工笔画项目式学习数智化双轨创新实践研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；以工笔画项目式学习 + 数智化双轨为路径，是美术教师做省级重点课题的标杆样本。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞外国语学校 王柴慧。", tags:["省级重点","工笔画","项目式","数智化"], source:"东莞外国语学校喜报 · 广东省教育科学规划 2026 年度重点项目立项", url:"https://dgfls.dgjy.net/info/2172/278664.htm" }
+  ,{ id:"res-kt14", kind:"课题", scope:"国内", region:"广东·省级重点", title:"区域中小学美术教师「七彩计划」实施研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；面向区域中小学美术教师队伍建设，是「教师发展」类课题的可报方向参考。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞市教育局教研室 詹逸然。", tags:["省级重点","教师发展","区域教研"], source:"东莞市拟推荐 2026 年度省规划重点名单", url:"https://edu.dg.gov.cn/attachment/0/348/348170/4404929.xlsx" }
+  ,{ id:"res-in38", kind:"论文", scope:"国际", region:"韩国·设计教育", title:"Graphic Design Education in the Era of Text-to-Image Generation: Transitioning to Contents Creator", hot:"基于 2023 年「视觉文化与当代艺术」课程工作坊，用 Midjourney/DALL·E + TPCK 模型让学生生成欧洲设计史海报；证实生成式 AI 时代图形设计教育需重构目标与方法，学生须具备 AI 视觉素养与创意关键词能力。", where:"International Journal of Art & Design Education, 2025, 44(1), p.239-253；DOI 10.1111/jade.12558（Wiley, peer-reviewed）。", tags:["生成式AI","设计教育","视觉素养","TPCK"], source:"International Journal of Art & Design Education (Wiley)", url:"https://eric.ed.gov/?id=ej1460436" }
+  ,{ id:"res-in39", kind:"论文", scope:"国际", region:"土耳其·建筑教育", title:"An analysis of text-to-image generative models as creativity support tools", hot:"28 名建筑系大一学生用文生图模型做提示词工程生成建筑表征，配创造力支持指数(CSI)问卷；发现结构化提示词显著提升产出质量，但学生在复杂视觉概念表达与构图控制上仍吃力，呼吁加强提示词训练。", where:"International Journal of Arts and Technology, 2025；DOI 10.1504/IJART.2025.147855。", tags:["文生图","提示词工程","创造力支持","建筑教育"], source:"International Journal of Arts and Technology", url:"https://acikerisim.msgsu.edu.tr/xmlui/handle/20.500.14124/10258" }
 
+];
 var TOOLS = [
   { id:"t-krita", name:"Krita", star:"免费开源", lang:"C++/Qt", url:"https://github.com/KDE/krita",
     desc:"专业级免费数字绘画软件，插画 / 漫画 / 概念设计，比 PS 易上手，学生机装得起。",
