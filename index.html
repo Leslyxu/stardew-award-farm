@@ -315,6 +315,26 @@ body{font-size:16px;line-height:1.72}
 .btn,.tab{transition:transform .08s ease}
 .mm-svg{background:#fffdf6;border-radius:12px}
 #btnGlobalMind:active{transform:scale(.94)}
+
+/* ---------- 我的农场 · 分模块浇水 ---------- */
+.farm-meter{display:flex;align-items:center;gap:10px;margin:4px 0 14px;font-size:16px}
+.farm-meter .bar{flex:1;height:14px;background:#ead9b6;border-radius:9px;overflow:hidden;border:1px solid #d8be8c}
+.farm-meter .bar>i{display:block;height:100%;background:linear-gradient(90deg,#7cc04a,#4f9d3a);transition:width .5s}
+.farm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:680px){.farm-grid{grid-template-columns:repeat(2,1fr)}}
+.farm-plot{border:1px solid #d8be8c;border-radius:14px;padding:12px 10px 10px;background:linear-gradient(180deg,#fffdf6,#fbf3df);text-align:center;position:relative;overflow:hidden}
+.farm-plot .plant{font-size:46px;line-height:1.1;filter:drop-shadow(0 3px 0 rgba(0,0,0,.12));transition:transform .35s}
+.farm-plot.grow .plant{transform:scale(1.18) rotate(-3deg)}
+.farm-plot .pname{font-weight:800;font-size:16px;margin:4px 0 2px}
+.farm-plot .pstage{font-size:13px;color:#7a5a2c;min-height:18px}
+.farm-plot .pbar{height:9px;background:#e7d3a6;border-radius:6px;overflow:hidden;margin:7px 0 9px}
+.farm-plot .pbar>i{display:block;height:100%;background:#4f9d3a;transition:width .5s}
+.farm-plot .btn{width:100%;padding:7px 0;font-size:14px}
+.farm-plot .splash{position:absolute;left:50%;top:38%;font-size:30px;pointer-events:none;opacity:0;transform:translate(-50%,-50%)}
+.farm-plot.splash-on .splash{animation:splash .7s ease}
+@keyframes splash{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,-80%) scale(1.2)}}
+.farm-legend{margin-top:12px;font-size:14px;color:#7a5a2c;line-height:1.7}
+.farm-legend b{color:#4f9d3a}
 </style>
 </head>
 <body class="s-autumn">
@@ -355,6 +375,7 @@ body{font-size:16px;line-height:1.72}
       <button class="btn" id="btnSettings">我的资料</button>
       <button class="btn" id="btnBig">🏫 名校战绩</button>
       <button class="btn blue" id="btnSources">📡 重点信源</button>
+      <button class="btn green" id="btnFarm">🌱 我的农场</button>
     </div>
   </header>
 
@@ -541,6 +562,9 @@ body{font-size:16px;line-height:1.72}
 <!-- 重点信源 · 真实权威网站 -->
 <div class="mask" id="mSources"><div class="modal px" id="sourcesBody" style="max-width:840px"></div></div>
 
+<!-- 我的农场 · 分模块浇水成长 -->
+<div class="mask" id="mFarm"><div class="modal px" id="farmBody" style="max-width:900px"></div></div>
+
 <div id="toast"></div>
 <script>
 /* ============================================================
@@ -565,7 +589,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-03 · 第 24 版（国际文献扩至37条·真实可溯源 + 全局思维导图 + 按钮按压反馈 + 去框放大）";
+const DATA_VERSION = "2026-11-03 · 第 26 版（去除封面水印 + 新增「我的农场」分模块浇水成长互动 + 国际文献37条 + 全局思维导图 + 按钮反馈 + 去框放大）";
 
 const AWARDS = [
   /* ============ 一、区级：学校绩效必录，最该打满 ============ */
@@ -3716,6 +3740,8 @@ var PEOPLE = [
     else { $("#tabs").style.display = "none"; }
     updateRecBtn();
     render(); beep(760, .05);
+    var fmap={tch:"tch",stu:"stu",nwl:"wl",gwl:"wl",res:"res",tools:"tools",people:"people"};
+    if(fmap[mode] && typeof farmAuto==="function") farmAuto(fmap[mode]);
   }
   function updateRecBtn() {
     var b = $("#btnRec");
@@ -5095,6 +5121,77 @@ function openGlobalMind(){
     if(t){t.style.transform='scale(.95)';setTimeout(function(){if(t)t.style.transform='';},120);}
   });
 })();
+
+/* ===================== 我的农场 · 分模块浇水成长 ===================== */
+var FARM_MODS = [
+  {id:"tch", name:"教师赛事", emoji:"👩‍🏫"},
+  {id:"stu", name:"学生赛事", emoji:"🎨"},
+  {id:"wl",  name:"官方白名单", emoji:"📋"},
+  {id:"res", name:"教研前沿", emoji:"📚"},
+  {id:"tools",name:"工具箱", emoji:"🛠️"},
+  {id:"people",name:"评审专家", emoji:"👤"}
+];
+var FARM_STAGES = ["🟫","🌰","🌱","🌿","🌺","🍎","🏆"];
+var FARM_STAGE_NAME = ["荒地","种子","发芽","幼苗","开花","结果","丰收"];
+var LS_FARM = "hf_farm_v1";
+function farmState(){
+  var s = load(LS_FARM, {});
+  FARM_MODS.forEach(function(m){ if(typeof s[m.id]!=="number") s[m.id]=0; });
+  return s;
+}
+function farmGrow(mod, by){
+  var s = farmState();
+  s[mod] = Math.min(6, (s[mod]||0) + (by||1));
+  save(LS_FARM, s); return s[mod];
+}
+function farmAuto(mod){
+  var before = farmState()[mod]||0;
+  if(before>=6) return;
+  var g = farmGrow(mod,1);
+  var nm = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{}).name||mod;
+  toast("🌱 "+nm+" 农场 +1 成长 → "+FARM_STAGE_NAME[g]);
+}
+function openFarm(){
+  var s = farmState();
+  var total = FARM_MODS.reduce(function(a,m){return a+(s[m.id]||0);},0);
+  var max = FARM_MODS.length*6;
+  var lv = Math.min(5, Math.floor(total/Math.max(1,(max/5))));
+  var lvName = ["荒芜","萌芽","生机","繁茂","丰收在望","硕果累累"][lv];
+  var h = '';
+  h += '<h3 style="margin:0 0 2px">🌱 我的农场</h3>';
+  h += '<div class="farm-meter">农场繁荣度 <b style="color:#4f9d3a">'+lvName+'</b>'+
+       ' <span class="bar"><i style="width:'+Math.round(total/max*100)+'%"></i></span>'+
+       ' <span class="mini">'+total+'/'+max+'</span></div>';
+  h += '<div class="farm-grid">';
+  FARM_MODS.forEach(function(m){
+    var g = s[m.id]||0;
+    h += '<div class="farm-plot" data-mod="'+m.id+'">'+
+      '<div class="splash">💧</div>'+
+      '<div class="plant">'+FARM_STAGES[g]+'</div>'+
+      '<div class="pname">'+m.emoji+' '+m.name+'</div>'+
+      '<div class="pstage">'+FARM_STAGE_NAME[g]+'</div>'+
+      '<div class="pbar"><i style="width:'+Math.round(g/6*100)+'%"></i></div>'+
+      '<button class="btn green" data-water="'+m.id+'">💧 浇水 +1</button>'+
+      '</div>';
+  });
+  h += '</div>';
+  h += '<div class="farm-legend">越用越旺：你每打开 / 使用对应板块（赛事、白名单、教研、工具、专家），该模块自动 +1 成长；也可手动「浇水」。6 级封顶 🏆 丰收。</div>';
+  $("#farmBody").innerHTML = h;
+  $("#mFarm").classList.add("on");
+  $$("#farmBody [data-water]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var mod = b.getAttribute("data-water");
+      var g = farmGrow(mod, 1);
+      var plot = b.closest(".farm-plot");
+      plot.classList.add("grow","splash-on");
+      if(typeof beep==="function") beep(720,.08);
+      var nm = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{}).name||mod;
+      toast("💧 "+nm+" 浇水，成长 → "+FARM_STAGE_NAME[g]);
+      setTimeout(function(){ plot.classList.remove("grow","splash-on"); openFarm(); }, 650);
+    });
+  });
+}
+$("#btnFarm").addEventListener("click", openFarm);
 </script>
 </body>
 </html>
