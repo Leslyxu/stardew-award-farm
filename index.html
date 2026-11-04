@@ -471,7 +471,7 @@ body{font-size:16px;line-height:1.72}
     <span class="tag" id="refreshStatus">未刷新</span>
     <span class="flabel">视图：</span>
     <span class="tag stfilter" id="tgWL"><i class="dot open"></i>只看白名单</span>
-    <span class="tag stfilter on" id="tgHideDone"><i class="dot open"></i><span id="hideLabel">已隐藏 0 条（截止 / 外市）</span></span>
+    <span class="tag" style="background:#e8f5e2;border-color:#7fce9e"><i class="dot open"></i>只显示「深圳可报 · 未截止」</span>
     <span class="sp"></span>
     <span class="tag" id="verTag">数据 2026-11-03</span>
     <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
@@ -684,7 +684,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 40 版（新增统一闸门：官方已截止/已结束/已截稿/已办 + 外市不可报 + 日期已过 全部剔除，一键发邮箱/备料包/参赛通知/截止表不再发已截止赛事；指南新增「已截止一律不发」区块并只列现在真能投的+尚未开始单列；隐藏开关显示被隐藏条数）";
+const DATA_VERSION = "2026-11-04 · 第 41 版（不可报的赛事一律不列：主列表永久只显示深圳可报且本届未截止的赛事、去掉「点开可看」开关；报名实操指南删掉外市赛事表格与已截止/尚未开始的逐条名单，改为一句收录口径；顶部统计改为只统计可报赛事；单条发邮件/投稿/参赛通知加守卫）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -3443,6 +3443,9 @@ var PEOPLE = [
   /* ---------- 状态判定 ---------- */
   // 统一状态口径：征集中 / 即将截止 / 已截止 / 待公布（卡片、顶部图例、筛选全部共用这一套）
   function statusOf(a) {
+    /* 官方阶段最优先：标了已截稿/已结束/已办/已截止的，不管数据库里那个占位日期多远，都算已结束 */
+    var ph = String(a.phase || "");
+    if (/已截稿|已结束|已截止|已办/.test(ph)) return { key: "done", text: "已结束（本届）" };
     var d = daysTo(a.deadline);
     if (d == null) return { key: "soon", text: "待公布" };
     if (d < 0) return { key: "done", text: "已截止" };
@@ -3460,7 +3463,8 @@ var PEOPLE = [
   };
   function phaseInfo(a) {
     var p = a.phase || (statusOf(a).key === "done" ? "已截稿" : "进行中");
-    return { text: p, c: (PHASE[p] || PHASE["进行中"]).c, bg: (PHASE[p] || PHASE["进行中"]).bg };
+    var info = PHASE[p] || (/已|结束|办/.test(p) ? PHASE["已结束"] : PHASE["进行中"]);
+    return { text: p, c: info.c, bg: info.bg };
   }
 
   /* ---------- 季节 ---------- */
@@ -3540,9 +3544,9 @@ var PEOPLE = [
 
   function stats() {
     var s = { open: 0, hot: 0, soon: 0, done: 0, "区": 0, "市": 0, "省": 0, "国": 0 };
-    ALL.forEach(function (a) {
-      var st = isEnded(a) ? "done" : statusOf(a).key;
-      s[st]++;
+    ALL.filter(isActionable).forEach(function (a) {
+      var st = statusOf(a).key;
+      if (s[st] != null) s[st]++;
       if (s[a.tier] != null) s[a.tier]++;
     });
     return s;
@@ -3590,9 +3594,8 @@ var PEOPLE = [
     if (state.art) {
       list = list.filter(isArt);
     }
-    if (state.hideDone) {
-      list = list.filter(isActionable);
-    }
+    /* 只列现在能报的：外市专属 / 本届已结束 / 已截稿 / 日期已过 一律不列，也不藏在「点开可看」里 */
+    list = list.filter(isActionable);
     list.sort(function (x, y) {
       if (state.sort === "value") return priorityScore(y) - priorityScore(x);
       if (state.sort === "credit") return (y.credit || 0) - (x.credit || 0);
@@ -3722,6 +3725,8 @@ var PEOPLE = [
     return L.join("\n");
   }
   function quickMail(a) {
+    if (isEnded(a)) { toast("这项本届已结束 / 已截稿，不发邮件"); beep(400, .05); return; }
+    if (!regionOf(a).can) { toast("这是外市赛事，深圳不可报"); beep(400, .05); return; }
     var to = resolveRecv(a);
     if (!to) { toast("先在「我的资料」填收件 / 投稿邮箱"); openSettings(); return; }
     var subj = "[赛事报名] " + a.name + " - " + (prof.school || "") + " - " + (prof.name || "");
@@ -3770,6 +3775,7 @@ var PEOPLE = [
     var total = 240;
     var pct = d == null ? 100 : Math.max(0, Math.min(100, Math.round((1 - d / total) * 100)));
     var cls = d == null ? "warn" : (d < 0 ? "danger" : (d <= 30 ? "danger" : (d <= 90 ? "warn" : "")));
+    if (isEnded(a)) { pct = 100; cls = "danger"; }
     var proof = a.schoolProof || {};
     var proofHTML = proof.count > 0
       ? '<div class="proof"><span class="k">学校认</span> · 本校上学年 <b>' + proof.count + '</b> 人次获奖，最高：' + esc(proof.best || "—") + '<br><span class="mini">' + esc(proof.note || "") + "</span></div>"
@@ -3785,7 +3791,7 @@ var PEOPLE = [
     var mineTag = mineMap[a.id] ? '<span class="badge" style="background:#6d4a2a">' + esc(mineMap[a.id]) + "</span>" : "";
     var offTag = a.official ? '<span class="badge off">官方已发</span>' : '<span class="badge off2">待发布</span>';
     var audTag = a.aud === "学生" ? '<span class="badge" style="background:#8b4fa8">学生·我指导</span>' : "";
-    var recTag = shouldJoin(a) ? '<span class="badge" style="background:#c4442e">⭐ 建议参加</span>' : "";
+    var recTag = (isActionable(a) && shouldJoin(a)) ? '<span class="badge" style="background:#c4442e">⭐ 建议参加</span>' : "";
     var wlTag = isWL(a) ? '<span class="badge" style="background:#1f7a4d">✅ 官方白名单</span>' : "";
     var ef = effortOf(a);
     var efTag = ef === "简单" ? '<span class="badge" style="background:#2f9e44">🟢 简单·传图即投</span>'
@@ -3823,11 +3829,15 @@ var PEOPLE = [
       (function () { var j = joinDecision(a); return '<div class="decide-line ' + (j.go ? "go" : "nogo") + '">🚦 ' + esc(j.txt) + '</div>'; })() +
       '<div class="acts">' +
         '<button class="btn gold sm" data-act="detail">详情</button>' +
-        (a.aud === "学生"
-          ? '<button class="btn green sm" data-act="notice">生成参赛通知</button>'
-          : '<button class="btn green sm" data-act="submit">一键投稿</button>') +
-        '<button class="btn blue sm" data-act="mail" data-id="' + esc(a.id) + '">📧 直接发邮箱</button>' +
-        '<button class="btn sm" data-act="track">加入我的赛程</button>' +
+        (isEnded(a)
+          ? '<span class="mini" style="color:#b02a2a;font-weight:700;align-self:center">🚫 本届已结束 / 已截稿，不再发通知、不能再报（仅供查往届）</span>'
+          : (!regionOf(a).can
+              ? '<span class="mini" style="color:#b02a2a;font-weight:700;align-self:center">🚫 外市专属，深圳不可报</span>'
+              : (a.aud === "学生"
+                  ? '<button class="btn green sm" data-act="notice">生成参赛通知</button>'
+                  : '<button class="btn green sm" data-act="submit">一键投稿</button>') +
+                '<button class="btn blue sm" data-act="mail" data-id="' + esc(a.id) + '">📧 直接发邮箱</button>' +
+                '<button class="btn sm" data-act="track">加入我的赛程</button>')) +
       "</div>" +
     "</div>";
   }
@@ -3853,23 +3863,15 @@ var PEOPLE = [
     h += "<h2>📋 报名实操指南 · 一次说清「怎么报」</h2>";
     h += "<div class='mini' style='margin:2px 0 10px'>本站以 <b>深圳市宝安区（航瑞中学）</b> 为基准整理。下面四块按本站真实赛事数据生成；标「待发布 / 预计」的日期，一律以当年官方通知为准。</div>";
 
-    /* ===== 0. 哪些报不了（用户第一句的重点） ===== */
-    h += "<div class='sec' style='border-left:4px solid #b02a2a'><h5>⚠️ 先看清楚：这些是别的城市的赛事，深圳（宝安）报不了</h5>";
-    h += "<div class='mini' style='margin-bottom:6px'>下列赛事由当地市教育局 / 学校自行组织，<b>只面向本市学生</b>，深圳师生不在报名范围。本站保留它们只是为了解广东省内动态，<b>不要为它们准备作品、不要算进赛程</b>：</div>";
-    var outRows = outList.map(function (a) {
-      return tr([esc(a.name), "<b style='color:#b02a2a'>" + esc(regionOf(a).scope) + "</b>", esc(a.portal || a.to || "见通知")]);
-    });
-    h += tbl(["赛事", "仅限地区", "原文报送口径"], outRows.length ? outRows : [tr(["（无）", "—", "—"])]);
-    h += "<div class='mini'>👉 卡片上带 <b style='color:#b02a2a'>❌ 深圳不可报</b> 红标的，就是这一类，已自动排到列表最底部。</div></div>";
-    h += "<div class='sec' style='border-left:4px solid #8a7c69'><h5>🚫 已经截止的，本站不再发（共 " + endedList.length + " 条）</h5>";
-    h += "<div class='mini'>下列赛事官方阶段已是「已截稿 / 已结束 / 已办」，<b>本届已不能再投</b>（数据库里保留的是往届截止日，不是新一届）。已从一键发邮箱、备料包、参赛通知、下方时间表里<b>全部剔除</b>，只留作查往届成果参考：</div>";
-    h += "<div class='mini' style='margin-top:4px'>" + endedList.slice(0, 12).map(function (a) { return esc(a.short || a.name); }).join("、") + (endedList.length > 12 ? " 等" : "") + "。</div></div>";
+    /* ===== 0. 本站收录口径：不可报的一律不列、不列名 ===== */
+    h += "<div class='sec' style='border-left:4px solid #2b6cb0'><h5>📌 本站只列「现在能报」的</h5>";
+    h += "<div class='mini'>只收录 <b>深圳（宝安）师生能报、且本届未截止</b> 的赛事。<b>外市专属赛事</b>（广州 / 东莞 / 珠海 / 惠州 / 中山等市属赛）与<b>本届已截稿 / 已结束 / 已办</b> 的，一律 <b>不收录、不列名、不发通知、不进材料包</b>，不用为它们准备作品，也别算进赛程。等新一届通知发布、确认能报了，本站才会列入。</div></div>";
 
     /* ===== 1. 具体怎么报 ===== */
     var nUnit = canList.filter(function (a) { return !applyMode(a).ok; }).length;
     var nSelf = canList.length - nUnit;
     h += "<div class='sec' style='border-left:4px solid #2b6cb0'><h5>① 具体要怎么报（分两条路径，别走错）</h5>";
-    h += "<div class='mini'>剔除已截止 " + endedList.length + " 条、外市 " + outList.length + " 条后，<b>当前仍可报名的共 " + canList.length + " 条</b>：其中 <b>" + nUnit + "</b> 条必须<b>经学校 / 单位统一报送</b>（个人不能直投），<b>" + nSelf + "</b> 条<b>可个人直报</b>。卡片上的「不能个人直报 / 可个人直报」标签就是这么来的。</div>";
+    h += "<div class='mini'>本站当前可报名 <b>" + canList.length + "</b> 条：其中 <b>" + nUnit + "</b> 条必须<b>经学校 / 单位统一报送</b>（个人不能直投），<b>" + nSelf + "</b> 条<b>可个人直报</b>。卡片上的「不能个人直报 / 可个人直报」标签就是这么来的。</div>";
     h += "<div class='mini' style='margin-top:6px'><b>路径 A · 学校统一报送（绝大多数，学生和老师都走这条）</b></div>";
     h += "<ol class='steps'>"
       + "<li><b>等通知</b>：看学校科组 / 教学处转发，或自己盯「宝教通」通知栏；先核对年级、学段、作品类别是否符合。</li>"
@@ -3924,8 +3926,8 @@ var PEOPLE = [
       .sort(function (x, y) { return String(x.deadline).localeCompare(String(y.deadline)); });
     var noDate = live.filter(function (a) { return !a.deadline; });
     h += "<div class='sec' style='border-left:4px solid #c99a17'><h5>③ 应该什么时候截止（只列现在就能报的）</h5>";
-    h += "<div class='warn' style='margin:0 0 8px'>🚫 <b>已截止 / 已结束 / 已截稿 / 已办的 " + endedList.length + " 条，以及外市不可报的 " + outList.length + " 条，一律不发通知、不进材料包、不算赛程</b>，也不在这张表里。表里只放官方标注「进行中 / 征集中」、<b>现在真能投的 " + live.length + " 条</b>。</div>";
-    h += "<div class='mini'>按截止日期从近到远排。<b>尚未开始的 " + upcoming.length + " 条单列在表后</b>，别现在就交作品。</div>";
+    h += "<div class='warn' style='margin:0 0 8px'>本表<b>只列官方标注「进行中 / 征集中」、现在就能投的 " + live.length + " 条</b>；外市专属、本届已结束、以及尚未开始征集的，<b>都不在表内、也不发通知</b>。</div>";
+    h += "<div class='mini'>按截止日期从近到远排。</div>";
     var dlRows = future.slice(0, 18).map(function (a) {
       var d = daysTo(a.deadline);
       var ph = phaseInfo(a);
@@ -3934,17 +3936,13 @@ var PEOPLE = [
         "<span style='color:" + ph.c + "'>" + esc(ph.text) + "</span>", esc(toOf(a)).slice(0, 34)]);
     });
     h += tbl(["截止日期", "倒计时", "赛事", "官方阶段", "报送平台"], dlRows);
-    if (!future.length) h += "<div class='mini'>（当前没有已公布确切截止日、且正在征集的赛事，以表后「尚未开始」为准。）</div>";
+    if (!future.length) h += "<div class='mini'>（当前没有已公布确切截止日、且正在征集的赛事，先备作品、盯「宝教通」和科组通知。）</div>";
     h += "<div class='warn' style='margin:6px 0 0'>⏰ <b>倒推时间</b>：需学校逐级报送的，<b>截止前 2 周</b>把材料交科组；个人直报的，<b>截止前 3 天</b>提交完并留截图，别等最后一天系统拥堵。</div>";
     if (noDate.length) {
-      h += "<div class='mini' style='margin-top:6px'>另有 <b>" + noDate.length + "</b> 条正在征集但<b>时间待公布</b>：" + noDate.slice(0, 8).map(function (a) { return esc(a.short || a.name); }).join("、") + " 等，先备作品、盯「宝教通」和科组通知。</div>";
+      h += "<div class='mini' style='margin-top:6px'>另有 <b>" + noDate.length + "</b> 条正在征集但<b>时间待公布</b>，先备作品、盯「宝教通」和科组通知。</div>";
     }
     if (upcoming.length) {
-      h += "<div class='mini' style='margin-top:8px'><b>🕒 尚未开始 · 等通知（" + upcoming.length + " 条，往年多在 3–6 月征集，现在别投）：</b></div>";
-      h += "<ul class='steps'>" + upcoming.slice(0, 12).map(function (a) {
-        return "<li>" + esc(a.short || a.name) + "　<span style='color:#6d4a2a'>· " + esc(String(a.deadline || "时间待公布")) + "</span></li>";
-      }).join("") + "</ul>";
-      if (upcoming.length > 12) h += "<div class='mini'>……另有 " + (upcoming.length - 12) + " 条，见主列表筛选「待公布」。</div>";
+      h += "<div class='mini' style='margin-top:8px'>另有 <b>" + upcoming.length + "</b> 条本届<b>尚未开始征集</b>（往年多在 3–6 月发通知），现在别投；等官方通知发布、确认能报后本站会自动列入，此处不列名。</div>";
     }
     h += "</div>";
 
@@ -4057,9 +4055,6 @@ var PEOPLE = [
       $("#grid").innerHTML = list.map(cardHTML).join("");
     }
     var s = stats();
-    var nHidden = ALL.filter(function (a) { return !isActionable(a); }).length;
-    var hl = $("#hideLabel");
-    if (hl) hl.textContent = state.hideDone ? ("已隐藏 " + nHidden + " 条（截止 / 外市）· 点开可看") : "显示全部（含已截止 / 外市）";
     $("#nOpen").textContent = s.open;
     $("#nHot").textContent = s.hot;
     $("#nSoon").textContent = s.soon;
@@ -4079,7 +4074,7 @@ var PEOPLE = [
   function renderRecBanner() {
     var box = $("#recBanner");
     if (!box) return;
-    var rec = ALL.filter(function (a) { return shouldJoin(a) && statusOf(a).key !== "done"; })
+    var rec = ALL.filter(function (a) { return isActionable(a) && shouldJoin(a); })
       .sort(function (x, y) { return priorityScore(y) - priorityScore(x); })
       .slice(0, 4);
     if (!rec.length) { box.style.display = "none"; return; }
@@ -4756,6 +4751,8 @@ var PEOPLE = [
   function openSubmit(id) {
     var a = ALL.filter(function (x) { return x.id === id; })[0];
     if (!a) return;
+    if (isEnded(a)) { toast("这项本届已结束 / 已截稿，不能投稿"); beep(400, .05); return; }
+    if (!regionOf(a).can) { toast("这是外市赛事，深圳不可报"); beep(400, .05); return; }
     var ck = checks[a.id] || [];
     var missing = !prof.name || !prof.school;
     var h = '<button class="btn sm close" data-close>关闭</button>';
@@ -4840,6 +4837,8 @@ var PEOPLE = [
   function openNotice(id) {
     var a = ALL.filter(function (x) { return x.id === id; })[0];
     if (!a) return;
+    if (isEnded(a)) { toast("这项本届已结束 / 已截稿，不生成参赛通知"); beep(400, .05); return; }
+    if (!regionOf(a).can) { toast("这是外市赛事，深圳不可报"); beep(400, .05); return; }
     var d = daysTo(a.deadline);
     var pUrl = a.portal && /^https?:\/\//.test(a.portal) ? a.portal : "";
 
