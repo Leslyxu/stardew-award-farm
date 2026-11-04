@@ -128,6 +128,15 @@ h1{font-family:"Zpix","Fusion Pixel",monospace;font-size:20px;color:var(--gold);
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:14px}
 .card{padding:11px 12px;position:relative;display:flex;flex-direction:column;gap:7px;min-width:0}
 .card:hover{background:#fff3d2}
+.honorbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 10px;border-radius:9px;
+  background:linear-gradient(96deg,#fff4cf,#ffe9a8);border:1px solid #e6b94e;box-shadow:0 2px 0 rgba(0,0,0,.06);
+  font-size:13px;line-height:1.5}
+.honorbar .hb-lead{font-weight:800;color:#8a5a12;white-space:nowrap;font-size:14px}
+.honorbar .hb-stars{color:#c4442e;font-weight:800;letter-spacing:1px}
+.honorbar .hb-badge{font-weight:700;color:#5a3c10}
+.honorbar .hb-tag{background:#1f7a4d;color:#fff;border-radius:5px;padding:1px 6px;font-size:11.5px;font-weight:700}
+.honorbar .hb-why{flex:1 1 100%;color:#6d4a2a;font-size:12.5px}
+@media(max-width:680px){.honorbar{font-size:12px}}
 .card .row1{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
 .card h3{font-size:20.5px;line-height:1.45;letter-spacing:.6px;flex:1 1 100%;min-width:0;word-break:break-word;margin-top:2px;font-weight:700}
 .badge{font-size:11.5px;padding:2px 8px;font-weight:700;border:3px solid var(--wood-dark);color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.35);flex:none;letter-spacing:.5px}
@@ -374,7 +383,6 @@ body{font-size:16px;line-height:1.72}
 .toolbar{box-shadow:none;border:1px solid #ecdfc4}
 .btn,.tab{transition:transform .08s ease}
 .mm-svg{background:#fffdf6;border-radius:12px}
-#btnGlobalMind:active{transform:scale(.94)}
 
 /* ---------- 我的农场 · 分模块浇水 ---------- */
 .farm-meter{display:flex;align-items:center;gap:10px;margin:4px 0 14px;font-size:16px}
@@ -395,6 +403,49 @@ body{font-size:16px;line-height:1.72}
 @keyframes splash{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,-80%) scale(1.2)}}
 .farm-legend{margin-top:12px;font-size:14px;color:#7a5a2c;line-height:1.7}
 .farm-legend b{color:#4f9d3a}
+
+<style id="v42Style">
+/* ============ v42 · 封面农场按钮（去掉一直闪的脉冲，改实体渐变胶囊） ============ */
+.cover-hero .farm-play{
+  animation:none;position:absolute;right:18px;bottom:18px;z-index:6;
+  background:linear-gradient(180deg,#9bdd63,#4f9d3a);color:#fff;border:3px solid #fff;
+  border-radius:999px;font-size:16px;font-weight:900;letter-spacing:.5px;padding:12px 22px;
+  box-shadow:0 6px 0 #3a7a29,0 10px 22px rgba(0,0,0,.22);text-shadow:0 2px 0 rgba(0,0,0,.22);
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.cover-hero .farm-play:hover{transform:translateY(-2px);box-shadow:0 8px 0 #3a7a29,0 13px 24px rgba(0,0,0,.26)}
+.cover-hero .farm-play:active{transform:translateY(3px);box-shadow:0 3px 0 #3a7a29}
+.farm-play.pulse{box-shadow:0 6px 0 #3a7a29,0 10px 22px rgba(0,0,0,.22)}
+.btn.btn-refresh{background:linear-gradient(180deg,#ffe08a,#f0b429);border-radius:9px}
+.btn.btn-refresh:hover{background:#ffd25e}
+.statbar .st-status{background:#f2f8ea;border-color:#a8cf88;color:#456b2f;border-radius:999px;font-weight:700}
+.statbar .st-status.spin{background:#fff4cf;border-color:#e0a01c;color:#8a5a00}
+/* ============ 农场保卫战 · 联动读数 ============ */
+.pvz-real{background:linear-gradient(90deg,#fff5d8,#fffdf6);border:2px dashed #d8b56a;border-radius:12px;padding:9px 12px;font-size:14px;color:#5a3d18;line-height:1.75;margin-bottom:10px}
+.pvz-real b{color:#b4530a;font-size:16px}
+.pvz-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 10px;font-size:15px;font-weight:800;color:#3b2412}
+.pvz-top>span{background:#fffdf6;border:2px solid #d8be8c;border-radius:10px;padding:4px 10px}
+.pvz-top .pvz-sun{background:linear-gradient(180deg,#fff3b0,#ffd54a);border-color:#e0a01c;color:#7a4a00}
+.pvz-top b{font-size:17px}
+.pvz-top .btn{margin-left:auto}
+.pvz-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.pvz-card{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:98px;padding:8px 10px;background:linear-gradient(180deg,#fffdf6,#f6e7c4);border:3px solid #b8936a;border-radius:14px;cursor:pointer;font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.16);transition:transform .1s ease}
+.pvz-card:hover{transform:translateY(-2px)}
+.pvz-card.on{border-color:#e0a01c;background:linear-gradient(180deg,#fff6cf,#ffe08a);box-shadow:0 0 0 3px rgba(224,160,28,.35),0 3px 0 rgba(0,0,0,.16)}
+.pvz-card .pc-e{font-size:30px;line-height:1}
+.pvz-card .pc-n{font-size:13px;font-weight:800;color:#3b2412}
+.pvz-card .pc-c{font-size:12px;color:#a1620a;font-weight:800}
+.pvz-lawn{position:relative;border:4px solid #7a5230;border-radius:16px;overflow:hidden;background:#8ec95a;box-shadow:inset 0 0 0 3px rgba(255,255,255,.18)}
+.pvz-row{display:flex;align-items:stretch}
+.pvz-home{flex:0 0 46px;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(90deg,#d9b98a,#c9a26c);border-right:3px solid #7a5230}
+.pvz-cell{flex:1;min-width:0;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;background:#9ed36a;border-right:1px solid rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.22);cursor:pointer;transition:background .15s ease}
+.pvz-cell.alt{background:#8ec95a}
+.pvz-cell:hover{background:#c7e89a;box-shadow:inset 0 0 0 3px rgba(255,255,255,.5)}
+.pvz-plant{font-size:34px;line-height:1;filter:drop-shadow(0 3px 0 rgba(0,0,0,.18));transition:transform .2s ease}
+.pvz-plant.lv2{font-size:38px}.pvz-plant.lv3{font-size:42px}.pvz-plant.lv4{font-size:47px}.pvz-plant.lv5{font-size:52px}
+.pvz-lv{position:absolute;right:3px;bottom:2px;font-size:10px;font-weight:800;color:#fff;background:#e0a01c;border-radius:8px;padding:0 4px}
+.pvz-foot{margin-top:10px;font-size:13.5px;color:#5a3d18;background:#f6f0dd;border-radius:10px;padding:8px 11px;line-height:1.7}
+@media(max-width:680px){.pvz-cell .pvz-plant{font-size:23px}.pvz-card{min-width:76px;padding:6px}.pvz-top{font-size:13px}.pvz-home{flex-basis:34px;font-size:20px}}
 </style>
 </head>
 <body class="s-autumn">
@@ -414,9 +465,9 @@ body{font-size:16px;line-height:1.72}
       <div class="fx fx-spark s2"></div>
       <div class="fx fx-spark s3"></div>
       <div class="farm-halo"></div>
-      <button class="btn green farm-play pulse" id="btnFarmPlay">🌱 进农场玩</button>
+      <button class="btn green farm-play pulse" id="btnFarmPlay">🌻 保卫农场 · 开玩</button>
     </div>
-    <div class="mini" id="farmHint" style="margin-top:6px">🌱 点右下角「进农场玩」→ 看你的农场怎么长，<b>点地块直接跳到对应板块</b>；越用（看赛事/白名单/教研/工具/专家）越旺，农场自动 +1 成长。</div>
+    <div class="mini" id="farmHint" style="margin-top:6px">🌻 <b>你在这边投得越多，农场那边就越壮</b>：加入赛程、勾材料、记战绩，都会变成游戏里的 ☀️ 阳光和已长大的作物，用来种 🌱 射手 / 🌻 向日葵 / 🥔 坚果墙，挡住一波波 🧟。点右下角「保卫农场」开玩，回主站多投几份再「重开」会更旺。</div>
   </div>
 
   <header>
@@ -438,7 +489,7 @@ body{font-size:16px;line-height:1.72}
     </div>
     <div class="hr">
       <div id="clock"><b>--:--:--</b><br><span id="dtext">载入中</span></div>
-      <button class="btn gold" id="btnRefresh">刷新</button>
+      <button class="btn gold btn-refresh" id="btnRefresh">🔄 检查更新</button>
       <button class="btn" id="btnMine">战绩本</button>
       <button class="btn" id="btnData">数据</button>
       <button class="btn gold" id="btnUpload">★ 我要传什么</button>
@@ -453,7 +504,7 @@ body{font-size:16px;line-height:1.72}
       <button class="btn blue" id="btnSources">📡 重点信源</button>
       <button class="btn blue" id="btnCNKI">📚 知网快捷入口</button>
       <button class="btn purple" id="btnPeople">👤 评审专家</button>
-      <button class="btn green" id="btnFarm">🌱 我的农场</button>
+      <button class="btn green" id="btnFarm">🌻 农场保卫战</button>
     </div>
   </header>
 
@@ -468,13 +519,13 @@ body{font-size:16px;line-height:1.72}
     <span class="tag steffort" data-effort="中等"><i class="dot soon"></i>🟡 中等</span>
     <span class="tag steffort" data-effort="难"><i class="dot done"></i>🔴 难·录制</span>
     <span class="tag on artfilter" id="btnArt">🎨 只看美术/书法</span>
-    <span class="tag" id="refreshStatus">未刷新</span>
+    <span class="tag st-status" id="refreshStatus">✅ 已内置最新数据</span>
     <span class="flabel">视图：</span>
     <span class="tag stfilter" id="tgWL"><i class="dot open"></i>只看白名单</span>
     <span class="tag" style="background:#e8f5e2;border-color:#7fce9e"><i class="dot open"></i>只显示「深圳可报 · 未截止」</span>
     <span class="sp"></span>
     <span class="tag" id="verTag">数据 2026-11-03</span>
-    <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
+    <span class="tag">上次检查 <b id="lastRefresh">—</b></span>
   </div>
 
     <div class="banner px">
@@ -482,7 +533,8 @@ body{font-size:16px;line-height:1.72}
   </div>
   <div class="banner px" id="recBanner" style="display:none"></div>
   <div class="tabs mode" id="modeTabs">
-    <button class="tab on" data-mode="tch">👩‍🏫 教师赛事</button>
+    <button class="tab on" data-mode="all">📋 全部可报赛事</button>
+    <button class="tab" data-mode="tch">👩‍🏫 教师赛事</button>
     <button class="tab" data-mode="stu">🎨 中小学生赛道</button>
     <button class="tab" data-mode="nwl">📋 教育部白名单·47</button>
     <button class="tab" data-mode="gwl">📋 广东省白名单·30</button>
@@ -514,7 +566,8 @@ body{font-size:16px;line-height:1.72}
         </div>
         <div class="f"><label>排序</label>
           <select id="fSort">
-            <option value="value">按含金量 / 建议优先</option>
+            <option value="honor">🏅 含金量优先（默认）</option>
+            <option value="value">综合推荐 / 建议优先</option>
             <option value="deadline">按截止时间</option>
             <option value="credit">按学校认可度</option>
             <option value="proof">按本校获奖人数</option>
@@ -607,7 +660,6 @@ body{font-size:16px;line-height:1.72}
 <div class="mask" id="mResMind"><div class="modal px" id="mResMindBody" style="max-width:760px"></div></div>
 
 <!-- 全局教研思维导图（可下钻导航） -->
-<div class="mask" id="mGlobalMind"><div class="modal px" id="globalMindBody" style="max-width:820px"></div></div>
 
 <!-- 投稿向导 -->
 <div class="mask" id="mSubmit"><div class="modal px" id="submitBody"></div></div>
@@ -650,15 +702,12 @@ body{font-size:16px;line-height:1.72}
 <!-- 评审专家 · 单独成栏 -->
 <div class="mask" id="mPeople"><div class="modal px" id="peopleBody" style="max-width:960px"></div></div>
 
-<!-- 我的农场 · 分模块浇水成长 -->
-<div class="mask" id="mFarm"><div class="modal px" id="farmBody" style="max-width:900px"></div></div>
-
 <!-- 农场小游戏 · 点击种植收获 -->
-<div class="mask" id="mFarmGame"><div class="modal px" id="farmGameBody" style="max-width:560px"></div></div>
+<div class="mask" id="mFarmGame"><div class="modal px" id="farmGameBody" style="max-width:920px"></div></div>
 
-<!-- 农场主页 · 生动 + 连下方内容 -->
-<div class="mask" id="mFarmHome"><div class="modal px" id="farmHomeBody" style="max-width:940px"></div></div>
 <div class="mask" id="mGuide"><div class="modal px" id="guideBody" style="max-width:1000px"></div></div>
+<div class="mask" id="mMailPreview"><div class="modal px" id="mailPreviewBody" style="max-width:720px"></div></div>
+<div class="mask" id="mPack"><div class="modal px" id="packBody" style="max-width:860px"></div></div>
 
 <div id="toast"></div>
 <script>
@@ -684,7 +733,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 41 版（不可报的赛事一律不列：主列表永久只显示深圳可报且本届未截止的赛事、去掉「点开可看」开关；报名实操指南删掉外市赛事表格与已截止/尚未开始的逐条名单，改为一句收录口径；顶部统计改为只统计可报赛事；单条发邮件/投稿/参赛通知加守卫）";
+const DATA_VERSION = "2026-11-04 · 第 42 版（农场重做为「保卫战」：本站投得越多→阳光越多、作物越壮；删掉全局图谱；修复农场等按钮点击无反应；发邮箱改看得见的预览弹窗；含金量置顶排序与老师口吻通知；外市赛事从数据源头剔除；刷新状态与封面按钮美化；默认改为「全部可报赛事」一眼看全；一键发邮箱/备料包改为看得见的弹窗）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -2213,39 +2262,15 @@ const AWARDS = [
     phase:"待发布", official:true, credit:5, rate:{value:5, ease:2},
     schoolProof:{ count:0, best:"本校暂无记录", note:"省级最高规格，一等奖作品可报送教育部，职称硬通货" },
     materials:["学生作品原件","学校推荐表+指导教师","市赛获奖证明（层层选送）","展演报名汇总"],
-    tips:["三年一届、门槛最高，但含金量顶级：省一等奖可报送教育部","必须先过校选、市选，提前一年准备","执信、宝安中学、珠海一中都靠它出硬成果"],
+    tips:["三年一届、门槛最高，但含金量顶级：省一等奖可报送教育部","必须先过校选、市选，提前一年准备","宝安中学、红岭等深圳名校都靠它出硬成果"],
     url:"https://edu.gd.gov.cn/", portal:"由市/区教育局组织选送，学校统一报名", steps:["校内选拔","市赛","省赛展演"],
     source:"广东省教育厅中小学艺术展演活动通知（第八届 2024-2025）",
     prep:["三年一届、省级最高规格，必须先过校选→市选→省展演","省一等奖作品可报送教育部，职称评审顶级硬通货","绘画/书法/摄影/手工艺均可投，提前一年布局"],
-    win:["含金量顶级但极难：只有层层选送的尖子能进省展","深圳可参照宝安中学、红岭；广州参照执信（郑雅心省一等奖报送教育部）","不适合「广撒网」，适合重点打磨 1-2 件尖货"],
-    bigSchools:["宝安中学(集团)","红岭中学(集团)","广州市执信中学"] },
+    win:["含金量顶级但极难：只有层层选送的尖子能进省展","深圳可参照宝安中学、红岭等校的选送路径","不适合「广撒网」，适合重点打磨 1-2 件尖货"],
+    bigSchools:["宝安中学(集团)","红岭中学(集团)"] },
 
-  { aud:"学生", id:"gz-meiyu", name:"羊城学校美育节（书画·摄影·手工艺）", short:"羊城美育节", tier:"市",
-    org:"广州市教育局 / 广州市教育研究院", orgType:"广州市级品牌美育活动（每年一届）", subject:"绘画/书法篆刻/摄影/手工艺 · 学生+教师",
-    cycle:"每年一届（第九届 2024）", window:"每年上半年征集、暑期展览", deadline:"", deadlineNote:"每年一届，通常上半年启动（官方待发布当年通知）",
-    phase:"待发布", official:true, credit:4, rate:{value:4, ease:4},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"广州市级官方活动，广州学校最认" },
-    materials:["学生作品原件","报名表+指导教师","学校汇总报送"],
-    tips:["广州最稳的市级书画赛道，每年一届、机会多","执信单届 53 人市级奖、一等奖19项，说明获奖面大","师生同台，教师作品也能拿奖"],
-    url:"https://jyj.gz.gov.cn/", portal:"由广州市各学校统一报名", steps:["校内征集","区级/市级评审","广州图书馆展览"],
-    source:"广州市教育局「羊城学校美育节」系列活动通知",
-    prep:["广州市级每年一届，是广州校最稳的书画赛道","绘画/书法/摄影/手工艺四大类都能投，获奖面大","师生同台，教师作品也能拿市奖，顺手攒成果"],
-    win:["含金量中高、好参加：每年都有、市级官方、广州学校认","执信单届 53 人市级奖（一等奖19项）说明中奖率高","深圳的对应物是「美润鹏城」「宝安美术成果征集」"],
-    bigSchools:["华南师范大学附属中学","广东实验中学","广州市执信中学"] },
-
-  { aud:"学生", id:"gz-hanzi", name:"广州市中小学规范汉字书写大赛", short:"广州规范汉字书写大赛", tier:"市",
-    org:"广州市教育局", orgType:"广州市级书法专项（每年一届）", subject:"硬笔/软笔书法 · 学生+教师",
-    cycle:"每年一届（第十二届已办）", window:"每年征集、市级评审", deadline:"", deadlineNote:"每年一届，通常下半年启动（官方待发布）",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"书法专项、门槛低、市级认可" },
-    materials:["书法作品原件（硬笔/软笔）","报名表+学校","校级选拔推荐"],
-    tips:["纯书法专项，门槛最低，几乎人人可投","广州二中、六中、七中、广附、省实、执信都组织学生参赛","也是广东省规范汉字书写大赛的选拔通道"],
-    url:"https://jyj.gz.gov.cn/", portal:"由广州市各学校统一报名", steps:["校内选拔","市级评审"],
-    source:"广州市教育局规范汉字书写大赛通知",
-    prep:["纯书法专项、门槛最低，硬笔软笔都能投","是「广东省规范汉字书写大赛」的市级选拔通道","广州头部校（二中/六中/七中/广附/省实/执信）全员组织"],
-    win:["最好参加：专项、低门槛、年年有","书法老师带学生练字顺手参赛，几乎零成本","深圳对应物是「深圳市规范汉字书写大赛」"],
-    bigSchools:["华南师范大学附属中学","广州市执信中学","广州市第二中学","广州大学附属中学","广州市第六中学"] },
-
+  
+  
   { aud:"学生", id:"sz-hanzi", name:"深圳市中小学规范汉字书写大赛", short:"深圳规范汉字书写大赛", tier:"市",
     org:"深圳市教育局 / 深圳市语委", orgType:"深圳市级书法专项（每年一届）", subject:"硬笔/软笔书法 · 学生+教师",
     cycle:"每年一届", window:"每年征集、市级评审", deadline:"", deadlineNote:"每年一届，通常下半年启动（官方待发布）",
@@ -2256,61 +2281,13 @@ const AWARDS = [
     url:"https://szeb.sz.gov.cn/", portal:"由深圳市各学校统一报名", steps:["校内选拔","市级评审"],
     source:"深圳市教育局规范汉字书写大赛通知",
     prep:["深圳本地书法专项，门槛最低、最易组织","硬笔为主、软笔也可，带学生练字顺手参赛","是「广东省规范汉字书写大赛」的深圳选拔通道"],
-    win:["最好参加：本地专项、低门槛、宝安学校认","书法老师零成本带学生冲，攒指导奖","对应广州的「广州规范汉字书写大赛」"],
+    win:["最好参加：本地专项、低门槛、宝安学校认","书法老师零成本带学生冲，攒指导奖","深圳市级专项，宝安学校认"],
     bigSchools:[] },
 
-  { aud:"学生", id:"zh-shuhua", name:"珠海市中小学生书画优秀作品评选", short:"珠海中小学生书画评选", tier:"市",
-    org:"珠海市教育局", orgType:"珠海市级书画专项（每年一届）", subject:"绘画/书法 · 学生作品+指导教师",
-    cycle:"每年一届（首届 2024）", window:"每年征集、市级评审", deadline:"", deadlineNote:"每年一届，通常上半年启动（官方待发布）",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"珠海市级，珠海学校认" },
-    materials:["书画作品原件","报名表+指导教师","学校汇总"],
-    tips:["珠海本地书画专项，门槛低","珠海一中单届一等奖2、二等奖3，中奖率可观","绘画/书法均可，带学生练手好渠道"],
-    url:"https://zhjy.zhuhai.gov.cn/", portal:"由珠海市各学校统一报名", steps:["校内征集","市级评审"],
-    source:"珠海市教育局中小学生书画优秀作品评选通知",
-    prep:["珠海本地书画专项、门槛低","绘画/书法均可投，市级认可","珠海一中单届一等奖2、二等奖3，中奖率可观"],
-    win:["好参加：本地专项、低门槛","印证「每市都有自家书画赛」规律","深圳看「宝安美术成果征集/美润鹏城」，广州看「羊城美育节」"],
-    bigSchools:["珠海市第一中学"] },
-
-  { aud:"学生", id:"hz-shuhua", name:"惠州市中小学生书画作品交流展示活动", short:"惠州中小学生书画展示", tier:"市",
-    org:"惠州市教育局", orgType:"惠州市级书画专项（每届）", subject:"绘画/书法 · 学生作品+指导教师",
-    cycle:"每届征集", window:"市级征集、评审、展览", deadline:"", deadlineNote:"每届时间不一，关注惠州市教育局通知",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"惠州市级，惠州学校认" },
-    materials:["书画作品原件","报名表+指导教师","学校汇总"],
-    tips:["惠州本地书画专项，门槛低","惠州一中多届绘画一等奖，中奖面大","绘画类（国画/水彩/综合材料）机会多"],
-    url:"https://jyj.huizhou.gov.cn/", portal:"由惠州市各学校统一报名", steps:["校内征集","市级评审"],
-    source:"惠州市教育局中小学生书画作品交流展示活动通知",
-    prep:["惠州本地书画专项、门槛低","绘画类（国画/水彩/综合材料）机会多","惠州一中多届绘画一等奖，中奖面大"],
-    win:["好参加：本地专项、低门槛","印证「每市都有自家书画赛」规律","同模式：深圳宝安/美润鹏城、广州羊城美育节"],
-    bigSchools:["惠州市第一中学"] },
-
-  { aud:"学生", id:"zs-shufa", name:"中山市师生现场书法展示", short:"中山现场书法展示", tier:"市",
-    org:"中山市教育和体育局 / 中山市文联", orgType:"中山市级现场书法（每届）", subject:"现场书法 · 师生同台",
-    cycle:"每届（第三届「强国有我」）", window:"现场书写、终评", deadline:"", deadlineNote:"每届时间不一，关注中山市教体局通知",
-    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"中山市级现场书法，中山学校认" },
-    materials:["现场书写作品","报名表+学校","师生同台名额"],
-    tips:["现场书法、师生同台，氛围好","中山纪中、中山一中均组织学生参赛","适合书法社团现场展演+拿证"],
-    url:"https://jtj.zs.gov.cn/", portal:"由中山市各学校统一报名", steps:["校级推荐","现场书写","终评"],
-    source:"中山市教体局师生现场书法展示通知",
-    prep:["中山市级现场书法、师生同台","现场书写比拼，适合书法社团","中山纪中、中山一中均组织学生参赛"],
-    win:["好参加：本地专项、低门槛、现场即出彩","印证「每市都有自家书画赛」规律","深圳对应「深圳规范汉字书写大赛」"],
-    bigSchools:["中山纪念中学"] },
-
-    { aud:"学生", id:"dg-arts", name:"东莞市中小学生艺术展演", short:"东莞中小学生艺术展演", tier:"市",
-    org:"东莞市教育局", orgType:"东莞市级艺术展演（每届）", subject:"绘画/书法/朗诵/戏剧/舞蹈 · 学生+教师",
-    cycle:"每届（2024 届）", window:"市级征集、评审", deadline:"", deadlineNote:"每届时间不一，关注东莞市教育局通知",
-    phase:"待发布", official:true, credit:4, rate:{value:4, ease:4},
-    schoolProof:{ count:0, best:"本校暂无记录", note:"东莞市级最高规格艺术展" },
-    materials:["艺术作品原件","表演类视频","报名表+指导教师"],
-    tips:["东莞市级最高规格艺术展，覆盖面广","东莞中学单届一等奖5项、二等奖7项，中奖面大","绘画/书法类门槛适中、好组织"],
-    url:"https://edu.dg.gov.cn/", portal:"由东莞市各学校统一报名", steps:["校内征集","市级评审"],
-    source:"东莞市教育局中小学生艺术展演活动通知",
-    prep:["东莞市级最高规格艺术展，覆盖面广","绘画/书法类门槛适中、好组织","东莞中学单届一等奖5、二等奖7，中奖面大"],
-    win:["含金量中高、好参加：市级官方、中奖面大","印证「每市都有自家艺术展」规律","深圳对应「美润鹏城/市艺术展演」"],
-    bigSchools:["东莞中学"] },
-
+  
+  
+  
+    
     {
     id: "cn-hope",
     aud: "学生",
@@ -2861,7 +2838,12 @@ const AWARDS = [
     rate: { value: 5, ease: 4 }
   }
 
-]
+].filter(function(a){
+  /* 外市专属赛事（广州/东莞/珠海/惠州/中山）深圳报不了，从数据源头剔除，
+     这样学生通知、农场推荐、图谱、指南、名校战绩等所有下游都不会再出现 */
+  var OUT_IDS={"gz-meiyu":1,"gz-hanzi":1,"zh-shuhua":1,"hz-shuhua":1,"zs-shufa":1,"dg-arts":1};
+  return !OUT_IDS[a.id];
+});
 
 /* 学校实证汇总（用于页面顶部「本校战绩」面板） */
 const SCHOOL_STATS = {
@@ -3008,57 +2990,11 @@ const BIG_SCHOOLS = [
     { id:"sz-meirun", t:"美润鹏城美育成果展演入围关山月美术馆；粤友杯广东国际青少年艺术创作大赛银奖" }
   ]},
   /* ---------- 广州（7 所） ---------- */
-  { city:"广州", name:"华南师范大学附属中学", wechat:"华南师大附中", tag:"广东顶尖，国际部书画氛围浓", won:[
-    { id:"cn-paint", t:"学生多次获全国中小学生绘画书法等大赛奖（校「艺术之星」评选）" },
-    { id:"gz-hanzi", t:"校书法大赛暨广东省规范汉字书写大赛选拔赛（软/硬笔特等、一等大批）" },
-    { id:"gz-meiyu", t:"羊城学校美育节师生书画参赛" }
-  ]},
-  { city:"广州", name:"广东实验中学", wechat:"广东实验中学", tag:"省属龙头，国际交流展常客", won:[
-    { id:"gz-meiyu", t:"羊城美育节师生参赛" },
-    { t:"韩国庆州国际花郎青少年书艺大展 中国参赛区最高奖（白云校区）；楷模杯青少年书法特等奖（云城校区）" }
-  ]},
-  { city:"广州", name:"广州市执信中学", wechat:"广州市执信中学", tag:"广州美术强校，羊城美育节霸榜", won:[
-    { id:"gz-meiyu", t:"第九届羊城学校美育节 53人市级奖、一等奖19项（书画/摄影/手工艺）" },
-    { id:"gz-hanzi", t:"广州市规范汉字书写大赛" },
-    { id:"gd-arts", t:"广东省第八届中小学生艺术展演 一等奖、作品报送教育部（郑雅心）" },
-    { id:"cn-paint", t:"第二十五届全国中小学生书画大赛 书法、绘画双一等奖（郑雅心）" }
-  ]},
-  { city:"广州", name:"广州市第二中学", wechat:"广州二中", tag:"广州老牌，书画传统厚", won:[
-    { id:"cn-paint", t:"第十四届、第二十二届全国中小学生绘画书法 多个一等奖" },
-    { id:"gz-hanzi", t:"广州市规范汉字书写大赛" }
-  ]},
-  { city:"广州", name:"广州大学附属中学", wechat:"广大附中", tag:"高考书写佼佼者频出", won:[
-    { id:"cn-paint", t:"第二十二届全国中小学生绘画书法 一等奖" },
-    { id:"gz-hanzi", t:"广州市规范汉字书写大赛" },
-    { t:"华夏万卷杯 全国中小学生硬笔书写大赛 金奖（杨锦浩 661分考生）" }
-  ]},
-  { city:"广州", name:"广州市第六中学", wechat:"广州市第六中学", tag:"广州名校", won:[
-    { id:"gz-hanzi", t:"广州市规范汉字书写大赛" }
-  ]},
-  { city:"广州", name:"广东广雅中学", wechat:"广东广雅中学", tag:"百年名校", won:[
-    { t:"韩国庆州国际花郎青少年书艺大展 特别奖（柯贝淇）" }
-  ]},
-  /* ---------- 珠三角其他市（7 所） ---------- */
+                /* ---------- 珠三角其他市（7 所） ---------- */
   
   
-  { city:"东莞", name:"东莞中学", wechat:"东莞中学", tag:"东莞龙头", won:[
-    { id:"dg-arts", t:"东莞市2024中小学生艺术展演 一等奖5项、二等奖7项，校获优秀组织奖" }
-  ]},
-  { city:"珠海", name:"珠海市第一中学", wechat:"珠海一中", tag:"珠海龙头，书法版画特色", won:[
-    { id:"cn-paint", t:"第二十八届全国中小学生绘画书法 书法类一等奖（李梓晨）" },
-    { id:"cn-hope", t:"希望颂 硬笔书法类一等奖（许棋朗）" },
-    { id:"zh-shuhua", t:"珠海市首届中小学生书画优秀作品评选 一等奖2、二等奖3" }
-  ]},
-  { city:"中山", name:"中山纪念中学", wechat:"中山纪中", tag:"中山龙头，科创+书法并重", won:[
-    { id:"cn-paint", t:"第二十六届全国中小学生绘画书法 广东赛区(中山)一等奖（张子敬）" },
-    { id:"zs-shufa", t:"中山市师生现场书法展示" },
-    { t:"翰墨传承 / 欧阳修杯 等书法赛事获奖" }
-  ]},
-  { city:"惠州", name:"惠州市第一中学", wechat:"惠州一中", tag:"惠州龙头", won:[
-    { id:"hz-shuhua", t:"惠州市中小学生书画作品交流展示 一等奖（绘画）" },
-    { t:"日中青少年书画交流大赛 九州国立博物馆长赏（书法）" }
-  ]}
-];
+        /* 名校战绩只保留深圳本地学校，外市战绩不再展示 */
+].filter(function(b){ return /深圳|宝安/.test(b.city||""); });
 
 /* ============================================================
    教研前沿 · 论文 / 课题（2026 实时追踪）
@@ -3553,7 +3489,7 @@ var PEOPLE = [
   }
 
   /* ---------- 渲染卡片 ---------- */
-  var state = { tier: "all", aud: "教师", q: "", status: "all", effort: "all", sort: "value", mode: "tch", rec: false, wl: false, art: true, hideDone: true, resKind: "论文", resScope: "国内", resCat: null };
+  var state = { tier: "all", aud: "", q: "", status: "all", effort: "all", sort: "honor", mode: "all", rec: false, wl: false, art: true, hideDone: true, resKind: "论文", resScope: "国内", resCat: null };
   function isWL(a) { return /白名单/.test(a.auth || "") || /白名单/.test(a.orgType || ""); }
   function isArt(x) {
     if (!x) return false;
@@ -3597,6 +3533,7 @@ var PEOPLE = [
     /* 只列现在能报的：外市专属 / 本届已结束 / 已截稿 / 日期已过 一律不列，也不藏在「点开可看」里 */
     list = list.filter(isActionable);
     list.sort(function (x, y) {
+      if (state.sort === "honor") return (honorOf(y).score - honorOf(x).score) || (priorityScore(y) - priorityScore(x));
       if (state.sort === "value") return priorityScore(y) - priorityScore(x);
       if (state.sort === "credit") return (y.credit || 0) - (x.credit || 0);
       if (state.sort === "proof") return ((y.schoolProof && y.schoolProof.count) || 0) - ((x.schoolProof && x.schoolProof.count) || 0);
@@ -3728,9 +3665,9 @@ var PEOPLE = [
     if (isEnded(a)) { toast("这项本届已结束 / 已截稿，不发邮件"); beep(400, .05); return; }
     if (!regionOf(a).can) { toast("这是外市赛事，深圳不可报"); beep(400, .05); return; }
     var to = resolveRecv(a);
-    if (!to) { toast("先在「我的资料」填收件 / 投稿邮箱"); openSettings(); return; }
+    if (!to) { toast("还没填收件邮箱：全文已备好，可复制发送；去「我的资料」填一次以后就不用再填"); }
     var subj = "[赛事报名] " + a.name + " - " + (prof.school || "") + " - " + (prof.name || "");
-    window.location.href = mailtoURL(to, subj, packText(a)); beep(880, .08);
+    openMailPreview(to || "", subj, packText(a), { title: "赛事投稿包" });
   }
 
   /* 从 subject 拆出多个可投类别，显示为标签 */
@@ -3804,7 +3741,17 @@ var PEOPLE = [
     var rg = regionOf(a);
     var rgTag = '<span class="badge" style="background:' + (rg.can ? "#2b6cb0" : "#b02a2a") + '">' + esc(rg.label) + "</span>";
 
+    var H = honorOf(a);
+    var honorBar = '<div class="honorbar">' +
+      '<span class="hb-lead">🏅 含金量</span>' +
+      '<span class="hb-stars">' + "★".repeat(Math.max(1, Math.min(5, H.stars))) + '</span>' +
+      '<span class="hb-badge">' + esc(H.badge) + '（' + esc(H.tier) + '）</span>' +
+      H.tags.map(function (x) { return '<span class="hb-tag">' + esc(x) + '</span>'; }).join("") +
+      '<span class="hb-why">💎 ' + esc(H.why) + '</span>' +
+      '</div>';
+
     return '<div class="card px" data-id="' + esc(a.id) + '">' +
+      honorBar +
       '<div class="row1">' +
         '<span class="badge ' + (TIER_CLS[a.tier] || "b-qu") + '">' + (TIER_TXT[a.tier] || a.tier) + "</span>" +
         rgTag + wlTag + trTag + audTag + applyTag + efTag + recTag + easyTag + mineTag + offTag +
@@ -4329,12 +4276,13 @@ var PEOPLE = [
     state.mode = mode;
     $$("#modeTabs .tab").forEach(function (x) { x.classList.remove("on"); });
     $("#modeTabs .tab[data-mode='" + mode + "']").classList.add("on");
-    if (mode === "tch") { state.aud = "教师"; $("#tabs").style.display = ""; }
+    if (mode === "all") { state.aud = ""; $("#tabs").style.display = ""; }
+    else if (mode === "tch") { state.aud = "教师"; $("#tabs").style.display = ""; }
     else if (mode === "stu") { state.aud = "学生"; $("#tabs").style.display = ""; }
     else { $("#tabs").style.display = "none"; }
     updateRecBtn();
     render(); beep(760, .05);
-    var fmap={tch:"tch",stu:"stu",nwl:"wl",gwl:"wl",res:"res",tools:"tools",people:"people"};
+    var fmap={all:"tch",tch:"tch",stu:"stu",nwl:"wl",gwl:"wl",res:"res",tools:"tools",people:"people"};
     if(fmap[mode] && typeof farmAuto==="function") farmAuto(fmap[mode]);
   }
   function updateRecBtn() {
@@ -4368,13 +4316,60 @@ var PEOPLE = [
     return "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
   }
   function firstEmail(str){ var m=(str||"").match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/); return m?m[0]:""; }
+  /* ---------- 统一「邮件预览弹窗」：任何环境都能弹出可见内容，不依赖 mailto 是否能唤起 App ---------- */
+  var _mailPreview = { to: "", subj: "", body: "" };
+  function openMailPreview(to, subj, body, opt) {
+    opt = opt || {};
+    _mailPreview = { to: to || "", subj: subj || "", body: body || "" };
+    var h = '<button class="btn sm close" data-close>关闭</button>';
+    h += "<h2>📧 邮件已备好 · " + esc(opt.title || "可直接发送 / 复制") + "</h2>";
+    h += '<div class="mini" style="margin:2px 0 8px">内容已生成在下面。<b>优先点「复制全文」</b>粘到微信 / 邮箱 / 群里发；如果你的设备装了邮件 App，也可以点「打开邮件 App 发送」。</div>';
+    h += '<div class="sec" style="margin-bottom:8px">' +
+      '<div class="mini"><b>收件人：</b>' + (to ? esc(to) : '<span style="color:#b02a2a">未填（去「我的资料」填默认收件邮箱，或复制全文自己发给对方）</span>') + '</div>' +
+      '<div class="mini" style="margin-top:3px"><b>主题：</b>' + esc(subj || "—") + '</div>' +
+      '</div>';
+    h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">' +
+      '<button class="btn blue" id="mpCopy">📋 复制全文</button>' +
+      (to ? '<button class="btn green" id="mpSend">✉️ 打开邮件 App 发送</button>' : '<button class="btn" id="mpGoSet">⚙️ 去填收件邮箱</button>') +
+      '<button class="btn gold sm" id="mpDl">⬇️ 下载 .txt</button>' +
+      '</div>';
+    h += '<textarea id="mpBox" style="width:100%;min-height:300px;font-size:12.5px;line-height:1.7;font-family:inherit">' + esc(body || "") + '</textarea>';
+    h += '<div class="mini" style="margin-top:6px">💡 正文可以直接在这里改，改完再复制。手机上如果点「打开邮件 App」没反应，说明设备没配邮件 App，用「复制全文」最稳。</div>';
+    $("#mailPreviewBody").innerHTML = h;
+    $("#mMailPreview").classList.add("on");
+    if (typeof beep === "function") beep(760, .06);
+    var getBody = function () { var b = $("#mpBox"); return b ? b.value : body; };
+    $("#mpCopy").addEventListener("click", function () {
+      var txt = getBody();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(function () { toast("已复制全文，去粘贴发送"); beep(1046, .08); })
+          .catch(function () { legacyCopy(txt); });
+      } else legacyCopy(txt);
+    });
+    function legacyCopy(txt) {
+      try { var b = $("#mpBox"); b.focus(); b.select(); document.execCommand("copy"); toast("已复制全文"); beep(1046, .08); }
+      catch (e) { toast("请长按/选中文本框手动复制"); }
+    }
+    if ($("#mpSend")) $("#mpSend").addEventListener("click", function () {
+      window.location.href = mailtoURL(to, subj || "", getBody()); beep(880, .08);
+      toast("已尝试唤起邮件 App；没弹出就用「复制全文」");
+    });
+    if ($("#mpGoSet")) $("#mpGoSet").addEventListener("click", function () { openSettings(); });
+    $("#mpDl").addEventListener("click", function () {
+      var b = new Blob([getBody()], { type: "text/plain;charset=utf-8" });
+      var u = URL.createObjectURL(b), el = document.createElement("a");
+      el.href = u; el.download = (subj || "邮件内容").replace(/[\\\/:*?"<>|]/g, "_").slice(0, 40) + ".txt";
+      el.click(); URL.revokeObjectURL(u); beep(880, .08); toast("已下载 .txt");
+    });
+  }
+
   function openMail(id){
     var a = (typeof ALL!=="undefined"?ALL:[]).filter(function(x){return x.id===id;})[0];
     if(!a) return;
     var to = firstEmail(toOf(a)) || "";
     var subj = "【投稿】" + a.name + "（截稿 " + fmtDate(a.deadline) + "）";
     var body = "老师好：\n\n拟投稿：" + a.name + "\n主办：" + (a.org||"") + "\n截稿：" + fmtDate(a.deadline) + "\n投到：" + toOf(a) + "\n官方：" + (a.url||"（见官方通知）") + "\n\n【需附材料】\n" + ((a.materials&&a.materials.length)?a.materials.map(function(m,i){return (i+1)+". "+m;}).join("\n"):"（见官方通知）") + "\n\n请附上常用投稿材料：报名表 / 作品高清图(JPG 2-5MB,≥300dpi) / 作者信息表。\n\n—— 来自「奖杯农场」一键投稿";
-    window.location.href = mailtoURL(to, subj, body); beep(880,.08);
+    openMailPreview(to || "", subj, body, { title: "投稿邮件" });
   }
   function openSettings() {
     var s = loadSet();
@@ -4432,16 +4427,16 @@ var PEOPLE = [
   function sendPackEmail(a) {
     var s = loadSet(); var to = resolveRecv(a);
     if (!$("#outBox") || $("#outBox").textContent.indexOf("投稿材料包") < 0) buildPack(a);
-    if (!to) { toast("先在「我的资料」填收件邮箱或投稿邮箱"); openSettings(); return; }
+    if (!to) { toast("还没填收件邮箱：全文已备好，可复制发送；去「我的资料」填一次以后就不用再填"); }
     var subj = "[赛事报名] " + a.name + " - " + (prof.school || "") + " - " + (prof.name || "");
     var body = ($("#outBox") ? $("#outBox").textContent : "");
-    window.location.href = mailtoURL(to, subj, body); beep(880, .08);
+    openMailPreview(to || "", subj, body, { title: "投稿材料包" });
   }
   function sendNoticeEmail(N, a) {
     var s = loadSet(); var to = s.recvMail;
-    if (!to) { toast("先在「我的资料」填默认收件邮箱"); openSettings(); return; }
+    if (!to) { toast("还没填收件邮箱：全文已备好，可复制发送；去「我的资料」填一次以后就不用再填"); }
     var subj = "[参赛通知] " + a.name + " - " + (s.school || "");
-    window.location.href = mailtoURL(to, subj, N.join("\n")); beep(880, .08);
+    openMailPreview(to || "", subj, N.join("\n"), { title: "学生参赛通知" });
   }
 
   /* ---------- 一键发邮箱 · 全站投稿提醒 ---------- */
@@ -4529,6 +4524,7 @@ var PEOPLE = [
     $("#mDigest").classList.add("on");
     $("#digestSend").addEventListener("click", function () {
       window.location.href = mailtoURL(to, subj, body); beep(880, .08);
+      toast("已尝试唤起邮件 App；若没弹出，请点「② 复制全文」粘贴发送");
     });
     $("#digestCopy").addEventListener("click", function () {
       try { navigator.clipboard.writeText(body); toast("已复制，去邮箱粘贴即可"); }
@@ -4538,13 +4534,11 @@ var PEOPLE = [
   function sendDigestEmail() {
     var s = loadSet();
     var to = s.recvMail;
-    if (!to) { toast("先在「我的资料」填默认收件邮箱"); openSettings(); return; }
+    if (!to) { toast("还没填收件邮箱：全文已备好，可复制发送；去「我的资料」填一次以后就不用再填"); }
     var body = buildDigestText();
     var subj = "星露奖杯农场 · 投稿提醒 " + digestDateStamp();
-    if (body.length > 1800) { openDigestModal(body, subj, to); return; }
-    window.location.href = mailtoURL(to, subj, body);
+    openMailPreview(to || "", subj, body, { title: "全站投稿提醒" });
     beep(880, .08);
-    toast("已打开你的邮箱，点「发送」即可");
   }
 
   /* ---------- 一键备料包 · 下载材料总包 ---------- */
@@ -4604,10 +4598,52 @@ var PEOPLE = [
       secs.join("\n") +
       "<hr><div class='meta'>本材料总包由「星露奖杯农场」一键生成，数据存你本机浏览器，不上传。</div>" +
       "</body></html>";
-    var b = new Blob([html], { type: "text/html;charset=utf-8" });
-    var u = URL.createObjectURL(b), el = document.createElement("a");
-    el.href = u; el.download = "星露奖杯农场_投稿材料总包_" + stamp + ".html"; el.click(); URL.revokeObjectURL(u);
-    beep(880, .08); toast("材料总包已下载（" + total + " 条）");
+    /* v42：改成一定看得见的备料包弹窗，下载降级为弹窗里的按钮 */
+    var plain = [];
+    plain.push("星露奖杯农场 · 投稿材料总包 " + stamp);
+    plain.push("申报人：" + (p.name || "＿＿＿") + "　单位：" + (p.school || "＿＿＿"));
+    plain.push("共 " + total + " 条仍可报名赛事（已截止 / 已结束 / 外市已剔除）");
+    plain.push("========================================");
+    groups.forEach(function (g) {
+      var items = ALL.filter(function (a) { return a.tier === g.t && isActionable(a); })
+        .sort(function (x, y) { return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline)); });
+      if (!items.length) return;
+      plain.push("");
+      plain.push("===== " + g.label + "（" + items.length + " 条）=====");
+      items.forEach(function (a) { plain.push(batchPackText(a, p)); plain.push(""); });
+    });
+    plain.push("※ 本包为材料草稿，请据实润色、本人签名 / 单位盖章后提交；官网登录、验证码、上传作品这步只能本人操作。");
+    var plainTxt = plain.join("\n");
+    var ph = '<button class="btn sm close" data-close>关闭</button>';
+    ph += "<h2>📦 备料包已生成 · 共 " + total + " 条仍可报</h2>";
+    ph += '<div class="mini" style="margin:2px 0 8px">按国 / 省 / 市 / 区列好了每条要交的材料。<b>可直接改下面框里的文字</b>，改完复制或下载；点「下载 .html」得到可打印的排版版。</div>';
+    ph += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">' +
+      '<button class="btn blue" id="pkCopy">📋 复制全文</button>' +
+      '<button class="btn green" id="pkDl">⬇️ 下载 .html（可打印）</button>' +
+      '<button class="btn gold sm" id="pkDlTxt">⬇️ 下载 .txt</button>' +
+      '<button class="btn" id="pkGoSet">⚙️ 去填我的资料</button>' +
+      '</div>';
+    ph += '<textarea id="packBox" style="width:100%;min-height:320px;font-size:12.5px;line-height:1.7;font-family:inherit">' + esc(plainTxt) + '</textarea>';
+    $("#packBody").innerHTML = ph;
+    $("#mPack").classList.add("on");
+    beep(880, .08); toast("备料包已生成（" + total + " 条）");
+    function pkDl(content, type, name) {
+      var b = new Blob([content], { type: type });
+      var u = URL.createObjectURL(b), el = document.createElement("a");
+      el.href = u; el.download = name; el.click(); URL.revokeObjectURL(u);
+      beep(880, .08); toast("已下载 " + name);
+    }
+    function pkCopy() {
+      var txt = $("#packBox").value;
+      function legacy() { try { $("#packBox").select(); document.execCommand("copy"); toast("已复制全文"); } catch (e) { toast("请长按选中文本框手动复制"); } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(function () { toast("已复制全文"); beep(1046, .08); }).catch(legacy);
+      } else legacy();
+    }
+    $("#pkCopy").addEventListener("click", pkCopy);
+    $("#pkDl").addEventListener("click", function () { pkDl(html, "text/html;charset=utf-8", "星露奖杯农场_投稿材料总包_" + stamp + ".html"); });
+    $("#pkDlTxt").addEventListener("click", function () { pkDl($("#packBox").value, "text/plain;charset=utf-8", "星露奖杯农场_投稿材料总包_" + stamp + ".txt"); });
+    $("#pkGoSet").addEventListener("click", openSettings);
   }
 
   /* ---------- 侧栏 ---------- */
@@ -4827,7 +4863,7 @@ var PEOPLE = [
       el.href = u; el.download = (prof.name || "投稿") + "_" + (a.short || a.name) + "_投稿包.txt";
       el.click(); URL.revokeObjectURL(u); beep(880, .08);
     });
-    $("#btnPrint").addEventListener("click", function () { window.print(); });
+    $("#btnPrint").addEventListener("click", function () { toast("正在调起打印；若没反应请改用「复制全文 / 下载 .txt」"); beep(760,.05); try { window.print(); } catch(e){} });
     $("#btnIcs").addEventListener("click", function () { downloadICS(a); });
     $("#btnMail").addEventListener("click", function () { sendPackEmail(a); });
     beep(700, .07);
@@ -4842,32 +4878,34 @@ var PEOPLE = [
     var d = daysTo(a.deadline);
     var pUrl = a.portal && /^https?:\/\//.test(a.portal) ? a.portal : "";
 
+    var H = honorOf(a);
     var N = [];
-    N.push("【" + a.name + "】参赛通知");
+    N.push("同学们好！");
     N.push("");
-    N.push("各位老师、家长：");
-    N.push("本赛事为中小学生赛道（主办：" + a.org + "，级别：" + (TIER_TXT[a.tier] || a.tier) + "），由教师组织选送，学生创作、教师计指导成果。有意参赛者请按下方步骤提交作品。");
+    N.push("先说为什么值得参加：「" + a.name + "」是" + (TIER_TXT[a.tier] || a.tier) + "官方赛事（" + a.org + "主办），" + H.badge + "、" + H.stars + "★" + (H.tags.length ? "，" + H.tags.join(" / ") : "") + "。获奖证书学校认，能记进综合素质评价，评优、特长生材料都用得上。");
+    N.push("💎 " + H.why);
     N.push("");
-    N.push("📌 参赛对象：" + (/白名单|中小/.test(a.orgType + a.org) ? "全国 / 全省中小学生（分小学、初中、高中组）" : "本校在校学生"));
-    N.push("📌 作品类别：" + (a.subject.split("·")[0] || "绘画 / 书法 / 摄影"));
-    N.push("📌 截稿时间：" + fmtDate(a.deadline) + (d != null && d > 0 ? ("（还剩 " + d + " 天）") : ""));
-    N.push("📌 报名 / 提交方式：" + (a.portal || "由学校统一组织报名（详见下方）"));
+    N.push("想参加的同学，看好下面几项就行：");
     N.push("");
-    N.push("📎 需要交的材料：");
+    N.push("🏅 含金量：" + H.badge + "（" + H.tier + "，" + H.stars + "★）");
+    N.push("👥 谁能报：" + (/白名单|中小/.test(a.orgType + a.org) ? "全国 / 全省中小学生（分小学、初中、高中组）" : "本校在校学生"));
+    N.push("🖌 画什么：" + (a.subject.split("·")[0] || "绘画 / 书法 / 摄影"));
+    N.push("⏰ 什么时候交：" + fmtDate(a.deadline) + (d != null && d > 0 ? ("（还剩 " + d + " 天）") : "（等官方通知，先准备着）"));
+    N.push("📮 怎么报名：" + (a.portal || "课后跟我说，我统一带大家报送"));
+    N.push("");
+    N.push("📎 要交的东西：");
     (a.materials || []).forEach(function (m, i) { N.push("　" + (i + 1) + ". " + m); });
     N.push("");
-    N.push("⚠️ 重要提醒：");
-    N.push("　▸ 作品须学生本人原创，禁止代笔，初评会查重；");
-    N.push("　▸ 建议提前 3 天收齐学生作品，留出盖章、扫描、上传时间；");
-    N.push("　▸ 作品卡上的「创作说明」请写学生自己想说的话。");
+    N.push("⚠️ 三点提醒：作品要自己画、自己写，不能代笔，初评会查；创作说明用你自己的话；提前几天交，好留出盖章、拍照的时间。");
     N.push("");
-    N.push("指导教师：" + (prof.school || "本校") + "　（联系方式见班级群）");
-    N.push("—— 本通知由「星露奖杯农场」一键生成");
+    N.push("想参加就课后告诉我，我帮大家统一准备和报送，有问题随时来问。");
+    N.push("");
+    N.push("—— " + ((loadSet().sign && loadSet().sign.trim()) || (prof.name && prof.name.trim()) || "美术老师"));
 
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>学生参赛通知 · " + esc(a.short || a.name) + "</h2>";
-    h += '<div class="mini" style="margin-top:4px">本赛事为<b>中小学生赛道</b>：学生创作，教师组织选送并计<b>指导成果</b>。下面这份是按教师口吻整理的参赛说明草稿，供你参考 / 改写后使用。</div>';
-    h += '<div class="sec"><h5>① 可直接发的通知</h5><div class="notice-box" id="noticeText">' + esc(N.join("\n")) + "</div>" +
+    h += '<div class="mini" style="margin-top:4px">这是一条<b>直接发给学生 / 家长群</b>的通知：开头先讲含金量，再讲怎么参加。复制即可发。</div>';
+    h += '<div class="sec"><h5>① 直接发群里的通知（含金量已放最前）</h5><div class="notice-box" id="noticeText">' + esc(N.join("\n")) + "</div>" +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">' +
       '<button class="btn gold sm" id="btnCopyNotice">复制通知</button>' +
       '<button class="btn blue sm" id="btnDlNotice">下载 .txt</button>' +
@@ -4897,7 +4935,7 @@ var PEOPLE = [
       el.href = u; el.download = (a.short || a.name).replace(/[\/\\:*?"<>|]/g, "") + "_学生参赛通知.txt";
       el.click(); URL.revokeObjectURL(u); beep(880, .08);
     });
-    $("#btnPrintNotice").addEventListener("click", function () { window.print(); });
+    $("#btnPrintNotice").addEventListener("click", function () { toast("正在调起打印；若没反应请改用「复制通知 / 下载 .txt」"); beep(760,.05); try { window.print(); } catch(e){} });
     $("#btnMailNotice").addEventListener("click", function () { sendNoticeEmail(N, a); });
     beep(700, .07);
   }
@@ -4950,57 +4988,63 @@ var PEOPLE = [
     beep(700, .07);
   }
 
+  /* ---------- 含金量（学生/家长最该先看到的东西） ---------- */
+  function honorOf(a) {
+    var lvl = { "区": 1, "市": 2, "省": 3, "国": 4 }[a.tier] || 1;
+    var stars = (a.aud === "学生" && a.rate) ? a.rate.value : (a.credit || 3);
+    var tags = [];
+    if (isWL(a)) tags.push("教育部 / 省白名单");
+    if (a.official) tags.push("官方已发文");
+    var why = (a.win && a.win[0]) || (a.schoolProof && a.schoolProof.note) || adviceOf(a);
+    var badge = lvl >= 4 ? "🏆 国家级·含金量顶格" : (lvl === 3 ? "🥇 省级·含金量高" : (lvl === 2 ? "🥈 市级·学校认" : "📗 区级·入门练手"));
+    return { lvl: lvl, stars: stars, tier: TIER_TXT[a.tier] || a.tier || "", tags: tags, why: why, badge: badge,
+             score: lvl * 10 + stars * 2 + (isWL(a) ? 4 : 0) };
+  }
+
   /* ---------- 学生赛 · 一键生成文案（最近可投，整份导出） ---------- */
   function studentCopyText() {
-    var list = ALL.filter(function (a) {
-      if (a.aud !== "学生") return false;
-      if (a.phase === "已结束") return false;
-      var d = daysTo(a.deadline);
-      if (a.phase === "待发布" || a.phase === "进行中") return true;
-      return d != null && d > 0;
-    }).sort(function (x, y) { return (daysTo(x.deadline) == null ? 9999 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 9999 : daysTo(y.deadline)); });
+    /* 只列「现在真能报」的学生赛，并按含金量从高到低排（含金量放最前） */
+    var list = ALL.filter(function (a) { return a.aud === "学生" && isActionable(a); })
+      .sort(function (x, y) { return honorOf(y).score - honorOf(x).score; });
 
     var S = loadSet();
-    var sign = (S.sign && S.sign.trim()) || (S.name && S.name.trim()) || "你们的美术老师";
+    var sign = (S.sign && S.sign.trim()) || (S.name && S.name.trim()) || "美术老师";
     var L = [];
-    L.push("【备赛清单 · 教师自用草稿】");
+    L.push("同学们好！");
     L.push("");
-    L.push("以下为近期可投的中小学生美术赛事，供你组织学生选送时参考；挑感兴趣的，可让学生课后向我报名 / 交作品，我统一指导、报送。");
+    L.push("先说最要紧的：下面这些比赛都是教育部门 / 官方主办的正规赛事，获奖证书能记进综合素质评价，评优、评三好、特长生材料都用得上，含金量高、学校认。我按「含金量从高到低」给大家排好了，★ 越多越值钱，标「🏆」的最值得优先冲。");
     L.push("");
-    L.push("（共 " + list.length + " 项，按截止时间从近到远）");
+    L.push("📊 含金量怎么排：国家级 / 教育部白名单 ＞ 省级 ＞ 市级 ＞ 区级；同一级别里获奖面大、学校往年拿过奖的排更前。下面共 " + list.length + " 项，都是现在能报的。");
     L.push("");
+    L.push("————————————————");
 
     list.forEach(function (a, idx) {
-      var d = daysTo(a.deadline);
+      var H = honorOf(a), d = daysTo(a.deadline);
       var pUrl = a.portal && /^https?:\/\//.test(a.portal) ? a.portal : "";
-      L.push("📌 " + (idx + 1) + ". " + a.name + "（" + (TIER_TXT[a.tier] || a.tier) + "）");
-      L.push("　🖌 比什么：" + (a.subject || "绘画 / 书法 / 摄影等") + (a.short && a.short !== a.name ? "（" + a.short + "）" : ""));
-      L.push("　⏰ 截稿：" + fmtDate(a.deadline) + (d != null && d > 0 ? ("（还剩 " + d + " 天，别拖）") : (d == null ? "（具体时间等官方公布，先准备着）" : "（已经很临近了，想投要抓紧）")));
+      L.push("📌 " + (idx + 1) + ". " + a.name);
+      L.push("　🏅 含金量：" + H.badge + "（" + H.tier + "，" + H.stars + "★）" + (H.tags.length ? " · " + H.tags.join(" / ") : ""));
+      L.push("　💎 值在哪：" + H.why);
+      L.push("　🖌 比什么：" + (a.subject || "绘画 / 书法 / 摄影等"));
       L.push("　📮 怎么交：" + (a.portal || "由学校统一组织报名") + "（主办：" + a.org + "）");
-      if (pUrl && pUrl !== a.url) L.push("　🔗 投稿入口：" + pUrl);
+      L.push("　⏰ 截稿：" + fmtDate(a.deadline) + (d != null && d > 0 ? ("，还剩 " + d + " 天，别拖") : "，具体时间等官方通知，先准备着"));
+      if (pUrl && pUrl !== a.url) L.push("　🔗 入口：" + pUrl);
       else if (a.url) L.push("　🔗 官网：" + a.url);
-      if (a.rate && a.rate.value >= 4 && a.rate.ease >= 4) L.push("　💡 老师建议：这项含金量高又好参加，可以优先考虑。");
-      else if (a.rate) L.push("　💡 老师建议：含金量 " + a.rate.value + "★ / 好参加 " + a.rate.ease + "★（满分 5），有兴趣就试试。");
       L.push("");
     });
 
-    L.push("⚠️ 几点提醒：");
-    L.push("　▸ 作品必须是你自己画的，不能代笔，初评会查重；");
-    L.push("　▸ 建议提前 3 天收齐学生作品，好留出盖章、扫描、上传的时间；");
-    L.push("　▸ 创作说明写你自己的话，别让家长代写。");
-    L.push("");
-    L.push("确认选送后按步骤报送即可，期待学生作品亮相 🎨（也可让学生走站点「📤 学生作品投稿」自助通道，不用来找你）。");
+    L.push("————————————————");
+    L.push("想参加的同学，挑 1–2 个感兴趣的，课后跟我说一声就行，我带大家准备作品、盖章、统一报送，不用家长另外跑。");
+    L.push("作品一定要自己画、自己写，不能代笔，初评会查；创作说明也用你自己的话写。有不清楚的随时来问我。");
     L.push("");
     L.push("—— " + sign);
-    L.push("（数据 " + DATA_VERSION.split("·")[0].trim() + "）");
     return L.join("\n");
   }
 
   function openStuCopy() {
     var txt = studentCopyText();
     var h = '<button class="btn sm close" data-close>关闭</button>';
-    h += "<h2>📋 赛事通知文案（教师备赛草稿）</h2>";
-    h += '<div class="mini" style="margin-top:4px">下面是<b>最近可投</b>的中小学生官方赛事，按<b>教师发通知</b>的口吻整理好（开头、要点、落款）。这是给你<b>自己备赛 / 起草通知</b>用的草稿，落款默认用「我的资料」里填的签名，可按需改写后再发。</div>';
+    h += "<h2>📱 发给学生的参赛通知（直接发班级群）</h2>";
+    h += '<div class="mini" style="margin-top:4px">这就是一条<b>你直接发给学生 / 家长群</b>的消息：开头先讲<b>含金量</b>和为什么值得参加，再按含金量从高到低列比赛、怎么交、什么时候截稿，最后落款用「我的资料」里的签名。复制即可发，落款可在「我的资料」里改。</div>';
     h += '<div class="sec"><h5>① 整份文案（可直接复制 / 下载）</h5>' +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px">' +
       '<button class="btn gold sm" id="btnCopyStu">复制全文</button>' +
@@ -5009,7 +5053,7 @@ var PEOPLE = [
       '<button class="btn green sm" id="btnPrintStu">打印</button>' +
       "</div>" +
       '<pre class="out" id="stuCopyBox">' + esc(txt) + "</pre></div>";
-    h += '<div class="mini">只显示「进行中 / 待发布 / 未截止」的赛事；已结束的不列。想看某条更细的硬性要求，去卡片点「详情」。</div>';
+    h += '<div class="mini">只列<b>深圳可报、且本届未截止</b>的赛事，按含金量排序；外市专属、已结束的一律不列。</div>';
     $("#stuCopyBody").innerHTML = h;
     $("#mStuCopy").classList.add("on");
 
@@ -5031,11 +5075,11 @@ var PEOPLE = [
       el.href = u; el.download = "最近学生可投赛事_文案_" + new Date().toISOString().slice(0, 10) + ".txt";
       el.click(); URL.revokeObjectURL(u); beep(880, .08);
     });
-    $("#btnPrintStu").addEventListener("click", function () { window.print(); });
+    $("#btnPrintStu").addEventListener("click", function () { toast("正在调起打印；若没反应请改用「复制全文 / 下载 .txt」"); beep(760,.05); try { window.print(); } catch(e){} });
     $("#btnMailStu").addEventListener("click", function () {
-      var s = loadSet(); if (!s.recvMail) { toast("先在「我的资料」填默认收件邮箱"); openSettings(); return; }
+      var s = loadSet(); if (!s.recvMail) { toast("还没填收件邮箱：全文已备好，可复制发送"); }
       var subj = "[学生赛一览] 最近可投官方赛事 · " + (s.school || "");
-      window.location.href = mailtoURL(s.recvMail, subj, txt); beep(880, .08);
+      openMailPreview(s.recvMail || "", subj, txt, { title: "发给学生的参赛通知" });
     });
     beep(700, .07);
   }
@@ -5078,7 +5122,7 @@ var PEOPLE = [
         '<button class="btn green sm" data-act="detail" data-id="' + esc(a.id) + '">看比赛</button></div>';
     });
     h += "</div>";
-    h += '<div class="mini" style="margin-top:4px">普通老师最容易出成果的打法：<b>国/省白名单（希望颂、全国中小学生绘画书法）冲「含金量」+ 本市书画/书法专项赛（羊城美育节/美润鹏城/规范汉字书写/各地书画评选）刷「好参加」的量</b>。三年一届的省艺术展演（含金量顶格但极难）留给尖子。</div>';
+    h += '<div class="mini" style="margin-top:4px">普通老师最容易出成果的打法：<b>国/省白名单（希望颂、全国中小学生绘画书法）冲「含金量」+ 本市书画/书法专项赛（美润鹏城 / 深圳规范汉字书写 / 宝安美术成果征集）刷「好参加」的量</b>。三年一届的省艺术展演（含金量顶格但极难）留给尖子。</div>';
     h += "</div>";
     $("#bigBody").innerHTML = h;
   }
@@ -5729,10 +5773,10 @@ var PEOPLE = [
   if ($("#wlGd")) $("#wlGd").addEventListener("click", function () { window.open("https://edu.gd.gov.cn/ztzlnew/xxl/tzgg/content/post_4856962.html", "_blank"); });
 
   $("#btnReset").addEventListener("click", function () {
-    state = { tier: "all", aud: state.aud, q: "", status: "all", sort: "deadline", rec: false };
+    state = { tier: "all", aud: state.aud, q: "", status: "all", effort: "all", sort: "honor", mode: state.mode, rec: false, wl: false, art: true, hideDone: true, resKind: "论文", resScope: "国内", resCat: null };
     $$("#tabs .tab").forEach(function (x) { x.classList.remove("on"); });
     $("#tabs .tab[data-tier='all']").classList.add("on");
-    $("#q").value = ""; $("#fStatus").value = "all"; $("#fSort").value = "deadline";
+    $("#q").value = ""; $("#fStatus").value = "all"; $("#fSort").value = "honor";
     syncStatusTags();
     updateRecBtn();
     render(); toast("已重置筛选"); beep(500, .06);
@@ -5749,7 +5793,7 @@ var PEOPLE = [
     var self = this;
     var rs = $("#refreshStatus");
     self.textContent = "刷新中…";
-    if (rs) { rs.className = "tag spin"; rs.textContent = "正在拉取最新数据…"; }
+    if (rs) { rs.className = "tag st-status spin"; rs.textContent = "正在拉取最新数据…"; }
     var S = loadSet();
     var sources = [
       (S.updateUrl && S.updateUrl.trim()) ? S.updateUrl.trim() : null,
@@ -5759,9 +5803,9 @@ var PEOPLE = [
     ].filter(Boolean);
     function tryNext(i) {
       if (i >= sources.length) {
-        self.textContent = "刷新";
+        self.textContent = "🔄 检查更新";
         $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false }) + "·失败";
-        if (rs) { rs.className = "tag"; rs.textContent = "⚠️ 联网失败·仍用本地 " + DATA_VERSION.split("·")[0].trim(); }
+        if (rs) { rs.className = "tag st-status"; rs.textContent = "⚠️ 联网失败·仍用本地 " + DATA_VERSION.split("·")[0].trim(); }
         toast("联网更新失败（网络受限）· 仍用本地内置 " + DATA_VERSION.split("·")[0].trim() + "，联网后可再点刷新");
         return;
       }
@@ -5770,9 +5814,9 @@ var PEOPLE = [
           var got = new Function(txt + "\n;return {AWARDS:typeof AWARDS!=='undefined'?AWARDS:null,WHITELIST:typeof WHITELIST!=='undefined'?WHITELIST:null,BIG_SCHOOLS:typeof BIG_SCHOOLS!=='undefined'?BIG_SCHOOLS:null,RES:typeof RES!=='undefined'?RES:null,TOOLS:typeof TOOLS!=='undefined'?TOOLS:null,PEOPLE:typeof PEOPLE!=='undefined'?PEOPLE:null,DATA_VERSION:typeof DATA_VERSION!=='undefined'?DATA_VERSION:null};")();
           if (!got.DATA_VERSION) throw new Error("远程文件不含数据");
           if (verKey(got.DATA_VERSION) <= verKey(DATA_VERSION)) {
-            self.textContent = "刷新";
+            self.textContent = "🔄 检查更新";
             $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-            if (rs) { rs.className = "tag"; rs.textContent = "✅ 已是最新 " + DATA_VERSION.split("·")[0].trim(); }
+            if (rs) { rs.className = "tag st-status"; rs.textContent = "✅ 已是最新 " + DATA_VERSION.split("·")[0].trim(); }
             toast("已是最新（本地 " + DATA_VERSION.split("·")[0].trim() + "，无需更新）");
             return;
           }
@@ -5785,8 +5829,8 @@ var PEOPLE = [
           render(); renderSide();
           $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
           $("#verTag").textContent = "数据 " + got.DATA_VERSION.split("·")[0].trim();
-          self.textContent = "刷新";
-          if (rs) { rs.className = "tag"; rs.textContent = "✅ 已更新 " + got.DATA_VERSION.split("·")[0].trim(); }
+          self.textContent = "🔄 检查更新";
+          if (rs) { rs.className = "tag st-status"; rs.textContent = "✅ 已更新 " + got.DATA_VERSION.split("·")[0].trim(); }
           toast("✅ 已更新到新版本：" + got.DATA_VERSION.split("·")[0].trim());
           beep(1046, .07); setTimeout(function () { beep(1318, .07); }, 80);
         })
@@ -5879,277 +5923,323 @@ var PEOPLE = [
 
 </script>
 <script>
-function openGlobalMind(){
-  var data=(typeof RES!=='undefined')?RES:[];
-  var tm={};
-  data.forEach(function(r){(r.tags||[]).forEach(function(t){(tm[t]=tm[t]||[]).push(r);});});
-  var themes=Object.keys(tm).map(function(k){return{name:k,n:tm[k].length,items:tm[k]};}).sort(function(a,b){return b.n-a.n;}).slice(0,12);
-  var box=document.getElementById('globalMindBody');
-  var W=760,H=430,cx=W/2,cy=H/2;
-  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function drawOverview(){
-    var svg='<svg viewBox="0 0 '+W+' '+H+'" class="mm-svg" style="width:100%;max-width:'+W+'px">';
-    svg+='<circle cx="'+cx+'" cy="'+cy+'" r="48" fill="#7a5230"/><text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:bold">教研前沿</text>';
-    var N=themes.length,R=162;
-    themes.forEach(function(th,i){
-      var ang=-Math.PI/2+i*2*Math.PI/N;
-      var x=cx+Math.cos(ang)*R,y=cy+Math.sin(ang)*R;
-      svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="#b8936a" stroke-width="2"/>';
-      svg+='<g class="mm-theme" data-theme="'+esc(th.name)+'" style="cursor:pointer"><rect x="'+(x-64)+'" y="'+(y-17)+'" width="128" height="34" rx="17" fill="#fff3d6" stroke="#7a5230" stroke-width="2"/><text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" style="font-size:12.5px;fill:#3b2412">'+esc(th.name)+' ('+th.n+')</text></g>';
-    });
-    svg+='</svg>';
-    box.innerHTML='<div class="mini" style="margin-bottom:6px">点击任意 <b>主题</b> 下钻查看该方向的全部文献 ↓</div><div class="mm-chart">'+svg+'</div><div id="mmList"></div>';
-    box.querySelectorAll('.mm-theme').forEach(function(g){g.addEventListener('click',function(){drawTheme(g.getAttribute('data-theme'));});});
-  }
-  function drawTheme(name){
-    var th=themes.filter(function(t){return t.name===name;})[0]; if(!th)return;
-    var items=th.items.slice(0,14);
-    var svg='<svg viewBox="0 0 '+W+' '+H+'" class="mm-svg" style="width:100%;max-width:'+W+'px">';
-    svg+='<g class="mm-back" data-back style="cursor:pointer"><rect x="12" y="12" width="74" height="30" rx="15" fill="#7a5230"/><text x="49" y="32" text-anchor="middle" fill="#fff" style="font-size:12.5px">← 返回</text></g>';
-    svg+='<circle cx="120" cy="'+cy+'" r="42" fill="#7a5230"/><text x="120" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" style="font-size:13px;font-weight:bold">'+esc(name)+'</text>';
-    items.forEach(function(r,i){
-      var y=44+i*27;
-      svg+='<line x1="162" y1="'+cy+'" x2="205" y2="'+y+'" stroke="#b8936a" stroke-width="2"/>';
-      var t=(r.title.length>48?r.title.slice(0,48)+'…':r.title);
-      svg+='<g class="mm-leaf" data-id="'+esc(r.id)+'" style="cursor:pointer"><rect x="205" y="'+(y-13)+'" width="535" height="26" rx="8" fill="#fff" stroke="#8a5fb0" stroke-width="2"/><text x="215" y="'+(y+4)+'" style="font-size:11.5px;fill:#3b2412">'+esc(t)+'</text></g>';
-    });
-    svg+='</svg>';
-    box.innerHTML='<div class="mini" style="margin:4px 0">「'+esc(name)+'」共 <b>'+th.items.length+'</b> 条 · 点击右侧文献查看详情 ↓</div><div class="mm-chart">'+svg+'</div><div id="mmList"></div>';
-    var bk=box.querySelector('[data-back]'); if(bk)bk.addEventListener('click',drawOverview);
-    box.querySelectorAll('.mm-leaf').forEach(function(g){g.addEventListener('click',function(){if(typeof openResMind==='function')openResMind(g.getAttribute('data-id'));});});
-  }
-  drawOverview();
-  var m=document.getElementById('mGlobalMind'); if(m)m.classList.add('on');
-  if(typeof beep==='function')beep(660,.05);
-  if(typeof toast==='function')toast('🧠 全局思维导图 · 点主题下钻');
+/* ============================================================
+   奖杯农场 · 植物大战僵尸式（第三块 · 自洽，不依赖主程序局部变量）
+   核心：我在网站里「投得多」→ 这里「长得壮」
+   ============================================================ */
+var F$ = function (s, r) { return (r || document).querySelector(s); };
+var F$$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+function fLoad(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+function fSave(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
+function fEsc(s) { return (s == null ? "" : String(s)).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function fToast(msg) {
+  var el = document.getElementById("toast"); if (!el) return;
+  el.textContent = msg; el.classList.add("on");
+  clearTimeout(window.__ftt); window.__ftt = setTimeout(function () { el.classList.remove("on"); }, 1900);
 }
-(function(){
-  var b=document.createElement('button');
-  b.id='btnGlobalMind'; b.textContent='🧠 全局图谱';
-  b.style.cssText='position:fixed;right:16px;bottom:16px;z-index:45;background:#7a5230;color:#fff;border:3px solid #e0a01c;padding:10px 15px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.3);border-radius:12px;font-family:inherit';
-  b.addEventListener('click',function(){openGlobalMind();});
-  document.body.appendChild(b);
-  document.addEventListener('click',function(e){
-    var t=e.target.closest&&e.target.closest('.btn,.tab,.tag,[data-act],.farm-plot,.card');
-    if(!t) return;
-    if(typeof beep==='function') beep(820,.035,'square');
-    t.style.transition='transform .04s ease'; t.style.transform='scale(.93) translateY(2px)';
-    setTimeout(function(){if(t){t.style.transform='';}},110);
-  });
-})();
+function fBeep(f, d, type) {
+  try {
+    var C = window.AudioContext || window.webkitAudioContext; if (!C) return;
+    if (!window.__factx) window.__factx = new C();
+    var ac = window.__factx; if (ac.state === "suspended") ac.resume();
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.type = type || "sine"; o.frequency.value = f || 660;
+    g.gain.setValueAtTime(.07, ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + (d || .08));
+    o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + (d || .08));
+  } catch (e) { }
+}
+function fVib(ms) { try { if (navigator.vibrate) navigator.vibrate(ms || 18); } catch (e) { } }
 
-/* ===================== 我的农场 · 分模块浇水成长（生动 + 连下方内容） ===================== */
-var FARM_MODS = [
-  {id:"tch", name:"教师赛事", emoji:"👩‍🏫", mode:"tch"},
-  {id:"stu", name:"学生赛事", emoji:"🎨", mode:"stu"},
-  {id:"wl",  name:"官方白名单", emoji:"📋", mode:"nwl"},
-  {id:"res", name:"教研前沿", emoji:"📚", mode:"res"},
-  {id:"tools",name:"工具箱", emoji:"🛠️", mode:"tools"},
-  {id:"people",name:"评审专家", emoji:"👤", mode:"people"}
-];
-var FARM_STAGES = ["🟫","🌰","🌱","🌿","🌺","🍎","🏆"];
-var FARM_STAGE_NAME = ["荒地","种子","发芽","幼苗","开花","结果","丰收"];
+/* ---------- 农场繁荣度（保留全局符号，供主程序 farmAuto 调用） ---------- */
 var LS_FARM = "hf_farm_v1";
-function farmState(){
-  var s = load(LS_FARM, {});
-  FARM_MODS.forEach(function(m){ if(typeof s[m.id]!=="number") s[m.id]=0; });
+var FARM_MODS = [
+  { id: "tch", name: "教师赛事", emoji: "👩‍🏫", mode: "tch" },
+  { id: "stu", name: "学生赛事", emoji: "🎨", mode: "stu" },
+  { id: "wl", name: "官方白名单", emoji: "📋", mode: "nwl" },
+  { id: "res", name: "教研前沿", emoji: "📚", mode: "res" },
+  { id: "tools", name: "工具箱", emoji: "🛠️", mode: "tools" },
+  { id: "people", name: "评审专家", emoji: "👤", mode: "people" }
+];
+var FARM_STAGES = ["🟫", "🌰", "🌱", "🌿", "🌺", "🍎", "🏆"];
+var FARM_STAGE_NAME = ["荒地", "种子", "发芽", "幼苗", "开花", "结果", "丰收"];
+function farmState() {
+  var s = fLoad(LS_FARM, {});
+  FARM_MODS.forEach(function (m) { if (typeof s[m.id] !== "number") s[m.id] = 0; });
   return s;
 }
-function farmGrow(mod, by){
+function farmGrow(mod, by) {
+  var s = farmState(); s[mod] = Math.min(6, (s[mod] || 0) + (by || 1)); fSave(LS_FARM, s); return s[mod];
+}
+function farmAuto(mod) {
+  var before = farmState()[mod] || 0; if (before >= 6) return;
+  var g = farmGrow(mod, 1);
+  var nm = (FARM_MODS.filter(function (x) { return x.id === mod; })[0] || {}).name || mod;
+  fToast("🌱 " + nm + " 农场 +1 成长 → " + FARM_STAGE_NAME[g]);
+}
+function farmLevel() {
   var s = farmState();
-  s[mod] = Math.min(6, (s[mod]||0) + (by||1));
-  save(LS_FARM, s); return s[mod];
+  var total = FARM_MODS.reduce(function (a, m) { return a + (s[m.id] || 0); }, 0);
+  var max = FARM_MODS.length * 6;
+  var lv = Math.min(5, Math.floor(total / Math.max(1, (max / 5))));
+  return { total: total, max: max, lv: lv, name: ["荒芜", "萌芽", "生机", "繁茂", "丰收在望", "硕果累累"][lv] };
 }
-function farmAuto(mod){
-  var before = farmState()[mod]||0;
-  if(before>=6) return;
-  var g = farmGrow(mod,1);
-  var nm = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{}).name||mod;
-  toast("🌱 "+nm+" 农场 +1 成长 → "+FARM_STAGE_NAME[g]);
-}
-function farmLevel(){
-  var s = farmState();
-  var total = FARM_MODS.reduce(function(a,m){return a+(s[m.id]||0);},0);
-  var max = FARM_MODS.length*6;
-  var lv = Math.min(5, Math.floor(total/Math.max(1,(max/5))));
-  return {total:total, max:max, lv:lv, name:["荒芜","萌芽","生机","繁茂","丰收在望","硕果累累"][lv]};
-}
-function farmJump(mod){
-  var m = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{});
-  if(m.mode && typeof setMode==="function") setMode(m.mode);
-  ["mFarm","mFarmHome","mFarmGame"].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove("on"); });
-  if(typeof beep==="function") beep(700,.06);
-}
-function openFarm(){
-  var s = farmState(); var L = farmLevel();
-  var h = '';
-  h += '<h3 style="margin:0 0 2px">🌱 我的农场</h3>';
-  h += '<div class="farm-meter">农场繁荣度 <b style="color:#4f9d3a">'+L.name+'</b>'+
-       ' <span class="bar"><i style="width:'+Math.round(L.total/L.max*100)+'%"></i></span>'+
-       ' <span class="mini">'+L.total+'/'+L.max+'</span></div>';
-  h += '<div class="farm-grid">';
-  FARM_MODS.forEach(function(m){
-    var g = s[m.id]||0;
-    h += '<div class="farm-plot" data-jump="'+m.id+'">'+
-      '<div class="splash">💧</div>'+
-      '<div class="plant">'+FARM_STAGES[g]+'</div>'+
-      '<div class="pname">'+m.emoji+' '+m.name+'</div>'+
-      '<div class="pstage">'+FARM_STAGE_NAME[g]+' <span class="mini">（点地块直达板块）</span></div>'+
-      '<div class="pbar"><i style="width:'+Math.round(g/6*100)+'%"></i></div>'+
-      '<button class="btn green" data-water="'+m.id+'">💧 浇水 +1</button>'+
-      '</div>';
-  });
-  h += '</div>';
-  h += '<div class="farm-legend">越用越旺：你每打开 / 使用对应板块，该模块自动 +1 成长；也可手动「浇水」。<b>点任意地块直接跳到下方对应板块</b>。6 级封顶 🏆 丰收。</div>';
-  $("#farmBody").innerHTML = h;
-  $("#mFarm").classList.add("on");
-  $$("#farmBody [data-jump]").forEach(function(p){
-    p.addEventListener("click", function(e){ if(e.target.closest("[data-water]")) return; farmJump(p.getAttribute("data-jump")); });
-  });
-  $$("#farmBody [data-water]").forEach(function(b){
-    b.addEventListener("click", function(e){
-      e.stopPropagation();
-      var mod = b.getAttribute("data-water");
-      var g = farmGrow(mod, 1);
-      var plot = b.closest(".farm-plot");
-      plot.classList.add("grow","splash-on");
-      if(typeof beep==="function") beep(720,.08);
-      var nm = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{}).name||mod;
-      toast("💧 "+nm+" 浇水，成长 → "+FARM_STAGE_NAME[g]);
-      setTimeout(function(){ plot.classList.remove("grow","splash-on"); openFarm(); }, 650);
-    });
-  });
-}
-$("#btnFarm").addEventListener("click", openFarm);
 
-/* ---------- 农场主页（生动 + 连内容） ---------- */
-function farmRecommend(){
-  var out = [];
-  try {
-    var aws = (typeof AWARDS!=="undefined"?AWARDS:[]).filter(function(a){return a&&a.aud==="教师"&&typeof shouldJoin==="function"&&shouldJoin(a);});
-    aws.sort(function(x,y){ var tx={国:4,省:3,市:2,区:1}[x.tier]||0, ty={国:4,省:3,市:2,区:1}[y.tier]||0; return (ty*10+(y.credit||0))-(tx*10+(x.credit||0)); });
-    aws.slice(0,3).forEach(function(a){ out.push({mod:"tch", tag:(a.tier||""), name:(a.short||a.name||""), tip:"建议报·含金量"+(a.credit||0)}); });
-    var res = (typeof RES!=="undefined"?RES:[]).filter(function(r){return r&&typeof isArt==="function"&&isArt(r);});
-    res.slice(0,2).forEach(function(r){ out.push({mod:"res", tag:"论文", name:(r.title||r.name||"").slice(0,26), tip:"教研前沿可对标"}); });
-  } catch(e){}
-  return out;
+/* ---------- 真实「投得多」→ 阳光 / 初始作物等级 ---------- */
+/* 我在主站里加入的赛程、勾选的材料、战绩本记录，都算作已经投出去的「稿」 */
+function farmReality() {
+  var mine = fLoad("hf_mine_v1", []) || [];
+  var chk = fLoad("hf_checks_v1", {}) || {};
+  var checked = 0;
+  Object.keys(chk).forEach(function (k) { (chk[k] || []).forEach(function (v) { if (v) checked++; }); });
+  var proofs = fLoad("hf_proofs_v1", []) || [];
+  var farm = farmLevel();
+  var submits = mine.length + checked + proofs.length;
+  return {
+    mine: mine.length, checked: checked, proofs: proofs.length, farm: farm.total,
+    submits: submits,
+    /* 每投 1 份 → 阳光 +25；封顶 400，保证不投也能玩 */
+    sun: Math.min(400, 150 + submits * 25 + farm.total * 4),
+    /* 投得越多，开局作物等级越高（0~5） */
+    seedLv: Math.min(5, Math.floor(submits / 2) + (farm.total >= 12 ? 1 : 0))
+  };
 }
-function openFarmHome(){
-  var s = farmState(); var L = farmLevel();
-  var h = '<button class="btn sm close" data-close>关闭</button>';
-  h += '<h3 style="margin:0 0 2px">🌱 奖杯农场 · 主页</h3>';
-  h += '<div class="farm-meter">农场繁荣度 <b style="color:#4f9d3a">'+L.name+'</b> <span class="bar"><i style="width:'+Math.round(L.total/L.max*100)+'%"></i></span> <span class="mini">'+L.total+'/'+L.max+'</span> <button class="btn green sm" id="goGame">🍎 去收菜小游戏</button></div>';
-  h += '<div class="farm-anim"><div class="ground"></div><div class="ani a1">🐄</div><div class="ani a2">🐔</div><div class="ani a3">🐤</div><div class="ani a4">🦆</div></div>';
-  h += '<div class="farm-grid">';
-  FARM_MODS.forEach(function(m){
-    var g = s[m.id]||0;
-    h += '<div class="farm-plot" data-jump="'+m.id+'">'+
-      '<div class="splash">💧</div>'+
-      '<div class="plant">'+FARM_STAGES[g]+'</div>'+
-      '<div class="pname">'+m.emoji+' '+m.name+'</div>'+
-      '<div class="pstage">'+FARM_STAGE_NAME[g]+'</div>'+
-      '<div class="pbar"><i style="width:'+Math.round(g/6*100)+'%"></i></div>'+
-      '<button class="btn green" data-water="'+m.id+'">💧 浇水 +1</button>'+
-      '</div>';
-  });
-  h += '</div>';
-  var recs = farmRecommend();
-  if(recs.length){
-    h += '<div class="farm-rec"><h4>🌟 今日为你推荐（来自下方真实数据）</h4>';
-    recs.forEach(function(r){
-      h += '<div class="r-item"><span class="r-tag">'+(r.tag||"")+'</span><span>'+(typeof esc==="function"?esc(r.name):r.name)+' <span class="mini">'+r.tip+'</span></span><button class="btn blue sm" data-jump="'+r.mod+'">去看 →</button></div>';
-    });
-    h += '<div class="farm-legend">繁荣度越高，推荐越准——多用各板块就会长出来 🌱</div></div>';
+
+/* ---------- 游戏状态 ---------- */
+var LS_PVZ = "hf_pvz_v1";
+var PVZ_ROWS = 4, PVZ_COLS = 7;
+var PVZ_PLANTS = {
+  shooter: { emoji: "🌱", name: "豌豆射手", cost: 100, atk: 1 },
+  sun: { emoji: "🌻", name: "向日葵", cost: 50, sun: 25 },
+  wall: { emoji: "🥔", name: "坚果墙", cost: 50, hp: 6 }
+};
+function pvzState() {
+  var d = fLoad(LS_PVZ, null);
+  var R = farmReality();
+  if (!d || !d.cells || d.cells.length !== PVZ_ROWS) d = { cells: null, sun: R.sun, wave: 1, best: 0, hp: 3 };
+  if (!d.cells) {
+    d.cells = [];
+    for (var r = 0; r < PVZ_ROWS; r++) {
+      var row = [];
+      for (var c = 0; c < PVZ_COLS; c++) row.push(null);
+      /* 投得多 → 开局就送几株已经长大的作物（这就是「投得多，长得壮」） */
+      var gifts = Math.min(PVZ_COLS - 2, Math.max(0, R.seedLv - 1));
+      for (var g = 0; g < gifts; g++) row[g] = { type: g === 0 ? "sun" : "shooter", lv: R.seedLv, hp: 3 + R.seedLv };
+      d.cells.push(row);
+    }
+    d.sun = R.sun;
   }
-  h += '<div class="farm-legend">👆 点任意地块直接跳到对应板块；浇水 +1 成长；收菜小游戏攒的水滴会反哺繁荣度。</div>';
-  $("#farmHomeBody").innerHTML = h;
-  $("#mFarmHome").classList.add("on");
-  if(typeof beep==="function") beep(680,.06);
-  var gg = $("#goGame"); if(gg) gg.addEventListener("click", function(){ openFarmGame(); });
-  $$("#farmHomeBody [data-jump]").forEach(function(p){
-    p.addEventListener("click", function(e){ if(e.target.closest("[data-water]")) return; farmJump(p.getAttribute("data-jump")); });
-  });
-  $$("#farmHomeBody [data-water]").forEach(function(b){
-    b.addEventListener("click", function(e){
-      e.stopPropagation();
-      var mod = b.getAttribute("data-water");
-      var g = farmGrow(mod, 1);
-      var plot = b.closest(".farm-plot");
-      plot.classList.add("grow","splash-on");
-      if(typeof beep==="function") beep(720,.08);
-      var nm = (FARM_MODS.filter(function(x){return x.id===mod;})[0]||{}).name||mod;
-      toast("💧 "+nm+" 浇水，成长 → "+FARM_STAGE_NAME[g]);
-      setTimeout(function(){ plot.classList.remove("grow","splash-on"); openFarmHome(); }, 650);
-    });
-  });
-}
-$("#btnFarmPlay").addEventListener("click", function(e){ e.stopPropagation(); openFarmHome(); });
-
-/* ---------- 农场小游戏 · 点击种植收获 ---------- */
-var LS_FARMG = "hf_farmgame_v1";
-var G_PLOT = ["🟫","🌰","🌱","🌿","🌺","🍎"];
-var G_NAME = ["荒地","种子","发芽","幼苗","开花","可摘🍎"];
-function farmGameSave(d){ try{ save(LS_FARMG, d); }catch(e){} }
-function farmGameState(){
-  var d = load(LS_FARMG, null);
-  if(!d || !d.plots || d.plots.length!==9){ d = {water:6, score:0, best:0, plots:[0,0,0,0,0,0,0,0,0]}; }
-  if(typeof d.water!=="number") d.water=6;
-  if(typeof d.score!=="number") d.score=0;
-  if(typeof d.best!=="number") d.best=0;
+  if (typeof d.sun !== "number") d.sun = R.sun;
+  if (typeof d.wave !== "number") d.wave = 1;
+  if (typeof d.best !== "number") d.best = 0;
+  if (typeof d.hp !== "number") d.hp = 3;
   return d;
 }
-function openFarmGame(){
-  renderFarmGame();
-  $("#mFarmGame").classList.add("on");
-  if(typeof beep==="function") beep(660,.05);
+function pvzSave(d) { fSave(LS_PVZ, d); }
+
+var pvz = { sel: "shooter", timer: null, zombies: [], bullets: [], tick: 0, over: false };
+
+function pvzReset(keepBest) {
+  pvzStop();
+  var best = keepBest ? (fLoad(LS_PVZ, {}) || {}).best || 0 : 0;
+  fSave(LS_PVZ, { cells: null, sun: 0, wave: 1, best: best, hp: 3 });
+  var R = farmReality();
+  var d = fLoad(LS_PVZ, {}); d.best = best; d.sun = R.sun; fSave(LS_PVZ, d);
+  pvz.zombies = []; pvz.bullets = []; pvz.tick = 0; pvz.over = false;
+  renderPVZ();
+  pvzStart();
 }
-function renderFarmGame(){
-  var d = farmGameState();
+
+function openFarmGame() {
+  pvz.sel = "shooter";
+  renderPVZ();
+  var m = document.getElementById("mFarmGame"); if (m) m.classList.add("on");
+  fBeep(660, .06);
+  pvzStart();
+}
+
+function renderPVZ() {
+  var d = pvzState(), R = farmReality();
   var h = '<button class="btn sm close" data-close>关闭</button>';
-  h += '<h3 style="margin:0 0 2px">🌱 农场小游戏</h3>';
-  h += '<div class="mini" style="margin:4px 0 10px">点空地<b>播种</b>（耗 1 💧）→ 点幼苗<b>浇水</b>长大 → 果实亮了<b>采摘</b>得 🏆，并给你的「我的农场」加繁荣度。攒够水滴循环种养！</div>';
-  h += '<div class="farm-meter"><span>💧 水滴 <b>'+d.water+'</b></span> <span>🏆 丰收值 <b>'+d.score+'</b></span> <span>🥇 最佳 <b>'+d.best+'</b></span></div>';
-  h += '<div class="farm-grid">';
-  for(var i=0;i<9;i++){
-    var g = d.plots[i];
-    h += '<div class="farm-plot'+(g===5?' harvest':'')+'" data-plot="'+i+'">'
-       + '<div class="splash">💧</div>'
-       + '<div class="plant">'+G_PLOT[g]+'</div>'
-       + '<div class="pstage">'+G_NAME[g]+'</div>'
-       + '<div class="pbar"><i style="width:'+Math.round(g/5*100)+'%"></i></div>'
-       + '<button class="btn '+(g===5?'gold':'green')+'" data-act="'+i+'">'+(g===0?'🌱 播种':(g===5?'🏆 采摘':'💧 浇水'))+'</button>'
-       + '</div>';
-  }
+  h += '<h2 style="margin:0 0 2px">🌻 奖杯农场 · 保卫战</h2>';
+  h += '<div class="mini" style="margin:2px 0 8px">你在本站<b>投得越多，农场越壮</b>：加入赛程、勾材料、记战绩都会变成阳光和已长大的作物。种 <b>🌱射手</b> 打僵尸、<b>🌻向日葵</b> 产阳光、<b>🥔坚果墙</b> 挡路，别让 🧟 走到最左边。</div>';
+
+  /* 联动读数：把「投得多」显性化 */
+  h += '<div class="pvz-real">📊 你已投 <b>' + R.submits + '</b> 份' +
+    '（赛程 ' + R.mine + ' · 勾选 ' + R.checked + ' · 战绩 ' + R.proofs + '）' +
+    ' → 开局阳光 <b>' + R.sun + '</b> ☀️、作物 <b>' + (R.seedLv || 1) + ' 级</b>。' +
+    '<span class="mini"> 回主站多勾几份材料，回来点「重开」就更旺。</span></div>';
+
+  /* 状态条 */
+  h += '<div class="pvz-top">' +
+    '<span class="pvz-sun">☀️ <b id="pvzSun">' + d.sun + '</b></span>' +
+    '<span>🌊 第 <b id="pvzWave">' + d.wave + '</b> 波</span>' +
+    '<span>❤️ <b id="pvzHp">' + d.hp + '</b></span>' +
+    '<span>🏆 最佳 <b>' + d.best + '</b> 波</span>' +
+    '<button class="btn sm" id="pvzRe">🔄 重开（吃最新投稿）</button>' +
+    '</div>';
+
+  /* 植物卡片 */
+  h += '<div class="pvz-cards">';
+  Object.keys(PVZ_PLANTS).forEach(function (k) {
+    var p = PVZ_PLANTS[k];
+    h += '<button class="pvz-card' + (pvz.sel === k ? " on" : "") + '" data-sel="' + k + '">' +
+      '<span class="pc-e">' + p.emoji + '</span><span class="pc-n">' + p.name + '</span>' +
+      '<span class="pc-c">☀️' + p.cost + '</span></button>';
+  });
   h += '</div>';
-  h += '<div class="farm-legend">越玩越旺：采摘的收成会同步计入「🌱 我的农场」繁荣度。</div>';
-  $("#farmGameBody").innerHTML = h;
-  $$("#farmGameBody [data-act]").forEach(function(b){
-    b.addEventListener("click", function(){
-      var d = farmGameState();
-      var i = +b.getAttribute("data-act");
-      var g = d.plots[i];
-      if(g===0){
-        if(d.water<1){ toast("💧 水滴不够，先采摘果实攒水滴"); if(typeof beep==="function") beep(220,.12); return; }
-        d.water-=1; d.plots[i]=1; if(typeof beep==="function") beep(523,.06);
-      } else if(g<5){
-        d.plots[i]=g+1; if(typeof beep==="function") beep(659,.06);
-      } else {
-        var gain = 2 + Math.floor(Math.random()*4);
-        d.score += gain; d.water += 2; d.plots[i]=0;
-        if(d.score>d.best) d.best=d.score;
-        var mods = ["tch","stu","wl","res","tools","people"];
-        farmGrow(mods[Math.floor(Math.random()*mods.length)], 1);
-        if(typeof beep==="function") beep(880,.1);
-        var plot = b.closest(".farm-plot");
-        if(plot){ plot.classList.add("harvest"); setTimeout(function(){ plot.classList.remove("harvest"); }, 650); }
-        toast("🏆 采摘 +"+gain+" 丰收值（水滴 +2）");
+  h += '<div class="mini" style="margin:2px 0 6px">先点上面选植物，再点草地空格种下。<b id="pvzTip">' + (pvz.over ? "本局结束，点「重开」再来" : "已选中：" + PVZ_PLANTS[pvz.sel].name) + '</b></div>';
+
+  /* 草坪 */
+  h += '<div class="pvz-lawn">';
+  for (var r = 0; r < PVZ_ROWS; r++) {
+    h += '<div class="pvz-row" data-row="' + r + '">';
+    h += '<div class="pvz-home">🏠</div>';
+    for (var c = 0; c < PVZ_COLS; c++) {
+      var cell = d.cells[r][c];
+      h += '<div class="pvz-cell' + ((r + c) % 2 ? " alt" : "") + '" data-cell="' + r + '_' + c + '">';
+      if (cell) {
+        var P = PVZ_PLANTS[cell.type] || PVZ_PLANTS.shooter;
+        h += '<span class="pvz-plant lv' + Math.min(5, cell.lv || 1) + '">' + P.emoji + '</span>';
+        if (cell.lv > 1) h += '<span class="pvz-lv">' + cell.lv + '</span>';
       }
-      if(typeof tapFx==="function") tapFx();
-      farmGameSave(d);
-      renderFarmGame();
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  h += '<div id="pvzFx"></div></div>';
+
+  h += '<div class="pvz-foot">🌱 收获 / 挡住一波会反哺「我的农场」繁荣度；<b>作物等级越高越壮</b>，越能扛住后面的僵尸潮。</div>';
+  var body = document.getElementById("farmGameBody");
+  if (!body) return;
+  body.innerHTML = h;
+
+  F$$("#farmGameBody .pvz-card").forEach(function (b) {
+    b.addEventListener("click", function () {
+      pvz.sel = b.getAttribute("data-sel"); fBeep(720, .05); fVib(12);
+      F$$("#farmGameBody .pvz-card").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      var tip = document.getElementById("pvzTip"); if (tip) tip.textContent = "已选中：" + PVZ_PLANTS[pvz.sel].name;
     });
   });
+  F$$("#farmGameBody .pvz-cell").forEach(function (cell) {
+    cell.addEventListener("click", function () { pvzPlant(cell.getAttribute("data-cell")); });
+  });
+  var re = document.getElementById("pvzRe");
+  if (re) re.addEventListener("click", function () { fBeep(520, .07); pvzReset(true); fToast("已按你最新投稿重开，农场更旺了"); });
 }
+
+function pvzPlant(key) {
+  if (pvz.over) { fToast("本局结束，点「重开」再来"); return; }
+  var parts = key.split("_"), r = +parts[0], c = +parts[1];
+  var d = pvzState();
+  if (d.cells[r][c]) { fToast("这格已经有作物了"); fBeep(240, .08); return; }
+  var P = PVZ_PLANTS[pvz.sel];
+  if (d.sun < P.cost) { fToast("☀️ 阳光不够（需 " + P.cost + "），种 🌻 向日葵攒阳光"); fBeep(220, .12); return; }
+  d.sun -= P.cost;
+  var R = farmReality();
+  d.cells[r][c] = { type: pvz.sel, lv: Math.max(1, R.seedLv), hp: P.hp || (3 + (R.seedLv || 1)) };
+  pvzSave(d); fBeep(880, .07); fVib(15);
+  renderPVZ();
+}
+
+/* ---------- 战斗循环（轻量，DOM 驱动） ---------- */
+function pvzStart() {
+  pvzStop();
+  pvz.over = false;
+  pvz.timer = setInterval(pvzStep, 1100);
+}
+function pvzStop() { if (pvz.timer) { clearInterval(pvz.timer); pvz.timer = null; } }
+
+function pvzStep() {
+  var m = document.getElementById("mFarmGame");
+  if (!m || !m.classList.contains("on")) { pvzStop(); return; }
+  var d = pvzState();
+  if (pvz.over || d.hp <= 0) { pvzStop(); return; }
+  pvz.tick++;
+
+  /* 1) 向日葵产阳光；射手留在原地（子弹用简化伤害表示） */
+  var gain = 0, atk = 0, walls = 0;
+  for (var r = 0; r < PVZ_ROWS; r++) {
+    for (var c = 0; c < PVZ_COLS; c++) {
+      var cell = d.cells[r][c];
+      if (!cell) continue;
+      if (cell.type === "sun") gain += 25 + (cell.lv || 1) * 3;
+      if (cell.type === "shooter") atk += 1 + (cell.lv || 1);
+      if (cell.type === "wall") walls++;
+    }
+  }
+  d.sun += gain;
+
+  /* 2) 每 3 拍来一波僵尸，波次越高越多；atk/walls 决定能否挡住 */
+  var changed = false;
+  if (pvz.tick % 3 === 0) {
+    var incoming = 1 + Math.floor(d.wave / 2);
+    var power = atk + walls * 2;
+    var blocked = Math.min(incoming, power);
+    var leaked = incoming - blocked;
+    if (leaked > 0) {
+      d.hp -= leaked; changed = true;
+      fBeep(180, .16, "sawtooth"); fVib(60);
+      fToast("🧟 冲进来 " + leaked + " 只！多种 🌱射手 / 🥔坚果墙");
+    } else {
+      fBeep(980, .08); fToast("✅ 第 " + d.wave + " 波守住了！+" + gain + " ☀️");
+      /* 守住 → 作物成长 + 反哺农场繁荣度 */
+      var growMod = FARM_MODS[d.wave % FARM_MODS.length].id;
+      farmGrow(growMod, 1);
+      for (var rr = 0; rr < PVZ_ROWS; rr++) for (var cc = 0; cc < PVZ_COLS; cc++) {
+        var cl = d.cells[rr][cc]; if (cl && cl.lv < 5) cl.lv++;
+      }
+      changed = true;
+    }
+    d.wave++;
+    if (d.wave > (d.best || 0)) d.best = d.wave - 1;
+    if (pvz.tick % 12 === 0) d.sun += 50; // 天降阳光
+  }
+  if (d.hp <= 0) { d.hp = 0; pvz.over = true; pvzStop(); fToast("🌾 农场被冲垮了，点「重开」再来（作物会更壮）"); fBeep(160, .3, "sawtooth"); }
+
+  pvzSave(d);
+  /* 只更新读数，避免每拍重绘打断点击 */
+  var sunEl = document.getElementById("pvzSun"), waveEl = document.getElementById("pvzWave"), hpEl = document.getElementById("pvzHp"), tipEl = document.getElementById("pvzTip");
+  if (sunEl) sunEl.textContent = d.sun;
+  if (waveEl) waveEl.textContent = d.wave;
+  if (hpEl) hpEl.textContent = d.hp;
+  if (changed || pvz.over) renderPVZ();
+}
+
+/* ---------- 「进农场玩 / 我的农场」按钮全部用原生 DOM 绑定，确保一定生效 ---------- */
+function bindFarmButtons() {
+  var play = document.getElementById("btnFarmPlay");
+  if (play) play.addEventListener("click", function (e) { e.stopPropagation(); fBeep(700, .06); openFarmGame(); });
+  var mine = document.getElementById("btnFarm");
+  if (mine) mine.addEventListener("click", function () { fBeep(680, .06); openFarmGame(); });
+  /* 关闭弹窗时停掉战斗循环，避免后台跑 */
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.closest && e.target.closest("[data-close]")) {
+      var mg = document.getElementById("mFarmGame");
+      if (mg && e.target.closest("#mFarmGame")) pvzStop();
+    }
+  });
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindFarmButtons);
+else bindFarmButtons();
+
+/* ---------- 全局点击反馈：声音 + 触感 + 轻微下压 ---------- */
+(function () {
+  var last = 0;
+  document.addEventListener("click", function (e) {
+    if (!e.target || !e.target.closest) return;
+    var t = e.target.closest(".btn,.tab,.tag,[data-act],.pvz-card,.pvz-cell,.card");
+    if (!t) return;
+    var now = Date.now();
+    if (now - last < 70) return;
+    last = now;
+    fBeep(820, .035, "square"); fVib(12);
+    t.style.transition = "transform .04s ease";
+    t.style.transform = "scale(.94) translateY(2px)";
+    setTimeout(function () { if (t) t.style.transform = ""; }, 110);
+  }, true);
+})();
 </script>
 </body>
 </html>
