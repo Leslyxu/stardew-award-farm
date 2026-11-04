@@ -2856,12 +2856,7 @@ const AWARDS = [
     rate: { value: 5, ease: 4 }
   }
 
-].filter(function(a){
-  /* 外市专属赛事深圳报不了，从数据源头剔除，
-     这样学生通知、农场推荐、图谱、指南、名校战绩等所有下游都不会再出现 */
-  var OUT_IDS={"gz-meiyu":1,"gz-hanzi":1,"zh-shuhua":1,"hz-shuhua":1,"zs-shufa":1,"dg-arts":1};
-  return !OUT_IDS[a.id];
-});
+];
 
 /* 学校实证汇总（用于页面顶部「本校战绩」面板） */
 const SCHOOL_STATS = {
