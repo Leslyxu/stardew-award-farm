@@ -2839,7 +2839,7 @@ const AWARDS = [
   }
 
 ].filter(function(a){
-  /* 外市专属赛事（广州/东莞/珠海/惠州/中山）深圳报不了，从数据源头剔除，
+  /* 外市专属赛事深圳报不了，从数据源头剔除，
      这样学生通知、农场推荐、图谱、指南、名校战绩等所有下游都不会再出现 */
   var OUT_IDS={"gz-meiyu":1,"gz-hanzi":1,"zh-shuhua":1,"hz-shuhua":1,"zs-shufa":1,"dg-arts":1};
   return !OUT_IDS[a.id];
@@ -2989,11 +2989,7 @@ const BIG_SCHOOLS = [
   { city:"深圳", name:"深圳外国语学校高中园(博雅高中)", wechat:"深圳外国语学校高中园", tag:"高中园，国际艺术赛道", won:[
     { id:"sz-meirun", t:"美润鹏城美育成果展演入围关山月美术馆；粤友杯广东国际青少年艺术创作大赛银奖" }
   ]},
-  /* ---------- 广州（7 所） ---------- */
-                /* ---------- 珠三角其他市（7 所） ---------- */
-  
-  
-        /* 名校战绩只保留深圳本地学校，外市战绩不再展示 */
+  /* 名校战绩只保留深圳本地学校，外市战绩不再展示 */
 ].filter(function(b){ return /深圳|宝安/.test(b.city||""); });
 
 /* ============================================================
@@ -3473,7 +3469,7 @@ var PEOPLE = [
     return false;
   }
   function isActionable(a) {
-    if (!regionOf(a).can) return false;   // 广州/东莞/珠海/惠州/中山等外市报不了
+    if (!regionOf(a).can) return false;   // 外市专属赛事深圳报不了
     if (isEnded(a)) return false;          // 官方已结束 / 已截稿 / 已办 / 日期已过
     return true;
   }
@@ -3812,7 +3808,8 @@ var PEOPLE = [
 
     /* ===== 0. 本站收录口径：不可报的一律不列、不列名 ===== */
     h += "<div class='sec' style='border-left:4px solid #2b6cb0'><h5>📌 本站只列「现在能报」的</h5>";
-    h += "<div class='mini'>只收录 <b>深圳（宝安）师生能报、且本届未截止</b> 的赛事。<b>外市专属赛事</b>（广州 / 东莞 / 珠海 / 惠州 / 中山等市属赛）与<b>本届已截稿 / 已结束 / 已办</b> 的，一律 <b>不收录、不列名、不发通知、不进材料包</b>，不用为它们准备作品，也别算进赛程。等新一届通知发布、确认能报了，本站才会列入。</div></div>";
+    h += "<div class='mini'>只收录 <b>深圳（宝安）师生能报、且本届未截止</b> 的赛事。<b>外市专属赛事</b>（只面向外市、不接收深圳报送的市属赛）与<b>本届已截稿 / 已结束 / 已办</b> 的，一律 <b>不收录、不列名、不发通知、不进材料包</b>，不用为它们准备作品，也别算进赛程。等新一届通知发布、确认能报了，本站才会列入。</div></div>";
+    h += "<div class='mini' style='margin-top:6px'>📊 本站赛事库共 <b>" + pool.length + "</b> 条，其中 <b>" + canList.length + "</b> 条现在能报；<b>" + endedList.length + "</b> 条本届已结束 / 已截稿、<b>" + outList.length + "</b> 条外市专属，按你的要求一律不列。所以列表看着精简，是过滤得干净，<b>不是数据少</b>；能报的都在这了。</div></div>";
 
     /* ===== 1. 具体怎么报 ===== */
     var nUnit = canList.filter(function (a) { return !applyMode(a).ok; }).length;
@@ -4707,7 +4704,7 @@ var PEOPLE = [
     if (a.aud === "学生" && a.rate) {
       var isRec = a.rate.value >= 4 && a.rate.ease >= 4;
       h += '<div class="sec" style="border-left:4px solid ' + (isRec ? "var(--red)" : "var(--wood-dark)") + '"><h5>含金量 & 易参与（广东头部校交叉比对）</h5>' +
-        '<div class="mini">这是把深圳/广州/珠海/中山/惠州/东莞各校公开喜报比对后给的实战评分，不是拍脑袋。</div>' +
+        '<div class="mini">这是把深圳各美术强校公开喜报比对后给的实战评分，不是拍脑袋。</div>' +
         '<div style="margin:6px 0;display:flex;gap:18px;flex-wrap:wrap">' +
         '<div><b>含金量</b> ' + starHTML(a.rate.value) + ' <span class="mini">' + a.rate.value + "/5</span></div>" +
         '<div><b>好参加</b> ' + starHTML(a.rate.ease) + ' <span class="mini">' + a.rate.ease + "/5</span></div></div>" +
@@ -5091,8 +5088,8 @@ var PEOPLE = [
     var cities = ["全部"].concat(Object.keys(big.reduce(function (m, b) { m[b.city] = 1; return m; }, {})).sort());
     var list = bigCity === "全部" ? big : big.filter(function (b) { return b.city === bigCity; });
     var h = '<button class="btn sm close" data-close>关闭</button>';
-    h += "<h2>🏫 名校战绩参考 · 广东头部中学在冲什么</h2>";
-    h += '<div class="mini" style="margin-top:4px">别只盯咱小学校那点战绩 —— 下面这些广东头部中学（深圳/广州/珠海/中山/惠州/东莞）公开喜报里反复出现的赛，才是<b>大校也在冲、学校也认</b>的硬通货。点「看比赛」可跳转该赛事详情。公众号可微信搜索关注。</div>';
+    h += "<h2>🏫 名校战绩参考 · 深圳头部中学在冲什么</h2>";
+    h += '<div class="mini" style="margin-top:4px">别只盯咱小学校那点战绩 —— 下面这些深圳头部中学公开喜报里反复出现的赛，才是<b>大校也在冲、学校也认</b>的硬通货。点「看比赛」可跳转该赛事详情。公众号可微信搜索关注。</div>';
     h += '<div class="tabs" id="bigCityTabs" style="margin:8px 0">';
     cities.forEach(function (c) {
       h += '<button class="tab' + (c === bigCity ? " on" : "") + '" data-city="' + esc(c) + '">' + esc(c) + "</button>";
