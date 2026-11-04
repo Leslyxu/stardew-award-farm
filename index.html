@@ -471,7 +471,7 @@ body{font-size:16px;line-height:1.72}
     <span class="tag" id="refreshStatus">未刷新</span>
     <span class="flabel">视图：</span>
     <span class="tag stfilter" id="tgWL"><i class="dot open"></i>只看白名单</span>
-    <span class="tag stfilter on" id="tgHideDone"><i class="dot open"></i>隐藏已截止</span>
+    <span class="tag stfilter on" id="tgHideDone"><i class="dot open"></i><span id="hideLabel">已隐藏 0 条（截止 / 外市）</span></span>
     <span class="sp"></span>
     <span class="tag" id="verTag">数据 2026-11-03</span>
     <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
@@ -684,7 +684,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 39 版（新增「谁可以报」区域判定：广州/东莞/珠海/惠州/中山等外市赛事明确标注「深圳不可报」并沉底·卡片加区域标签·详情自动提示不用报；新增「📋 报名实操指南」弹窗：①具体怎么报(学校报送/个人直报两条路径)②有哪几类哪几类好报(赛道+难度真实统计+好报清单)③按截止日排序的真实时间表④走什么平台+公众号怎么传传什么; 桌面图标改无白边满幅土豆骑士)";
+const DATA_VERSION = "2026-11-04 · 第 40 版（新增统一闸门：官方已截止/已结束/已截稿/已办 + 外市不可报 + 日期已过 全部剔除，一键发邮箱/备料包/参赛通知/截止表不再发已截止赛事；指南新增「已截止一律不发」区块并只列现在真能投的+尚未开始单列；隐藏开关显示被隐藏条数）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -3522,10 +3522,26 @@ var PEOPLE = [
   }
 
   /* ---------- 统计 ---------- */
+  /* ---------- 现在真能报吗：所有「往外发」的动作统一过这道闸 ---------- */
+  /* 已截止/已截稿/已结束/已办、或外市赛事、或日期已过 —— 一律不发通知、不算赛程、不进材料包 */
+  function isEnded(a) {
+    var ph = String(a.phase || "");
+    if (/已截稿|已结束|已截止|已办|结束/.test(ph)) return true;
+    if (statusOf(a).key === "done") return true;
+    var d = daysTo(a.deadline);
+    if (d != null && d < 0) return true;
+    return false;
+  }
+  function isActionable(a) {
+    if (!regionOf(a).can) return false;   // 广州/东莞/珠海/惠州/中山等外市报不了
+    if (isEnded(a)) return false;          // 官方已结束 / 已截稿 / 已办 / 日期已过
+    return true;
+  }
+
   function stats() {
     var s = { open: 0, hot: 0, soon: 0, done: 0, "区": 0, "市": 0, "省": 0, "国": 0 };
     ALL.forEach(function (a) {
-      var st = statusOf(a).key;
+      var st = isEnded(a) ? "done" : statusOf(a).key;
       s[st]++;
       if (s[a.tier] != null) s[a.tier]++;
     });
@@ -3575,7 +3591,7 @@ var PEOPLE = [
       list = list.filter(isArt);
     }
     if (state.hideDone) {
-      list = list.filter(function (a) { return statusOf(a).key !== "done"; });
+      list = list.filter(isActionable);
     }
     list.sort(function (x, y) {
       if (state.sort === "value") return priorityScore(y) - priorityScore(x);
@@ -3819,8 +3835,9 @@ var PEOPLE = [
   /* ---------- 报名实操指南：怎么报 / 哪几类好报 / 何时截止 / 走什么平台 ---------- */
   function openGuide() {
     var pool = [].concat(AWARDS || [], custom);
-    var canList = pool.filter(function (a) { return regionOf(a).can; });
-    var outList = pool.filter(function (a) { return !regionOf(a).can; });
+    var canList = pool.filter(isActionable);                                  // 现在真能报的
+    var outList = pool.filter(function (a) { return !regionOf(a).can; });      // 外市报不了
+    var endedList = pool.filter(function (a) { return regionOf(a).can && isEnded(a); }); // 本区已截止/已结束
     var TD = "border:1px solid #d8c9a8;padding:6px 8px;vertical-align:top";
     var TH = "border:1px solid #d8c9a8;padding:6px 8px;background:#f3e7c8;text-align:left";
     function tbl(head, rows) {
@@ -3844,12 +3861,15 @@ var PEOPLE = [
     });
     h += tbl(["赛事", "仅限地区", "原文报送口径"], outRows.length ? outRows : [tr(["（无）", "—", "—"])]);
     h += "<div class='mini'>👉 卡片上带 <b style='color:#b02a2a'>❌ 深圳不可报</b> 红标的，就是这一类，已自动排到列表最底部。</div></div>";
+    h += "<div class='sec' style='border-left:4px solid #8a7c69'><h5>🚫 已经截止的，本站不再发（共 " + endedList.length + " 条）</h5>";
+    h += "<div class='mini'>下列赛事官方阶段已是「已截稿 / 已结束 / 已办」，<b>本届已不能再投</b>（数据库里保留的是往届截止日，不是新一届）。已从一键发邮箱、备料包、参赛通知、下方时间表里<b>全部剔除</b>，只留作查往届成果参考：</div>";
+    h += "<div class='mini' style='margin-top:4px'>" + endedList.slice(0, 12).map(function (a) { return esc(a.short || a.name); }).join("、") + (endedList.length > 12 ? " 等" : "") + "。</div></div>";
 
     /* ===== 1. 具体怎么报 ===== */
     var nUnit = canList.filter(function (a) { return !applyMode(a).ok; }).length;
     var nSelf = canList.length - nUnit;
     h += "<div class='sec' style='border-left:4px solid #2b6cb0'><h5>① 具体要怎么报（分两条路径，别走错）</h5>";
-    h += "<div class='mini'>本站可报赛事共 <b>" + canList.length + "</b> 条：其中 <b>" + nUnit + "</b> 条必须<b>经学校 / 单位统一报送</b>（个人不能直投），<b>" + nSelf + "</b> 条<b>可个人直报</b>。卡片上的「不能个人直报 / 可个人直报」标签就是这么来的。</div>";
+    h += "<div class='mini'>剔除已截止 " + endedList.length + " 条、外市 " + outList.length + " 条后，<b>当前仍可报名的共 " + canList.length + " 条</b>：其中 <b>" + nUnit + "</b> 条必须<b>经学校 / 单位统一报送</b>（个人不能直投），<b>" + nSelf + "</b> 条<b>可个人直报</b>。卡片上的「不能个人直报 / 可个人直报」标签就是这么来的。</div>";
     h += "<div class='mini' style='margin-top:6px'><b>路径 A · 学校统一报送（绝大多数，学生和老师都走这条）</b></div>";
     h += "<ol class='steps'>"
       + "<li><b>等通知</b>：看学校科组 / 教学处转发，或自己盯「宝教通」通知栏；先核对年级、学段、作品类别是否符合。</li>"
@@ -3897,12 +3917,15 @@ var PEOPLE = [
       return "<li>" + esc(a.short || a.name) + "　<span style='color:#6d4a2a'>· " + esc(toOf(a)).slice(0, 40) + "</span></li>";
     }).join("") + "</ul></div>";
 
-    /* ===== 3. 什么时候截止 ===== */
-    var future = canList.filter(function (a) { var d = daysTo(a.deadline); return d != null && d >= 0; })
+    /* ===== 3. 什么时候截止（只列现在真能投的） ===== */
+    var live = canList.filter(function (a) { return /进行中|征集中/.test(String(a.phase || "")); });
+    var upcoming = canList.filter(function (a) { return !/进行中|征集中/.test(String(a.phase || "")); });
+    var future = live.filter(function (a) { var d = daysTo(a.deadline); return d != null && d >= 0; })
       .sort(function (x, y) { return String(x.deadline).localeCompare(String(y.deadline)); });
-    var noDate = canList.filter(function (a) { return !a.deadline; });
-    h += "<div class='sec' style='border-left:4px solid #c99a17'><h5>③ 应该什么时候截止（按日期从近到远）</h5>";
-    h += "<div class='mini'>下表是本站有明确截止日期、且日期仍在今天之后的可报赛事，共 <b>" + future.length + "</b> 条。<b>标「待发布」的是预计窗口，务必以当年官方通知为准</b>；已结束 / 已截稿的已排除。</div>";
+    var noDate = live.filter(function (a) { return !a.deadline; });
+    h += "<div class='sec' style='border-left:4px solid #c99a17'><h5>③ 应该什么时候截止（只列现在就能报的）</h5>";
+    h += "<div class='warn' style='margin:0 0 8px'>🚫 <b>已截止 / 已结束 / 已截稿 / 已办的 " + endedList.length + " 条，以及外市不可报的 " + outList.length + " 条，一律不发通知、不进材料包、不算赛程</b>，也不在这张表里。表里只放官方标注「进行中 / 征集中」、<b>现在真能投的 " + live.length + " 条</b>。</div>";
+    h += "<div class='mini'>按截止日期从近到远排。<b>尚未开始的 " + upcoming.length + " 条单列在表后</b>，别现在就交作品。</div>";
     var dlRows = future.slice(0, 18).map(function (a) {
       var d = daysTo(a.deadline);
       var ph = phaseInfo(a);
@@ -3911,9 +3934,17 @@ var PEOPLE = [
         "<span style='color:" + ph.c + "'>" + esc(ph.text) + "</span>", esc(toOf(a)).slice(0, 34)]);
     });
     h += tbl(["截止日期", "倒计时", "赛事", "官方阶段", "报送平台"], dlRows);
+    if (!future.length) h += "<div class='mini'>（当前没有已公布确切截止日、且正在征集的赛事，以表后「尚未开始」为准。）</div>";
     h += "<div class='warn' style='margin:6px 0 0'>⏰ <b>倒推时间</b>：需学校逐级报送的，<b>截止前 2 周</b>把材料交科组；个人直报的，<b>截止前 3 天</b>提交完并留截图，别等最后一天系统拥堵。</div>";
     if (noDate.length) {
-      h += "<div class='mini' style='margin-top:6px'>另有 <b>" + noDate.length + "</b> 条<b>时间待公布</b>（往年惯例多在 3–6 月征集）：" + noDate.slice(0, 8).map(function (a) { return esc(a.short || a.name); }).join("、") + " 等，盯「宝教通」和学校科组通知即可。</div>";
+      h += "<div class='mini' style='margin-top:6px'>另有 <b>" + noDate.length + "</b> 条正在征集但<b>时间待公布</b>：" + noDate.slice(0, 8).map(function (a) { return esc(a.short || a.name); }).join("、") + " 等，先备作品、盯「宝教通」和科组通知。</div>";
+    }
+    if (upcoming.length) {
+      h += "<div class='mini' style='margin-top:8px'><b>🕒 尚未开始 · 等通知（" + upcoming.length + " 条，往年多在 3–6 月征集，现在别投）：</b></div>";
+      h += "<ul class='steps'>" + upcoming.slice(0, 12).map(function (a) {
+        return "<li>" + esc(a.short || a.name) + "　<span style='color:#6d4a2a'>· " + esc(String(a.deadline || "时间待公布")) + "</span></li>";
+      }).join("") + "</ul>";
+      if (upcoming.length > 12) h += "<div class='mini'>……另有 " + (upcoming.length - 12) + " 条，见主列表筛选「待公布」。</div>";
     }
     h += "</div>";
 
@@ -4026,6 +4057,9 @@ var PEOPLE = [
       $("#grid").innerHTML = list.map(cardHTML).join("");
     }
     var s = stats();
+    var nHidden = ALL.filter(function (a) { return !isActionable(a); }).length;
+    var hl = $("#hideLabel");
+    if (hl) hl.textContent = state.hideDone ? ("已隐藏 " + nHidden + " 条（截止 / 外市）· 点开可看") : "显示全部（含已截止 / 外市）";
     $("#nOpen").textContent = s.open;
     $("#nHot").textContent = s.hot;
     $("#nSoon").textContent = s.soon;
@@ -4433,12 +4467,12 @@ var PEOPLE = [
     lines.push("星露奖杯农场 · 投稿提醒");
     lines.push("生成时间：" + dateStr + "（建议每周二、周五各刷新一次）");
     lines.push("");
-    var openCnt = ALL.filter(function (a) { return statusOf(a).key !== "done"; }).length;
-    lines.push("📊 当前还没截止的赛事共 " + openCnt + " 条，按级别列出如下（学生赛标「我指导」）：");
+    var openCnt = ALL.filter(isActionable).length;
+    lines.push("📊 当前仍可报名的赛事共 " + openCnt + " 条（已截止/已结束/外市已剔除），按级别列出如下（学生赛标「我指导」）：");
     lines.push("");
     groups.forEach(function (g) {
       var items = ALL.filter(function (a) {
-        return a.tier === g.t && statusOf(a).key !== "done";
+        return a.tier === g.t && isActionable(a);
       }).sort(function (x, y) {
         return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline));
       });
@@ -4551,7 +4585,7 @@ var PEOPLE = [
     ];
     var secs = [], total = 0;
     groups.forEach(function (g) {
-      var items = ALL.filter(function (a) { return a.tier === g.t && statusOf(a).key !== "done"; })
+      var items = ALL.filter(function (a) { return a.tier === g.t && isActionable(a); })
         .sort(function (x, y) { return (daysTo(x.deadline) == null ? 1e9 : daysTo(x.deadline)) - (daysTo(y.deadline) == null ? 1e9 : daysTo(y.deadline)); });
       if (!items.length) return;
       secs.push("<h2>" + g.label + "（" + items.length + " 条）</h2>\n" + items.map(function (a) {
@@ -4559,7 +4593,7 @@ var PEOPLE = [
       }).join("\n"));
       total += items.length;
     });
-    if (!total) { toast("当前没有未截止的赛事"); return; }
+    if (!total) { toast("当前没有仍可报名的赛事"); return; }
     var d = new Date();
     var stamp = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
     var html = "<!DOCTYPE html><html lang='zh-CN'><head><meta charset='UTF-8'><title>星露奖杯农场 · 投稿材料总包 " + stamp + "</title>" +
@@ -4570,7 +4604,7 @@ var PEOPLE = [
       ".warn{background:#fff3d2;border:2px solid #c4442e;padding:8px 10px;font-size:13px;line-height:1.7}@media print{body{max-width:none}.noprint{display:none}}" +
       "</style></head><body>" +
       "<h1>星露奖杯农场 · 投稿材料总包</h1>" +
-      "<div class='meta'>生成日期：" + stamp + "　申报人：" + esc(p.name || "＿＿＿") + "　单位：" + esc(p.school || "＿＿＿") + "　共 " + total + " 条未截止赛事</div>" +
+      "<div class='meta'>生成日期：" + stamp + "　申报人：" + esc(p.name || "＿＿＿") + "　单位：" + esc(p.school || "＿＿＿") + "　共 " + total + " 条仍可报名赛事</div>" +
       "<div class='warn'>⚠️ 使用说明：本包为「材料草稿」，请逐项核对后<b>据实润色、本人签名 / 单位盖章</b>再提交。标「不能个人直报」的需先走单位报送或逐级推荐。<b>身份证、银行卡等敏感信息请自行手填，本包不含任何证件号。</b>各官网登录、验证码、上传作品这步只能本人操作。</div>" +
       secs.join("\n") +
       "<hr><div class='meta'>本材料总包由「星露奖杯农场」一键生成，数据存你本机浏览器，不上传。</div>" +
@@ -5681,6 +5715,7 @@ var PEOPLE = [
   });
   if ($("#tgHideDone")) $("#tgHideDone").addEventListener("click", function () {
     state.hideDone = !state.hideDone; this.classList.toggle("on", state.hideDone); render(); beep(700, .05);
+    toast(state.hideDone ? "已隐藏截止 / 外市赛事，只显示现在能报的" : "已显示全部（含已截止 / 外市）");
   });
 
   ["wlQ"].forEach(function (id) {
