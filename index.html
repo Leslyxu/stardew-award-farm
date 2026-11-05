@@ -13,230 +13,233 @@
 <link rel="manifest" href="manifest.json?v=38">
 <style>
 :root{
-  --ink:#1f2420; --muted:#6b756d; --line:#e3e7e2; --bg:#fbfcfa; --panel:#fff;
-  --accent:#2f5d50; --soft:#eef4f0; --warn:#a5533b; --soft2:#f6f8f5;
+  --ink:#1c2620; --muted:#6d7a70; --line:#e5ebe4; --bg:#f6f8f5; --panel:#fff;
+  --accent:#2f5d50; --accent2:#eaf2ec; --clay:#a5533b; --clay2:#faf0eb;
+  --shadow:0 1px 2px rgba(28,38,32,.05),0 6px 18px rgba(28,38,32,.04);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);
-  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font:13.5px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   -webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-.wrap{max-width:1020px;margin:0 auto;padding:0 18px 56px}
+button{font:inherit}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:12px clamp(16px,3vw,40px);
+  display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand img{width:36px;height:36px;border-radius:9px;display:block}
+.brand h1{font-size:16px;font-weight:650;letter-spacing:.4px;margin:0;line-height:1.25}
+.brand .sub{font-size:11px;color:var(--muted);margin-top:1px}
+.metrics{display:flex;gap:22px;align-items:center;margin-left:6px}
+.metric{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.metric b{font-size:21px;font-weight:680;font-variant-numeric:tabular-nums;line-height:1}
+.metric span{font-size:11.5px;color:var(--muted)}
+.metric.hi b{color:var(--accent)}
+.topActions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tb{font-size:12.5px;padding:8px 13px;border:1px solid var(--line);background:#fff;color:var(--ink);
+  border-radius:8px;cursor:pointer;white-space:nowrap;display:inline-block}
+.tb:hover{border-color:var(--accent);text-decoration:none}
+.tb.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tb.primary:hover{background:#264c42}
+.tb .ok{font-size:11px;opacity:.8}
 
-header.top{display:flex;align-items:center;gap:11px;padding:20px 0 15px;border-bottom:1px solid var(--line)}
-header.top img{width:30px;height:30px;border-radius:6px;flex:none}
-h1{font-size:18px;font-weight:600;letter-spacing:.6px;margin:0;line-height:1.3}
-.sub{font-size:12px;color:var(--muted);margin-top:1px}
-.top-right{margin-left:auto;font-size:12px;white-space:nowrap}
-.top-right a{border:1px solid var(--line);padding:5px 10px;border-radius:5px;background:var(--panel)}
+.app{padding:20px clamp(16px,3vw,40px) 44px;max-width:1920px;margin:0 auto}
+.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.seg{display:flex;background:#fff;border:1px solid var(--line);border-radius:9px;padding:3px;gap:2px}
+.seg button{background:none;border:0;padding:7px 14px;border-radius:6px;cursor:pointer;
+  font-size:12.5px;color:var(--muted);white-space:nowrap}
+.seg button b{font-weight:650;margin-left:3px;font-variant-numeric:tabular-nums}
+.seg button.on{background:var(--accent2);color:var(--accent);font-weight:600}
+input[type=search]{font-size:12.5px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;
+  background:#fff;color:var(--ink);outline:none;min-width:210px;flex:0 1 300px}
+input[type=search]:focus{border-color:var(--accent)}
+.hint{font-size:11.5px;color:var(--muted)}
+.hint b{color:var(--ink);font-weight:600}
 
-nav{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
-nav button{background:none;border:0;border-bottom:2px solid transparent;padding:11px 15px;
-  font:inherit;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
-nav button.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 306px;gap:20px;align-items:start}
+.sec-head{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+.sec-head h2{font-size:14px;font-weight:650;margin:0;letter-spacing:.2px}
+.sec-head span{font-size:11.5px;color:var(--muted)}
 
-.view{display:none}
-.view.on{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:13px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:15px 15px 13px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;
+  display:flex;flex-direction:column;min-height:146px}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(28,38,32,.09);border-color:#cddcd2}
+.card.open{border-top:3px solid var(--accent);padding-top:13px}
+.card.soon{border-top:3px solid #d9dfd8;padding-top:13px}
+.card.joined{background:#f8fbf8}
+.c-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.c-tier{font-size:10.5px;font-weight:650;letter-spacing:.5px;color:var(--accent);
+  background:var(--accent2);padding:2px 7px;border-radius:5px;white-space:nowrap}
+.c-state{font-size:10.5px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.c-state.open{color:var(--accent);font-weight:600}
+.c-name{font-size:14px;font-weight:650;line-height:1.45;margin:0 0 4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c-org{font-size:11.5px;color:var(--muted);line-height:1.45;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px}
+.c-foot{margin-top:auto;display:flex;align-items:flex-end;gap:8px}
+.c-meta{font-size:11.5px;color:var(--muted);line-height:1.5;min-width:0;flex:1}
+.c-meta b{display:block;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;font-size:12px}
+.c-meta b.near{color:var(--clay)}
+.c-acts{display:flex;gap:5px;flex:none}
+.mini{font-size:11.5px;padding:5px 9px;border:1px solid var(--line);background:#fff;
+  border-radius:6px;cursor:pointer;color:var(--accent);white-space:nowrap}
+.mini:hover{border-color:var(--accent);background:var(--accent2)}
+.mini.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-.lead{font-size:13px;color:var(--muted);margin-bottom:12px;max-width:760px}
-.counts{font-size:12px;color:var(--muted);margin-bottom:12px}
-.counts b{color:var(--ink);font-weight:600}
+.compact{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:8px}
+.mrow{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
+  border-radius:9px;padding:10px 13px;cursor:pointer;text-align:left;width:100%;color:var(--ink)}
+.mrow:hover{border-color:#cddcd2;background:#fbfdfb}
+.mrow .n{font-size:12.5px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .t{font-size:10.5px;color:var(--accent);background:var(--accent2);padding:1px 6px;border-radius:4px;flex:none}
+.mrow .d{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none}
+.empty{font-size:12.5px;color:var(--muted);padding:26px;text-align:center;
+  background:#fff;border:1px dashed var(--line);border-radius:12px}
 
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
-select,input[type=search]{font:inherit;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);
-  border-radius:5px;background:var(--panel);color:var(--ink);outline:none}
-select:focus,input[type=search]:focus{border-color:var(--accent)}
-input[type=search]{min-width:170px;flex:1;max-width:260px}
-.filters .hint{font-size:11.5px;color:var(--muted)}
+.side{display:flex;flex-direction:column;gap:13px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:15px 16px}
+.panel h3{font-size:12.5px;font-weight:650;margin:0 0 10px;letter-spacing:.2px;display:flex;align-items:center;gap:7px}
+.panel h3 .k{font-size:10.5px;font-weight:500;color:var(--muted);margin-left:auto}
+.panel p{font-size:11.8px;color:var(--muted);margin:0 0 9px;line-height:1.6}
+.farm-bar{height:8px;background:#eaf0e9;border-radius:5px;overflow:hidden;margin:6px 0 9px}
+.farm-bar i{display:block;height:100%;background:linear-gradient(90deg,#7fae86,var(--accent));width:0;transition:width .3s}
+.farm-plots{display:flex;gap:5px;flex-wrap:wrap;min-height:22px}
+.plot{width:17px;height:17px;border-radius:5px;background:#eef2ec;display:grid;place-items:center;font-size:11px}
+.plot.on{background:var(--accent2)}
+.side-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.side-btns button{font-size:11.5px;padding:6px 10px;border:1px solid var(--line);background:#fff;
+  border-radius:7px;cursor:pointer;color:var(--accent)}
+.side-btns button:hover{border-color:var(--accent);background:var(--accent2)}
+details.lib{border:1px solid var(--line);border-radius:9px;background:#fff;margin-bottom:7px;overflow:hidden}
+details.lib:last-child{margin-bottom:0}
+details.lib summary{cursor:pointer;padding:9px 12px;font-size:12px;font-weight:600;list-style:none;color:var(--ink)}
+details.lib summary::-webkit-details-marker{display:none}
+details.lib summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details.lib[open] summary::before{content:"− "}
+details.lib .body{padding:0 12px 12px;border-top:1px solid var(--line)}
+.libitem{padding:8px 0;border-bottom:1px solid #f0f3ef;font-size:11.8px;line-height:1.6}
+.libitem:last-child{border-bottom:0}
+.libitem b{font-weight:650}
+.libitem .m{color:var(--muted);font-size:11px}
+.gcard{border:1px solid var(--line);border-radius:9px;padding:11px 12px;margin-bottom:8px;background:#fcfdfb}
+.gcard h4{font-size:12px;font-weight:650;margin:0 0 5px}
+.gcard p{font-size:11.5px;margin:0 0 4px;color:var(--ink);line-height:1.6}
+.gcard ul{margin:3px 0 0;padding-left:16px;font-size:11.5px}
+.gcard li{margin-bottom:2px}
 
-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border:1px solid var(--line)}
-thead th{text-align:left;font-weight:500;font-size:11.5px;color:var(--muted);background:var(--soft2);
-  padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
-tbody td{padding:9px 10px;border-bottom:1px solid #eef1ec;vertical-align:top}
-tbody tr.row{cursor:pointer}
-tbody tr.row:hover{background:#f7faf7}
-tbody tr.row.opened{background:var(--soft)}
-.nm{font-weight:600;font-size:13.5px;line-height:1.45}
-.org{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.45}
-.dl{font-variant-numeric:tabular-nums;white-space:nowrap}
-.dl.near{color:var(--warn)}
-.tag{display:inline-block;font-size:11px;padding:1px 6px;border:1px solid var(--line);
-  border-radius:3px;color:var(--muted);white-space:nowrap;line-height:1.5}
-.tag.open{border-color:#b9d6c5;background:var(--soft);color:var(--accent)}
-.tag.soon{border-color:#e4ddc9;background:#faf7ee;color:#8a7742}
-.btn-mini{font:inherit;font-size:11.5px;padding:3px 9px;border:1px solid var(--line);
-  background:var(--panel);border-radius:4px;cursor:pointer;color:var(--accent);white-space:nowrap}
-.btn-mini:hover{border-color:var(--accent)}
-.btn-mini.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.caret{font-size:10px;color:var(--muted);margin-left:5px}
-
-.detail-row td{background:#fafcf9;padding:16px 18px;border-bottom:1px solid var(--line)}
-.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
-.dsec h4{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.4px;margin:0 0 5px}
-.dsec p,.dsec li{font-size:12.5px;color:var(--ink);margin:0}
+/* 弹层：详情 / 知网 */
+.mask{position:fixed;inset:0;background:rgba(20,30,24,.42);z-index:50;display:none;
+  align-items:center;justify-content:center;padding:24px}
+.mask.on{display:flex}
+.sheet{background:#fff;border-radius:16px;width:min(880px,100%);max-height:88vh;overflow:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);padding:24px 26px 26px}
+.sheet.narrow{width:min(480px,100%)}
+.sheet-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sheet-head h2{font-size:17px;font-weight:650;margin:0 0 4px;line-height:1.4}
+.sheet-head .m{font-size:12px;color:var(--muted)}
+.x{margin-left:auto;border:1px solid var(--line);background:#fff;width:30px;height:30px;
+  border-radius:8px;cursor:pointer;font-size:16px;line-height:1;color:var(--muted);flex:none}
+.x:hover{border-color:var(--accent);color:var(--accent)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px 26px}
+.dsec h4{font-size:11px;font-weight:650;color:var(--accent);letter-spacing:.5px;margin:0 0 5px;text-transform:uppercase}
+.dsec p,.dsec li{font-size:12.5px;color:var(--ink);margin:0;line-height:1.65}
 .dsec ul,.dsec ol{margin:0;padding-left:18px}
 .dsec li{margin-bottom:3px}
 .dsec.full{grid-column:1/-1}
-.dsec .src{font-size:11.5px;color:var(--muted);line-height:1.6}
-.dhead{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;
-  padding-bottom:10px;border-bottom:1px solid var(--line)}
-.dhead b{font-size:15px}
-.dhead span{font-size:12px;color:var(--muted)}
+.dsec .src{font-size:11.5px;color:var(--muted)}
+.sheet-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.act{font-size:12.5px;padding:8px 14px;border:1px solid var(--accent);background:var(--accent);
+  color:#fff;border-radius:8px;cursor:pointer}
+.act.ghost{background:#fff;color:var(--accent)}
+.field{display:block;margin-bottom:11px}
+.field span{display:block;font-size:11.5px;color:var(--muted);margin-bottom:5px}
+.field input{width:100%;font:inherit;font-size:13px;padding:9px 11px;border:1px solid var(--line);
+  border-radius:8px;outline:none;background:#fcfdfb}
+.field input:focus{border-color:var(--accent);background:#fff}
+.note{font-size:11.8px;color:var(--muted);line-height:1.7;background:var(--bg);
+  border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin:0 0 14px}
+.note b{color:var(--ink)}
+.bm{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;line-height:1.5;
+  word-break:break-all;background:#f4f7f3;border:1px solid var(--line);border-radius:8px;
+  padding:10px;max-height:110px;overflow:auto;margin-top:8px;color:#3c4a40}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1c2620;color:#fff;
+  padding:10px 17px;border-radius:9px;font-size:12.5px;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,.2)}
 
-h2.sec{font-size:15px;font-weight:600;margin:22px 0 8px;letter-spacing:.3px}
-h2.sec:first-child{margin-top:0}
-.card{border:1px solid var(--line);background:var(--panel);padding:15px 17px;margin-bottom:12px}
-.card h3{font-size:13.5px;font-weight:600;margin:0 0 6px}
-.card p{font-size:12.5px;color:var(--ink);margin:0 0 6px}
-.card ul{margin:0;padding-left:19px;font-size:12.5px}
-.card li{margin-bottom:3px}
-.card .lbl{display:inline-block;font-size:11px;color:var(--muted);min-width:64px}
-.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-pre.notice{white-space:pre-wrap;word-break:break-word;font:12.5px/1.75 inherit;
-  background:var(--soft2);border:1px solid var(--line);padding:14px 16px;margin:0 0 10px}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-button.act{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--accent);
-  background:var(--accent);color:#fff;border-radius:5px;cursor:pointer}
-button.act.ghost{background:var(--panel);color:var(--accent)}
-details.lib{border:1px solid var(--line);background:var(--panel);margin-bottom:8px}
-details.lib summary{cursor:pointer;padding:10px 14px;font-size:13px;font-weight:600;list-style:none}
-details.lib summary::-webkit-details-marker{display:none}
-details.lib summary::before{content:"+ ";color:var(--accent);font-weight:600}
-details.lib[open] summary::before{content:"− "}
-details.lib .body{padding:0 14px 14px;border-top:1px solid var(--line)}
-.libitem{padding:8px 0;border-bottom:1px solid #f0f2ee;font-size:12.5px}
-.libitem:last-child{border-bottom:0}
-.libitem b{font-weight:600}
-.libitem .m{color:var(--muted);font-size:11.5px}
-.empty{font-size:12.5px;color:var(--muted);padding:16px;text-align:center}
+footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+footer a{font-weight:600}
 
-footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
-.frow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.bar{flex:1;min-width:120px;max-width:260px;height:6px;background:#e9ede7;border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
-footer a{color:var(--accent)}
-
-@media(max-width:700px){
-  .wrap{padding:0 12px 44px}
-  header.top{padding:15px 0 12px}
-  h1{font-size:16px}
-  .sub{font-size:11px}
-  .top-right{font-size:11px}
-  nav button{padding:10px 11px;font-size:12.5px}
-  table{display:block;border:0;background:transparent;font-size:12px}
-  thead{display:none}
-  tbody{display:block}
-  #tbody tr.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;row-gap:2px;
-    padding:11px 10px;margin-bottom:8px;border:1px solid var(--line);
-    border-radius:5px;background:#fff}
-  #tbody tr.row:hover,#tbody tr.row.opened{background:#f7faf7}
-  #tbody tr.row td{border:0;padding:0;display:block}
-  #tbody tr.row td:nth-child(1){grid-column:1/-1;grid-row:1;margin-bottom:3px}
-  #tbody tr.row td:nth-child(2){grid-column:1;grid-row:2}
-  #tbody tr.row td:nth-child(3){grid-column:1;grid-row:3}
-  #tbody tr.row td:nth-child(4){display:none}
-  #tbody tr.row td:nth-child(5){grid-column:1;grid-row:4;font-size:11px;color:var(--muted)}
-  #tbody tr.row td:nth-child(5) .org{display:none}
-  #tbody tr.row td:nth-child(6){grid-column:2;grid-row:2;text-align:right}
-  #tbody tr.row td:nth-child(7){grid-column:2;grid-row:3;text-align:right}
-  #tbody tr.row .nm{font-size:12.5px}
-  #tbody tr.row .org{font-size:10.5px}
-  .detail-row{display:block;margin:-8px 0 8px}
-  .detail-row td{display:block;border:1px solid var(--line);border-top:0;
-    border-radius:0 0 5px 5px;padding:12px}
-  .dgrid,.guide-grid{grid-template-columns:minmax(0,1fr)}
-  .filters{gap:6px}
-  .filters select{flex:0 1 auto;min-width:0;max-width:calc(50% - 3px)}
-  input[type=search]{max-width:none;min-width:120px;flex:1 1 100%}
+@media(max-width:1080px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .side{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+}
+@media(max-width:640px){
+  .topbar{gap:12px;padding:11px 14px}
+  .metrics{width:100%;order:3;gap:18px;margin-left:0}
+  .metric b{font-size:18px}
+  .topActions{gap:6px}
+  .tb{padding:7px 10px;font-size:11.5px}
+  .app{padding:16px 13px 36px}
+  .grid,.compact{grid-template-columns:minmax(0,1fr)}
+  .dgrid{grid-template-columns:minmax(0,1fr)}
+  .sheet{padding:18px 16px 20px}
+  input[type=search]{flex:1 1 100%;min-width:0}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="top">
+<div class="topbar">
+  <div class="brand">
     <img src="icon-192.png?v=38" alt="">
-    <div>
-      <h1>星露奖杯农场</h1>
-      <div class="sub">深圳 · 宝安　|　美术赛事与报名台账</div>
+    <div><h1>星露奖杯农场</h1><div class="sub">深圳 · 宝安　|　美术赛事与报名台账</div></div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+  <div class="topActions">
+    <button class="tb primary" id="btnCNKI">知网一键填充</button>
+    <a class="tb" href="full.html">完整功能版（农场·封面·工具）↗</a>
+  </div>
+</div>
+
+<div class="app">
+  <div class="toolbar">
+    <div class="seg" id="segState">
+      <button class="on" data-st="open">现在能报 <b id="nOpen"></b></button>
+      <button data-st="soon">通知待发 <b id="nSoon"></b></button>
+      <button data-st="all">全部</button>
     </div>
-    <div class="top-right"><a href="full.html">完整功能版 ↗</a></div>
-  </header>
+    <input type="search" id="fQ" placeholder="搜赛事 / 主办 / 类别">
+    <span class="hint" id="shown"></span>
+  </div>
 
-  <nav id="nav">
-    <button class="on" data-view="ledger">赛事台账</button>
-    <button data-view="guide">报名指南</button>
-    <button data-view="notice">给学生发通知</button>
-    <button data-view="library">资料库</button>
-  </nav>
-
-  <!-- ============ 赛事台账 ============ -->
-  <section class="view on" id="v-ledger">
-    <div class="lead">按「现在能报 → 通知待发」排列，点任意一行展开主办、报名通道、提交步骤、材料清单与依据来源。已结束、已截稿、外市专属赛事不列入。</div>
-    <div class="counts" id="counts"></div>
-    <div class="filters">
-      <select id="fTier"><option value="">全部级别</option><option>国</option><option>省</option><option>市</option><option>区</option></select>
-      <select id="fWay"><option value="">全部报送方式</option><option value="self">个人投稿</option><option value="workshop">工作坊</option><option value="achv">美育成果报送</option><option value="teach">教师报送</option></select>
-      <select id="fAud"><option value="">全部对象</option><option value="学生">学生</option><option value="教师">教师</option></select>
-      <select id="fState"><option value="">全部状态</option><option value="open">现在能报</option><option value="soon">通知待发</option></select>
-      <input type="search" id="fQ" placeholder="搜赛事 / 主办 / 类别">
-      <span class="hint" id="shown"></span>
-    </div>
-    <table>
-      <thead><tr>
-        <th style="width:38%">赛事</th><th style="width:8%">级别</th><th style="width:14%">报送方式</th>
-        <th class="c-aud" style="width:8%">对象</th><th class="c-window" style="width:16%">征集期 / 截止</th>
-        <th style="width:9%">状态</th><th style="width:7%">赛程</th>
-      </tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <div class="empty" id="empty" style="display:none">没有符合条件的赛事，换个筛选试试。</div>
-  </section>
-
-  <!-- ============ 报名指南 ============ -->
-  <section class="view" id="v-guide">
-    <div class="lead">先分清报送方式，再决定怎么准备。三类方式的报名主体、平台、要交的东西都不一样，通知也不能混着发。</div>
-    <div class="guide-grid" id="guideGrid"></div>
-    <h2 class="sec">近期需要留意的时间</h2>
-    <div class="card" id="nearList"></div>
-    <h2 class="sec">公众号 / 平台上传，一般传什么</h2>
-    <div class="card">
-      <p><span class="lbl">作品文件</span>高清照片或扫描件，按赛事尺寸要求（绘画常见 ≤40×60cm、书法 ≤四尺对开），命名「学校-姓名-类别-作品名」。</p>
-      <p><span class="lbl">报名表</span>学生、指导教师、学校信息齐全，盖章页按通知要求扫描。</p>
-      <p><span class="lbl">过程材料</span>创作过程照片、原创承诺、未使用 AI 代笔的说明；部分赛事要求留存草稿。</p>
-      <p><span class="lbl">报送主体</span>写清是「学生个人提交」「学校统一汇总」还是「工作坊小组名义」，别混投。</p>
-      <p><span class="lbl">最后一步</span>本人登录、验证码、最终上传只能由本人或学校管理员完成，页面不能代办。</p>
-    </div>
-  </section>
-
-  <!-- ============ 给学生发通知 ============ -->
-  <section class="view" id="v-notice">
-    <div class="lead">按报送方式分成三份，语气是老师直接对同学们说的话，可直接复制发到班级群。已结束与外市赛事不进通知。</div>
-    <div class="tools">
-      <button class="act" id="btnCopyNotice">复制全文</button>
-      <button class="act ghost" id="btnCopyStu">只复制学生部分</button>
-      <button class="act ghost" id="btnDownloadNotice">下载 .txt</button>
-    </div>
-    <pre class="notice" id="noticeText"></pre>
-  </section>
-
-  <!-- ============ 资料库 ============ -->
-  <section class="view" id="v-library">
-    <div class="lead">教研前沿、评审专家、工具与名校战绩都在这里，默认收起，不影响台账阅读。完整互动版另有战绩本、备料包、邮件预览等功能。</div>
-    <div id="libBox"></div>
-  </section>
+  <div class="layout">
+    <section>
+      <div class="sec-head"><h2 id="secTitle"></h2><span id="secDesc"></span></div>
+      <div class="grid" id="cards"></div>
+      <div class="empty" id="empty" style="display:none">没有符合条件的赛事，换个关键词试试。</div>
+    </section>
+    <aside class="side">
+      <div class="panel" id="farmPanel"></div>
+      <div class="panel" id="noticePanel"></div>
+      <div class="panel" id="guidePanel"></div>
+      <div class="panel" id="libPanel"></div>
+    </aside>
+  </div>
 
   <footer>
-    <div class="frow">
-      <span>已加入赛程 <b id="mineN">0</b> 项</span>
-      <span class="bar"><i id="mineBar"></i></span>
-      <span id="mineTip">在台账里点「加入」即可记入</span>
-    </div>
-    <div>封面、成长农场、19 个工具弹窗与战绩本都在 <a href="full.html">完整功能版</a>，数据一条未删。<span id="verLine"></span></div>
+    <span>赛事库 <b id="fTotal"></b> 条 · 已结束/已截稿 <b id="fEnded"></b> 条不列入 · 数据 2026-11-05 · 第 46 版</span>
+    <a href="full.html">封面、成长农场、19 个工具弹窗与战绩本 →</a>
+    <a href="ledger.html">赛事台账（表格版）</a>
+    <span>三种视图都在，链接不变</span>
   </footer>
 </div>
+
+<div class="mask" id="mask"><div class="sheet" id="sheet"></div></div>
+<div class="mask" id="cnkiMask"><div class="sheet narrow" id="cnkiSheet"></div></div>
 
 <script>
 /* ===== 站内数据（与完整功能版同源，逐条保留） ===== */
@@ -2744,73 +2747,202 @@ const OPENN = LISTED.filter(function(a){return stateOf(a)==="open";}).length;
 const SOONN = LISTED.length-OPENN;
 const BYID = {}; AWARDS.forEach(function(a){ BYID[a.id]=a; });
 
-/* ===== 我的赛程（沿用完整版 hf_mine_v1，报名联动不丢） ===== */
-function mine(){
-  try{ var m=JSON.parse(localStorage.getItem("hf_mine_v1")||"[]"); return Array.isArray(m)?m:[]; }
-  catch(e){ return []; }
-}
-function saveMine(m){
-  try{ localStorage.setItem("hf_mine_v1", JSON.stringify(m)); }catch(e){}
-}
-function inMine(id){ return mine().some(function(x){ return String(x&&x.id)===String(id); }); }
+/* ============ 我的赛程（沿用完整版 hf_mine_v1） ============ */
+var HF_MINE = "hf_mine_v1";
+function mine(){ try{var m=JSON.parse(localStorage.getItem(HF_MINE)||"[]");return Array.isArray(m)?m:[];}catch(e){return [];} }
+function saveMine(m){ try{localStorage.setItem(HF_MINE,JSON.stringify(m));}catch(e){} }
+function inMine(id){ return mine().some(function(x){return String(x&&x.id)===String(id);}); }
 function toggleMine(id){
-  var m=mine(), i=-1;
-  m.forEach(function(x,k){ if(String(x&&x.id)===String(id)) i=k; });
-  if(i>=0) m.splice(i,1); else m.push({id:id,status:"准备中"});
-  saveMine(m); renderTable(); renderProgress();
-}
-function renderProgress(){
-  var n=mine().length;
-  $("#mineN").textContent=n;
-  $("#mineBar").style.width=(LISTED.length?Math.min(100,n/LISTED.length*100):0)+"%";
-  $("#mineTip").textContent=n?("田里已记 "+n+" 株，完整功能版可看成长农场"):"在台账里点「加入」即可记入";
+  var m=mine(),i=-1;
+  m.forEach(function(x,k){if(String(x&&x.id)===String(id))i=k;});
+  if(i>=0)m.splice(i,1);else m.push({id:id,status:"准备中"});
+  saveMine(m); renderCards(); renderFarm();
+  toast(inMine(id)?"已加入赛程":"已移出赛程");
 }
 
-/* ===== 台账表格 ===== */
+/* ============ 点击声音与震动 ============ */
+var _actx=null;
+function beep(freq,dur,type){
+  try{
+    if(!_actx)_actx=new (window.AudioContext||window.webkitAudioContext)();
+    if(_actx.state==="suspended")_actx.resume();
+    var o=_actx.createOscillator(),g=_actx.createGain();
+    o.type=type||"sine";o.frequency.value=freq;
+    g.gain.setValueAtTime(.045,_actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.0001,_actx.currentTime+(dur||.03));
+    o.connect(g);g.connect(_actx.destination);o.start();o.stop(_actx.currentTime+(dur||.03));
+  }catch(e){}
+}
+function tap(){
+  try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){}
+  beep(660,.03,"sine");
+}
+document.addEventListener("click",function(e){
+  var t=e.target;
+  if(t&&t.closest&&t.closest("input,textarea,select"))return;
+  tap();
+},true);
+
+/* ============ 复制 / 提示 ============ */
+function copyText(t,tip){
+  var ta=document.createElement("textarea");
+  ta.value=t;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");}catch(e){}
+  document.body.removeChild(ta);
+  toast(tip||"已复制");
+}
+function toast(msg){
+  var d=document.createElement("div");d.className="toast";d.textContent=msg;
+  document.body.appendChild(d);setTimeout(function(){d.remove();},1900);
+}
+
+/* ============ 知网：本机浏览器存储 + 一键填充 ============ */
+var CNKI_KEY="hf_cnki_v1";
+var CNKI_LIB="https://lib.shutong121.com";   /* 深圳图书馆 · 知网入口（借书证登录） */
+var CNKI_OFF="https://www.cnki.net";
+function cnkiGet(){ try{var c=JSON.parse(localStorage.getItem(CNKI_KEY)||"{}");return {u:c.u||"",p:c.p||""};}catch(e){return {u:"",p:""};} }
+function cnkiSave(u,p){ try{localStorage.setItem(CNKI_KEY,JSON.stringify({u:u,p:p}));}catch(e){} }
+function cnkiClear(){ try{localStorage.removeItem(CNKI_KEY);}catch(e){} refreshCNKIBtn(); }
+function refreshCNKIBtn(){
+  var c=cnkiGet(),b=document.getElementById("btnCNKI");
+  if(!b)return;
+  b.innerHTML=(c.u||c.p)?"知网一键填充 <span class=\"ok\">· 已存本机 ✓</span>":"知网一键填充";
+}
+/* 生成一段本机书签脚本：拖到书签栏，在知网登录页点一下即自动填入（凭据只在本机、不上传） */
+function cnkiBookmark(u,p){
+  return "javascript:(function(){var u="+JSON.stringify(u)+",p="+JSON.stringify(p)+";"+
+    "var ins=document.querySelectorAll('input'),uHit=null,pHit=null;"+
+    "for(var i=0;i<ins.length;i++){var e=ins[i],t=(e.type||'').toLowerCase(),"+
+    "n=(e.name||'')+(e.id||'')+(e.placeholder||'');"+
+    "if(t==='password'){if(!pHit)pHit=e;}"+
+    "else if(t!=='hidden'&&t!=='checkbox'&&t!=='radio'&&t!=='submit'&&t!=='button'){"+
+    "if(!uHit&&/user|name|account|login|card|id|账号|用户|证号|手机|email/i.test(n))uHit=e;}}"+
+    "if(!uHit){for(var j=0;j<ins.length;j++){var f=ins[j],q=(f.type||'').toLowerCase();"+
+    "if(q!=='password'&&q!=='hidden'&&q!=='checkbox'&&q!=='radio'&&q!=='submit'&&q!=='button'){uHit=f;break;}}}"+
+    "function set(el,v){if(!el)return;el.focus();el.value=v;"+
+    "el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));}"+
+    "set(uHit,u);set(pHit,p);"+
+    "if(!uHit&&!pHit)alert('未找到登录输入框，请手动粘贴（凭据已存在本机）');"+
+    "})()";
+}
+function openCNKI(){
+  var c=cnkiGet();
+  var h='<div class="sheet-head"><div><h2>知网账号 · 本机一键填充</h2>'+
+    '<div class="m">账号密码只保存在这台设备的浏览器里，不上传、不写进网站文件与公开仓库</div></div>'+
+    '<button class="x" data-close="cnkiMask">×</button></div>';
+  h+='<div class="note">公开仓库<b>不能写死账号密码</b>。这里改为本机存储：填一次，以后点顶部「知网一键填充」即可把账号密码放进剪贴板并打开知网；'+
+     '若要真正自动填入登录框，把下面生成的<b>书签</b>拖到书签栏，在知网登录页点一下即可。换设备或清除浏览器数据后需重新填写。</div>';
+  h+='<label class="field"><span>账号 / 借书证号 / 手机号</span><input id="cnkiU" type="text" autocomplete="off" value="'+esc(c.u)+'"></label>';
+  h+='<label class="field"><span>密码</span><input id="cnkiP" type="password" autocomplete="off" value="'+esc(c.p)+'"></label>';
+  h+='<div class="sheet-acts">'+
+     '<button class="act" id="cnkiSave">保存到本机</button>'+
+     '<button class="act ghost" id="cnkiFill">一键复制并打开知网</button>'+
+     '<button class="act ghost" id="cnkiBM">生成一键填充书签</button>'+
+     '<button class="act ghost" id="cnkiDel">清除本机记录</button></div>';
+  h+='<div id="cnkiBMBox"></div>';
+  h+='<div class="sheet-acts" style="border:0;padding-top:12px;margin-top:4px">'+
+     '<a class="tb" href="'+CNKI_LIB+'" target="_blank" rel="noopener">深圳图书馆知网入口 ↗</a>'+
+     '<a class="tb" href="'+CNKI_OFF+'" target="_blank" rel="noopener">中国知网官网 ↗</a></div>';
+  var sheet=document.getElementById("cnkiSheet");
+  sheet.innerHTML=h;
+  document.getElementById("cnkiMask").classList.add("on");
+  document.getElementById("cnkiSave").addEventListener("click",function(){
+    var u=document.getElementById("cnkiU").value.trim(),p=document.getElementById("cnkiP").value;
+    cnkiSave(u,p);refreshCNKIBtn();toast("已保存到本机浏览器");
+  });
+  document.getElementById("cnkiFill").addEventListener("click",function(){ cnkiFill(); });
+  document.getElementById("cnkiBM").addEventListener("click",function(){
+    var c2=cnkiGet();
+    if(!c2.u&&!c2.p){toast("请先填写并保存到本机");return;}
+    var code=cnkiBookmark(c2.u,c2.p);
+    var box=document.getElementById("cnkiBMBox");
+    box.innerHTML='<div class="note" style="margin:12px 0 0">把下面这个链接<b>拖到浏览器书签栏</b>，以后在知网登录页点一下书签，账号密码会自动填好。'+
+      '（若浏览器不允许拖动，可新建一个书签，把下面代码整段粘进「网址」栏）</div>'+
+      '<div class="bm" id="bmCode">'+esc(code)+'</div>'+
+      '<div class="sheet-acts" style="border:0;padding-top:10px"><button class="act ghost" id="bmCopy">复制书签代码</button></div>';
+    document.getElementById("bmCopy").addEventListener("click",function(){copyText(code,"书签代码已复制");});
+  });
+  document.getElementById("cnkiDel").addEventListener("click",function(){
+    cnkiClear();document.getElementById("cnkiU").value="";document.getElementById("cnkiP").value="";
+    toast("已清除本机记录");
+  });
+}
+function cnkiFill(){
+  var c=cnkiGet();
+  if(!c.u&&!c.p){ openCNKI(); toast("请先填写并保存到本机"); return; }
+  var text="账号："+c.u+"\n密码："+c.p;
+  copyText(text,"账号密码已复制，去知网粘贴登录");
+  window.open(CNKI_LIB,"_blank","noopener");
+}
+function initCNKI(){
+  var b=document.getElementById("btnCNKI");
+  b.addEventListener("click",function(){
+    var c=cnkiGet();
+    if(c.u||c.p) cnkiFill(); else openCNKI();
+  });
+  refreshCNKIBtn();
+}
+
+/* ============ 卡片渲染 ============ */
+var curState="open";
 function filt(){
-  var t=$("#fTier").value, w=$("#fWay").value, au=$("#fAud").value,
-      st=$("#fState").value, q=$("#fQ").value.trim().toLowerCase();
+  var q=(document.getElementById("fQ").value||"").trim().toLowerCase();
   return LISTED.filter(function(a){
-    if(t && a.tier!==t) return false;
-    if(w && wayOf(a)!==w) return false;
-    if(au && a.aud!==au) return false;
-    if(st && stateOf(a)!==st) return false;
+    if(curState==="open"&&stateOf(a)!=="open")return false;
+    if(curState==="soon"&&stateOf(a)!=="soon")return false;
     if(q){
       var hay=[a.name,a.short,a.org,a.orgType,a.subject,a.portal].join(" ").toLowerCase();
-      if(hay.indexOf(q)<0) return false;
+      if(hay.indexOf(q)<0)return false;
     }
     return true;
   });
 }
-function rowHTML(a){
-  var st=stateOf(a), w=wayOf(a), nd=nearDays(a);
+function cardHTML(a){
+  var st=stateOf(a),w=wayOf(a),nd=nearDays(a);
   var near=(st==="open"&&nd!==null&&nd>=0&&nd<=45);
-  var dl=dlText(a);
-  var win=String(a.window||"").replace(/\s+/g," ").slice(0,26);
-  return '<tr class="row" id="r_'+esc(a.id)+'" data-id="'+esc(a.id)+'">'+
-    '<td><div class="nm">'+esc(a.name)+'<span class="caret">▾</span></div>'+
-      '<div class="org">'+esc(a.org||"")+'</div></td>'+
-    '<td><span class="tag">'+esc(TIER[a.tier]||a.tier||"")+'</span></td>'+
-    '<td>'+esc(WAY[w].t)+'</td>'+
-    '<td class="c-aud">'+esc(a.aud||"")+'</td>'+
-    '<td class="c-window"><div class="dl'+(near?" near":"")+'">'+esc(dl)+'</div>'+
-      '<div class="org">'+esc(win)+'</div></td>'+
-    '<td><span class="tag '+(st==="open"?"open":"soon")+'">'+(st==="open"?"现在能报":"通知待发")+'</span></td>'+
-    '<td><button class="btn-mini'+(inMine(a.id)?" on":"")+'" data-join="'+esc(a.id)+'">'+
-      (inMine(a.id)?"已加入":"加入")+'</button></td>'+
-  '</tr>';
+  var joined=inMine(a.id);
+  return '<article class="card '+(st==="open"?"open":"soon")+(joined?" joined":"")+'" data-open="'+esc(a.id)+'">'+
+    '<div class="c-top"><span class="c-tier">'+esc(TIER[a.tier]||a.tier||"")+'</span>'+
+      '<span class="c-state '+(st==="open"?"open":"")+'">'+(st==="open"?"现在能报":"通知待发")+'</span></div>'+
+    '<h3 class="c-name">'+esc(a.name)+'</h3>'+
+    '<div class="c-org">'+esc(a.org||"")+'</div>'+
+    '<div class="c-foot"><div class="c-meta"><b class="'+(near?"near":"")+'">'+esc(dlText(a))+'</b>'+
+      esc(WAY[w].t)+' · '+esc(a.aud||"")+'</div>'+
+      '<div class="c-acts"><button class="mini'+(joined?" on":"")+'" data-join="'+esc(a.id)+'">'+
+      (joined?"已加入":"加入")+'</button></div></div>'+
+  '</article>';
 }
-function detailHTML(a){
-  var w=wayOf(a), st=stateOf(a);
-  var sec=function(title,body,full){
-    return '<div class="dsec'+(full?" full":"")+'"><h4>'+title+'</h4>'+body+'</div>';
-  };
-  var h='<div class="dhead"><b>'+esc(a.name)+'</b><span>'+esc(TIER[a.tier]||"")+' · '+esc(WAY[w].t)+
-        ' · '+(st==="open"?"现在能报":"通知待发")+'</span></div><div class="dgrid">';
-  h+=sec("主办 / 授权",'<p>'+esc(a.org||"")+'</p><p style="color:#6b756d;font-size:11.5px">'+esc(a.orgType||"")+'</p>'+(a.auth?'<p style="margin-top:4px">'+esc(a.auth)+'</p>':''));
+function miniHTML(a){
+  var st=stateOf(a);
+  return '<button class="mrow" data-open="'+esc(a.id)+'">'+
+    '<span class="t">'+esc(TIER[a.tier]||"")+'</span>'+
+    '<span class="n">'+esc(a.name)+'</span>'+
+    '<span class="d">'+esc(dlText(a))+'</span></button>';
+}
+function renderCards(){
+  var rows=filt(),box=document.getElementById("cards");
+  var compact=(curState==="all"||rows.length>12);
+  box.className=compact?"compact":"grid";
+  box.innerHTML=rows.map(compact?miniHTML:cardHTML).join("");
+  document.getElementById("empty").style.display=rows.length?"none":"block";
+  document.getElementById("shown").innerHTML="显示 <b>"+rows.length+"</b> / "+LISTED.length+" 条";
+  var titles={open:["现在能报","官方通知已发布，按截止时间由近到远"],
+              soon:["通知待发","官方通知尚未发布，日期为预估，暂不用准备"],
+              all:["全部可报赛事","已结束 / 已截稿 / 外市专属赛事不列入"]};
+  document.getElementById("secTitle").textContent=titles[curState][0];
+  document.getElementById("secDesc").textContent=titles[curState][1];
+}
+
+/* ============ 详情弹层（不跳页、不展开长行） ============ */
+function detailBody(a){
+  var w=wayOf(a),st=stateOf(a);
+  function sec(t,b,full){return '<div class="dsec'+(full?" full":"")+'"><h4>'+t+'</h4>'+b+'</div>';}
+  var h='<div class="dgrid">';
+  h+=sec("主办 / 授权",'<p>'+esc(a.org||"")+'</p><p style="color:#6d7a70;font-size:11.5px">'+esc(a.orgType||"")+'</p>'+(a.auth?'<p style="margin-top:4px">'+esc(a.auth)+'</p>':''));
   h+=sec("参赛对象 / 类别",'<p>'+esc(a.reg||a.aud||"")+'</p><p>'+esc(a.subject||"")+'</p>');
   h+=sec("周期与征集期",'<p>'+esc(a.cycle||"")+'</p><p style="margin-top:4px">'+esc(a.window||"")+'</p>');
-  h+=sec("截止时间",'<p class="dl">'+esc(a.deadline||"待公布")+'</p><p style="color:#6b756d;font-size:11.5px;margin-top:4px">'+esc(a.deadlineNote||"")+'</p>');
+  h+=sec("截止时间",'<p>'+esc(a.deadline||"待公布")+'</p><p style="color:#6d7a70;font-size:11.5px;margin-top:4px">'+esc(a.deadlineNote||"")+'</p>');
   h+=sec("报名通道（怎么报）",'<p>'+esc(a.portal||"")+'</p>');
   h+=sec("提交步骤",listHTML(a.steps,true));
   h+=sec("需要准备的材料",listHTML(a.materials,false));
@@ -2821,36 +2953,141 @@ function detailHTML(a){
   h+=sec("官方入口",a.url?'<p><a href="'+esc(a.url)+'" target="_blank" rel="noopener">打开官网 / 通知 ↗</a></p>':'<p>—</p>');
   h+=sec("依据来源",'<p class="src">'+esc(a.source||"")+'</p>',true);
   h+='</div>';
-  return '<td colspan="7">'+h+'</td>';
+  return h;
 }
-function toggleRow(id,tr){
-  var old=document.getElementById("d_"+id);
-  if(old){ old.remove(); tr.classList.remove("opened"); return; }
-  $$(".detail-row").forEach(function(x){ x.remove(); });
-  $$("tr.row.opened").forEach(function(x){ x.classList.remove("opened"); });
-  var d=document.createElement("tr");
-  d.className="detail-row"; d.id="d_"+id;
-  d.innerHTML=detailHTML(BYID[id]);
-  tr.parentNode.insertBefore(d,tr.nextSibling);
-  tr.classList.add("opened");
-}
-function renderTable(){
-  var rows=filt();
-  $("#tbody").innerHTML=rows.map(rowHTML).join("");
-  $("#empty").style.display=rows.length?"none":"block";
-  $("#shown").textContent="显示 "+rows.length+" / "+LISTED.length+" 条";
-  $$("#tbody tr.row").forEach(function(tr){
-    tr.addEventListener("click",function(e){
-      if(e.target&&e.target.getAttribute("data-join")) return;
-      toggleRow(tr.getAttribute("data-id"),tr);
-    });
+function openDetail(id){
+  var a=BYID[id]; if(!a)return;
+  var joined=inMine(id);
+  var h='<div class="sheet-head"><div><h2>'+esc(a.name)+'</h2>'+
+    '<div class="m">'+esc(TIER[a.tier]||"")+' · '+esc(WAY[wayOf(a)].t)+' · '+
+    (stateOf(a)==="open"?"现在能报":"通知待发")+' · 截止 '+esc(dlText(a))+'</div></div>'+
+    '<button class="x" data-close="mask">×</button></div>';
+  h+=detailBody(a);
+  h+='<div class="sheet-acts">'+
+     '<button class="act" id="dJoin">'+(joined?"移出赛程":"加入赛程")+'</button>'+
+     '<button class="act ghost" id="dCopy">复制赛事要点</button>'+
+     (a.url?'<a class="tb" href="'+esc(a.url)+'" target="_blank" rel="noopener">打开官方通知 ↗</a>':'')+'</div>';
+  document.getElementById("sheet").innerHTML=h;
+  document.getElementById("mask").classList.add("on");
+  document.getElementById("dJoin").addEventListener("click",function(){
+    toggleMine(id); closeSheet("mask");
   });
-  $$("#tbody [data-join]").forEach(function(b){
-    b.addEventListener("click",function(e){
-      e.stopPropagation(); toggleMine(b.getAttribute("data-join"));
-    });
+  document.getElementById("dCopy").addEventListener("click",function(){
+    var t=a.name+"\n主办："+(a.org||"")+"\n级别："+(TIER[a.tier]||"")+
+      "\n截止："+(a.deadline||"待公布")+"\n报送："+WAY[wayOf(a)].t+
+      "\n通道："+(a.portal||"")+"\n步骤："+arr(a.steps).join("；")+
+      "\n材料："+arr(a.materials).join("；");
+    copyText(t,"赛事要点已复制");
   });
 }
+function closeSheet(mid){ var m=document.getElementById(mid); if(m)m.classList.remove("on"); }
+
+/* ============ 侧栏 ============ */
+function renderFarm(){
+  var n=mine().length,total=LISTED.length||1;
+  var plots="";
+  for(var i=0;i<12;i++) plots+='<span class="plot'+(i<n?" on":"")+'">'+(i<n?(i%3===0?"🌱":i%3===1?"🌿":"🌻"):"")+'</span>';
+  var pct=Math.min(100,Math.round(n/total*100));
+  document.getElementById("farmPanel").innerHTML=
+    '<h3>报名进度 · 成长农场 <span class="k">'+n+' / '+total+' 项</span></h3>'+
+    '<div class="farm-bar"><i style="width:'+pct+'%"></i></div>'+
+    '<div class="farm-plots">'+plots+'</div>'+
+    '<p style="margin:9px 0 0">每加入 1 项赛程，田里就多 1 株。种子、花苗、花朵随进度生长；'+
+    '完整功能版可看会动的成长农场。</p>';
+}
+function noticeBy(k){
+  var open=LISTED.filter(function(a){return stateOf(a)==="open"&&wayOf(a)===k;});
+  var L=["同学们好！",""];
+  var intro={
+    self:"现将本学期可以本人投稿的美术类赛事整理如下。请先看清作品尺寸与原创要求，完成后按通知在官方通道上传，有问题课间来找我。",
+    workshop:"现将本学期由老师统一组织、以小组或学校名义报送的赛事整理如下。想参加的同学课后告诉我，我们会统一安排创作时间，按小组进度完成。",
+    achv:"现将本学期由学校遴选、汇总后统一报送的美育成果类赛事整理如下。这类赛事不接收个人单独投稿，请先把作品交给我，不要自己投。",
+    teach:"以下为教师本人参加的教研与教学成果类赛事，由老师自行准备，同学们不需要报名。"
+  }[k];
+  L.push(intro);L.push("");
+  if(!open.length){L.push("这一类目前还没有已发通知的赛事，等官方通知到了我再告诉大家。");L.push("");}
+  else open.forEach(function(a,i){
+    L.push((i+1)+". "+a.name+"（"+(TIER[a.tier]||a.tier)+"，"+a.org+"）");
+    L.push("   截止："+(a.deadline||"以官方通知为准")+"；报送："+WAY[k].t+"。");
+  });
+  L.push("");
+  L.push("材料清单、报名通道和提交步骤都写在网站的赛事卡片里，点开对应赛事就能看到。报名上有任何不清楚的地方，课后直接来找我。");
+  L.push("");L.push("　　　　　　　　　　　　　　　美术组　老师");
+  return L.join("\n");
+}
+function renderSide(){
+  renderFarm();
+  document.getElementById("noticePanel").innerHTML=
+    '<h3>给学生发通知 <span class="k">老师口吻 · 三套分开</span></h3>'+
+    '<p>按报送方式分别生成，可直接复制发到班级群；已结束与外市赛事不进通知。</p>'+
+    '<div class="side-btns">'+
+      '<button data-copy="self">个人投稿通知</button>'+
+      '<button data-copy="workshop">工作坊通知</button>'+
+      '<button data-copy="achv">美育成果通知</button>'+
+      '<button data-copy="all">复制全文</button>'+
+    '</div>';
+  document.getElementById("guidePanel").innerHTML=
+    '<h3>报名指南 <span class="k">点开看</span></h3>'+
+    '<p>先分清报送方式，再决定怎么准备。三类方式的主体、平台、材料都不一样。</p>'+
+    '<details class="lib"><summary>四类报送方式 · 怎么报 / 好报程度</summary><div class="body" id="guideBox"></div></details>'+
+    '<details class="lib"><summary>近期需要留意的时间</summary><div class="body" id="nearBox"></div></details>';
+  document.getElementById("guideBox").innerHTML=guideHTML();
+  document.getElementById("nearBox").innerHTML=nearHTML();
+  document.getElementById("libPanel").innerHTML=
+    '<h3>资料库 <span class="k">默认收起</span></h3>'+
+    '<p>教研前沿、评审专家、工具与名校战绩；完整功能版另有备料包、邮件预览。</p>'+
+    '<div id="libBox"></div>';
+  document.getElementById("libBox").innerHTML=libHTML();
+}
+
+/* ============ 初始化 ============ */
+function init(){
+  document.getElementById("metrics").innerHTML=
+    '<div class="metric hi"><b>'+OPENN+'</b><span>现在能报</span></div>'+
+    '<div class="metric"><b>'+SOONN+'</b><span>通知待发</span></div>'+
+    '<div class="metric"><b id="mMine">'+mine().length+'</b><span>已加入赛程</span></div>';
+  document.getElementById("nOpen").textContent=OPENN;
+  document.getElementById("nSoon").textContent=SOONN;
+  document.getElementById("fTotal").textContent=AWARDS.length;
+  document.getElementById("fEnded").textContent=ENDED;
+  renderCards(); renderSide(); initCNKI();
+
+  document.querySelectorAll("#segState button").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#segState button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");curState=b.getAttribute("data-st");renderCards();
+    });
+  });
+  document.getElementById("fQ").addEventListener("input",renderCards);
+
+  /* 事件委托：卡片 / 加入 / 通知复制 / 关闭 */
+  document.addEventListener("click",function(e){
+    var t=e.target; if(!t||!t.closest)return;
+    var j=t.closest("[data-join]");
+    if(j){ e.stopPropagation(); toggleMine(j.getAttribute("data-join")); return; }
+    var o=t.closest("[data-open]");
+    if(o){ openDetail(o.getAttribute("data-open")); return; }
+    var c=t.closest("[data-copy]");
+    if(c){
+      var k=c.getAttribute("data-copy");
+      copyText(k==="all"?noticeText(false):noticeBy(k),
+        k==="all"?"通知全文已复制":(WAY[k]?WAY[k].t:"")+"通知已复制");
+      return;
+    }
+    var x=t.closest("[data-close]");
+    if(x){ closeSheet(x.getAttribute("data-close")); return; }
+  });
+  ["mask","cnkiMask"].forEach(function(id){
+    document.getElementById(id).addEventListener("click",function(e){
+      if(e.target===this)closeSheet(id);
+    });
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){closeSheet("mask");closeSheet("cnkiMask");}
+  });
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
+else init();
 
 /* ===== 报名指南 ===== */
 function guideHTML(){
@@ -2962,56 +3199,7 @@ function libHTML(){
   return h;
 }
 
-/* ===== 视图切换与初始化 ===== */
-function switchView(v){
-  $$("#nav button").forEach(function(b){ b.classList.toggle("on",b.getAttribute("data-view")===v); });
-  $$(".view").forEach(function(s){ s.classList.toggle("on",s.id==="v-"+v); });
-  window.scrollTo(0,0);
-}
-function copyText(t,tip){
-  var ta=document.createElement("textarea");
-  ta.value=t; ta.style.position="fixed"; ta.style.opacity="0";
-  document.body.appendChild(ta); ta.select();
-  try{ document.execCommand("copy"); }catch(e){}
-  document.body.removeChild(ta);
-  toast(tip);
-}
-function toast(msg){
-  var d=document.createElement("div");
-  d.textContent=msg;
-  d.style.cssText="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#1f2420;color:#fff;padding:9px 16px;border-radius:5px;font-size:12.5px;z-index:99";
-  document.body.appendChild(d);
-  setTimeout(function(){ d.remove(); },1900);
-}
-function init(){
-  $("#counts").innerHTML="赛事库共 <b>"+AWARDS.length+"</b> 条 ｜ 现在能报 <b>"+OPENN+
-    "</b> 条 ｜ 通知待发 <b>"+SOONN+"</b> 条 ｜ 已结束/已截稿 <b>"+ENDED+"</b> 条（按你的要求不列入）"+
-    '　<span style="color:#6b756d">数据 2026-11-05 · 第 45 版</span>';
-  $("#verLine").textContent="　数据 2026-11-05 · 第 45 版";
-  $("#guideGrid").innerHTML=guideHTML();
-  $("#nearList").innerHTML=nearHTML();
-  $("#noticeText").textContent=noticeText(false);
-  $("#libBox").innerHTML=libHTML();
-  renderTable(); renderProgress();
 
-  $$("#nav button").forEach(function(b){
-    b.addEventListener("click",function(){ switchView(b.getAttribute("data-view")); });
-  });
-  ["fTier","fWay","fAud","fState","fQ"].forEach(function(id){
-    $("#"+id).addEventListener(id==="fQ"?"input":"change",renderTable);
-  });
-  $("#btnCopyNotice").addEventListener("click",function(){ copyText(noticeText(false),"已复制全文"); });
-  $("#btnCopyStu").addEventListener("click",function(){ copyText(noticeText(true),"已复制学生部分"); });
-  $("#btnDownloadNotice").addEventListener("click",function(){
-    var blob=new Blob([noticeText(false)],{type:"text/plain;charset=utf-8"});
-    var a=document.createElement("a"); a.href=URL.createObjectURL(blob);
-    a.download="美术赛事参赛通知.txt"; a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
-    toast("已下载通知文本");
-  });
-}
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
-else init();
 </script>
 </body>
 </html>
