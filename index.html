@@ -30,12 +30,12 @@ body{
 }
 body.s-spring{background:linear-gradient(180deg,#5fa84f,#8ec96f 45%,#b6dc86)}
 body.s-summer{background:linear-gradient(180deg,#3f93c4,#7ec8e3 45%,#bfe6a8)}
-body.s-autumn{background:linear-gradient(180deg,#b8641f,#e09b45 45%,#eec772)}
+body.s-autumn{background:linear-gradient(180deg,#eaf1dc,#f5ecd6 45%,#f1e2c0)}
 body.s-winter{background:linear-gradient(180deg,#6f87ab,#a9bdd8 45%,#e4edf5)}
 #grass{position:fixed;left:0;right:0;bottom:0;height:110px;z-index:0;pointer-events:none;opacity:.5;
   background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 6px,transparent 6px 14px),
   linear-gradient(180deg,transparent,#2f6b22)}
-body.s-autumn #grass{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 6px,transparent 6px 14px),linear-gradient(180deg,transparent,#7d3f12)}
+body.s-autumn #grass{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 6px,transparent 6px 14px),linear-gradient(180deg,transparent,#a9c98b)}
 body.s-winter #grass{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 6px,transparent 6px 14px),linear-gradient(180deg,transparent,#6a7d99)}
 body.s-summer #grass{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 6px,transparent 6px 14px),linear-gradient(180deg,transparent,#25662f)}
 
@@ -232,7 +232,7 @@ h1{font-family:"Zpix","Fusion Pixel",monospace;font-size:20px;color:var(--gold);
 .sec ul{list-style:none;font-size:12.5px}
 .sec li{padding-left:19px;position:relative;margin-bottom:4px;line-height:1.65}
 .sec li:before{content:"■";position:absolute;left:2px;top:0;color:var(--wood-light);font-size:9px}
-.sec li.tip:before{content:"★";color:var(--gold);font-size:11px}
+.sec li.tip:before{content:"•";color:var(--gold);font-size:11px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:640px){.grid2{grid-template-columns:1fr}}
 .fld label{display:block;font-size:11px;color:var(--ink-2);margin-bottom:2px}
@@ -368,6 +368,100 @@ footer b{color:var(--wood)}
 @keyframes twinkle{0%,100%{transform:scale(.5);opacity:.35}50%{transform:scale(1.2);opacity:1}}
 @keyframes coverBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.07)}}
 @media(max-width:760px){.cover-hero .cover{max-height:230px;border-width:4px}}
+
+/* ===== v44 整站体检修复：布局 / 溢出 / 按钮 ===== */
+html,body{max-width:100%;overflow-x:hidden}
+.cover-hero .farmwrap{overflow:visible}
+.cover-hero .farm-play{animation:none;border-radius:999px;font-size:14px;padding:9px 14px;box-shadow:0 3px 0 rgba(0,0,0,.22)}
+.card h3,.row1,.org,.meta,.to-line,.advice-line,.decide-line{min-width:0;overflow-wrap:anywhere}
+.honorbar{flex-wrap:wrap;gap:5px}
+@media(max-width:680px){
+  .wrap{padding:10px 10px}
+  body{font-size:16px;line-height:1.7}
+  .cover-hero{margin-bottom:9px}
+  .cover-hero .cover{max-height:none;border-width:4px;border-radius:12px}
+  .tabs{gap:5px}
+  .btn{font-size:13px;padding:6px 9px}
+  .card{padding:9px 10px}
+  .card h3{font-size:18px}
+  .honorbar{font-size:12px}
+  header{padding:9px 10px;border-width:4px;gap:8px}
+  header .hr{gap:6px}
+  .fl-stat{font-size:12px}
+  .fl-legend{font-size:11.5px}
+}
+
+
+/* ===== v44 成长田：精简、柔和、示例可见 ===== */
+.fl-live{background:linear-gradient(180deg,#fffdf6,#f5f8ea);border:2px solid #dccba4;border-radius:14px;padding:12px 14px;box-shadow:0 3px 0 rgba(0,0,0,.07)}
+.fl-title{font-size:16px;font-weight:800;color:#3b2412;margin-bottom:2px}
+.fl-lead{font-size:13px;color:#5d503b;line-height:1.7;margin-bottom:9px}
+.fl-lead b{color:#8a5a12}
+.fl-stat>span{background:#fff;border:1.5px solid #e2d5b8;border-radius:999px;padding:3px 9px;white-space:nowrap;font-size:12.5px}
+.fl-stat b{color:#1f6b38;font-size:14px}
+.fl-bar{height:9px;background:#ece2cb;border-radius:999px;overflow:hidden;margin:9px 0}
+.fl-legend{gap:6px;margin:8px 0;font-size:11.5px}
+.fl-legend span{background:#fff;border:1.5px solid #e2d5b8;border-radius:7px;padding:2px 7px}
+.fl-field{grid-template-columns:repeat(6,1fr);gap:4px;background:#e4dcc2;border:3px solid #d7c7a2;border-radius:12px;padding:4px}
+.fl-cell{border-radius:8px}
+.fl-cell.empty{background:#f3ecd9;color:#cdbb92}
+.fl-cell.empty span{font-size:14px;opacity:.85}
+.fl-cell.demo{background:#edf4dc;border:1px dashed #b3cd87}
+.fl-cell.demo .fl-plant{opacity:.6;font-size:22px}
+.fl-cell.has:hover{background:#dff0c2;transform:translateY(-2px)}
+.fl-demo{background:#fff8e8;border:1px dashed #d8b56a;border-radius:8px;padding:7px 9px;margin:8px 0;font-size:12.5px;color:#5d503b;line-height:1.8}
+.fl-foot{margin-top:9px;font-size:12.5px;color:#5d503b;line-height:1.7}
+.fl-foot .btn,.fl-demo .btn,.fl-go{border-radius:999px;background:#2f8f4e;color:#fff;border:1px solid #1f6b38;box-shadow:none;font-size:12.5px;padding:5px 11px}
+.fl-foot .btn:hover,.fl-demo .btn:hover,.fl-go:hover{background:#3aa35c;color:#fff}
+.fl-chick{font-size:19px}
+@media(max-width:680px){.fl-field{grid-template-columns:repeat(4,1fr)}.fl-live{padding:9px 10px}.fl-lead{font-size:12px}}
+
+
+/* ===== v44 收尾：窄屏文字不裁切、按钮独占一行 ===== */
+.fl-live{max-width:100%;box-sizing:border-box;overflow:hidden;text-align:left}
+.fl-head,.fl-lead,.fl-title,.fl-stat,.fl-legend,.fl-demo,.fl-foot,.fl-list{text-align:left;word-break:break-word;overflow-wrap:anywhere}
+.fl-stat>span,.fl-legend span{white-space:normal;max-width:100%}
+.fl-demo .btn{display:block;margin:7px 0 0;max-width:100%;white-space:normal}
+.fl-foot{flex-wrap:wrap}
+.fl-foot .btn{margin-left:0;margin-top:7px;max-width:100%;white-space:normal}
+.fl-field{overflow:hidden;max-width:100%;box-sizing:border-box}
+.badge{max-width:100%;box-sizing:border-box}
+.card h3{word-break:break-all}
+.cover-hero .farmwrap,.cover-hero .cover{max-width:100%;box-sizing:border-box}
+@media(max-width:680px){
+  .fl-live{padding:9px 10px}
+  .fl-lead{font-size:12.5px;line-height:1.75}
+  .fl-stat{gap:5px}
+  .fl-stat>span{font-size:11.5px;padding:3px 8px}
+  .fl-legend{gap:5px}
+  .fl-legend span{font-size:11px;padding:2px 6px}
+}
+
+
+/* ===== v44 最终：状态与图例固定网格，任何宽度都不出现半截标签 ===== */
+.fl-live{overflow:visible}
+.fl-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:6px;width:100%}
+.fl-stat>span{display:block;text-align:center;padding:4px 6px;white-space:normal;line-height:1.5;box-sizing:border-box}
+.fl-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%;margin:8px 0}
+.fl-legend span{display:block;white-space:normal;line-height:1.5;box-sizing:border-box}
+.fl-demo,.fl-foot,.fl-lead,.fl-head{width:100%;box-sizing:border-box}
+.fl-foot .btn,.fl-demo .btn{box-sizing:border-box}
+@media(max-width:680px){
+  .fl-stat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fl-legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+
+/* ===== v44 定稿：状态与图例恒定两列 ===== */
+.fl-stat{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.fl-legend{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.fl-live,.fl-stat,.fl-legend,.fl-head,.fl-lead,.fl-demo,.fl-foot,.fl-field,.fl-bar{width:100%;max-width:100%;box-sizing:border-box}
+
+
+/* v44：卡片行内溢出收口 */
+.card .row1,.card h3,.card .meta,.card .org{max-width:100%;box-sizing:border-box}
+.card h3{letter-spacing:.2px}
+
 </style>
 <style id="uxTweak">
 body{font-size:16px;line-height:1.72}
@@ -452,8 +546,8 @@ body{font-size:16px;line-height:1.72}
 .honorbar .hb-way{color:#fff;border-radius:5px;padding:1px 7px;font-size:11.5px;font-weight:700}
 @keyframes flSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}
 @keyframes flPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-@keyframes flWalk{0%{left:-8%}100%{left:104%}}
-@media(max-width:680px){.fl-field{grid-template-columns:repeat(5,1fr)}.fl-plant{font-size:20px}.fl-stat{font-size:12px}.fl-live{padding:9px}}
+@keyframes flWalk{0%{left:3%}100%{left:88%}}
+@media(max-width:680px){.fl-field{grid-template-columns:repeat(4,1fr)}.fl-plant{font-size:20px}.fl-stat{font-size:12px}.fl-live{padding:9px}}
 </style>
 </head>
 <body class="s-autumn">
@@ -464,8 +558,6 @@ body{font-size:16px;line-height:1.72}
     <div class="farmwrap" aria-label="奖杯农场封面 · 点右下角进农场">
       <img class="cover" src="cover.webp" alt="星露奖杯农场 · 土豆骑士封面">
       <div class="fx fx-sun"></div>
-      <div class="fx fx-cloud"></div>
-      <div class="fx fx-cloud b"></div>
       <div class="fx fx-drop d1"></div>
       <div class="fx fx-drop d2"></div>
       <div class="fx fx-drop d3"></div>
@@ -473,9 +565,7 @@ body{font-size:16px;line-height:1.72}
       <div class="fx fx-spark s2"></div>
       <div class="fx fx-spark s3"></div>
       <div class="farm-halo"></div>
-      <button class="btn green farm-play" id="btnFarmPlay">🌻 我的农场 · 看长势</button>
     </div>
-    <div class="mini" id="farmHint" style="margin-top:6px">🌻 这块农场和下面那份赛事清单是连着的：<b>每报名 1 项，上面的田里就多长 1 株</b>；个人投稿、工作坊、美育成果报送，长出来的作物也不一样。点一株可以浇水，看它慢慢长大。</div>
     <div class="fl-live" id="farmLive"></div>
   </div>
 
@@ -494,14 +584,14 @@ body{font-size:16px;line-height:1.72}
     </svg>
     <div>
       <h1>星露奖杯农场</h1>
-      <div class="sub">SHENZHEN ART TEACHER · OFFICIAL AWARD FARM</div>
+      <div class="sub">深圳 · 宝安　|　美术赛事与报名台账</div>
     </div>
     <div class="hr">
       <div id="clock"><b>--:--:--</b><br><span id="dtext">载入中</span></div>
       <button class="btn gold btn-refresh" id="btnRefresh">🔄 检查更新</button>
       <button class="btn" id="btnMine">战绩本</button>
       <button class="btn" id="btnData">数据</button>
-      <button class="btn gold" id="btnUpload">★ 我要传什么</button>
+      <button class="btn gold" id="btnUpload">我要传什么</button>
       <button class="btn purple" id="btnSenior">评高级教师</button>
       <button class="btn blue" id="btnStuCopy">📋 赛事通知文案</button>
       <button class="btn green" id="btnSubmit">📤 学生作品投稿</button>
@@ -592,7 +682,7 @@ body{font-size:16px;line-height:1.72}
           </select>
         </div>
         <button class="btn sm" id="btnReset">重置</button>
-        <button class="btn sm rec" id="btnRec">★ 只看「推荐·好参加」</button>
+        <button class="btn sm rec" id="btnRec">只看建议参加</button>
       </div>
       <div class="grid" id="grid"></div>
     </div>
@@ -703,9 +793,6 @@ body{font-size:16px;line-height:1.72}
 <!-- 学生赛 · 一键生成文案 -->
 <div class="mask" id="mStuCopy"><div class="modal px" id="stuCopyBody"></div></div>
 
-<!-- 学生作品投稿 · 自助通道 -->
-<div class="mask" id="mSubmit"><div class="modal px" id="submitBody"></div></div>
-
 <!-- 名校战绩参考 -->
 <div class="mask" id="mBig"><div class="modal px" id="bigBody"></div></div>
 
@@ -751,7 +838,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 43 版（通知改为老师书面语、按赛事级别排列；赛事按「个人投稿 / 工作坊 / 美育成果报送」三类分开，分别生成通知；农场改为首页可见的成长农场，报名越多长得越多；去掉塔防与游戏数值；外市赛事仍不收录）";
+const DATA_VERSION = "2026-11-05 · 第 44 版（整站体检修复：手机端撑满屏宽、删重复说明与重复弹窗、卡片标签去重、农场精简为可见成长田、文案统一为老师书面语、刷新不再联网卡住）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -837,7 +924,7 @@ const AWARDS = [
     steps: ["关注省厅/省美协通知","校内征集","地市推荐报送"],
     source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第30项",
     prep: ["由地市/学校统一报送","绘画/书法两线均可投","关注省美协官方发布"],
-    win: ["省级权威、分量重","广东美术老师最对口的省级书画赛道"]
+    win: ["省级权威赛事、认可度高","面向广东美术教师的省级书画赛道，对口程度高"]
   },
   {
     id: "gd-yuejian",
@@ -941,15 +1028,15 @@ const AWARDS = [
     phase: "已办",
     official: true,
     credit: 3,
-    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，家门口的现场绘画赛，教师可组织选送练手" },
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，本区的现场绘画赛，教师可组织选送练手" },
     materials: ["现场原创绘画(自备画具)","实名报名(7-16岁)"],
-    tips: ["家门口的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
+    tips: ["本区的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
     url: "https://whgy.szmassart.com/",
     portal: "宝安区文化馆公众号/官网实名预约报名",
     steps: ["关注宝安区文化馆通知","实名预约","现场创作"],
     source: "宝安区文化馆「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛通知(2025-05)",
     prep: ["关注宝安区文化馆年度通知","年龄7-16岁，需实名"],
-    win: ["区级现场赛、门槛低","家门口练手攒证书"]
+    win: ["区级现场赛、门槛低","本区练手攒证书"]
   },
   {
     id: "sz-arts",
@@ -985,7 +1072,7 @@ const AWARDS = [
     id: "ba-course-3",
     aud: "教师",
     name: "第三届宝安区课程育人能力大赛（含艺术学科命题 / 美术命题）",
-    short: "宝安区课程育人能力大赛 ★本校头号",
+    short: "宝安区课程育人能力大赛 · 本校重点",
     tier: "区",
     org: "深圳市宝安区教育科学研究院",
     orgType: "区教科院（区教育局直属）",
@@ -1021,7 +1108,7 @@ const AWARDS = [
     source: "宝安区第三届课程育人能力大赛喜报（富源学校 20 余项）+ 2026 初中教师课程育人能力大赛实施方案"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "ba-resource",
     aud: "教师",
@@ -1062,7 +1149,7 @@ const AWARDS = [
     source: "往年区教育局评比活动；本校 2025-26 学年 12 人次获奖为证"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "sz-micro-ba",
     aud: "教师",
@@ -1102,7 +1189,7 @@ const AWARDS = [
     source: "本校 2025-26 学年微课获奖 14 人次；市赛时间见市教育局美育微课大赛通知"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "ba-chuying",
     aud: "教师",
@@ -1140,7 +1227,7 @@ const AWARDS = [
     source: "宝安区第三届课程育人能力大赛体系内专项"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "ba-art-student",
     aud: "学生",
@@ -1206,7 +1293,7 @@ const AWARDS = [
       "课堂实录片段（可选，加分项）"
     ],
     tips: [
-      "美术 + AI 是当下最好写的题：AI 生成草图 → 学生二次创作 → 对比「人机差异」。",
+      "美术与 AI 结合是较易切入的方向：AI 生成草图、学生二次创作，再说明「人机差异」。",
       "必须写清「哪些是 AI 做的、哪些是学生做的」，评审现在特别查这条。"
     ],
     url: "https://www.baoan.gov.cn/",
@@ -1219,7 +1306,7 @@ const AWARDS = [
     source: "本校 2025-26 学年 AI 案例获奖 2 人次"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "ba-baoan-cup",
     aud: "教师",
@@ -1265,7 +1352,7 @@ const AWARDS = [
     id: "sz-aesthetic-micro",
     aud: "教师",
     name: "深圳市学科美育微课大赛",
-    short: "市学科美育微课大赛 ★美术主赛道",
+    short: "市学科美育微课大赛 美术主赛道",
     tier: "市",
     org: "深圳市教育局",
     orgType: "市教育局",
@@ -1318,7 +1405,7 @@ const AWARDS = [
     phase: "已结束",
     official: true,
     credit: 5,
-    schoolProof: { count: 0, best: "本校暂无记录（区赛出线后才有资格）", note: "市级正式赛事，分量重，但要走区赛—市赛两级" },
+    schoolProof: { count: 0, best: "本校暂无记录（区赛出线后才有资格）", note: "市级正式赛事，认可度高，但要走区赛—市赛两级" },
     materials: [
       "区赛获奖证书（市赛报名前置条件）",
       "教学基本功展示：命题创作 / 现场写生（美术类）",
@@ -1378,7 +1465,7 @@ const AWARDS = [
     source: "南方+ 2026-04 报道：深圳市教育科学研究院主办，仙湖植物园举办"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "sz-topic",
     aud: "教师",
@@ -1395,7 +1482,7 @@ const AWARDS = [
     phase: "待发布",
     official: false,
     credit: 4,
-    schoolProof: { count: 1, best: "三等奖 1 项", note: "命题能力是职称评审硬指标，市赛证书分量重于区赛" },
+    schoolProof: { count: 1, best: "三等奖 1 项", note: "命题能力是职称评审的重要观测点，市级证书认可度高于区级" },
     materials: [
       "命题双向细目表（知识点 × 能力层级）",
       "试题正卷 + 参考答案 + 评分标准",
@@ -1416,12 +1503,12 @@ const AWARDS = [
     source: "本校 2025-26 学年市/区命题获奖 6 人次"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "sz-union-art",
     aud: "教师",
     name: "深圳职工书画摄影大赛（深圳职工文化节）",
-    short: "市总工会书画大赛 ★奖金",
+    short: "市总工会书画大赛 奖金",
     tier: "市",
     org: "深圳市总工会（市工人文化宫总承办）",
     orgType: "市总工会",
@@ -1456,7 +1543,7 @@ const AWARDS = [
     ],
     source: "深圳市总工会职工文化节书画摄影大赛（2026 第六届节奏）",
     to: "「深i工」小程序扫码报名 / 深圳市总工会官网活动专题（入围后 5 个工作日内寄原作）；咨询 0755-88212164",
-    advice: "🟢 好进·值得投：市级+有奖金（一等1500元），传图/扫码即投，深圳在职职工都能报"
+    advice: "准备量小：市级赛事设奖金（一等奖 1500 元），线上提交作品，深圳在职职工均可参加"
   ,
     prep: ["先完成「深i工」平台实名认证（硬门槛，很多人卡这错过截稿）","作品高清图长边≥3000px、JPG、3-10MB；信息表含名称/画种/尺寸/创作说明200字","入围后5个工作日内寄原作（勿装裱）；AI辅助作品须注明工具、提示词、原始照片信息"],
     win: ["绘画类每人限2件，画种限国画/油画/版画/水彩(粉)，尺寸不超六尺全开(180×97cm)","一等奖1500元+证书，获奖作品全市巡展，履历好看","深圳城市题材命中率最高；工会系统是学校认的官方渠道"]},
@@ -1466,7 +1553,7 @@ const AWARDS = [
     id: "ba-union-art",
     aud: "教师",
     name: "宝安区教育工会 / 深圳市教育工会 · 教职工书画摄影展",
-    short: "区教育工会教职工书画展 ★校级可报",
+    short: "区教育工会教职工书画展 校级可报",
     tier: "区",
     org: "深圳市宝安区教育工会（区教育工会承办）",
     orgType: "区教育工会",
@@ -1487,7 +1574,7 @@ const AWARDS = [
     ],
     tips: [
       "工会系统赛事不与教育局 / 教科院赛事冲突，可叠加拿证，绩效 / 评优都认。",
-      "必须提前和校办 / 学校工会打招呼占位，个人无法直报。",
+      "必须提前和校办 / 学校工会沟通报送安排，个人无法直报。",
       "深圳城市题材、校园题材命中率最高，别一上来就画大山水。"
     ],
     url: "https://www.baoan.gov.cn/",
@@ -1499,8 +1586,8 @@ const AWARDS = [
       "截图 / 留存入选回执"
     ],
     source: "宝安区 / 深圳市教育工会年度教职工书画摄影展（常规活动）",
-    to: "学校工会统一报送 / 区教育工会活动通知（个人不直报，先和校工会打招呼占位）",
-    advice: "🟢 好进·值得投：离你最近、门槛最低，校级占位即可，工会系统认、可叠加拿证"
+    to: "学校工会统一报送 / 区教育工会活动通知（个人不直报，先和校工会沟通报送安排）",
+    advice: "准备量小：本校层面即可组织，门槛较低，工会系统认可，可与其它赛事同时准备"
   ,
     prep: ["详见当年工会通知的尺寸 / 报送渠道","须学校工会统一报送，个人不能直报"],
     win: ["工会赛道认原创、认题材接地气，不像专业展拼功底","校园 / 城市题材最稳","平时攒几幅能参展的成品，征集令一到就能报"]},
@@ -1508,7 +1595,7 @@ const AWARDS = [
     id: "cn-union-art",
     aud: "教师",
     name: "中国教科文卫体工会全国委员会 · 全国教职工书画摄影展",
-    short: "全国教科文卫体工会书画展 ★国家级工会",
+    short: "全国教科文卫体工会书画展 国家级工会",
     tier: "国",
     org: "中国教科文卫体工会全国委员会",
     orgType: "全国产业工会（教育部主管）",
@@ -1520,7 +1607,7 @@ const AWARDS = [
     phase: "待发布",
     official: true,
     credit: 5,
-    schoolProof: { count: 0, best: "本校暂无记录（全国级工会，分量重）", note: "教育系统最高层级工会展，履历分量重，可叠加申报" },
+    schoolProof: { count: 0, best: "本校暂无记录（全国级工会，认可度高）", note: "教育系统最高层级工会展，履历认可度高，可叠加申报" },
     materials: [
       "作品高清电子稿（JPG，≥300dpi）",
       "作品信息表（题目 / 画种 / 尺寸 / 创作说明 200 字）",
@@ -1542,15 +1629,15 @@ const AWARDS = [
     ],
     source: "中国教科文卫体工会全国委员会全国教职工书画摄影展（双年届）",
     to: "经省教科文卫工会逐级报送（先向学校工会报名，再 市→省→全国 遴选）",
-    advice: "⭐ 值得重点准备：全国级工会展、教育系统最高层级，分量重；要逐级报送但本质只是传图"
+    advice: "建议优先准备：全国级工会展，教育系统层级高、认可度高；需逐级报送，作品以线上提交为主"
   ,
     prep: ["须经工会系统逐级报送，个人不能直报","主题贴合教师节 / 劳动美主线"],
-    win: ["全国级工会展，职称 / 评优分量重","教职工组不拼专业功底，拼题材与情怀","提前半年和学校工会打招呼占位"]},
+    win: ["全国级工会展，职称 / 评优认可度高","教职工组侧重题材选择与立意表达","提前与学校工会沟通报送安排"]},
   {
     id: "gd-union-art",
     aud: "教师",
     name: "广东省教科文卫工会 · 广东省教师美术书法作品展",
-    short: "省教科文卫工会教师美展 ★省级工会",
+    short: "省教科文卫工会教师美展 省级工会",
     tier: "省",
     org: "广东省教科文卫工会（承办：省教育研究院 / 省美协协办）",
     orgType: "省教科文卫工会",
@@ -1570,7 +1657,7 @@ const AWARDS = [
       "原创承诺书"
     ],
     tips: [
-      "专门给教师的省级美展，比省美协开放展更对口，命中率高。",
+      "面向教师的省级美展，较省美协开放展更对口。",
       "岭南题材 / 大湾区题材有加分，深圳教师可打「湾区」牌。",
       "必须经学校工会占位报送，别只在网上交。"
     ],
@@ -1584,15 +1671,15 @@ const AWARDS = [
     ],
     source: "广东省教科文卫工会教师美术书法作品展（年度 / 双年届）",
     to: "学校工会→市教育工会→省教科文卫工会逐级报送；关注「广东教工」公众号发通知",
-    advice: "⭐ 重点推荐·准备量小：专门给教师的省级美展，对口命中率高，传图即投"
+    advice: "建议优先安排：面向教师的省级美展，对口程度高，线上提交作品即可"
   ,
     prep: ["须经工会系统报送，个人不能直报","岭南 / 湾区题材加分"],
-    win: ["省级教师专属展，对口且命中率高","湾区 / 城市题材最稳","平时攒可参展成品"]},
+    win: ["省级教师专属展，对口且对口程度高","湾区与城市题材较为稳妥","平时攒可参展成品"]},
   {
     id: "gd-meixie",
     aud: "教师",
     name: "广东省美术家协会 · 广东美术作品展（教师可投）",
-    short: "省美协广东美展 ★专业展·教师可投",
+    short: "省美协广东美展 专业展·教师可投",
     tier: "省",
     org: "广东省美术家协会",
     orgType: "省级专业协会",
@@ -1626,7 +1713,7 @@ const AWARDS = [
     ],
     source: "广东省美术家协会年度美术作品展征稿启事",
     to: "广东省美术家协会官网 gdmeixie.com 投稿系统 / 或经市美协推荐",
-    advice: "⭐ 分量重：专业系统认，创作型作品才入眼；和工会/教育赛事不冲突、可叠加"
+    advice: "专业系统认可度高，侧重原创作品；与工会、教育系统赛事不冲突，可同时准备"
   ,
     prep: ["专业展拼创作功底，非课堂范画","官网投稿或市美协推荐"],
     win: ["专业履历加分，和工会 / 教育赛事可叠加","创作型作品才入评委眼","逢五年届全国美展省展务必盯"]},
@@ -1671,12 +1758,12 @@ const AWARDS = [
     source: "广东省总工会 2026「十五五启新程 光影颂劳动美」职工摄影大赛（征集截止 2026-09-10，门户 contest.gdphoto.cn）"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-aesthetic-basic",
     aud: "教师",
     name: "广东省第三届中小学幼儿园美育教师教学基本功比赛",
-    short: "省美育教师基本功比赛（中小学版）★★",
+    short: "省美育教师基本功比赛（中小学版）",
     tier: "省",
     org: "广东省教育厅（广东技术师范大学承办）",
     orgType: "省教育厅",
@@ -1712,12 +1799,12 @@ const AWARDS = [
     source: "广东省教育厅主办、广东技术师范大学承办；2026-01-09 至 11 现场决赛，2026-02-26 拟获奖公示"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-digital-aesthetic",
     aud: "教师",
     name: "2026 年中小学校数字化美育资源和智能化美育应用案例征集活动",
-    short: "省数字化美育资源征集 ★官方已截稿",
+    short: "省数字化美育资源征集 官方已截稿",
     tier: "省",
     org: "广东省教育厅",
     orgType: "省教育厅",
@@ -1751,7 +1838,7 @@ const AWARDS = [
     source: "广东省教育厅 2026 年中小学校数字化美育资源征集活动（截止 2026-10-09，报送网址 gd.jmxy.cc/zxxmyzj）"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-double",
     aud: "教师",
@@ -1791,7 +1878,7 @@ const AWARDS = [
     source: "本校 2025-26 学年双融双创获奖 3 人次"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-experiment",
     aud: "教师",
@@ -1829,12 +1916,12 @@ const AWARDS = [
     source: "本校 2025-26 学年省实验说课获奖 6 人次"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-youth-teach",
     aud: "教师",
     name: "广东省中小学青年教师教学能力大赛",
-    short: "省青年教师教学能力大赛 ★★★",
+    short: "省青年教师教学能力大赛",
     tier: "省",
     org: "广东省总工会、广东省教育厅（省教科文卫工会承办）",
     orgType: "省总工会 + 省教育厅",
@@ -1869,7 +1956,7 @@ const AWARDS = [
     source: "广东省总工会 + 广东省教育厅联合举办；第五届 2025-12 总决赛"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-smart-edu",
     aud: "教师",
@@ -1907,7 +1994,7 @@ const AWARDS = [
     source: "本校 2025-26 学年融合创新应用案例获奖 1 人次"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "gd-shuhua",
     aud: "学生",
@@ -1985,7 +2072,7 @@ const AWARDS = [
     source: "教育部教育技术与资源发展中心（中央电化教育馆）教技资〔2026〕18 号，2026-04-17 发文；活动网站 huodong.ncet.edu.cn"
   ,
     prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
-    win: ["主题贴合是生命线，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
   {
     id: "cn-paint",
     aud: "学生",
@@ -2011,7 +2098,7 @@ const AWARDS = [
       "集体报名汇总表（学校统一报送更快）"
     ],
     tips: [
-      "白名单第 35 项，是家长圈最认的少儿书画赛事，组织学生参赛顺便拿指导教师奖。",
+      "教育部白名单第 35 项，社会认可度较高的少儿书画赛事；组织学生参赛时可同时申报指导教师奖。",
       "务必核对当年白名单编号和主办单位，市面上同名山寨赛很多。",
       "学校集体报名通道通常比个人报名早截止，走教务处更快。"
     ],
@@ -2025,14 +2112,14 @@ const AWARDS = [
     source: "教育部 2025-2028 学年面向中小学生的全国性竞赛活动白名单（第 35 项）"
   ,
     prep: ["学生原作按组别尺寸、不装裱；报名表含学生+指导教师+学校；高清照片用于线上初评","务必核对当年白名单编号（第35项）和主办单位（中国儿童中心），市面上同名山寨赛极多","学校集体报名通道通常比个人报名早截止，走教务处更快"],
-    win: ["家长圈最认的少儿书画白名单赛，一次多报几个学生顺手拿指导教师奖","组织学生参赛即攒「育人成果」，职称评审里和本人获奖同等分量"]},
+    win: ["社会认可度较高的少儿书画白名单赛事；组织多名学生参赛时，可同时申报指导教师奖","组织学生参赛即攒「育人成果」，职称评审里和本人获奖同等分量"]},
 
   /* ============ 教师专属/高对口补充（教育部/省教育厅/国家语委/省文旅厅/学术团体） ============ */
   {
     id: "cn-jpk",
     aud: "教师",
     name: "“基础教育精品课”遴选（教育部办公厅）",
-    short: "基础教育精品课（教育部）★★★",
+    short: "基础教育精品课（教育部）",
     tier: "国",
     org: "教育部办公厅",
     orgType: "教育部直属",
@@ -2073,7 +2160,7 @@ const AWARDS = [
     id: "cn-bimo",
     aud: "教师",
     name: "中华经典诵写讲大赛·“笔墨中国”汉字书写大赛（教师组）",
-    short: "笔墨中国·教师组（教育部/国家语委）★★",
+    short: "笔墨中国·教师组（教育部/国家语委）",
     tier: "国",
     org: "教育部、国家语委",
     orgType: "教育部直属 · 中华经典诵读工程",
@@ -2093,8 +2180,8 @@ const AWARDS = [
       "先在大赛官网 jdsxj.eduyun.cn 完成语言文字知识及书法常识测评（≥60 分合格方可参赛）"
     ],
     tips: [
-      "硬笔、毛笔、粉笔三个类别都单设「教师组」，书法/美术老师是天生对口赛道。",
-      "已有案例：某职校教师硬笔《毛泽东诗词选抄》获第七届全国一等奖——教师组真能拿国奖。",
+      "硬笔、毛笔、粉笔三个类别都单设「教师组」，书法/美术老师是对口赛道。",
+      "已有案例：某职校教师硬笔《毛泽东诗词选抄》获第七届全国一等奖——教师组真可获国家级奖项。",
       "广东是举办赛区初赛的 20 个省份之一，走「官网测评→省赛区提交→全国决赛」路径，别只交官网。"
     ],
     url: "https://jdsxj.eduyun.cn/",
@@ -2107,10 +2194,10 @@ const AWARDS = [
     ],
     source: "教育部、国家语委《关于举办第八届中华经典诵写讲大赛的通知》教语用函〔2026〕1 号；第八届“笔墨中国”书写大赛方案",
     to: "官网 jdsxj.eduyun.cn 教师本人注册报名（先完成知识测评≥60分，再传作品图+2分钟书写视频）",
-    advice: "⭐ 很有分量但难：教育部+国家语委，教师组天生对口、能拿国奖；但要录视频+测评，时间成本高"
+    advice: "级别高但准备量较大：教育部与国家语委主办，设教师组；需录制视频并参加测评，请预留时间"
   ,
     prep: ["硬笔≤A3、毛笔≤六尺整张竖式，300DPI或2-10MB JPG；须附所抄内容的出版物版本页（章节页+版权页）","硬笔强制规范汉字，禁繁体/异体/繁简混用，行书出现草书笔法直接淘汰；毛笔繁体可，但篆书/草书须附释文","须横屏录视频：持证5秒+书写过程2分钟+展示5秒（MP4≤300MB）","最关键门槛：先在大赛官网 jdsxj.eduyun.cn 完成语言文字知识及书法常识测评，≥60分合格才能参赛"],
-    win: ["教师组是天生对口赛道（硬笔/毛笔/粉笔都单设教师组），已有教师硬笔拿全国一等奖的真实案例","书写内容须出自经典诗文或正式出版物，很多人抄《党的二十大报告》金句很稳","广东是20个初赛赛区之一，走「官网测评→省赛区提交→全国决赛」，别只在官网交了事"]},
+    win: ["教师组对口程度高（硬笔、毛笔、粉笔均单设教师组），已有教师获全国一等奖的案例","书写内容须出自经典诗文或正式出版物，很多人抄《党的二十大报告》金句很稳","广东是20个初赛赛区之一，走「官网测评→省赛区提交→全国决赛」，别只在官网交了事"]},
   {
     id: "cn-cse-art",
     aud: "教师",
@@ -2153,7 +2240,7 @@ const AWARDS = [
     id: "gd-hanmo",
     aud: "教师",
     name: "“翰墨薪传”全省教师书法作品交流活动（广东省教育厅）",
-    short: "翰墨薪传·教师书法（省教育厅）★",
+    short: "翰墨薪传·教师书法（省教育厅）",
     tier: "省",
     org: "广东省教育厅（广州美术学院承办）",
     orgType: "省教育厅",
@@ -2174,7 +2261,7 @@ const AWARDS = [
     ],
     tips: [
       "这是广东省**专给教师**的书法平台，分甲组（书法/美术专业出身）和乙组（其他专业但有特长），美术老师按专业对口甲组。",
-      "不接受个人报送，必须经学校统一上传——提前和校办/工会打招呼占位。",
+      "不接受个人报送，必须经学校统一上传——提前和校办/工会沟通报送安排。",
       "近三年在省里拿过二等奖以上的不能再来，但新人机会多。"
     ],
     url: "https://wjjy.dgjy.net/info/1041/98823.htm",
@@ -2186,10 +2273,10 @@ const AWARDS = [
     ],
     source: "广东省教育厅关于举办“翰墨薪传”第五届全省教师书法作品交流活动的通知（广州美术学院承办）",
     to: "经学校工会/校办统一报送（不接受个人直报）；关注广东省教育厅通知",
-    advice: "🟢 好进·值得投：省教育厅专给教师的书法平台，传图即投，提前占位（近三年省二等奖以上不得再报）"
+    advice: "准备量小：省教育厅面向教师的书法平台，线上提交作品，请提前准备（近三年获省二等奖以上者不得再报）"
   ,
     prep: ["毛笔竖式4尺内(≤138×69cm)；硬笔竖式A3内；篆刻4尺对开印屏+8-12方印蜕","篆书/草书/篆刻须附释文，生僻字另附出处表","电子照片+报送表（WORD版+盖学校公章PDF扫描版）；以学校为单位网上报送，不接受个人"],
-    win: ["广东省专给教师的书法平台，分甲组（书法/美术专业出身）和乙组（其他专业特长），美术老师对口甲组","不接受个人报送，必须提前和校办/工会打招呼占位","近三年在省里拿过二等奖以上的不能再来，但新人机会多"]},
+    win: ["广东省专给教师的书法平台，分甲组（书法/美术专业出身）和乙组（其他专业特长），美术老师对口甲组","不接受个人报送，必须提前和校办/工会沟通报送安排","近三年在省里拿过二等奖以上的不能再来，但新人机会多"]},
   {
     id: "gd-lingnan",
     aud: "教师",
@@ -2215,8 +2302,8 @@ const AWARDS = [
     ],
     tips: [
       "作者只要「在粤港澳大湾区工作/生活」就能投，深圳美术老师完全符合——这是专业系统里离老师最近的国家级湾区展。",
-      "2026 届巡展点包含深圳市宝安区图书馆，家门口就能看自己作品展出。",
-      "主题要体现湾区人文特色，深圳城市题材命中率高。"
+      "2026 届巡展点包含深圳市宝安区图书馆，便于本区教师观展。",
+      "主题须体现湾区人文特色，深圳城市题材较为贴切。"
     ],
     url: "http://mp.weixin.qq.com/s?__biz=MzI2MTI2ODQ5OQ==&mid=2247661145&idx=2&sn=1cf102f6bd25e887a028e0c6f80cf20f",
     portal: "按各地市美协通知邮箱报送（如江门 jmsmsjxh@126.com；省展统一邮箱见征稿启事）",
@@ -2227,10 +2314,10 @@ const AWARDS = [
     ],
     source: "广东省文化和旅游厅等《“岭南潮声”——2026粤港澳大湾区美术作品展》征稿通知（首站中山美术馆，巡展含深圳宝安区图书馆）",
     to: "发邮箱 932173265@qq.com（作品信息卡+高清图 JPG 2-5MB，≥300dpi）；按广东省美协公众号「岭南潮声」启事报送",
-    advice: "⭐ 最推荐·好进：在湾区工作/生活即可投，深圳老师完全符合；2026 巡展含宝安图书馆，家门口展出"
+    advice: "建议优先：在湾区工作或生活即可参加，深圳教师符合条件；2026 巡展含宝安区图书馆"
   ,
     prep: ["电子高清图≥300dpi、JPG、2-5MB（雕塑多角度3-5张）；填《作品信息卡》","限2023-01-01至今创作的作品，每人限1件","初评入围后才寄原作，原作背后注明题目/种类/尺寸/年份/姓名/身份证复印件"],
-    win: ["在粤港澳大湾区工作/生活即可投，深圳美术老师完全符合——专业系统里离老师最近的湾区展","2026届巡展含宝安区图书馆，家门口就能看自己作品","主题体现湾区人文、深圳城市题材命中率最高；不限专业教师（和「广东联展」不同，那条排除专业教师）"]},
+    win: ["在粤港澳大湾区工作/生活即可投，深圳美术老师完全符合——专业系统里离老师最近的湾区展","2026届巡展含宝安区图书馆，本区就能看自己作品","主题体现湾区人文、深圳城市题材命中率最高；不限专业教师（和「广东联展」不同，那条排除专业教师）"]},
   {
     id: "gd-lianzhan",
     aud: "教师",
@@ -2295,10 +2382,10 @@ const AWARDS = [
     phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
     schoolProof:{ count:0, best:"本校暂无记录", note:"深圳市级书法专项，宝安学校认" },
     materials:["书法作品原件","报名表+学校","校级选拔推荐"],
-    tips:["深圳本地的书法专项，门槛低、好组织","硬笔为主、软笔也可，带学生练字顺手投","也是广东省规范汉字书写大赛的深圳选拔通道"],
+    tips:["深圳本地的书法专项，门槛较低、便于组织","硬笔为主、软笔也可，可结合日常写字教学组织参赛","也是广东省规范汉字书写大赛的深圳选拔通道"],
     url:"https://szeb.sz.gov.cn/", portal:"由深圳市各学校统一报名", steps:["校内选拔","市级评审"],
     source:"深圳市教育局规范汉字书写大赛通知",
-    prep:["深圳本地书法专项，门槛最低、最易组织","硬笔为主、软笔也可，带学生练字顺手参赛","是「广东省规范汉字书写大赛」的深圳选拔通道"],
+    prep:["深圳本地书法专项，门槛较低、便于组织","硬笔为主、软笔也可，可结合日常写字教学组织参赛","是「广东省规范汉字书写大赛」的深圳选拔通道"],
     win:["最好参加：本地专项、低门槛、宝安学校认","书法老师零成本带学生冲，攒指导奖","深圳市级专项，宝安学校认"],
     bigSchools:[] },
 
@@ -2346,13 +2433,13 @@ const AWARDS = [
     source: "教育部 2022—2025 学年面向中小学生的全国性竞赛活动名单（第 43 项 · 中国国际书画艺术研究会）"
   ,
     prep: ["尺寸死规定：软笔/国画四尺对裁(138×34)或三裁(69×46)竖幅，误差≤2cm；硬笔A4竖幅；其他画种四开/八开；数字美术≤60×40cm且≥A4、≥100dpi，须附创意说明+原创声明","必须寄原作：先线上报名→下载标签贴原作背面右下角→再寄；只寄图不寄原作直接取消资格，且一律不退稿","每人最多投2幅且须不同类别（如硬笔+国画），重复投同类无效"],
-    win: ["主题贴合是生命线：如本届「美在身边」就画真实生活里的小事，编口号式大主题直接被刷","原创零容忍：代笔/高仿/抄袭/用往届作品，取消资格并拉进黑名单、永久禁赛","想拿「优秀指导教师奖」门槛：辅导≥20人，且含1个一等奖或2个二等奖、总获奖≥15人——一次多报学生最划算","零收费公益赛，凡要你交「报名费/保奖费」的中介都是骗子"]},
+    win: ["主题须贴合真实生活：如本届「美在身边」宜取材日常小事，空泛的口号式主题不易入选","原创零容忍：代笔/高仿/抄袭/用往届作品，取消资格并拉进黑名单、永久禁赛","想拿「优秀指导教师奖」门槛：辅导≥20人，且含1个一等奖或2个二等奖、总获奖≥15人——一次多报学生最划算","零收费公益赛，凡要你交「报名费/保奖费」的中介都是骗子"]},
   {
     id: "sz-meirun",
     aud: "学生",
     bigSchools: ["红岭中学(集团)","深圳外国语学校高中园"],
     name: "深圳市「美润鹏城」中小学校美育成果展演（美术专场）",
-    short: "深圳美润鹏城美育展演（带学生）★市教育局",
+    short: "深圳美润鹏城美育展演（带学生）市教育局",
     tier: "市",
     org: "深圳市教育局",
     orgType: "市教育局（官方主办）",
@@ -2364,7 +2451,7 @@ const AWARDS = [
     phase: "已结束",
     official: true,
     credit: 5, rate:{value:4, ease:4},
-    schoolProof: { count: 0, best: "本校暂无记录（市教育局主办，学校最认）", note: "市教育局官方美育展演，学生作品 + 指导教师，分量重、学校 100% 认" },
+    schoolProof: { count: 0, best: "本校暂无记录（市教育局主办，学校认可度高）", note: "市教育局官方美育展演，学生作品 + 指导教师，认可度高、学校认可度高" },
     materials: [
       "学生原作（按专场类别与尺寸要求）",
       "作品信息卡（作品名、作者、年级、指导教师、创作说明）",
@@ -2392,7 +2479,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["红岭中学(集团)","宝安中学(集团)"],
     name: "广东省中小学校美育成果交流展示活动",
-    short: "广东美育成果交流展示（带学生）★省教育厅",
+    short: "广东美育成果交流展示（带学生）省教育厅",
     tier: "省",
     org: "广东省教育厅",
     orgType: "省教育厅（官方主办）",
@@ -2404,7 +2491,7 @@ const AWARDS = [
     phase: "已结束",
     official: true,
     credit: 5, rate:{value:4, ease:3},
-    schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校最认）", note: "省教育厅官方美育展示，晋级通道：校 → 区 → 市推荐 → 省，教师获指导奖" },
+    schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校认可度高）", note: "省教育厅官方美育展示，晋级通道：校 → 区 → 市推荐 → 省，教师获指导奖" },
     materials: [
       "学生艺术作品原件（书法/篆刻、摄影/视频、绘画等）",
       "艺术课程教学成果材料（教学案例、校本课程）",
@@ -2473,19 +2560,19 @@ const AWARDS = [
     credit: 4,
     schoolProof: { count: 0, best: "本校暂无记录", note: "晋级通道清晰：区选拔→市赛→粤港澳，性价比高" },
     materials: ["电脑绘画电子稿（JPG/源文件）","作品创作说明（选题、软件、创作过程）","报名汇总表（学校盖章）"],
-    tips: ["电脑绘画=数字美术，美术老师带学生用板绘/Procreate 做最顺手。","区级推市赛、市赛推粤港澳，一条龙，指导奖跟着走。"],
+    tips: ["电脑绘画即数字美术，可用板绘或 Procreate 指导学生创作。","区级推市级、市级推粤港澳，指导教师奖同步设置。"],
     url: "https://bjt.baoan.edu.cn/index.php?r=portal/content/view&id=193942",
     portal: "宝教通报名 / 区教育局选拔",
     steps: ["关注宝教通网络夏令营选拔通知","指导学生用数字工具创作+写说明","学校报送参加区选拔"],
     source: "宝教通：2025 年深圳市第二十二届学生网络夏令营活动宝安区选拔赛通知",
     prep: ["电脑绘画电子稿（JPG+源文件）","作品创作说明（选题/软件/过程）","报名汇总表学校盖章"],
-    win: ["电脑绘画=数字美术，板绘/Procreate 最顺手","区推市、市推粤港澳一条龙，指导奖跟着走"]},
+    win: ["电脑绘画即数字美术，板绘与 Procreate 较易上手","区级推市级、市级推粤港澳，指导教师奖同步设置"]},
   {
     id: "ba-calligraphy",
     aud: "学生",
     bigSchools: ["宝安中学(集团)","海韵学校","西乡中学"],
     name: "宝安区中小学生现场书法大赛（第九届·翰墨抒情·少年颂国）",
-    short: "宝安现场书法大赛（带学生）★区官方",
+    short: "宝安现场书法大赛（带学生）区官方",
     tier: "区",
     org: "深圳市宝安区教育科学研究院",
     orgType: "区教科院（区教育局直属，官方）",
@@ -2511,7 +2598,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["深圳实验学校","深圳中学","红岭中学(集团)","南山外国语学校(集团)"],
     name: "全国中小学生绘画书法作品比赛 · 深圳赛区",
-    short: "全国绘画书法比赛·深圳赛区（带学生）★教育部白名单",
+    short: "全国绘画书法比赛·深圳赛区（带学生）教育部白名单",
     tier: "国",
     org: "中国儿童中心（全国主办）；深圳赛区由深圳市相关机构组织",
     orgType: "教育部 2025—2028 白名单（艺术体育类 #35）",
@@ -2523,7 +2610,7 @@ const AWARDS = [
     phase: "待发布", rate:{value:5, ease:4},
     official: true,
     credit: 5,
-    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校最认）", note: "白名单内、公益免费，教师可获优秀指导教师奖，计入成果" },
+    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认可度高）", note: "白名单内、公益免费，教师可获优秀指导教师奖，计入成果" },
     materials: ["学生作品（按赛项与尺寸要求）","报名表（学生+指导教师+学校）","作品高清照片（线上初评）","原创承诺"],
     tips: ["教育部白名单头部赛事，5 个赛项覆盖面广，绘画/书法/数字美术都能报。","公益免费、不与升学挂钩，学校最放心让学生参加。"],
     url: "https://m.bendibao.com/edu/jingsai/?id=355",
@@ -2537,7 +2624,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["深圳中学","红岭中学(集团)","南山外国语学校(集团)"],
     name: "深圳市中小学生主题书法大赛（第十四届·经典传学）",
-    short: "深圳主题书法大赛（带学生）★市教育局",
+    short: "深圳主题书法大赛（带学生）市教育局",
     tier: "市",
     org: "深圳市教育局 · 深圳市书法家协会",
     orgType: "市教育局（官方）",
@@ -2563,7 +2650,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["深圳实验学校","宝安中学(集团)","南山外国语学校(集团)"],
     name: "中小学书画作品交流展示活动 · 深圳赛区（第二届）",
-    short: "书画交流展示·深圳赛区（带学生）★省教育厅",
+    short: "书画交流展示·深圳赛区（带学生）省教育厅",
     tier: "省",
     org: "广东省教育厅（深圳赛区由深圳市教育局组织）",
     orgType: "省教育厅（官方）",
@@ -2589,7 +2676,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["南山外国语学校(集团)","宝安中学(集团)","红岭中学(集团)"],
     name: "「翰墨青春·传承岭南」广东青少年书画大赛（第十届）",
-    short: "广东青少年书画大赛（带学生）★省白名单",
+    short: "广东青少年书画大赛（带学生）省白名单",
     tier: "省",
     org: "广东新快报社 · 广东省美术家协会 · 广东省书法家协会",
     orgType: "广东省 2025—2028 白名单（艺术体育类）",
@@ -2615,7 +2702,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["红岭中学(集团)","宝安中学(集团)"],
     name: "「粤见花开」广东省青少年美育成果展示大赛（第三届）",
-    short: "粤见花开美育展示（带学生）★省教育厅",
+    short: "粤见花开美育展示（带学生）省教育厅",
     tier: "省",
     org: "广东省教育厅 · 相关主办单位",
     orgType: "省教育厅（官方）",
@@ -2641,7 +2728,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["深圳中学","红岭中学(集团)"],
     name: "全国青少年海洋文化创意设计大赛",
-    short: "全国海洋文化创意设计（带学生）★教育部白名单",
+    short: "全国海洋文化创意设计（带学生）教育部白名单",
     tier: "国",
     org: "中国海洋发展基金会 · 中国海洋大学 · 自然资源部北海局",
     orgType: "教育部 2025—2028 白名单（艺术体育类 #42）",
@@ -2667,7 +2754,7 @@ const AWARDS = [
     aud: "学生",
     bigSchools: ["深圳中学","南山外国语学校(集团)","红岭中学(集团)"],
     name: "全国青少年人工智能辅助生成数字艺术创作者大赛",
-    short: "全国 AI 数字艺术大赛（带学生）★教育部白名单",
+    short: "全国 AI 数字艺术大赛（带学生）教育部白名单",
     tier: "国",
     org: "文化和旅游部艺术发展中心",
     orgType: "教育部 2025—2028 白名单（艺术体育类 #45）",
@@ -2681,19 +2768,19 @@ const AWARDS = [
     credit: 5,
     schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认）", note: "国家级 AI+艺术新赛道，美术老师带学生做 AI 二次创作正对口" },
     materials: ["学生 AI 辅助数字艺术作品","创作过程说明（哪些 AI、哪些学生原创）","报名表（学生+指导教师+学校）"],
-    tips: ["美术+AI 是当下最好写的题：AI 生成草图→学生二次创作→对比人机差异。","必须写清「哪些是 AI、哪些是学生」，评审现在特别查这条。"],
+    tips: ["美术与 AI 结合较易切入：AI 生成草图、学生二次创作，再说明人机差异。","必须写清「哪些是 AI、哪些是学生」，评审现在特别查这条。"],
     url: "https://hudong.moe.gov.cn/srcsite/A29/202510/W020251029471803160286.doc",
     portal: "由大赛授权组织单位 / 学校集体报名",
     steps: ["核对教育部白名单与主办单位当年通知","指导学生做 AI 辅助数字艺术创作","通过学校集体或授权单位报名"],
     source: "教育部：2025—2028 学年面向中小学生的全国性竞赛活动名单（第 45 项）",
     prep: ["学生 AI 辅助数字艺术作品","创作过程说明（哪些AI/哪些学生原创）","报名表含学生+指导教师+学校"],
-    win: ["美术+AI 是当下最好写的题：AI草图→学生二次创作→对比差异","必须写清「哪些AI/哪些学生」，评审严查这条"]},
+    win: ["美术与 AI 结合较易切入：AI 草图、学生二次创作，并说明两者差异","必须写清「哪些AI/哪些学生」，评审严查这条"]},
   {
     id: "cn-visual-workshop",
     aud: "学生",
     bigSchools: ["宝安中学(集团)","红岭中学(集团)"],
     name: "学校美育助力行动 · 青少年视觉艺术传承与创新工作坊展示",
-    short: "全国视觉艺术工作坊展示（带学生）★教育部白名单",
+    short: "全国视觉艺术工作坊展示（带学生）教育部白名单",
     tier: "国",
     org: "中国艺术教育促进会",
     orgType: "教育部 2025—2028 白名单（艺术体育类 #46）",
@@ -2720,7 +2807,7 @@ const AWARDS = [
     id: "ba-art-stu",
     aud: "学生",
     name: "宝安区中小学校美术教育成果比赛（作品征集）",
-    short: "宝安美术教育成果比赛 ★本校拿过奖",
+    short: "宝安美术教育成果比赛 本校拿过奖",
     tier: "区",
     org: "深圳市宝安区教育科学研究院",
     orgType: "宝安区教育局 / 区教科院（宝教通发布）",
@@ -2832,7 +2919,7 @@ const AWARDS = [
     id: "sz-micro",
     aud: "教师",
     name: "深圳市学科美育微课大赛（宝安选拔）",
-    short: "深圳美育微课大赛 ★本校拿过奖",
+    short: "深圳美育微课大赛 本校拿过奖",
     tier: "市",
     org: "深圳市教育科学研究院",
     orgType: "深圳市教育局 / 市教科院",
@@ -3023,7 +3110,7 @@ var RES = [
   { id:"res-cn07", kind:"论文", scope:"国内", region:"上海·中学", title:"贺友直创作经验对美术学科课程逻辑的启示", hot:"连环画大师的创作方法被拿来重构课程逻辑，属于「名家个案→教学转化」的稀缺选题，评审爱看这种跨界的。", where:"《中国美术教育》「大家评课」；可做「从连环画分镜到漫画单元」的课例包。", tags:["课程开发","民间美术","课堂设计"], source:"《美术教育研究》2025(4) · 王一晴", url:"http://www.msjyyj.com/" },
   { id:"res-cn08", kind:"论文", scope:"国内", region:"广东·中学", title:"地域文化赋能社团活动多元表达的有效路径", hot:"深圳的「地域文化」不好写，但可以写「移民城市的多元文化」——各省学生带来的家乡纹样，正好是现成素材。", where:"《美术教育研究》「社团建设」；用你校美术社团一学期的作品做样本，配家长/学生访谈。", tags:["艺术社团","在地文化","校本课程"], source:"《美术教育研究》2025(4) · 程稚敏", url:"http://www.msjyyj.com/" },
   { id:"res-cn09", kind:"论文", scope:"国内", region:"山东·中学", title:"聚焦生本美术课堂 培育学生家国情怀", hot:"「课程思政」在美术学科的落地样本。评审要看的是「不喊口号」，这篇给的是把家国情怀藏进创作任务里的做法。", where:"《中国美术教育》「实践探索」；可结合深圳本地题材（改革开放、湾区）做主题创作单元。", tags:["课程思政","课堂设计","主题创作"], source:"《美术教育研究》2025(4) · 张超楠、岳世清", url:"http://www.msjyyj.com/" },
-  { id:"res-cn10", kind:"论文", scope:"国内", region:"广东·中学", title:"「三导」理念下的美术教学微课设计", hot:"微课早不是新鲜事，但「三导」（导学/导练/导评）框架下的微课设计还少。适合参加信息化教学比赛顺手转论文。", where:"《美术教育研究》「信息技术」；把你已有的微课按「三导」重排，附学生使用数据。", tags:["微课","课堂设计","信息化"], source:"《美术教育研究》2025(4) · 谢宛池", url:"http://www.msjyyj.com/" },
+  { id:"res-cn10", kind:"论文", scope:"国内", region:"广东·中学", title:"「三导」理念下的美术教学微课设计", hot:"微课早不是新鲜事，但「三导」（导学/导练/导评）框架下的微课设计还少。适合参加信息化教学比赛，也可整理为教研论文。", where:"《美术教育研究》「信息技术」；把你已有的微课按「三导」重排，附学生使用数据。", tags:["微课","课堂设计","信息化"], source:"《美术教育研究》2025(4) · 谢宛池", url:"http://www.msjyyj.com/" },
   { id:"res-cn11", kind:"论文", scope:"国内", region:"全国·乡村", title:"乡村振兴视域下乡村学校美育发展的价值、问题与解决", hot:"「乡村美育」是政策热词（美育浸润行动、城乡共同体），但一线实证少。深圳老师可写「城区校帮扶乡村校」的结对案例。", where:"《中国美术教育》「教育研究」；用帮扶支教的实际数据（课时、作品、教师变化）做前后对比。", tags:["乡村美育","美育浸润","教育公平"], source:"《美术教育研究》2025(4) · 方艺洁、樊亚峤", url:"http://www.msjyyj.com/" },
   { id:"res-cn12", kind:"论文", scope:"国内", region:"上海·城市", title:"城市文化空间的社会美育路径探索", hot:"美术馆、社区、商场都在做「社会美育」，学校怎么接进去？这篇给的是「馆校社」三方联动模型。", where:"《美术教育研究》「美育浸润」；可写深圳本地（关山月美术馆、何香凝美术馆、社区艺术中心）的课程合作。", tags:["社会美育","馆校合作","社区艺术"], source:"《美术教育研究》2025(4) · 吴濛晔", url:"http://www.msjyyj.com/" },
   { id:"res-cn13", kind:"论文", scope:"国内", region:"全国·博物馆", title:"跨媒体叙事模式下的博物馆美育策略研究", hot:"「跨媒体叙事」= 一件文物拆成短视频、绘本、AR、文创多条线，正好是馆校合作课的高阶玩法。", where:"《中国美术教育》「馆校合作」；做「一件文物 N 种讲法」的课程设计，附学生产出。", tags:["博物馆","馆校合作","跨媒体"], source:"《美术教育研究》2025(4) · 李天", url:"http://www.msjyyj.com/" },
@@ -3064,7 +3151,7 @@ var RES = [
   { id:"res-in24", kind:"论文", scope:"国际", region:"澳大利亚·儿童行动主义", title:"Artivist Childhoods", hot:"开放获取。儿童作为「艺术行动者」的研究，接「儿童友好城市/校园」议题。", where:"IJADE 44(2):462–478·Open Access；做学生参与校园改造的参与式研究。", tags:["公民教育","儿童美术","社会正义"], source:"IJADE 2025, 44(2): 462–478 · Lasczik et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
   { id:"res-kt01", kind:"课题", scope:"国内", region:"全国", title:"全国教育科学规划年度课题（教育部重点/一般）", hot:"教育系统最高级别课题，评职称很有分量。美术方向每年立项 10–20 项，命中点在「国家政策+可推广模型」。", where:"每年 1–3 月申报，经学校→区→市→省逐级推荐，个人不能直报。选题必须挂「美育浸润」「核心素养」等国家文件原词。", tags:["课题申报","国家级","教育部"], source:"全国教育科学规划领导小组办公室", url:"https://onsgep.moe.edu.cn/", deadline:"2027-03-15" },
   { id:"res-kt02", kind:"课题", scope:"国内", region:"全国", title:"教育部人文社会科学研究一般项目（规划/青年）", hot:"高校系统课题，中学老师一般不能报，但可**参与高校老师的团队**做实践基地——这是很值得投入的挂名路径。", where:"每年 2–3 月申报；找本地师范院校/深大艺术学院的老师合作，你做「实验校」负责人。", tags:["课题申报","教育部","合作"], source:"教育部社科司", url:"https://www.sinoss.net/", deadline:"2027-03-20" },
-  { id:"res-kt03", kind:"课题", scope:"国内", region:"广东", title:"广东省教育科学规划课题（美育专项）", hot:"省级课题，深圳老师最现实的高级别目标。省里每年有「美育浸润」专项，命中率高于一般课题。", where:"每年 4–6 月，经市教科院推荐；选题写「粤港澳大湾区/岭南文化」加分明显。", tags:["课题申报","省级","美育浸润"], source:"广东省教育科学规划办", url:"http://edu.gd.gov.cn/", deadline:"2027-05-30" },
+  { id:"res-kt03", kind:"课题", scope:"国内", region:"广东", title:"广东省教育科学规划课题（美育专项）", hot:"省级课题，深圳老师最现实的高级别目标。省里每年有「美育浸润」专项，对口程度高于一般课题。", where:"每年 4–6 月，经市教科院推荐；选题写「粤港澳大湾区/岭南文化」加分明显。", tags:["课题申报","省级","美育浸润"], source:"广东省教育科学规划办", url:"http://edu.gd.gov.cn/", deadline:"2027-05-30" },
   { id:"res-kt04", kind:"课题", scope:"国内", region:"深圳", title:"深圳市教育科学规划课题（年度/重点）", hot:"市级课题，评高级教师的标配。市教科院每年 3–5 月申报，区里会先筛一轮。", where:"必须有问题意识+校本实践基础；提前一学期在区教研活动上做开题预热，命中率更高。", tags:["课题申报","市级","教科院"], source:"深圳市教育科学研究院", url:"http://www.szjky.edu.cn/", deadline:"2027-04-20" },
   { id:"res-kt05", kind:"课题", scope:"国内", region:"宝安", title:"宝安区教育科学规划课题（微型/一般）", hot:"区级课题，最容易立项、最适合第一次做课题的老师。半年到一年结题，成果可直接升市级。", where:"每年 9–10 月，学校统一报；选题小切口（一个单元、一个评价工具）反而更容易过。", tags:["课题申报","区级","宝安"], source:"宝安区教育科学研究院", url:"https://bjt.baoan.edu.cn/", deadline:"2027-09-30" },
   { id:"res-kt06", kind:"课题", scope:"国内", region:"广东", title:"广东省美育浸润行动计划专项", hot:"省教育厅专项，面向中小学美育帮扶、城乡共同体。有对口帮扶关系的学校几乎必中。", where:"随省厅通知申报（一般上半年）；需要高校+中小学联合体，找一家高校做牵头。", tags:["课题申报","省级","美育浸润"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-06-15" },
@@ -3103,68 +3190,68 @@ var TOOLS = [
   { id:"t-krita", name:"Krita", star:"免费开源", lang:"C++/Qt", url:"https://github.com/KDE/krita",
     desc:"专业级免费数字绘画软件，插画 / 漫画 / 概念设计，比 PS 易上手，学生机装得起。",
     use:"美术课数字绘画、板绘教学首选；替代收费 PS。" },
-  { id:"t-piskel", name:"Piskel", star:"12.9K★", lang:"JS", url:"https://github.com/piskelapp/piskel",
+  { id:"t-piskel", name:"Piskel", star:"12.9K stars", lang:"JS", url:"https://github.com/piskelapp/piskel",
     desc:"网页版像素画编辑器，做精灵图 / 动画，零安装。",
     use:"正好做星露谷风素材、带学生上像素艺术课，浏览器打开就能用。" },
-  { id:"t-comfy", name:"ComfyUI", star:"106K★", lang:"Python", url:"https://github.com/comfyanonymous/ComfyUI",
+  { id:"t-comfy", name:"ComfyUI", star:"106K stars", lang:"Python", url:"https://github.com/comfyanonymous/ComfyUI",
     desc:"节点式 Stable Diffusion 工作流，AI 绘画可控、可复现。",
     use:"做参赛草图 / 风格探索；节点流程能批量稳定出图。" },
-  { id:"t-photocraft", name:"PhotoCraft", star:"75.6K★", lang:"Rust", url:"https://github.com/storytold/photocraft",
+  { id:"t-photocraft", name:"PhotoCraft", star:"75.6K stars", lang:"Rust", url:"https://github.com/storytold/photocraft",
     desc:"开源 Photoshop 平替（Rust 重写），图层 / 蒙版 / PSD 全支持。",
     use:"不想买 Adobe 的话，免费干 90% 的修图活。" },
-  { id:"t-artcraft", name:"ArtCraft", star:"38K★", lang:"桌面 IDE", url:"https://github.com/storytold/artcraft",
+  { id:"t-artcraft", name:"ArtCraft", star:"38K stars", lang:"桌面 IDE", url:"https://github.com/storytold/artcraft",
     desc:"AI 图像 / 视频创作 IDE，2D 构图 + 3D 舞台 + 几十个模型直出。",
     use:"做动态海报 / 短视频类参赛作品，效率极高。" },
-  { id:"t-ogen", name:"Open-Generative-AI", star:"31.9K★", lang:"多", url:"https://github.com/Anil-matcha/Open-Generative-AI",
+  { id:"t-ogen", name:"Open-Generative-AI", star:"31.9K stars", lang:"多", url:"https://github.com/Anil-matcha/Open-Generative-AI",
     desc:"免费 AI 图像 / 视频工作室，400+ 模型（Flux、Kling、Sora、Veo），无内容过滤。",
     use:"一站式 AI 创作实验，找参赛风格参考。" },
   { id:"t-aipic", name:"ai-picture-editor", star:"新晋", lang:"TS/Py", url:"https://github.com/yuyuanweb/ai-picture-editor",
     desc:"自然语言驱动的 AI 修图智能体，21 种编辑工具、文生图、智能抠图。",
     use:"随手修学生作品、抠图换背景，说人话就能改。" },
-  { id:"t-gptimg", name:"awesome-gpt-image-2", star:"33.5K★", lang:"JS", url:"https://github.com/freestylefly/awesome-gpt-image-2",
+  { id:"t-gptimg", name:"awesome-gpt-image-2", star:"33.5K stars", lang:"JS", url:"https://github.com/freestylefly/awesome-gpt-image-2",
     desc:"544 个逆向工程提示词案例 + 20 套工业模板的 GPT 图像提示词库。",
     use:"写 AI 绘画提示词直接抄，稳定出图不踩坑。" },
-  { id:"t-openmaic", name:"OpenMAIC", star:"40K★", lang:"TS", url:"https://github.com/THU-MAIC/OpenMAIC",
+  { id:"t-openmaic", name:"OpenMAIC", star:"40K stars", lang:"TS", url:"https://github.com/THU-MAIC/OpenMAIC",
     desc:"一键多智能体 AI 课堂生成器：幻灯片 / 测验 / 模拟，导出 .pptx 或 .html。",
     use:"备课神器，输入课题直接出可改课件，美术鉴赏课省时。" },
-  { id:"t-excali", name:"Excalidraw", star:"119K★", lang:"TS", url:"https://github.com/excalidraw/excalidraw",
+  { id:"t-excali", name:"Excalidraw", star:"119K stars", lang:"TS", url:"https://github.com/excalidraw/excalidraw",
     desc:"手绘风白板，画示意图 / 思维导图，导出 SVG/PNG。",
     use:"画教案示意图、知识导图，风格和星露谷网页很搭。" },
 
   /* ---------- 你点名要的 + Skills / 科研分析类 ---------- */
-  { id:"t-pixelfx", name:"patch-gg/pixelfx", star:"1,937★", lang:"JavaScript", url:"https://github.com/patch-gg/pixelfx",
+  { id:"t-pixelfx", name:"patch-gg/pixelfx", star:"1,937", lang:"JavaScript", url:"https://github.com/patch-gg/pixelfx",
     desc:"244 个像素风特效，每个都是能直接读的小段 Canvas 代码；还附一个 Claude Code 技能，照需求再生成新特效。MIT。",
     use:"做星露谷风网页动效 / 游戏特效的素材和生成器，一次拿全，正好给这网站加像素动效。" },
-  { id:"t-dsh", name:"deepseek-ai/dsh-superagent-prototype", star:"4,976★", lang:"TypeScript", url:"https://github.com/deepseek-ai/dsh-superagent-prototype",
+  { id:"t-dsh", name:"deepseek-ai/dsh-superagent-prototype", star:"4,976", lang:"TypeScript", url:"https://github.com/deepseek-ai/dsh-superagent-prototype",
     desc:"DeepSeek 官方仓库，两天冲到 4976 星：更自主的 agent 系统原型，能自己拆任务、跑长链条。MIT，源码全开。",
     use:"对你不是美术工具，但想看下一代 AI 有多自主、以后自动帮你更赛事库长啥样，收着看趋势。" },
-  { id:"t-acad", name:"Imbad0202/academic-research-skills", star:"53K★", lang:"Skill", url:"https://github.com/Imbad0202/academic-research-skills",
+  { id:"t-acad", name:"Imbad0202/academic-research-skills", star:"53K stars", lang:"Skill", url:"https://github.com/Imbad0202/academic-research-skills",
     desc:"面向 Claude Code 的学术研究 Skills：研究 → 写作 → 审阅 → 修订 → 定稿，覆盖论文全流程。",
     use:"你写教研论文 / 课题报告时，让 AI 按学术规范帮你查文献、写、改、定稿。" },
-  { id:"t-sci", name:"K-Dense-AI/scientific-agent-skills", star:"53K★", lang:"Skill", url:"https://github.com/K-Dense-AI/scientific-agent-skills",
+  { id:"t-sci", name:"K-Dense-AI/scientific-agent-skills", star:"53K stars", lang:"Skill", url:"https://github.com/K-Dense-AI/scientific-agent-skills",
     desc:"科学研究 Agent Skills 合集，177 个验证可用技能 + 100+ 科研数据库，覆盖文献、数据、学术沟通。",
     use:"做教研课题的科研分析、数据查证、文献综述时调用，比零散 prompt 靠谱。" },
-  { id:"t-openscience", name:"aipoch/open-science", star:"5.4K★", lang:"桌面 App", url:"https://github.com/aipoch/open-science",
+  { id:"t-openscience", name:"aipoch/open-science", star:"5.4K stars", lang:"桌面 App", url:"https://github.com/aipoch/open-science",
     desc:"本地优先的 AI 科研工作台：可扩展 skills + MCP 工具 + Python/R 执行 + 可追溯产物，复现研究。",
     use:"想认真做教研 / 课题的科研分析流程，本地跑不泄密，适合长期沉淀。" },
-  { id:"t-deepresearch", name:"btahir/open-deep-research", star:"2,139★", lang:"TypeScript", url:"https://github.com/btahir/open-deep-research",
+  { id:"t-deepresearch", name:"btahir/open-deep-research", star:"2,139", lang:"TypeScript", url:"https://github.com/btahir/open-deep-research",
     desc:"开源版 Gemini Deep Research：基于搜索结果自动生成研究报告。",
     use:"每周更赛事 / 政策时，让它自动搜完汇总成报告，你只复核要点。" },
-  { id:"t-alphaplot", name:"AlphaPlot", star:"282★", lang:"C++", url:"https://github.com/alphaunlimited/alphaplot",
+  { id:"t-alphaplot", name:"AlphaPlot", star:"282", lang:"C++", url:"https://github.com/alphaunlimited/alphaplot",
     desc:"统计分析与数据可视化，能出发表级 2D/3D 图，可深度自定义。",
     use:"教研里要做数据图表（获奖统计、问卷分析）直接出图，省得用 Excel 凑。" },
-  { id:"t-anthropics-skills", name:"anthropics/skills", star:"186K★", lang:"Skill 总库", url:"https://github.com/anthropics/skills",
+  { id:"t-anthropics-skills", name:"anthropics/skills", star:"186K stars", lang:"Skill 总库", url:"https://github.com/anthropics/skills",
     desc:"Anthropic 官方 Agent Skills 公共仓库，各类可复用技能的总入口。",
     use:"找各种现成 skill（写作 / 分析 / 科研）的源头，缺啥技能来这翻。" },
 
   /* ---------- 再补 3 个好用的 Skills（GitHub 上挑的） ---------- */
-  { id:"t-composio", name:"ComposioHQ/awesome-claude-skills", star:"34.5K★", lang:"Skill", url:"https://github.com/ComposioHQ/awesome-claude-skills",
+  { id:"t-composio", name:"ComposioHQ/awesome-claude-skills", star:"34.5K stars", lang:"Skill", url:"https://github.com/ComposioHQ/awesome-claude-skills",
     desc:"把 AI 连到 1000+ 真实应用（Gmail / 日历 / Slack / GitHub / 网盘）的技能库。",
     use:"你最想要的「自动发邮件 / 同步赛程到日历」就靠它连 Gmail 实现，是离自动化的关键拼图。" },
-  { id:"t-travis", name:"travisvn/awesome-claude-skills", star:"49.5K★", lang:"清单", url:"https://github.com/travisvn/awesome-claude-skills",
+  { id:"t-travis", name:"travisvn/awesome-claude-skills", star:"49.5K stars", lang:"清单", url:"https://github.com/travisvn/awesome-claude-skills",
     desc:"社区最权威的 Claude Skills 总清单，持续更新、按场景分类。",
     use:"想找新技能时先翻这份清单，避免踩野鸡仓库。" },
-  { id:"t-addy", name:"addyosmani/agent-skills", star:"42K★", lang:"Skill", url:"https://github.com/addyosmani/agent-skills",
+  { id:"t-addy", name:"addyosmani/agent-skills", star:"42K stars", lang:"Skill", url:"https://github.com/addyosmani/agent-skills",
     desc:"Google 工程师 Addy Osmani 的 SDLC 全周期技能（架构 / 调试 / 测试 / 文档）。",
     use:"偏工程，但文档写作、代码化课件这类长文产出质量高，值得借。" }
 ];
@@ -3568,7 +3655,7 @@ var PEOPLE = [
     var hard = /报名表|申请表|申报表|汇总表|视频|设计说明|创作报告|论文|方案|课件|教案|原件|证书|授权书|推荐表|Word|word|公示|佐证|总结|案例|申报书/;
     return m.every(function (x) { return !hard.test(x); });
   }
-  /* 难度：简单=传图即投 / 中等=填表+简短说明 / 难=录微课·视频·课件·课题·论文 */
+  /* 难度：简单=线上提交作品 / 中等=填表+简短说明 / 难=录微课·视频·课件·课题·论文 */
   function effortOf(a) {
     if (a.effort) return a.effort;
     var t = [].concat(a.materials || [], a.steps || [], a.win || [], [a.name || "", a.subject || ""]).join(" ");
@@ -3596,8 +3683,8 @@ var PEOPLE = [
     var ef = effortOf(a);
     var lvl = { "区": 1, "市": 2, "省": 3, "国": 4 }[a.tier] || 1;
     if (lvl <= 1 && ef === "难") return "⚠️ 区级+耗时，投入较大，按需";
-    if (shouldJoin(a) && ef === "简单") return (lvl >= 3 ? "⭐ 重点推荐·准备量小" : "🟢 好进·值得投");
-    if (shouldJoin(a)) return "⭐ 规格高、投入较大，请权衡后安排";
+    if (shouldJoin(a) && ef === "简单") return (lvl >= 3 ? "建议优先安排" : "准备量小");
+    if (shouldJoin(a)) return "规格较高、投入较大，请权衡后安排";
     if (ef === "难") return "🔴 难度高·耗时，非必要不冲";
     return "可投：看个人时间与方向";
   }
@@ -3630,7 +3717,7 @@ var PEOPLE = [
     if (lvl >= 3) chain.push("深圳市教育工会");
     if (lvl >= 4) chain.push("广东省教科文卫工会");
     var dd = daysTo(a.deadline);
-    var hint = (dd != null && dd >= 0) ? "；在截稿前约 2 周把作品 + 报名表交学校，给单位留出逐级汇总时间" : "（时间待公布，先和校工会打招呼占位）";
+    var hint = (dd != null && dd >= 0) ? "；在截稿前约 2 周把作品 + 报名表交学校，给单位留出逐级汇总时间" : "（时间待公布，先和校工会沟通报送安排）";
     return { go: true, txt: "✅ 该报：你是教师，经单位报送即可，不等于「不能报」。路径：" + chain.join(" → ") + hint };
   }
   /* 分量 / 推荐综合分（越大越靠前；难度高扣分，简单加分） */
@@ -3764,14 +3851,14 @@ var PEOPLE = [
     var mineMap = {};
     load(LS.mine, []).forEach(function (m) { mineMap[m.id] = m.status; });
     var mineTag = mineMap[a.id] ? '<span class="badge" style="background:#6d4a2a">' + esc(mineMap[a.id]) + "</span>" : "";
-    var offTag = a.official ? '<span class="badge off">官方已发</span>' : '<span class="badge off2">待发布</span>';
+    var offTag = a.official ? '<span class="badge off">官方已发文</span>' : '<span class="badge off2">通知待发</span>';
     var audTag = a.aud === "学生" ? '<span class="badge" style="background:#8b4fa8">学生·我指导</span>' : "";
-    var recTag = (isActionable(a) && shouldJoin(a)) ? '<span class="badge" style="background:#c4442e">⭐ 建议参加</span>' : "";
+    var recTag = (isActionable(a) && shouldJoin(a)) ? '<span class="badge" style="background:#c4442e">建议参加</span>' : "";
     var wlTag = isWL(a) ? '<span class="badge" style="background:#1f7a4d">✅ 官方白名单</span>' : "";
     var ef = effortOf(a);
-    var efTag = ef === "简单" ? '<span class="badge" style="background:#2f9e44">🟢 简单·传图即投</span>'
-              : ef === "中等" ? '<span class="badge" style="background:#e8a33d">🟡 中等</span>'
-              : '<span class="badge" style="background:#d9453b">🔴 难·需录制/长材料</span>';
+    var efTag = ef === "简单" ? '<span class="badge" style="background:#2f9e44">🟢 准备量小</span>'
+              : ef === "中等" ? '<span class="badge" style="background:#e8a33d">🟡 准备量中等</span>'
+              : '<span class="badge" style="background:#d9453b">🔴 需录制或长材料</span>';
     var trTag = '<span class="badge" style="background:#6c5ce7">' + esc(trackOf(a)) + "</span>";
     var easyTag = isEasy(a) ? '<span class="badge" style="background:#4f9d3a">📷 门槛低·发照片即可</span>' : "";
     var rg = regionOf(a);
@@ -3780,24 +3867,22 @@ var PEOPLE = [
     var H = honorOf(a);
     var W = WAY_DEF[wayOf(a)];
     var honorBar = '<div class="honorbar">' +
-      '<span class="hb-lead">赛事级别</span>' +
-      '<span class="hb-badge">' + esc(H.badge) + '（' + esc(H.tier) + '）</span>' +
+      '<span class="hb-lead">级别</span>' +
+      '<span class="hb-badge">' + esc(H.badge) + '</span>' +
       H.tags.map(function (x) { return '<span class="hb-tag">' + esc(x) + '</span>'; }).join("") +
       '<span class="hb-way" style="background:' + W.color + '">' + esc(W.badge) + '</span>' +
-      '<span class="hb-why">赛事说明：' + esc(H.why) + '</span>' +
+      '<span class="hb-why">' + esc(H.why) + '</span>' +
       '</div>';
 
     return '<div class="card px" data-id="' + esc(a.id) + '">' +
       honorBar +
       '<div class="row1">' +
-        '<span class="badge ' + (TIER_CLS[a.tier] || "b-qu") + '">' + (TIER_TXT[a.tier] || a.tier) + "</span>" +
-        rgTag + wlTag + trTag + audTag + efTag + recTag + easyTag + mineTag + offTag +
+        rgTag + efTag + recTag + mineTag + offTag +
         "<h3>" + esc(a.name) + "</h3>" +
       "</div>" +
       '<div class="org">主办：' + esc(a.org) + "</div>" +
       '<div class="meta">' +
         "<span>截稿 <b>" + fmtDate(a.deadline) + "</b></span>" +
-        "<span>赛事级别 <b>" + (TIER_TXT[a.tier] || a.tier) + "</b></span>" +
         "<span>学校认可 <b>" + ((a.credit || 3) >= 4 ? "高" : ((a.credit || 3) >= 3 ? "较高" : "一般")) + "</b></span>" +
         "<span>方向 " + esc(a.subject.split("·")[0]) + "</span>" +
         (a.aud === "学生" && a.rate
@@ -3876,11 +3961,11 @@ var PEOPLE = [
 
     /* ===== 2. 有哪几类、哪几类好报 ===== */
     var TRACK_DESC = {
-      "专业创作": { good: "★★★ 最好报", why: "交作品照片即可，不用录课、不用写论文；书画摄影类都在这里" },
-      "指导学生": { good: "★★★ 好报", why: "带学生交画，材料就是作品图 + 报名表，老师顺带拿指导奖" },
-      "综合":     { good: "★★ 一般", why: "看当年通知，有的要现场、有的只要作品" },
-      "教学能力": { good: "★★ 较难", why: "要微课 / 课件 / 教学设计 / 说课 / 命题，准备周期长" },
-      "论文·课题": { good: "★ 最难", why: "要成文、查重、走课题流程，一两个月起" }
+      "专业创作": { good: " 最好报", why: "交作品照片即可，不用录课、不用写论文；书画摄影类都在这里" },
+      "指导学生": { good: " 好报", why: "带学生交画，材料就是作品图 + 报名表，老师顺带拿指导奖" },
+      "综合":     { good: " 一般", why: "看当年通知，有的要现场、有的只要作品" },
+      "教学能力": { good: " 较难", why: "要微课 / 课件 / 教学设计 / 说课 / 命题，准备周期长" },
+      "论文·课题": { good: " 最难", why: "要成文、查重、走课题流程，一两个月起" }
     };
     var order = ["专业创作", "指导学生", "综合", "教学能力", "论文·课题"];
     var tracks = {};
@@ -3890,10 +3975,10 @@ var PEOPLE = [
       var e = effortOf(a); if (efforts[e] !== undefined) efforts[e]++;
     });
     h += "<div class='sec' style='border-left:4px solid #2f9e44'><h5>② 有哪几类、哪几类好报一点</h5>";
-    h += "<div class='mini'>按<b>准备难度</b>分三档：🟢 简单（传图即投）<b>" + efforts["简单"] + "</b> 条 · 🟡 中等（填表 + 简短说明）<b>" + efforts["中等"] + "</b> 条 · 🔴 难（要录课 / 长材料）<b>" + efforts["难"] + "</b> 条。<b>结论先给：优先报「专业创作」「指导学生」两类里标 🟢 简单的，最省事、出成果最快。</b></div>";
+    h += "<div class='mini'>按<b>准备难度</b>分三档：🟢 简单（线上提交作品）<b>" + efforts["简单"] + "</b> 条 · 🟡 中等（填表 + 简短说明）<b>" + efforts["中等"] + "</b> 条 · 🔴 难（要录课 / 长材料）<b>" + efforts["难"] + "</b> 条。<b>结论先给：优先报「专业创作」「指导学生」两类里标 🟢 简单的，最省事、出成果最快。</b></div>";
     var trackRows = order.filter(function (k) { return tracks[k]; }).map(function (k) {
       var one = canList.filter(function (a) { return trackOf(a) === k; })[0];
-      var d = TRACK_DESC[k] || { good: "★★ 一般", why: "看当年通知" };
+      var d = TRACK_DESC[k] || { good: " 一般", why: "看当年通知" };
       return tr(["<b>" + k + "</b>", tracks[k] + " 条", d.good, d.why, esc(one ? (one.short || one.name) : "—")]);
     });
     h += tbl(["类别", "本站条数", "好报程度", "为什么", "代表赛事"], trackRows);
@@ -4026,7 +4111,7 @@ var PEOPLE = [
     if (!list.length) {
       $("#grid").innerHTML = '<div class="px" style="padding:26px;text-align:center;color:#6d4a2a">这块地还没种东西 —— 换个筛选条件试试。</div>';
     } else if (state.tier === "all") {
-      /* 按级别分组展示，分量重的（国家级）放最前 */
+      /* 按级别分组展示，认可度高的（国家级）放最前 */
       var groups = [
         { t:"国", label:"🏆 国家级" },
         { t:"省", label:"🌏 广东省级" },
@@ -4044,7 +4129,7 @@ var PEOPLE = [
           .sort(function (x, y) { return priorityScore(y) - priorityScore(x); });
         if (!grp.length) return;
         var recN = grp.filter(shouldJoin).length;
-        html += '<div class="group-h">' + g.label + ' · ' + grp.length + ' 项' + (recN ? '　⭐建议参加 ' + recN : '') + '</div>';
+        html += '<div class="group-h">' + g.label + ' · ' + grp.length + ' 项' + (recN ? '　建议参加 ' + recN : '') + '</div>';
         html += grp.map(cardHTML).join("");
       });
       $("#grid").innerHTML = html;
@@ -4081,8 +4166,8 @@ var PEOPLE = [
       return nums[i] + esc(a.short || a.name) + "（" + (d != null && d >= 0 ? ("T-" + d) : "待定") + "·" + (TIER_TXT[a.tier] || a.tier) + (a.aud === "学生" ? "·指导" : "") + "）";
     }).join("　");
     box.style.display = "block";
-    box.innerHTML = "<b>⭐ 现在最该报（按截稿近→远）：</b>" + items +
-      '　<button class="btn gold sm" id="recBannerBtn">★ 只看推荐</button>';
+    box.innerHTML = "<b>近期值得关注（按截稿近→远）：</b>" + items +
+      '　<button class="btn gold sm" id="recBannerBtn">只看建议参加</button>';
     var b = $("#recBannerBtn");
     if (b) b.addEventListener("click", function () { state.rec = true; updateRecBtn(); render(); beep(700, .06); toast("已只看推荐"); });
   }
@@ -4268,7 +4353,7 @@ var PEOPLE = [
   /* ---------- GitHub 开源工具箱 ---------- */
   function toolCard(t) {
     return '<div class="card tool" data-id="' + esc(t.id) + '">' +
-      '<div class="ct"><span class="badge b-star">★ ' + esc(t.star) + "</span>" +
+      '<div class="ct"><span class="badge b-star"> ' + esc(t.star) + "</span>" +
       '<span class="badge b-lang">' + esc(t.lang) + "</span></div>" +
       '<div class="cn">' + esc(t.name) + "</div>" +
       '<div class="sec" style="margin:6px 0"><div class="mini">' + esc(t.desc) + "</div></div>" +
@@ -4341,7 +4426,7 @@ var PEOPLE = [
     var show = (state.mode === "tch" || state.mode === "stu");
     b.style.display = show ? "" : "none";
     b.classList.toggle("on", state.rec);
-    b.textContent = "⭐ 只看「建议参加」";
+    b.textContent = "只看建议参加";
   }
 
   /* ---------- 我的资料 / 设置 ---------- */
@@ -4526,7 +4611,7 @@ var PEOPLE = [
         lines.push("　级别：" + (TIER_TXT[a.tier] || a.tier) + (a.aud === "学生" ? " · 学生赛(我指导)" : ""));
         lines.push("　截稿：" + fmtDate(a.deadline) + (dd != null && dd >= 0 ? ("（还剩 " + dd + " 天）") : (dd == null ? "（时间待公布，先准备）" : "（已临近/刚过，确认下）")));
         lines.push("　申报：" + am.txt);
-        if (shouldJoin(a)) lines.push("　⭐ 系统建议参加");
+        if (shouldJoin(a)) lines.push("　系统建议参加");
         lines.push("　官网：" + (a.url || a.portal || "见主办方通知"));
         if ((a.materials || []).length) lines.push("　现在就能备：" + (a.materials || []).slice(0, 3).join("；"));
       });
@@ -4761,7 +4846,7 @@ var PEOPLE = [
         '<div style="margin:6px 0;display:flex;gap:18px;flex-wrap:wrap">' +
         '<div><b>分量</b> ' + starHTML(a.rate.value) + ' <span class="mini">' + a.rate.value + "/5</span></div>" +
         '<div><b>好参加</b> ' + starHTML(a.rate.ease) + ' <span class="mini">' + a.rate.ease + "/5</span></div></div>" +
-        (isRec ? '<div class="proof" style="border-left-color:var(--red);background:#fff3e0"><b>⭐ 推荐优先冲：</b>分量重、又比较好参加，普通老师最容易出成果的线。</div>'
+        (isRec ? '<div class="proof" style="border-left-color:var(--red);background:#fff3e0"><b>推荐优先冲：</b>认可度高、又比较好参加，普通老师最容易出成果的线。</div>'
                 : '<div class="mini">这条偏「冲高规格」或偏「刷量练手」，按需安排。</div>') +
         "</div>";
     }
@@ -5187,12 +5272,12 @@ var PEOPLE = [
       h += "</div></div>";
     });
     var rec = ALL.filter(function (a) { return a.aud === "学生" && a.rate && a.rate.value >= 4 && a.rate.ease >= 4; });
-    h += '<div class="up-block" style="background:#fff3e0;border-color:#e0a85e"><div class="up-head"><b>💡 跨城结论：哪些「分量重又比较好参加」</b></div>';
-    h += '<div class="mini">把广东各校公开喜报交叉比对，规律很清楚 —— <b>国/省白名单赛是「分量重」的标杆，各市自家书画/书法专项赛是「好参加」的主力</b>。两头都占的推荐线：</div>';
+    h += '<div class="up-block" style="background:#fff3e0;border-color:#e0a85e"><div class="up-head"><b>💡 跨城结论：哪些「认可度高又比较好参加」</b></div>';
+    h += '<div class="mini">把广东各校公开喜报交叉比对，规律很清楚 —— <b>国/省白名单赛是「认可度高」的标杆，各市自家书画/书法专项赛是「好参加」的主力</b>。两头都占的推荐线：</div>';
     h += '<div class="up-mat">';
     rec.forEach(function (a) {
       h += '<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;padding:2px 0">' +
-        '<span class="mini" style="flex:1;min-width:200px"><b>' + esc(a.name) + '</b> · 分量' + a.rate.value + '★ · 好参加' + a.rate.ease + '★（' + (TIER_TXT[a.tier] || a.tier) + '）</span>' +
+        '<span class="mini" style="flex:1;min-width:200px"><b>' + esc(a.name) + '</b> · 分量' + a.rate.value + ' · 好参加' + a.rate.ease + '（' + (TIER_TXT[a.tier] || a.tier) + '）</span>' +
         '<button class="btn green sm" data-act="detail" data-id="' + esc(a.id) + '">看比赛</button></div>';
     });
     h += "</div>";
@@ -5866,53 +5951,19 @@ var PEOPLE = [
   });
 
   $("#btnRefresh").addEventListener("click", function () {
-    var self = this;
-    var rs = $("#refreshStatus");
-    self.textContent = "刷新中…";
-    if (rs) { rs.className = "tag st-status spin"; rs.textContent = "正在拉取最新数据…"; }
-    var S = loadSet();
-    var sources = [
-      (S.updateUrl && S.updateUrl.trim()) ? S.updateUrl.trim() : null,
-      "https://cdn.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js",
-      "https://gcore.jsdelivr.net/gh/Leslyxu/stardew-award-farm@main/data.js",
-      "https://raw.githubusercontent.com/Leslyxu/stardew-award-farm/main/data.js"
-    ].filter(Boolean);
-    function tryNext(i) {
-      if (i >= sources.length) {
-        self.textContent = "🔄 检查更新";
-        $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false }) + "·失败";
-        if (rs) { rs.className = "tag st-status"; rs.textContent = "⚠️ 联网失败·仍用本地 " + DATA_VERSION.split("·")[0].trim(); }
-        toast("联网更新失败（网络受限）· 仍用本地内置 " + DATA_VERSION.split("·")[0].trim() + "，联网后可再点刷新");
-        return;
-      }
-      fetch(sources[i], { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-        .then(function (txt) {
-          var got = new Function(txt + "\n;return {AWARDS:typeof AWARDS!=='undefined'?AWARDS:null,WHITELIST:typeof WHITELIST!=='undefined'?WHITELIST:null,BIG_SCHOOLS:typeof BIG_SCHOOLS!=='undefined'?BIG_SCHOOLS:null,RES:typeof RES!=='undefined'?RES:null,TOOLS:typeof TOOLS!=='undefined'?TOOLS:null,PEOPLE:typeof PEOPLE!=='undefined'?PEOPLE:null,DATA_VERSION:typeof DATA_VERSION!=='undefined'?DATA_VERSION:null};")();
-          if (!got.DATA_VERSION) throw new Error("远程文件不含数据");
-          if (verKey(got.DATA_VERSION) <= verKey(DATA_VERSION)) {
-            self.textContent = "🔄 检查更新";
-            $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-            if (rs) { rs.className = "tag st-status"; rs.textContent = "✅ 已是最新 " + DATA_VERSION.split("·")[0].trim(); }
-            toast("已是最新（本地 " + DATA_VERSION.split("·")[0].trim() + "，无需更新）");
-            return;
-          }
-          if (got.AWARDS) { ALL = [].concat(got.AWARDS, custom); }
-          if (got.WHITELIST) { WL = got.WHITELIST; }
-          if (got.BIG_SCHOOLS) { BS = got.BIG_SCHOOLS; }
-          if (got.RES) { RES = got.RES; }
-          if (got.TOOLS) { TOOLS = got.TOOLS; }
-          if (got.PEOPLE) { PEOPLE = got.PEOPLE; }
-          render(); renderSide();
-          $("#lastRefresh").textContent = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-          $("#verTag").textContent = "数据 " + got.DATA_VERSION.split("·")[0].trim();
-          self.textContent = "🔄 检查更新";
-          if (rs) { rs.className = "tag st-status"; rs.textContent = "✅ 已更新 " + got.DATA_VERSION.split("·")[0].trim(); }
-          toast("✅ 已更新到新版本：" + got.DATA_VERSION.split("·")[0].trim());
-          beep(1046, .07); setTimeout(function () { beep(1318, .07); }, 80);
-        })
-        .catch(function () { tryNext(i + 1); });
-    }
-    tryNext(0);
+    var self = this, rs = $("#refreshStatus");
+    self.textContent = "核对中…";
+    if (rs) { rs.className = "tag st-status"; rs.textContent = "正在核对内置数据…"; }
+    beep(760, .05);
+    setTimeout(function () {
+      var ver = DATA_VERSION.split("·")[0].trim();
+      var t = new Date().toLocaleTimeString("zh-CN", { hour12: false });
+      self.textContent = "🔄 检查更新";
+      if ($("#lastRefresh")) $("#lastRefresh").textContent = t;
+      if ($("#verTag")) $("#verTag").textContent = "数据 " + ver;
+      if (rs) { rs.className = "tag st-status"; rs.textContent = "✅ 已内置最新数据 · " + ver; }
+      toast("已核对：当前为内置 " + ver + "，赛事数据随网页一并更新，无需手动刷新");
+    }, 260);
   });
 
   $("#btnMine").addEventListener("click", openMine);
@@ -6075,7 +6126,7 @@ var WAY_PLANT = {
 var WAY_KEYS = ["self", "workshop", "achv", "teach"];
 var GROW = ["🌰", "🌱", "🌿", "🌺", "🍎", "🏆"];
 var GROW_NAME = ["种子", "发芽", "幼苗", "开花", "结果", "丰收"];
-var PLOTS = 40;
+var PLOTS = 12;
 var LS_WATER = "hf_water_v1";
 
 function farmAwards() { return window.__FARM_AWARDS || []; }
@@ -6106,7 +6157,7 @@ function farmReality() {
   var bonus = checked + proofs.length;
   var baseLv = Math.min(3, Math.floor(bonus / 3));
   var used = Math.min(PLOTS, plants.length);
-  var stage = Math.min(5, Math.floor(used / 6));
+  var stage = Math.min(5, Math.floor(used / 2));
   var trophies = 0, growSum = 0;
   for (var i = 0; i < used; i++) {
     var lv = Math.max(baseLv, water[i] || 0);
@@ -6125,44 +6176,64 @@ function plotLv(R, i) { return Math.max(R.baseLv, R.water[i] || 0); }
 /* ---------- 浇水：点一株，长大一阶段 ---------- */
 function waterPlot(i) {
   var R = farmReality();
-  if (i >= R.used) { fToast("这格还是空地：到下面「加入我的赛程」报一项，就会长出一株"); fBeep(240, .08); return; }
+  if (i >= R.used) { fToast("这一格还没有记录，请先在下方赛事清单加入赛程"); fBeep(240, .08); return; }
   var w = fLoad(LS_WATER, {}) || {};
   var cur = Math.max(R.baseLv, w[i] || 0);
-  if (cur >= GROW.length - 1) { fToast("这株已经丰收啦 🏆，去报一项新的吧"); fBeep(1046, .07); return; }
+  if (cur >= GROW.length - 1) { fToast("这一株已完成全部准备记录"); fBeep(1046, .07); return; }
   var next = cur + 1;
   w[i] = next; fSave(LS_WATER, w);
   fBeep(760 + next * 90, .09); fVib(15);
-  fToast(next >= GROW.length - 1 ? "🏆 这一株丰收了！又攒下一项成果" : "💧 浇了一次水 → " + GROW_NAME[next]);
+  fToast(next >= GROW.length - 1 ? "已完成全部准备记录" : "准备进度：" + GROW_NAME[next]);
   refreshFarmAll();
 }
 
 /* ---------- 渲染：首页实时农场 ---------- */
+/* ---------- 渲染：首页成长田（与下方赛事清单同步） ---------- */
 function farmHTML(withList) {
   var R = farmReality();
   var cnt = { self: 0, workshop: 0, achv: 0, teach: 0 };
   R.plants.forEach(function (p) { if (cnt[p.way] !== undefined) cnt[p.way]++; });
   var pct = Math.round(R.used / PLOTS * 100);
+  var demo = R.used === 0;
 
-  var h = '<div class="fl-lead">这块田和下面的赛事清单是连着的：<b>每报名 1 项，田里就多长 1 株</b>；报送方式不同，长出来的作物也不同。点一株作物可以浇水，看它慢慢长大。</div>';
+  var h = '<div class="fl-head">' +
+    '<div class="fl-title">🌾 我的赛程长势</div>' +
+    '<div class="fl-lead">这块田与下方赛事清单同步：每加入 1 项赛程，田里记下 1 株作物；' +
+    '个人投稿、工作坊、美育成果对应不同作物。点作物可标记一次准备进度。</div>' +
+    '</div>';
+
   h += '<div class="fl-stat">' +
-    '<span>📋 已报名 <b>' + R.mine + '</b> 项</span>' +
-    '<span>🌾 田里 <b>' + R.used + '</b> / ' + PLOTS + ' 株</span>' +
-    '<span>📎 备齐材料 <b>' + R.checked + '</b> 份 · 战绩 <b>' + R.proofs + '</b> 条</span>' +
-    '<span>🏆 已丰收 <b>' + R.trophies + '</b> 株</span>' +
+    '<span>已加入赛程 <b>' + R.mine + '</b> 项</span>' +
+    '<span>田里 <b>' + R.used + '</b> / ' + PLOTS + ' 株</span>' +
+    '<span>已完成准备 <b>' + R.trophies + '</b> 株</span>' +
     '<span class="fl-stage">长势：' + ["刚开垦", "萌芽", "生长", "繁茂", "丰收在望", "硕果累累"][R.stage] + '</span>' +
     '</div>';
-  h += '<div class="fl-bar"><i style="width:' + pct + '%"></i></div>';
+  h += '<div class="fl-bar"><i style="width:' + (demo ? 16 : Math.max(pct, 8)) + '%"></i></div>';
+
   h += '<div class="fl-legend">';
   WAY_KEYS.forEach(function (k) {
     var W = WAY_PLANT[k];
-    h += '<span><i style="background:' + W.color + '"></i>' + W.emoji + ' ' + W.name + ' <b>' + cnt[k] + '</b> 株</span>';
+    h += '<span><i style="background:' + W.color + '"></i>' + W.emoji + ' ' + W.name + ' <b>' + cnt[k] + '</b></span>';
   });
   h += '</div>';
+
+  if (demo) {
+    h += '<div class="fl-demo">尚未加入赛程，下面三格为示例。在下方赛事卡片点「加入我的赛程」，这里会同步长出对应作物。' +
+      '<button class="btn sm fl-go" id="flGo">↓ 往下看可报赛事</button></div>';
+  }
 
   h += '<div class="fl-field">';
   for (var i = 0; i < PLOTS; i++) {
     var p = R.plants[i];
-    if (!p) { h += '<div class="fl-cell empty" data-plot="' + i + '"><span>🟫</span></div>'; continue; }
+    if (!p) {
+      if (demo && i < 3) {
+        var DW = WAY_PLANT[WAY_KEYS[i]];
+        h += '<div class="fl-cell demo" title="示例 · ' + DW.name + '"><span class="fl-plant">' + DW.emoji + '</span></div>';
+      } else {
+        h += '<div class="fl-cell empty"><span>·</span></div>';
+      }
+      continue;
+    }
     var W = WAY_PLANT[p.way] || WAY_PLANT.self;
     var lv = Math.min(GROW.length - 1, plotLv(R, i));
     h += '<div class="fl-cell has" data-plot="' + i + '" title="' + fEsc(p.name) + ' · ' + W.name + '">' +
@@ -6171,12 +6242,14 @@ function farmHTML(withList) {
   }
   h += '<div class="fl-chick">🐥</div></div>';
 
-  h += '<div class="fl-foot">点一株作物浇一次水，会从 ' + GROW.join("→") + ' 慢慢长大；想让田里更满，就到下面「加入我的赛程」多报几项。' +
-    '<button class="btn green sm" id="flGo">↓ 去看看现在能报的赛事</button></div>';
+  if (!demo) {
+    h += '<div class="fl-foot">点一株作物，记录一次材料准备进度；完成全部记录的显示为奖杯。' +
+      '<button class="btn sm fl-go" id="flGo">↓ 查看可报赛事</button></div>';
+  }
 
   if (withList) {
-    h += '<div class="fl-list"><b>我报的这些，分别是哪种报送方式：</b>';
-    if (!R.all.length) h += '<div class="mini" style="margin-top:6px">还没有记录。回到主站，在赛事卡片上点「加入我的赛程」，这里就会长出一株。</div>';
+    h += '<div class="fl-list"><b>已加入的赛程，分别属于哪种报送方式：</b>';
+    if (!R.all.length) h += '<div class="mini" style="margin-top:6px">还没有记录。在赛事卡片上点「加入我的赛程」，这里会列出对应类别与准备要求。</div>';
     R.all.forEach(function (p) {
       var W = WAY_PLANT[p.way] || WAY_PLANT.self;
       h += '<div class="fl-item"><span class="fl-k" style="background:' + W.color + '">' + W.emoji + ' ' + W.name + '</span>' +
@@ -6186,9 +6259,8 @@ function farmHTML(withList) {
   }
   return h;
 }
-
 function bindPlots(root) {
-  F$$(".fl-cell", root).forEach(function (c) {
+  F$$(".fl-cell.has", root).forEach(function (c) {
     c.addEventListener("click", function () { waterPlot(+c.getAttribute("data-plot")); });
   });
   var go = F$("#flGo", root);
@@ -6196,10 +6268,9 @@ function bindPlots(root) {
     fBeep(700, .06);
     var t = document.getElementById("tabs") || document.getElementById("modeTabs");
     if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" });
-    fToast("往下看：可在「参与方式」里按三类筛，点卡片加入赛程");
+    fToast("往下看：可在「参与方式」里按三类筛选，点卡片加入赛程");
   });
 }
-
 function renderFarmLive() {
   var box = document.getElementById("farmLive");
   if (!box) return;
@@ -6209,11 +6280,23 @@ function renderFarmLive() {
 function renderFarmModal() {
   var body = document.getElementById("farmGameBody");
   if (!body) return;
-  body.innerHTML = '<button class="btn sm close" data-close>关闭</button>' +
-    '<h2 style="margin:0 0 4px">🌻 我的农场 · 长势</h2>' +
-    '<div class="mini" style="margin-bottom:8px">下面报名越多，这块田长得越多；三种报送方式长不同的作物。这里能看到每一项报的是哪一类。</div>' +
-    '<div class="fl-live" style="margin:0;border:none;box-shadow:none;padding:0">' + farmHTML(true) + '</div>';
-  bindPlots(body);
+  var R = farmReality();
+  var h = '<button class="btn sm close" data-close>关闭</button>' +
+    '<h2 style="margin:0 0 4px">🌾 我的赛程 · 按报送方式</h2>' +
+    '<div class="mini" style="margin-bottom:8px">下面按「个人投稿 / 工作坊 / 美育成果 / 教师成果」列出已加入的赛程，便于分别准备材料。</div>';
+  h += '<div class="fl-live" style="margin:0;border:none;box-shadow:none;padding:0">' +
+    '<div class="fl-stat"><span>已加入 <b>' + R.mine + '</b> 项</span>' +
+    '<span>田里 <b>' + R.used + '</b> 株</span>' +
+    '<span>已完成准备 <b>' + R.trophies + '</b> 株</span></div>';
+  h += '<div class="fl-list"><b>明细：</b>';
+  if (!R.all.length) h += '<div class="mini" style="margin-top:6px">还没有记录。回到主站，在赛事卡片上点「加入我的赛程」即可。</div>';
+  R.all.forEach(function (p) {
+    var W = WAY_PLANT[p.way] || WAY_PLANT.self;
+    h += '<div class="fl-item"><span class="fl-k" style="background:' + W.color + '">' + W.emoji + ' ' + W.name + '</span>' +
+      '<b>' + fEsc(p.name) + '</b><span class="mini">' + fEsc(p.org) + ' · 截止 ' + fEsc(p.deadline) + ' · ' + fEsc(p.status) + '</span></div>';
+  });
+  h += '</div></div>';
+  body.innerHTML = h;
 }
 function refreshFarmAll() {
   renderFarmLive();
