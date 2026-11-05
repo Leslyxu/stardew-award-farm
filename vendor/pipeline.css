@@ -1,0 +1,110 @@
+/* v48 单流水线：信息密度高、框线少、每屏只给一个主路径 */
+/* docsify 默认把内容锁在 72ch 并居中，导致左右大片留白；这里撑满可用宽度 */
+.markdown-section{width:100% !important;max-width:none !important;
+  margin:26px auto 0 auto !important;padding:22px 44px 96px !important}
+.markdown-section>h1{font-size:24px;padding-bottom:14px;margin-bottom:16px}
+.markdown-section blockquote{font-size:13px;line-height:1.8}
+.markdown-section table{font-size:13px}
+
+/* 已选目标卡片：首屏第一眼 */
+.target-card{background:linear-gradient(180deg,#f4f9f5,#fff);border:1px solid var(--hf-line);
+  border-left:4px solid var(--theme-color);border-radius:12px;padding:20px 24px;margin:0 0 22px}
+.tc-tag{display:inline-block;font-size:11px;letter-spacing:.4px;color:var(--theme-color);
+  background:#e8f2ec;border-radius:20px;padding:3px 11px;margin-bottom:12px;font-weight:600}
+.target-card h2{font-size:20px;font-weight:680;margin:0 0 9px;line-height:1.5}
+.tc-meta{font-size:13px;color:#41504a;margin-bottom:12px}
+.tc-meta b{color:var(--theme-color)}
+.tc-why{margin:0 0 16px;padding-left:19px}
+.tc-why li{font-size:12.8px;line-height:1.75;margin-bottom:3px;color:#41504a}
+.tc-acts,.act-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.tc-alts{margin-top:14px;padding-top:14px;border-top:1px solid var(--hf-line);display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:9px}
+
+/* 一个动作 = 一个按钮，不做层层筛选 */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:10px;margin:6px 0 26px}
+button.step,.act,button.alt{font:inherit;text-align:left;cursor:pointer;border-radius:10px;
+  border:1px solid var(--hf-line);background:#fff;transition:.15s}
+button.step{padding:15px 17px;display:block;width:100%;border-color:#dfe8e0}
+button.step:hover,button.alt:hover{border-color:var(--theme-color);background:#f7fbf8;transform:translateY(-1px)}
+button.step b{display:block;font-size:14px;font-weight:650;color:#22352c;margin-bottom:5px}
+button.step span{display:block;font-size:12px;color:var(--hf-muted);line-height:1.6}
+button.step.one,.act.primary{background:var(--theme-color);border-color:var(--theme-color);color:#fff}
+button.step.one b,.act.primary{color:#fff}
+button.step.one span{color:#dbeae1}
+button.step.one:hover{background:#264c42}
+.act{padding:9px 15px;font-size:12.8px;font-weight:600;color:var(--theme-color);white-space:nowrap}
+.act:hover{background:var(--hf-soft)}
+.act.primary{color:#fff}
+.act.primary:hover{background:#264c42;color:#fff}
+.act.ghost{color:var(--hf-muted);border-color:var(--hf-line)}
+button.alt{display:block;width:100%;padding:11px 13px}
+button.alt.on{border-color:var(--theme-color);background:#f2f8f4}
+button.alt b{display:block;font-size:12.8px;font-weight:650;line-height:1.5}
+button.alt span{display:block;font-size:11.5px;color:var(--hf-muted);margin-top:3px}
+
+/* 勾选清单：不堆按钮，一行一项 */
+.chk-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:0 22px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:9px 2px;border-bottom:1px solid #f0f3ef;
+  cursor:pointer;font-size:12.8px;line-height:1.7}
+.chk input{margin-top:5px;flex:none;width:15px;height:15px;accent-color:var(--theme-color)}
+.chk.done span{color:#8b978f;text-decoration:line-through}
+.chk-foot{font-size:11.5px;color:var(--hf-muted);margin:12px 0 4px}
+#matList .act-row,#specCheck .act-row{margin-top:14px}
+
+/* 模板网格 */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:11px;margin:8px 0 22px}
+.tpl{border:1px solid var(--hf-line);border-radius:11px;padding:15px 17px;background:#fff}
+.tpl-h b{display:block;font-size:13.5px;font-weight:650;margin-bottom:4px}
+.tpl-h span{display:block;font-size:11.8px;color:var(--hf-muted);line-height:1.6;margin-bottom:12px;min-height:34px}
+.tpl .act{width:100%;text-align:center}
+
+/* 通知卡 */
+.notice-card{border:1px solid var(--hf-line);border-radius:12px;padding:18px 20px;margin:0 0 16px;background:#fff}
+.notice-card h2{font-size:17px;margin:0 0 14px;font-weight:650}
+.nc-head{margin-bottom:4px}
+.notice-card .act-row{margin-bottom:14px}
+pre.notice{font:12.6px/1.85 inherit;max-height:none}
+.nc-alts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+
+/* 进度 */
+.pg-top{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;margin-bottom:10px}
+.pg-top span{font-size:11.8px;color:var(--hf-muted)}
+.pg-bar{height:9px;background:#e9efe9;border-radius:20px;overflow:hidden;margin-bottom:18px}
+.pg-bar i{display:block;height:100%;background:var(--theme-color);border-radius:20px;transition:width .4s}
+.pg-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px}
+.pg{display:flex;align-items:center;gap:9px;border:1px solid var(--hf-line);border-radius:9px;
+  padding:10px 12px;text-decoration:none;font-size:12.5px;color:#41504a}
+.pg b{width:21px;height:21px;flex:none;border-radius:50%;background:#eef2ed;display:grid;place-items:center;
+  font-size:11px;color:var(--hf-muted)}
+.pg em{margin-left:auto;font-style:normal;font-size:11px;color:var(--hf-muted)}
+.pg.done{background:#f4faf6;border-color:#d8e9dd}
+.pg.done b{background:var(--theme-color);color:#fff}
+.pg.done em{color:var(--theme-color)}
+
+/* 弹层与本机资料 */
+.sheet-acts{margin-top:14px}
+#cfgSheet .field input{width:100%}
+.mask{z-index:120}
+.toast{z-index:200}
+
+/* 窄屏：目录收起、内容铺满、弹窗全宽不被目录压住 */
+.sidebar-toggle{display:none !important}
+#hfSideBtn{display:none}
+@media(max-width:1000px){
+  .markdown-section{padding:20px 16px 120px !important}
+  /* docsify v5 用 translate/visibility 控制 sidebar；窄屏改由「目录」按钮自控 */
+  .sidebar{translate:calc(0px - var(--sidebar-width)) !important;visibility:hidden !important;
+    z-index:60;box-shadow:8px 0 30px rgba(20,35,25,.14);transition:translate .25s ease-out}
+  body.hf-side .sidebar{translate:0 !important;visibility:visible !important}
+  body main>.content{left:0 !important;right:0 !important}
+  #hfSideBtn{display:inline-block}
+  .steps,.tpl-grid,.pg-list,.chk-list,.tc-alts,.nc-alts{grid-template-columns:minmax(0,1fr)}
+  .target-card{padding:17px 16px}
+  .mask{padding:10px;align-items:flex-start;overflow:auto}
+  .sheet{width:100%;max-width:none;margin:24px 0;max-height:none;padding:18px 16px}
+  #hf-tools{top:auto;bottom:10px;right:10px;left:10px;justify-content:center;flex-wrap:wrap;
+    max-width:none;padding:6px;gap:5px}
+  #hf-tools a,#hf-tools button{font-size:11.5px}
+  .act{white-space:normal;text-align:center;flex:1 1 auto}
+}
+@media(min-width:1001px){ .markdown-section{padding-left:44px} }

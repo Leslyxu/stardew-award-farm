@@ -4,238 +4,60 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>星露奖杯农场 · 美术赛事报考与资源台账</title>
-<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=38">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=38">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=38">
-<link rel="icon" type="image/x-icon" href="favicon.ico?v=38">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=38">
-<link rel="manifest" href="manifest.json?v=38">
-<!-- docsify v5.1.0 (GitHub 31.5k star) 本地化发布文件，不依赖外部 CDN -->
+<title>把这个奖拿到手 · 星露奖杯农场</title>
+<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=48">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=48">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=48">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=48">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=48">
+<link rel="manifest" href="manifest.json?v=48">
+<!-- docsify v5.1.0 (GitHub 31.6k star) 本地化发布文件，不依赖外部 CDN -->
 <link rel="stylesheet" href="vendor/core.min.css">
 <link rel="stylesheet" href="vendor/site.css">
+<link rel="stylesheet" href="vendor/pipeline.css">
 </head>
 <body class="loading">
 <div id="app"></div>
 
+<!-- 工具条只留 3 个：进度 / 知网 / 搜索。其余入口在侧栏「资料与归档」里 -->
 <div id="hf-tools">
-  <a href="full.html" id="hfMine">已加入 0 项</a>
+  <button id="hfSideBtn" class="minor">目录</button>
+  <a href="#/progress" id="hfMine">进度</a>
   <span class="sep"></span>
-  <button id="btnSearch">搜索</button>
   <button class="primary" id="btnCNKI">知网一键填充</button>
-  <a href="full.html">完整功能版 ↗</a>
-  <a href="ledger.html" class="minor">表格版</a>
+  <button id="btnSearch">搜索</button>
 </div>
 
 <div class="mask" id="cnkiMask"><div class="sheet" id="cnkiSheet"></div></div>
+<div class="mask" id="cfgMask"><div class="sheet" id="cfgSheet"></div></div>
 <div class="mask" id="searchMask"><div class="sheet">
   <div class="sheet-head"><div><h2>站内查找</h2>
-    <div class="m">赛事、主办、专家、工具，输入关键词即出结果</div></div>
+    <div class="m">赛事、评分维度、模板、资源，输入关键词即出结果</div></div>
   <button class="x" data-close="searchMask">×</button></div>
-  <input id="qInput" type="search" autocomplete="off" placeholder="例如：绘画书法、禁毒、评审专家">
+  <input id="qInput" type="search" autocomplete="off" placeholder="例如：绘画书法、评分表、创作说明">
   <div id="qResults"></div>
 </div></div>
 
-<script src="vendor/notices.js"></script>
+<script src="vendor/content.js"></script>
 <script src="vendor/search-index.js"></script>
 <script>
 window.$docsify = {
-  name: '星露奖杯农场',
+  name: '把这个奖拿到手',
   nameLink: '#/',
   loadSidebar: true,
   subMaxLevel: 0,
   auto2top: true,
   homepage: 'README.md',
   relativePath: true,
-  coverpage: false
+  coverpage: false,
+  plugins: [
+    function (hook) {
+      hook.doneEach(function () { if (window.HF) window.HF.render(); });
+    }
+  ]
 };
 </script>
 <script src="vendor/docsify.min.js"></script>
-<script>
-(function () {
-  var $ = function (s) { return document.querySelector(s); };
-  function esc(v) {
-    return String(v === undefined || v === null ? '' : v)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-  function toast(msg) {
-    var d = document.createElement('div');
-    d.className = 'toast'; d.textContent = msg;
-    document.body.appendChild(d);
-    setTimeout(function () { d.remove(); }, 1900);
-  }
-  function copy(t, tip) {
-    var ta = document.createElement('textarea');
-    ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(ta);
-    toast(tip);
-  }
-
-  /* 点击声音与震动 */
-  var actx = null;
-  function beep(freq, dur) {
-    try {
-      if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
-      if (actx.state === 'suspended') actx.resume();
-      var o = actx.createOscillator(), g = actx.createGain();
-      o.type = 'sine'; o.frequency.value = freq;
-      g.gain.setValueAtTime(.045, actx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime + (dur || .03));
-      o.connect(g); g.connect(actx.destination);
-      o.start(); o.stop(actx.currentTime + (dur || .03));
-    } catch (e) {}
-  }
-  document.addEventListener('click', function (e) {
-    var t = e.target;
-    if (t && t.closest && t.closest('input,textarea,select')) return;
-    try { if (navigator.vibrate) navigator.vibrate(8); } catch (err) {}
-    beep(660, .03);
-  }, true);
-
-  /* 知网：本机浏览器存储 + 一键填充 */
-  var KEY = 'hf_cnki_v1';
-  var LIB = 'https://lib.shutong121.com';
-  var OFF = 'https://www.cnki.net';
-  function cnkiGet() {
-    try { var c = JSON.parse(localStorage.getItem(KEY) || '{}'); return { u: c.u || '', p: c.p || '' }; }
-    catch (e) { return { u: '', p: '' }; }
-  }
-  function cnkiSave(u, p) { try { localStorage.setItem(KEY, JSON.stringify({ u: u, p: p })); } catch (e) {} }
-  function cnkiClear() { try { localStorage.removeItem(KEY); } catch (e) {} refreshBtn(); }
-  function refreshBtn() {
-    var c = cnkiGet(), b = $('#btnCNKI');
-    if (b) b.textContent = (c.u || c.p) ? '知网一键填充 · 已存本机 ✓' : '知网一键填充';
-  }
-  function bookmark(u, p) {
-    return 'javascript:(function(){var u=' + JSON.stringify(u) + ',p=' + JSON.stringify(p) + ';' +
-      "var ins=document.querySelectorAll('input'),uHit=null,pHit=null;" +
-      "for(var i=0;i<ins.length;i++){var e=ins[i],t=(e.type||'').toLowerCase()," +
-      "n=(e.name||'')+(e.id||'')+(e.placeholder||'');" +
-      "if(t==='password'){if(!pHit)pHit=e;}" +
-      "else if(t!=='hidden'&&t!=='checkbox'&&t!=='radio'&&t!=='submit'&&t!=='button'){" +
-      "if(!uHit&&/user|name|account|login|card|id|账号|用户|证号|手机|email/i.test(n))uHit=e;}}" +
-      "if(!uHit){for(var j=0;j<ins.length;j++){var f=ins[j],q=(f.type||'').toLowerCase();" +
-      "if(q!=='password'&&q!=='hidden'&&q!=='checkbox'&&q!=='radio'&&q!=='submit'&&q!=='button'){uHit=f;break;}}}" +
-      "function set(el,v){if(!el)return;el.focus();el.value=v;" +
-      "el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));}" +
-      "set(uHit,u);set(pHit,p);" +
-      "if(!uHit&&!pHit)alert('未找到登录输入框，请手动粘贴（凭据已存在本机）');" +
-      '})()';
-  }
-  function openCNKI() {
-    var c = cnkiGet();
-    var h = '<div class="sheet-head"><div><h2>知网账号 · 本机一键填充</h2>' +
-      '<div class="m">账号密码只保存在这台设备的浏览器里，不上传、不写进网站文件与公开仓库</div></div>' +
-      '<button class="x" data-close="cnkiMask">×</button></div>';
-    h += '<div class="note">公开仓库<b>不能写死账号密码</b>。这里改为本机存储：填一次，以后点右上角「知网一键填充」即可把账号密码放进剪贴板并打开知网；' +
-      '若要真正自动填入登录框，把下面生成的<b>书签</b>拖到书签栏，在知网登录页点一下即可。换设备或清除浏览器数据后需重新填写。</div>';
-    h += '<label class="field"><span>账号 / 借书证号 / 手机号</span><input id="cnkiU" type="text" autocomplete="off" value="' + esc(c.u) + '"></label>';
-    h += '<label class="field"><span>密码</span><input id="cnkiP" type="password" autocomplete="off" value="' + esc(c.p) + '"></label>';
-    h += '<div class="sheet-acts">' +
-      '<button id="cnkiSave">保存到本机</button>' +
-      '<button class="ghost" id="cnkiFill">一键复制并打开知网</button>' +
-      '<button class="ghost" id="cnkiBM">生成一键填充书签</button>' +
-      '<button class="ghost" id="cnkiDel">清除本机记录</button></div>';
-    h += '<div id="cnkiBMBox"></div>';
-    h += '<div class="sheet-acts" style="border:0;padding-top:10px">' +
-      '<a class="ghost" href="' + LIB + '" target="_blank" rel="noopener">深圳图书馆知网入口 ↗</a>' +
-      '<a class="ghost" href="' + OFF + '" target="_blank" rel="noopener">中国知网官网 ↗</a></div>';
-    $('#cnkiSheet').innerHTML = h;
-    $('#cnkiMask').classList.add('on');
-    $('#cnkiSave').addEventListener('click', function () {
-      cnkiSave($('#cnkiU').value.trim(), $('#cnkiP').value);
-      refreshBtn(); toast('已保存到本机浏览器');
-    });
-    $('#cnkiFill').addEventListener('click', cnkiFill);
-    $('#cnkiBM').addEventListener('click', function () {
-      var c2 = cnkiGet();
-      if (!c2.u && !c2.p) { toast('请先填写并保存到本机'); return; }
-      var code = bookmark(c2.u, c2.p);
-      $('#cnkiBMBox').innerHTML =
-        '<div class="note" style="margin:12px 0 0">把下面这个链接<b>拖到浏览器书签栏</b>，以后在知网登录页点一下书签，账号密码会自动填好。' +
-        '（若浏览器不允许拖动，可新建一个书签，把下面代码整段粘进「网址」栏）</div>' +
-        '<div class="bm" id="bmCode">' + esc(code) + '</div>' +
-        '<div class="sheet-acts" style="border:0;padding-top:10px"><button class="ghost" id="bmCopy">复制书签代码</button></div>';
-      $('#bmCopy').addEventListener('click', function () { copy(code, '书签代码已复制'); });
-    });
-    $('#cnkiDel').addEventListener('click', function () {
-      cnkiClear(); $('#cnkiU').value = ''; $('#cnkiP').value = ''; toast('已清除本机记录');
-    });
-  }
-  function cnkiFill() {
-    var c = cnkiGet();
-    if (!c.u && !c.p) { openCNKI(); toast('请先填写并保存到本机'); return; }
-    copy('账号：' + c.u + '\n密码：' + c.p, '账号密码已复制，去知网粘贴登录');
-    window.open(LIB, '_blank', 'noopener');
-  }
-
-  /* 报名进度（沿用 hf_mine_v1） */
-  function mineCount() {
-    try { var m = JSON.parse(localStorage.getItem('hf_mine_v1') || '[]'); return Array.isArray(m) ? m.length : 0; }
-    catch (e) { return 0; }
-  }
-  function renderMine() { var el = $('#hfMine'); if (el) el.textContent = '已加入 ' + mineCount() + ' 项'; }
-
-  /* 全局委托：通知复制、关闭弹层、工具条 */
-  document.addEventListener('click', function (e) {
-    var t = e.target; if (!t || !t.closest) return;
-    var b = t.closest('[data-copy]');
-    if (b) {
-      var k = b.getAttribute('data-copy');
-      var txt = (window.HF_NOTICES || {})[k] || '';
-      copy(txt, '通知已复制，去班级群粘贴');
-      return;
-    }
-    var x = t.closest('[data-close]');
-    if (x) { var m = $('#' + x.getAttribute('data-close')); if (m) m.classList.remove('on'); return; }
-  });
-  $('#btnCNKI').addEventListener('click', function () {
-    var c = cnkiGet();
-    if (c.u || c.p) cnkiFill(); else openCNKI();
-  });
-  $('#cnkiMask').addEventListener('click', function (e) {
-    if (e.target === this) this.classList.remove('on');
-  });
-
-  /* 站内查找：轻量索引即时过滤，不预加载大文件 */
-  function renderResults(q) {
-    q = (q || '').trim().toLowerCase();
-    var list = (window.HF_INDEX || []).filter(function (x) {
-      return !q || (x.t + ' ' + x.k + ' ' + x.c).toLowerCase().indexOf(q) >= 0;
-    }).slice(0, q ? 14 : 8);
-    var box = $('#qResults');
-    if (!list.length) { box.innerHTML = '<div class="q-empty">没有找到，换个词试试</div>'; return; }
-    box.innerHTML = list.map(function (x) {
-      return '<button class="q-item" data-go="' + esc(x.u) + '"><b>' + esc(x.t) + '</b><span>' + esc(x.c) + '</span></button>';
-    }).join('');
-  }
-  $('#btnSearch').addEventListener('click', function () {
-    $('#searchMask').classList.add('on');
-    $('#qInput').value = ''; renderResults('');
-    setTimeout(function () { $('#qInput').focus(); }, 60);
-  });
-  $('#qInput').addEventListener('input', function () { renderResults(this.value); });
-  $('#qResults').addEventListener('click', function (e) {
-    var b = e.target.closest && e.target.closest('[data-go]');
-    if (!b) return;
-    var u = b.getAttribute('data-go');
-    $('#searchMask').classList.remove('on');
-    location.hash = u;
-  });
-  $('#searchMask').addEventListener('click', function (e) {
-    if (e.target === this) this.classList.remove('on');
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      ['cnkiMask', 'searchMask'].forEach(function (id) { var m = $('#' + id); if (m) m.classList.remove('on'); });
-    }
-  });
-  renderMine(); refreshBtn();
-  window.addEventListener('hashchange', renderMine);
-})();
-</script>
+<script src="vendor/pipeline.js"></script>
 </body>
 </html>

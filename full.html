@@ -549,6 +549,33 @@ body{font-size:16px;line-height:1.72}
 @keyframes flWalk{0%{left:3%}100%{left:88%}}
 @media(max-width:680px){.fl-field{grid-template-columns:repeat(4,1fr)}.fl-plant{font-size:20px}.fl-stat{font-size:12px}.fl-live{padding:9px}}
 </style>
+
+<style id="hf_v48_style">
+/* HF_V48_SIMPLIFY */
+.hf-banner{background:#2f5d50;color:#eaf4ee;padding:11px 18px;font-size:12.5px;line-height:1.7;
+  text-align:center;position:relative;z-index:5}
+.hf-banner a{color:#fff;text-decoration:underline;font-weight:650}
+.hf-main{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:9px 0 2px}
+.hf-go,.hf-main button{font:inherit;font-size:12.5px;padding:7px 13px;border-radius:8px;
+  border:1px solid #2f5d50;cursor:pointer;text-decoration:none;white-space:nowrap}
+.hf-go{background:#2f5d50;color:#fff;font-weight:650}
+.hf-main button{background:#fff;color:#2f5d50}
+.hf-main button:hover,.hf-go:hover{filter:brightness(.94)}
+.hf-mini{margin-top:6px;font-size:12px;color:#5c6b61}
+.hf-mini>summary{cursor:pointer;padding:6px 0;list-style:none;font-weight:600}
+.hf-mini>summary::-webkit-details-marker{display:none}
+.hf-mini>summary::before{content:"▸ "}
+.hf-mini[open]>summary::before{content:"▾ "}
+.hf-mini-box{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0 2px}
+.hf-mini-box .btn{font-size:11.5px;padding:5px 9px}
+/* 筛选状态、难度、模式切换、白名单 tab 全部收敛，减少决策 */
+.statbar,.tabs{display:none !important}
+@media(max-width:768px){
+  .hf-banner{font-size:11.5px;padding:9px 12px}
+  .hf-main{gap:6px}
+  .hf-go,.hf-main button{font-size:11.5px;padding:6px 10px}
+}
+</style>
 </head>
 <body class="s-autumn">
 <div id="grass"></div>
@@ -6341,6 +6368,37 @@ setTimeout(renderFarmLive, 60);
     t.style.transform = "scale(.94) translateY(2px)";
     setTimeout(function () { if (t) t.style.transform = ""; }, 110);
   }, true);
+})();
+</script>
+
+<script id="hf_v48_js">
+/* HF_V48_SIMPLIFY */
+(function(){
+  var hr=document.querySelector('header .hr');
+  var ban=document.createElement('div');
+  ban.className='hf-banner';
+  ban.innerHTML='<b>这是旧版归档</b>：17 个重复工具按钮已收进「更多旧版工具」，筛选与模式切换已隐藏，'+
+    '不再让你做一堆选择。日常请用 <a href="index.html">新的「把这个奖拿到手」工作台 →</a>。';
+  document.body.insertBefore(ban, document.body.firstChild);
+  if(!hr) return;
+  var btns=[].slice.call(hr.querySelectorAll('button'));
+  var det=document.createElement('details'); det.className='hf-mini';
+  det.innerHTML='<summary>更多旧版工具（'+btns.length+' 项，默认收起）</summary>';
+  var box=document.createElement('div'); box.className='hf-mini-box';
+  btns.forEach(function(b){ box.appendChild(b); });
+  det.appendChild(box);
+  hr.appendChild(det);
+  var bar=document.createElement('div'); bar.className='hf-main';
+  bar.innerHTML='<a class="hf-go" href="index.html">→ 去「把这个奖拿到手」</a>'+
+    '<button type="button" id="hfN48">一键发通知</button>'+
+    '<button type="button" id="hfM48">我的进度</button>';
+  ban.appendChild(bar);
+  var n=document.getElementById('hfN48'), m=document.getElementById('hfM48');
+  if(n) n.addEventListener('click',function(){var b=document.getElementById('btnStuCopy'); if(b) b.click();});
+  if(m) m.addEventListener('click',function(){var b=document.getElementById('btnMine'); if(b) b.click();});
+  var c=document.getElementById('clock'); if(c) c.style.display='none';
+  var old=hr.querySelector('a[href="index.html"]');
+  if(old && old!==bar.querySelector('a')) old.style.display='none';
 })();
 </script>
 </body>
