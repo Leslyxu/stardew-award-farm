@@ -21,14 +21,23 @@
 <div id="hf-tools">
   <a href="full.html" id="hfMine">已加入 0 项</a>
   <span class="sep"></span>
+  <button id="btnSearch">搜索</button>
   <button class="primary" id="btnCNKI">知网一键填充</button>
   <a href="full.html">完整功能版 ↗</a>
   <a href="ledger.html" class="minor">表格版</a>
 </div>
 
 <div class="mask" id="cnkiMask"><div class="sheet" id="cnkiSheet"></div></div>
+<div class="mask" id="searchMask"><div class="sheet">
+  <div class="sheet-head"><div><h2>站内查找</h2>
+    <div class="m">赛事、主办、专家、工具，输入关键词即出结果</div></div>
+  <button class="x" data-close="searchMask">×</button></div>
+  <input id="qInput" type="search" autocomplete="off" placeholder="例如：绘画书法、禁毒、评审专家">
+  <div id="qResults"></div>
+</div></div>
 
 <script src="vendor/notices.js"></script>
+<script src="vendor/search-index.js"></script>
 <script>
 window.$docsify = {
   name: '星露奖杯农场',
@@ -38,17 +47,10 @@ window.$docsify = {
   auto2top: true,
   homepage: 'README.md',
   relativePath: true,
-  coverpage: false,
-  search: {
-    placeholder: '搜赛事 / 主办 / 资源',
-    noData: '没有找到，换个词试试',
-    depth: 4,
-    paths: 'auto'
-  }
+  coverpage: false
 };
 </script>
 <script src="vendor/docsify.min.js"></script>
-<script src="vendor/search.min.js"></script>
 <script>
 (function () {
   var $ = function (s) { return document.querySelector(s); };
@@ -197,8 +199,39 @@ window.$docsify = {
   $('#cnkiMask').addEventListener('click', function (e) {
     if (e.target === this) this.classList.remove('on');
   });
+
+  /* 站内查找：轻量索引即时过滤，不预加载大文件 */
+  function renderResults(q) {
+    q = (q || '').trim().toLowerCase();
+    var list = (window.HF_INDEX || []).filter(function (x) {
+      return !q || (x.t + ' ' + x.k + ' ' + x.c).toLowerCase().indexOf(q) >= 0;
+    }).slice(0, q ? 14 : 8);
+    var box = $('#qResults');
+    if (!list.length) { box.innerHTML = '<div class="q-empty">没有找到，换个词试试</div>'; return; }
+    box.innerHTML = list.map(function (x) {
+      return '<button class="q-item" data-go="' + esc(x.u) + '"><b>' + esc(x.t) + '</b><span>' + esc(x.c) + '</span></button>';
+    }).join('');
+  }
+  $('#btnSearch').addEventListener('click', function () {
+    $('#searchMask').classList.add('on');
+    $('#qInput').value = ''; renderResults('');
+    setTimeout(function () { $('#qInput').focus(); }, 60);
+  });
+  $('#qInput').addEventListener('input', function () { renderResults(this.value); });
+  $('#qResults').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-go]');
+    if (!b) return;
+    var u = b.getAttribute('data-go');
+    $('#searchMask').classList.remove('on');
+    location.hash = u;
+  });
+  $('#searchMask').addEventListener('click', function (e) {
+    if (e.target === this) this.classList.remove('on');
+  });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { var m = $('#cnkiMask'); if (m) m.classList.remove('on'); }
+    if (e.key === 'Escape') {
+      ['cnkiMask', 'searchMask'].forEach(function (id) { var m = $('#' + id); if (m) m.classList.remove('on'); });
+    }
   });
   renderMine(); refreshBtn();
   window.addEventListener('hashchange', renderMine);

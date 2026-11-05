@@ -106,6 +106,16 @@ button.cp:hover{background:#264c42}
 .bm{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;line-height:1.5;word-break:break-all;
   background:#f4f7f3;border:1px solid var(--hf-line);border-radius:8px;padding:10px;
   max-height:110px;overflow:auto;margin-top:8px;color:#3c4a40}
+#qInput{width:100%;font:inherit;font-size:13px;padding:10px 12px;border:1px solid var(--hf-line);
+  border-radius:8px;outline:none;background:#fcfdfb}
+#qInput:focus{border-color:var(--theme-color);background:#fff}
+#qResults{margin-top:10px;max-height:46vh;overflow:auto}
+.q-item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #f0f3ef;
+  background:none;padding:10px 4px;cursor:pointer;font:inherit}
+.q-item:hover{background:var(--hf-soft)}
+.q-item b{display:block;font-size:12.8px;font-weight:600;line-height:1.5}
+.q-item span{display:block;font-size:11.5px;color:var(--hf-muted);margin-top:2px}
+.q-empty{font-size:12.5px;color:var(--hf-muted);padding:16px;text-align:center}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#1c2620;color:#fff;
   padding:10px 17px;border-radius:9px;font-size:12.5px;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,.2)}
 
