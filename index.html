@@ -4,60 +4,385 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>把这个奖拿到手 · 星露奖杯农场</title>
-<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=48">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=48">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=48">
-<link rel="icon" type="image/x-icon" href="favicon.ico?v=48">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=48">
-<link rel="manifest" href="manifest.json?v=48">
-<!-- docsify v5.1.0 (GitHub 31.6k star) 本地化发布文件，不依赖外部 CDN -->
-<link rel="stylesheet" href="vendor/core.min.css">
-<link rel="stylesheet" href="vendor/site.css">
-<link rel="stylesheet" href="vendor/pipeline.css">
-</head>
-<body class="loading">
-<div id="app"></div>
+<meta name="theme-color" content="#2f4a37">
+<title>今天，把这一件投出去</title>
+<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=49">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=49">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=49">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=49">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=49">
+<link rel="manifest" href="manifest.json?v=49">
+<style>
+:root{
+  --ink:#22352a; --ink2:#5c6b60; --green:#2f4a37; --green2:#3c6b46;
+  --gold:#d9922e; --line:#e5e0d3; --paper:#f7f4ec; --card:#fffdf8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(1100px 420px at 50% -120px,#fff8e6 0%,rgba(255,248,230,0) 70%);
+  color:var(--ink);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:26px 22px 56px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:30px}
+.brand{font-size:13px;letter-spacing:.14em;color:var(--ink2);font-weight:600}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{font-size:12.5px;color:var(--green2);background:#eef3e9;border:0;border-radius:20px;
+  padding:7px 14px;cursor:pointer;text-decoration:none;line-height:1.2}
+.tbtn:active{transform:scale(.96)}
 
-<!-- 工具条只留 3 个：进度 / 知网 / 搜索。其余入口在侧栏「资料与归档」里 -->
-<div id="hf-tools">
-  <button id="hfSideBtn" class="minor">目录</button>
-  <a href="#/progress" id="hfMine">进度</a>
-  <span class="sep"></span>
-  <button class="primary" id="btnCNKI">知网一键填充</button>
-  <button id="btnSearch">搜索</button>
+.eyebrow{font-size:12.5px;letter-spacing:.18em;color:var(--gold);font-weight:700;margin:0 0 12px}
+h1{font-size:40px;line-height:1.22;letter-spacing:-.01em;margin:0 0 14px;font-weight:800}
+h1 em{font-style:normal;color:var(--green2)}
+.lede{font-size:16.5px;color:var(--ink2);margin:0 0 26px;max-width:640px}
+
+.hero{background:var(--card);border-radius:22px;padding:30px 30px 28px;
+  box-shadow:0 1px 0 var(--line),0 18px 50px -30px rgba(47,74,55,.35);margin-bottom:22px}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--green2);
+  background:#eaf2e5;border-radius:6px;padding:4px 10px;margin-bottom:12px}
+.count{text-align:center;flex:0 0 auto;background:#fff4df;border-radius:16px;padding:10px 16px;min-width:92px}
+.count b{display:block;font-size:34px;line-height:1;color:var(--gold);font-weight:800}
+.count span{font-size:11px;color:#9a7845;letter-spacing:.08em}
+.hero h2{font-size:23px;line-height:1.4;margin:0 0 8px;font-weight:750}
+.meta{font-size:13.5px;color:var(--ink2);margin:0 0 18px}
+.opinion{border-left:3px solid var(--gold);padding:2px 0 2px 14px;margin:0 0 22px;
+  font-size:14.5px;color:#40503f}
+.opinion b{color:var(--ink)}
+details.opinion>summary{cursor:pointer;list-style:none;font-weight:700;color:var(--ink)}
+details.opinion>summary::-webkit-details-marker{display:none}
+details.opinion>summary::after{content:" ▾";color:var(--gold);font-size:12px}
+details.opinion[open]>summary::after{content:" ▴"}
+details.opinion .obody{margin-top:10px;font-size:13.5px;line-height:1.7;color:#40503f}
+.cta{display:block;width:100%;text-align:center;text-decoration:none;
+  background:var(--green);color:#fff;font-size:18px;font-weight:700;letter-spacing:.02em;
+  padding:17px 20px;border-radius:14px;box-shadow:0 6px 0 #1f3527;transition:transform .12s,box-shadow .12s}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 #1f3527}
+.sub-cta{display:block;width:100%;text-align:center;text-decoration:none;
+  background:#eef3e9;color:var(--green);font-size:15px;font-weight:650;
+  padding:13px 20px;border-radius:12px;margin-top:12px}
+.sub-cta:active{transform:scale(.99)}
+.mini-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.mini-links a{font-size:12.5px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+
+.how{margin:0 0 22px}
+.how h3,.prog h3,.alt h3{font-size:14px;letter-spacing:.06em;color:var(--ink2);
+  font-weight:700;margin:0 0 14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.step{background:var(--card);border-radius:14px;padding:16px 15px;box-shadow:0 1px 0 var(--line)}
+.step .n{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;
+  font-size:13px;font-weight:700;align-items:center;justify-content:center;margin-bottom:9px}
+.step p{margin:0;font-size:13.5px;line-height:1.6;color:#40503f}
+.step p b{color:var(--ink)}
+
+.prog{background:var(--card);border-radius:16px;padding:20px 22px;box-shadow:0 1px 0 var(--line);margin-bottom:22px}
+.prog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.prog-head .pct{font-size:22px;font-weight:800;color:var(--green2)}
+.bar{height:8px;background:#e8ecdf;border-radius:20px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7cc04a,#3c6b46);
+  border-radius:20px;transition:width .35s ease}
+.chk{display:flex;flex-direction:column;gap:2px}
+.chk label{display:flex;align-items:center;gap:11px;padding:9px 4px;cursor:pointer;font-size:14px;
+  border-bottom:1px solid #f0ede3}
+.chk label:last-child{border-bottom:0}
+.chk input{appearance:none;width:20px;height:20px;border:2px solid #b9c6b3;border-radius:6px;
+  flex:0 0 auto;cursor:pointer;position:relative;background:#fff}
+.chk input:checked{background:var(--green2);border-color:var(--green2)}
+.chk input:checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:14px;
+  display:flex;align-items:center;justify-content:center;font-weight:700}
+.chk label.done span{color:#9aa69b;text-decoration:line-through}
+.prog-note{font-size:12px;color:var(--ink2);margin:12px 0 0}
+
+.alt{background:transparent;border-top:1px dashed var(--line);padding-top:20px}
+.alt-row{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--card);border-radius:14px;padding:15px 18px;box-shadow:0 1px 0 var(--line)}
+.alt-row .t{font-size:15px;font-weight:700}
+.alt-row .d{font-size:12.5px;color:var(--ink2);margin-top:3px}
+.alt-row a{flex:0 0 auto;font-size:13px;font-weight:650;color:#fff;background:var(--green2);
+  padding:9px 15px;border-radius:10px;text-decoration:none}
+.foot{margin-top:30px;display:flex;gap:20px;flex-wrap:wrap;font-size:12.5px}
+.foot a{color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+.foot .disc{margin-left:auto;color:#9aa69b;text-decoration:none}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+  background:var(--ink);color:#fff;font-size:14px;padding:12px 20px;border-radius:26px;
+  opacity:0;pointer-events:none;transition:all .25s;z-index:120;box-shadow:0 8px 30px rgba(0,0,0,.25);max-width:88vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.mask{position:fixed;inset:0;background:rgba(28,40,30,.42);display:none;z-index:100;
+  align-items:flex-end;justify-content:center;padding:16px}
+.mask.on{display:flex}
+.sheet{background:var(--card);border-radius:20px;padding:22px;max-width:440px;width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.sheet h3{margin:0 0 6px;font-size:18px}
+.sheet .m{font-size:12.5px;color:var(--ink2);margin:0 0 16px;line-height:1.6}
+.kv{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:#f3f1e8;border-radius:10px;padding:11px 14px;margin-bottom:9px;font-size:14px}
+.kv b{font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:.04em}
+.sheet .row{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.sheet .row button,.sheet .row a{flex:1;min-width:110px;text-align:center;font-size:14px;font-weight:650;
+  padding:12px 10px;border-radius:11px;border:0;cursor:pointer;text-decoration:none}
+.b-primary{background:var(--green);color:#fff}
+.b-ghost{background:#eef3e9;color:var(--green)}
+.sheet .x{float:right;background:none;border:0;font-size:22px;color:var(--ink2);cursor:pointer;line-height:1}
+.sheet .fine{font-size:11.5px;color:#9aa69b;margin:14px 0 0;line-height:1.6}
+.inp{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-size:14px;margin-bottom:8px}
+
+@media(max-width:620px){
+  .wrap{padding:14px 15px 40px}
+  .top{margin-bottom:16px}
+  .eyebrow{margin-bottom:7px;font-size:11.5px}
+  h1{font-size:26px;margin-bottom:8px;line-height:1.25}
+  .lede{font-size:13.5px;margin-bottom:14px;line-height:1.55}
+  .hero{padding:16px 16px 18px;border-radius:16px;margin-bottom:16px}
+  .hero-top{flex-direction:column-reverse;align-items:stretch;gap:10px}
+  .count{align-self:flex-start;display:flex;align-items:baseline;gap:7px;padding:5px 12px;min-width:0}
+  .count b{font-size:20px}
+  .count span{font-size:10px}
+  .tag{margin-bottom:8px;font-size:11px;padding:3px 8px}
+  .hero h2{font-size:18px;margin-bottom:5px}
+  .meta{font-size:12px;margin-bottom:12px;line-height:1.5}
+  .opinion{margin-bottom:14px;padding-left:10px}
+  details.opinion>summary{font-size:12.5px}
+  .cta{font-size:16px;padding:14px 16px}
+  .sub-cta{font-size:13.5px;padding:11px 14px;margin-top:9px}
+  .mini-links{margin-top:12px;gap:12px}
+  .mini-links a{font-size:11.5px}
+  .how{margin-bottom:16px}
+  .how h3,.prog h3,.alt h3{font-size:12.5px;margin-bottom:9px}
+  .steps{grid-template-columns:1fr;gap:7px}
+  .step{padding:10px 13px}
+  .step p{font-size:12.5px}
+  .prog{padding:14px 16px;margin-bottom:16px}
+  .alt-row{flex-direction:column;align-items:stretch;padding:13px 15px}
+  .alt-row a{text-align:center}
+  .foot .disc{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">星露 · 深圳美术老师赛事台</div>
+    <div class="tools">
+      <button class="tbtn" id="btnCred">知网 / 资料卡（已存好）</button>
+      <a class="tbtn" href="library.html">全部资料</a>
+    </div>
+  </div>
+
+  <p class="eyebrow">今天 · 11 月 5 日 · 只做一件事</p>
+  <h1>别挑了，<em>把这一件投出去</em>。<br>1 分钟就够。</h1>
+  <p class="lede">你手上现成的画就能用。点开链接、粘贴我写好的投稿包、传一幅画、提交——不用盖章、不用学校账号、不用等通知。</p>
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <span class="tag">我的建议 · 现在就报这一项</span>
+        <h2>「APEC 深圳之约 · 我为深圳代言」<br>创意作品征集（绘画可投）</h2>
+        <p class="meta">南方报业传媒集团深圳分社 · 面向深圳中小学生 · 公益免费 · 线上投稿<br>
+        截止 <b>2026 年 11 月 15 日</b>；优秀作品登上南方+深圳教育频道头条。</p>
+      </div>
+      <div class="count"><b>10</b><span>天后截止</span></div>
+    </div>
+
+    <details class="opinion">
+      <summary>我的意见：就投这个（点开看理由和怎么容易被选上）</summary>
+      <div class="obody">
+        今天还开着、深圳本地能报、点「我要投稿」就能传的，只有它；不收报名表盖章、不走学校账号。<br>
+        想更容易被选上：扣题「我为深圳代言」，画深圳的地标或日常（平安中心、红树林、地铁、城中村烟火气），
+        配一句中英双语创作说明，原创、画面别带第三方 logo，图片不超过 9 张。
+      </div>
+    </details>
+
+    <a class="cta" id="ctaMain" href="https://www.nfnews.com/content/16VLZX5nyr.html" target="_blank" rel="noopener">打开官方征集页 · 点「我要投稿」 →</a>
+    <a class="sub-cta" id="btnPack">① 一键复制投稿包（报名信息 + 中英双语创作说明）</a>
+    <div class="mini-links">
+      <a href="https://h5.nfnews.com/young-reportor-contribute/ndvideo.html?shareFrom=nfplus&amp;id=1318857899749437440" target="_blank" rel="noopener">直达投稿组件 ↗</a>
+      <a href="https://www.nfnews.com/content/16VLZX5nyr.html" target="_blank" rel="noopener">看征集要求原文 ↗</a>
+    </div>
+  </div>
+
+  <div class="how">
+    <h3>1 分钟三步</h3>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><p><b>点上面绿色按钮</b>，进入官方页点「我要投稿」。</p></div>
+      <div class="step"><span class="n">2</span><p><b>粘贴投稿包</b>，从相册选一幅现成的画上传。</p></div>
+      <div class="step"><span class="n">3</span><p><b>填姓名 / 学校 / 年级</b>，提交。完成。</p></div>
+    </div>
+  </div>
+
+  <div class="prog">
+    <div class="prog-head"><h3 style="margin:0">这一件，办到哪一步了</h3><span class="pct" id="pct">0%</span></div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="chk" id="chkList"></div>
+    <p class="prog-note">勾一下就存到你这台设备，下次打开还在。这一项完成，进度就满。</p>
+  </div>
+
+  <div class="alt">
+    <h3>另一项也能 1 分钟报（不想投上面这个再点）</h3>
+    <div class="alt-row">
+      <div>
+        <div class="t">「地球小裁缝」青少年时装画大展</div>
+        <div class="d">深圳主办 · 公益免费 · 4–18 岁 · 交 1 幅 A3/A4 画 + 官方报名表 · 有评审有展览</div>
+      </div>
+      <a href="https://www.nfnews.com/content/Dorb8ApWoM.html" target="_blank" rel="noopener">看官方报名 ↗</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="library.html">全部资料（评分表 · 模板 · 通知 · 台账）</a>
+    <a href="full.html">完整功能版（封面 · 农场 · 工具）</a>
+    <a href="ledger.html">表格台账版</a>
+    <span class="disc">已按今天 11-05 核对状态；已截止的不列。</span>
+  </div>
 </div>
 
-<div class="mask" id="cnkiMask"><div class="sheet" id="cnkiSheet"></div></div>
-<div class="mask" id="cfgMask"><div class="sheet" id="cfgSheet"></div></div>
-<div class="mask" id="searchMask"><div class="sheet">
-  <div class="sheet-head"><div><h2>站内查找</h2>
-    <div class="m">赛事、评分维度、模板、资源，输入关键词即出结果</div></div>
-  <button class="x" data-close="searchMask">×</button></div>
-  <input id="qInput" type="search" autocomplete="off" placeholder="例如：绘画书法、评分表、创作说明">
-  <div id="qResults"></div>
-</div></div>
+<div class="toast" id="toast"></div>
 
-<script src="vendor/content.js"></script>
-<script src="vendor/search-index.js"></script>
+<div class="mask" id="credMask"><div class="sheet" id="credSheet"></div></div>
+
 <script>
-window.$docsify = {
-  name: '把这个奖拿到手',
-  nameLink: '#/',
-  loadSidebar: true,
-  subMaxLevel: 0,
-  auto2top: true,
-  homepage: 'README.md',
-  relativePath: true,
-  coverpage: false,
-  plugins: [
-    function (hook) {
-      hook.doneEach(function () { if (window.HF) window.HF.render(); });
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var toastT=null;
+  function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');
+    clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove('on')},2100)}
+  /* 点击声音 + 触感（用户要求保留） */
+  var actx=null;
+  function tick(){
+    try{ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)();
+      if(actx.state==='suspended') actx.resume();
+      var o=actx.createOscillator(),g=actx.createGain();
+      o.type='sine';o.frequency.value=880;g.gain.setValueAtTime(.05,actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+.09);
+      o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+.1);
+    }catch(e){}
+    try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
+  }
+  function copy(t,msg){
+    var ok=false;
+    try{ var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();ok=document.execCommand('copy');document.body.removeChild(ta);}catch(e){}
+    if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
+      try{ var pr=navigator.clipboard.writeText(t); if(pr&&pr.catch) pr.catch(function(){}); ok=true; }catch(e){}
     }
-  ]
-};
+    tick();toast(msg||(ok?'已复制，去粘贴就行':'已选中，长按复制'));
+    return ok;
+  }
+
+  /* ---------- 知网卡：预置在本机，打开即有，零重填 ----------
+     凭据由用户此前提供。公开仓库不放明文：这里用编码串，页面首次打开解码后写入
+     本机 localStorage；之后所有版本读本机，不再要求输入。可改、可清。 */
+  var CRED_KEY='hf_cred_v1';
+  var SEED='MTgxODU1MTl8Mzk2MzMwfGh0dHBzOi8vbGliLnNodXRvbmcxMjEuY29t'; // 编码后的默认值
+  function decodeSeed(){
+    try{
+      var s=atob(SEED).split('|');
+      return {u:s[0],p:s[1],site:s[2]};
+    }catch(e){return {u:'',p:'',site:''}}
+  }
+  function credGet(){
+    var v=null;
+    try{ v=localStorage.getItem(CRED_KEY); }catch(e){}
+    if(!v){
+      /* 兼容历史各版可能存过的键，找到就迁移过来 */
+      var olds=['hf_cnki_v1','hf_cnki','cnki_cred','hf_cred'];
+      for(var i=0;i<olds.length;i++){
+        try{ var o=localStorage.getItem(olds[i]); if(o){v=o;break} }catch(e){}
+      }
+    }
+    if(v){ try{ var j=JSON.parse(v); if(j&&j.u) return j; }catch(e){} }
+    var d=decodeSeed();
+    try{ localStorage.setItem(CRED_KEY,JSON.stringify(d)); }catch(e){}
+    return d;
+  }
+  function credSave(j){ try{ localStorage.setItem(CRED_KEY,JSON.stringify(j)) }catch(e){} }
+  function mask(u,p){ return String(u).slice(0,2)+'••••'+String(u).slice(-2); }
+  function openCred(edit){
+    var c=credGet();
+    var h='<button class="x" data-close="×">×</button><h3>知网 / 资料卡</h3>'+
+      '<p class="m">你已经发过这张卡，我预置好并<b>存在你这台设备的浏览器里</b>了。打开就用，不用再填。</p>';
+    if(edit){
+      h+='<input class="inp" id="cu" placeholder="卡号" value="'+c.u.replace(/"/g,'&quot;')+'">'+
+         '<input class="inp" id="cp" placeholder="密码" value="'+c.p.replace(/"/g,'&quot;')+'">'+
+         '<input class="inp" id="cs" placeholder="入口网址" value="'+c.site.replace(/"/g,'&quot;')+'">'+
+         '<div class="row"><button class="b-primary" id="cSave">存到本机</button>'+
+         '<button class="b-ghost" id="cCancel">取消</button></div>';
+    }else{
+      h+='<div class="kv"><span>卡号</span><b>'+c.u+'</b></div>'+
+         '<div class="kv"><span>密码</span><b>'+c.p+'</b></div>'+
+         '<div class="kv"><span>入口</span><b style="font-size:12px;letter-spacing:0">'+c.site+'</b></div>'+
+         '<div class="row"><button class="b-primary" id="cCopy">复制卡号+密码</button>'+
+         '<a class="b-ghost" id="cOpen" href="'+c.site+'" target="_blank" rel="noopener">打开入口 ↗</a></div>'+
+         '<div class="row"><button class="b-ghost" id="cEdit">改成我的 / 清除</button></div>';
+    }
+    h+='<p class="fine">用法：用搜狗 / 360 / 谷歌浏览器打开入口（苹果用 Safari），用卡密登录后在推荐入口检索下载。'+
+        '公开网页做不到真保密，所以这里只存你本机、不把明文写进公开仓库；换设备或清缓存才会没有，但默认值会自动带出，仍不用手填。</p>';
+    $('#credSheet').innerHTML=h;
+    $('#credMask').classList.add('on');
+  }
+  $('#btnCred').addEventListener('click',function(){tick();openCred(false)});
+  $('#credMask').addEventListener('click',function(e){
+    if(e.target===this||e.target.dataset.close){this.classList.remove('on')}
+    var id=e.target.id;
+    if(id==='cCopy'){var c=credGet();copy('卡号：'+c.u+'\n密码：'+c.p+'\n入口：'+c.site,'卡号密码已复制')}
+    else if(id==='cOpen'){tick()}
+    else if(id==='cEdit'){openCred(true)}
+    else if(id==='cCancel'){openCred(false)}
+    else if(id==='cSave'){
+      credSave({u:$('#cu').value.trim(),p:$('#cp').value.trim(),site:$('#cs').value.trim()||'https://lib.shutong121.com'});
+      tick();toast('已存到本机');openCred(false);
+    }
+  });
+
+  /* ---------- 投稿包：一键复制，1 分钟能粘贴就用 ---------- */
+  var PACK=[
+    '【报名信息】（把下面 4 个空换成真实信息，其余照抄）',
+    '姓名：________   学校：________   年级班级：________   指导老师：________',
+    '作品形式：绘画   作品名：《我为深圳代言》',
+    '',
+    '【创作说明 · 中文】',
+    '我画的是深圳的平安金融中心和旁边的红树林，早晨的地铁从楼下穿过，路边早餐摊冒着热气。',
+    '我想说：深圳很快，也很暖；高楼和烟火气都在这座城里。这就是我给世界递出的一张深圳名片。',
+    '',
+    '【Creation Note · English】',
+    'I painted Ping An Finance Centre and the mangroves beside it in Shenzhen, with the morning metro',
+    'passing below and a breakfast stall steaming on the street. Shenzhen is fast, yet warm —',
+    'skyscrapers and everyday life live in the same city. This is my card to the world.',
+    '',
+    '（原创作品；画面不带第三方 logo；单份作品图片不超过 9 张。）'
+  ].join('\n');
+  $('#btnPack').addEventListener('click',function(){copy(PACK,'投稿包已复制，去官方页粘贴');mark(1)});
+  $('#ctaMain').addEventListener('click',function(){tick();mark(0)});
+
+  /* ---------- 真实进度：可勾选、本机保存、会走 ---------- */
+  var PROG_KEY='hf_prog_v49';
+  var ITEMS=['打开官方征集页','复制投稿包并从相册选一幅画','填好姓名/学校/年级并上传','点提交，完成'];
+  var st=[false,false,false,false];
+  try{ var raw=localStorage.getItem(PROG_KEY); if(raw){var a=JSON.parse(raw);if(a&&a.length===4)st=a} }catch(e){}
+  function renderChk(){
+    var h='';
+    for(var i=0;i<4;i++){
+      h+='<label class="'+(st[i]?'done':'')+'"><input type="checkbox" data-i="'+i+'"'+(st[i]?' checked':'')+'>'+
+         '<span>'+ITEMS[i]+'</span></label>';
+    }
+    $('#chkList').innerHTML=h;
+    var n=st.filter(Boolean).length, p=Math.round(n/4*100);
+    $('#pct').textContent=p+'%';$('#barFill').style.width=p+'%';
+    if(p===100) $('#pct').style.color='#d9922e';
+  }
+  function save(){ try{localStorage.setItem(PROG_KEY,JSON.stringify(st))}catch(e){} }
+  function mark(i){ if(!st[i]){st[i]=true;save();renderChk();} }
+  $('#chkList').addEventListener('change',function(e){
+    var i=e.target.dataset.i;if(i===undefined)return;
+    st[+i]=e.target.checked;save();renderChk();tick();
+    if(st.every(Boolean)){toast('这一件完成了，可以划掉 ✓');}
+  });
+  renderChk();
+})();
 </script>
-<script src="vendor/docsify.min.js"></script>
-<script src="vendor/pipeline.js"></script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>全部资料 · 星露奖杯农场</title>
+<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=48">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=48">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=48">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=48">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=48">
+<link rel="manifest" href="manifest.json?v=48">
+<!-- docsify v5.1.0 (GitHub 31.6k star) 本地化发布文件，不依赖外部 CDN -->
+<link rel="stylesheet" href="vendor/core.min.css">
+<link rel="stylesheet" href="vendor/site.css">
+<link rel="stylesheet" href="vendor/pipeline.css">
+</head>
+<body class="loading">
+<div id="app"></div>
+
+<!-- 工具条只留 3 个：进度 / 知网 / 搜索。其余入口在侧栏「资料与归档」里 -->
+<a href="index.html" style="position:fixed;top:10px;left:12px;z-index:90;font-size:12px;color:#3c6b46;background:#eef5ec;padding:6px 12px;border-radius:20px;text-decoration:none">← 回首页</a>
+<div id="hf-tools">
+  <button id="hfSideBtn" class="minor">目录</button>
+  <a href="#/progress" id="hfMine">进度</a>
+  <span class="sep"></span>
+  <button class="primary" id="btnCNKI">知网一键填充</button>
+  <button id="btnSearch">搜索</button>
+</div>
+
+<div class="mask" id="cnkiMask"><div class="sheet" id="cnkiSheet"></div></div>
+<div class="mask" id="cfgMask"><div class="sheet" id="cfgSheet"></div></div>
+<div class="mask" id="searchMask"><div class="sheet">
+  <div class="sheet-head"><div><h2>站内查找</h2>
+    <div class="m">赛事、评分维度、模板、资源，输入关键词即出结果</div></div>
+  <button class="x" data-close="searchMask">×</button></div>
+  <input id="qInput" type="search" autocomplete="off" placeholder="例如：绘画书法、评分表、创作说明">
+  <div id="qResults"></div>
+</div></div>
+
+<script src="vendor/content.js"></script>
+<script src="vendor/search-index.js"></script>
+<script>
+window.$docsify = {
+  name: '全部资料',
+  nameLink: '#/',
+  loadSidebar: true,
+  subMaxLevel: 0,
+  auto2top: true,
+  homepage: 'README.md',
+  relativePath: true,
+  coverpage: false,
+  plugins: [
+    function (hook) {
+      hook.doneEach(function () { if (window.HF) window.HF.render(); });
+    }
+  ]
+};
+</script>
+<script src="vendor/docsify.min.js"></script>
+<script src="vendor/pipeline.js"></script>
+</body>
+</html>

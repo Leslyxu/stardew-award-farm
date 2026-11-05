@@ -570,6 +570,11 @@ body{font-size:16px;line-height:1.72}
 .hf-mini-box .btn{font-size:11.5px;padding:5px 9px}
 /* 筛选状态、难度、模式切换、白名单 tab 全部收敛，减少决策 */
 .statbar,.tabs{display:none !important}
+/* v49: 停用无用的飘动装饰（飞鸡/云/雨滴/闪光/光环/封面呼吸），保留静态封面 */
+.cover-hero .fx,.farm-halo,.farm-anim,.cover-hero .farm-play,.fl-live{display:none !important}
+.cover-hero .cover{animation:none !important;border-width:0;box-shadow:none}
+.farm-plot .plant{animation:none !important}
+.statbar,.tabs,.farm-play{display:none !important}
 @media(max-width:768px){
   .hf-banner{font-size:11.5px;padding:9px 12px}
   .hf-main{gap:6px}
@@ -6378,7 +6383,7 @@ setTimeout(renderFarmLive, 60);
   var ban=document.createElement('div');
   ban.className='hf-banner';
   ban.innerHTML='<b>这是旧版归档</b>：17 个重复工具按钮已收进「更多旧版工具」，筛选与模式切换已隐藏，'+
-    '不再让你做一堆选择。日常请用 <a href="index.html">新的「把这个奖拿到手」工作台 →</a>。';
+    '飘动的小鸡等装饰动画已移除。日常请用 <a href="index.html">新的「1 分钟投一件」首页 →</a>。';
   document.body.insertBefore(ban, document.body.firstChild);
   if(!hr) return;
   var btns=[].slice.call(hr.querySelectorAll('button'));
@@ -6389,7 +6394,7 @@ setTimeout(renderFarmLive, 60);
   det.appendChild(box);
   hr.appendChild(det);
   var bar=document.createElement('div'); bar.className='hf-main';
-  bar.innerHTML='<a class="hf-go" href="index.html">→ 去「把这个奖拿到手」</a>'+
+  bar.innerHTML='<a class="hf-go" href="index.html">→ 回新首页</a>'+
     '<button type="button" id="hfN48">一键发通知</button>'+
     '<button type="button" id="hfM48">我的进度</button>';
   ban.appendChild(bar);
