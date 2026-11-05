@@ -340,13 +340,37 @@
       } else body.appendChild(n);
     });
   }
+  function pageHash() { return (location.hash || '').replace(/^#\//, '').split('?')[0] || 'home'; }
   function foldLong() {
     var sec = document.querySelector('.markdown-section'); if (!sec) return;
     /* docsify 切页可能复用同一个 section 节点，不能用 dataset 判重；
        直接看本页是否已插入折叠块，避免重复包裹 */
     if (sec.querySelector('.hf-fold')) return;
-    var hash = (location.hash || '').replace(/^#\//, '').split('?')[0] || 'home';
-    (FOLD_RULES[hash] || []).forEach(function (r) { foldSection(sec, r[0], r[1], r[2]); });
+    var rules = FOLD_RULES[pageHash()] || [];
+    if (!rules.length) return;
+    /* 内容还没换成本页时先不折，等就绪后再来一次 */
+    var h2s = Array.prototype.slice.call(sec.querySelectorAll('h2'));
+    if (!h2s.some(function (h) { return h.textContent.indexOf(rules[0][0]) >= 0; })) return;
+    rules.forEach(function (r) { foldSection(sec, r[0], r[1], r[2]); });
+  }
+  function ensureFold() {
+    if (!(FOLD_RULES[pageHash()] || []).length) return;
+    var n = 0;
+    var t = setInterval(function () {
+      foldLong(); n++;
+      var sec = document.querySelector('.markdown-section');
+      if (n > 26 || (sec && sec.querySelector('.hf-fold'))) clearInterval(t);
+    }, 250);
+  }
+  /* 主路径 md 都很小（合计约 20KB），首页就绪后异步预取进缓存，
+     避免首次点目录遇到 CDN 冷缓存等十几秒 */
+  function prefetch() {
+    setTimeout(function () {
+      ['README.md', 'score.md', 'draft.md', 'submit.md', 'notice.md',
+       'progress.md', 'tooling.md', 'now.md', 'how.md'].forEach(function (f) {
+        try { fetch(f, { cache: 'force-cache', credentials: 'omit' }); } catch (e) {}
+      });
+    }, 900);
   }
 
   /* ---------- 统一渲染 ---------- */
@@ -439,6 +463,7 @@
   window.addEventListener('hashchange', function () {
     document.body.classList.remove('hf-side');
     setTimeout(render, 60);
+    ensureFold();
   });
-  render();
+  render(); prefetch();
 })();
