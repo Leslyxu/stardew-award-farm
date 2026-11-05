@@ -342,9 +342,10 @@
   }
   function foldLong() {
     var sec = document.querySelector('.markdown-section'); if (!sec) return;
+    /* docsify 切页可能复用同一个 section 节点，不能用 dataset 判重；
+       直接看本页是否已插入折叠块，避免重复包裹 */
+    if (sec.querySelector('.hf-fold')) return;
     var hash = (location.hash || '').replace(/^#\//, '').split('?')[0] || 'home';
-    if (sec.dataset.hfFold === hash) return;
-    sec.dataset.hfFold = hash;
     (FOLD_RULES[hash] || []).forEach(function (r) { foldSection(sec, r[0], r[1], r[2]); });
   }
 
