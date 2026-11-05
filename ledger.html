@@ -1,0 +1,3017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>星露奖杯农场 · 深圳宝安美术赛事台账</title>
+<link rel="icon" type="image/png" sizes="1024x1024" href="icon-1024.png?v=38">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=38">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=38">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=38">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=38">
+<link rel="manifest" href="manifest.json?v=38">
+<style>
+:root{
+  --ink:#1f2420; --muted:#6b756d; --line:#e3e7e2; --bg:#fbfcfa; --panel:#fff;
+  --accent:#2f5d50; --soft:#eef4f0; --warn:#a5533b; --soft2:#f6f8f5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1020px;margin:0 auto;padding:0 18px 56px}
+
+header.top{display:flex;align-items:center;gap:11px;padding:20px 0 15px;border-bottom:1px solid var(--line)}
+header.top img{width:30px;height:30px;border-radius:6px;flex:none}
+h1{font-size:18px;font-weight:600;letter-spacing:.6px;margin:0;line-height:1.3}
+.sub{font-size:12px;color:var(--muted);margin-top:1px}
+.top-right{margin-left:auto;font-size:12px;white-space:nowrap}
+.top-right a{border:1px solid var(--line);padding:5px 10px;border-radius:5px;background:var(--panel)}
+
+nav{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:11px 15px;
+  font:inherit;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+.view{display:none}
+.view.on{display:block}
+
+.lead{font-size:13px;color:var(--muted);margin-bottom:12px;max-width:760px}
+.counts{font-size:12px;color:var(--muted);margin-bottom:12px}
+.counts b{color:var(--ink);font-weight:600}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+select,input[type=search]{font:inherit;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);
+  border-radius:5px;background:var(--panel);color:var(--ink);outline:none}
+select:focus,input[type=search]:focus{border-color:var(--accent)}
+input[type=search]{min-width:170px;flex:1;max-width:260px}
+.filters .hint{font-size:11.5px;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border:1px solid var(--line)}
+thead th{text-align:left;font-weight:500;font-size:11.5px;color:var(--muted);background:var(--soft2);
+  padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody td{padding:9px 10px;border-bottom:1px solid #eef1ec;vertical-align:top}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover{background:#f7faf7}
+tbody tr.row.opened{background:var(--soft)}
+.nm{font-weight:600;font-size:13.5px;line-height:1.45}
+.org{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.45}
+.dl{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dl.near{color:var(--warn)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border:1px solid var(--line);
+  border-radius:3px;color:var(--muted);white-space:nowrap;line-height:1.5}
+.tag.open{border-color:#b9d6c5;background:var(--soft);color:var(--accent)}
+.tag.soon{border-color:#e4ddc9;background:#faf7ee;color:#8a7742}
+.btn-mini{font:inherit;font-size:11.5px;padding:3px 9px;border:1px solid var(--line);
+  background:var(--panel);border-radius:4px;cursor:pointer;color:var(--accent);white-space:nowrap}
+.btn-mini:hover{border-color:var(--accent)}
+.btn-mini.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.caret{font-size:10px;color:var(--muted);margin-left:5px}
+
+.detail-row td{background:#fafcf9;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
+.dsec h4{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.4px;margin:0 0 5px}
+.dsec p,.dsec li{font-size:12.5px;color:var(--ink);margin:0}
+.dsec ul,.dsec ol{margin:0;padding-left:18px}
+.dsec li{margin-bottom:3px}
+.dsec.full{grid-column:1/-1}
+.dsec .src{font-size:11.5px;color:var(--muted);line-height:1.6}
+.dhead{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+.dhead b{font-size:15px}
+.dhead span{font-size:12px;color:var(--muted)}
+
+h2.sec{font-size:15px;font-weight:600;margin:22px 0 8px;letter-spacing:.3px}
+h2.sec:first-child{margin-top:0}
+.card{border:1px solid var(--line);background:var(--panel);padding:15px 17px;margin-bottom:12px}
+.card h3{font-size:13.5px;font-weight:600;margin:0 0 6px}
+.card p{font-size:12.5px;color:var(--ink);margin:0 0 6px}
+.card ul{margin:0;padding-left:19px;font-size:12.5px}
+.card li{margin-bottom:3px}
+.card .lbl{display:inline-block;font-size:11px;color:var(--muted);min-width:64px}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+pre.notice{white-space:pre-wrap;word-break:break-word;font:12.5px/1.75 inherit;
+  background:var(--soft2);border:1px solid var(--line);padding:14px 16px;margin:0 0 10px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button.act{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--accent);
+  background:var(--accent);color:#fff;border-radius:5px;cursor:pointer}
+button.act.ghost{background:var(--panel);color:var(--accent)}
+details.lib{border:1px solid var(--line);background:var(--panel);margin-bottom:8px}
+details.lib summary{cursor:pointer;padding:10px 14px;font-size:13px;font-weight:600;list-style:none}
+details.lib summary::-webkit-details-marker{display:none}
+details.lib summary::before{content:"+ ";color:var(--accent);font-weight:600}
+details.lib[open] summary::before{content:"− "}
+details.lib .body{padding:0 14px 14px;border-top:1px solid var(--line)}
+.libitem{padding:8px 0;border-bottom:1px solid #f0f2ee;font-size:12.5px}
+.libitem:last-child{border-bottom:0}
+.libitem b{font-weight:600}
+.libitem .m{color:var(--muted);font-size:11.5px}
+.empty{font-size:12.5px;color:var(--muted);padding:16px;text-align:center}
+
+footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.frow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.bar{flex:1;min-width:120px;max-width:260px;height:6px;background:#e9ede7;border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+footer a{color:var(--accent)}
+
+@media(max-width:700px){
+  .wrap{padding:0 12px 44px}
+  header.top{padding:15px 0 12px}
+  h1{font-size:16px}
+  .sub{font-size:11px}
+  .top-right{font-size:11px}
+  nav button{padding:10px 11px;font-size:12.5px}
+  table{display:block;border:0;background:transparent;font-size:12px}
+  thead{display:none}
+  tbody{display:block}
+  #tbody tr.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;row-gap:2px;
+    padding:11px 10px;margin-bottom:8px;border:1px solid var(--line);
+    border-radius:5px;background:#fff}
+  #tbody tr.row:hover,#tbody tr.row.opened{background:#f7faf7}
+  #tbody tr.row td{border:0;padding:0;display:block}
+  #tbody tr.row td:nth-child(1){grid-column:1/-1;grid-row:1;margin-bottom:3px}
+  #tbody tr.row td:nth-child(2){grid-column:1;grid-row:2}
+  #tbody tr.row td:nth-child(3){grid-column:1;grid-row:3}
+  #tbody tr.row td:nth-child(4){display:none}
+  #tbody tr.row td:nth-child(5){grid-column:1;grid-row:4;font-size:11px;color:var(--muted)}
+  #tbody tr.row td:nth-child(5) .org{display:none}
+  #tbody tr.row td:nth-child(6){grid-column:2;grid-row:2;text-align:right}
+  #tbody tr.row td:nth-child(7){grid-column:2;grid-row:3;text-align:right}
+  #tbody tr.row .nm{font-size:12.5px}
+  #tbody tr.row .org{font-size:10.5px}
+  .detail-row{display:block;margin:-8px 0 8px}
+  .detail-row td{display:block;border:1px solid var(--line);border-top:0;
+    border-radius:0 0 5px 5px;padding:12px}
+  .dgrid,.guide-grid{grid-template-columns:minmax(0,1fr)}
+  .filters{gap:6px}
+  .filters select{flex:0 1 auto;min-width:0;max-width:calc(50% - 3px)}
+  input[type=search]{max-width:none;min-width:120px;flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <img src="icon-192.png?v=38" alt="">
+    <div>
+      <h1>星露奖杯农场</h1>
+      <div class="sub">深圳 · 宝安　|　美术赛事与报名台账</div>
+    </div>
+    <div class="top-right"><a href="index.html">卡片首页 ↗</a>　<a href="full.html">完整功能版 ↗</a></div>
+  </header>
+
+  <nav id="nav">
+    <button class="on" data-view="ledger">赛事台账</button>
+    <button data-view="guide">报名指南</button>
+    <button data-view="notice">给学生发通知</button>
+    <button data-view="library">资料库</button>
+  </nav>
+
+  <!-- ============ 赛事台账 ============ -->
+  <section class="view on" id="v-ledger">
+    <div class="lead">按「现在能报 → 通知待发」排列，点任意一行展开主办、报名通道、提交步骤、材料清单与依据来源。已结束、已截稿、外市专属赛事不列入。</div>
+    <div class="counts" id="counts"></div>
+    <div class="filters">
+      <select id="fTier"><option value="">全部级别</option><option>国</option><option>省</option><option>市</option><option>区</option></select>
+      <select id="fWay"><option value="">全部报送方式</option><option value="self">个人投稿</option><option value="workshop">工作坊</option><option value="achv">美育成果报送</option><option value="teach">教师报送</option></select>
+      <select id="fAud"><option value="">全部对象</option><option value="学生">学生</option><option value="教师">教师</option></select>
+      <select id="fState"><option value="">全部状态</option><option value="open">现在能报</option><option value="soon">通知待发</option></select>
+      <input type="search" id="fQ" placeholder="搜赛事 / 主办 / 类别">
+      <span class="hint" id="shown"></span>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:38%">赛事</th><th style="width:8%">级别</th><th style="width:14%">报送方式</th>
+        <th class="c-aud" style="width:8%">对象</th><th class="c-window" style="width:16%">征集期 / 截止</th>
+        <th style="width:9%">状态</th><th style="width:7%">赛程</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="empty" style="display:none">没有符合条件的赛事，换个筛选试试。</div>
+  </section>
+
+  <!-- ============ 报名指南 ============ -->
+  <section class="view" id="v-guide">
+    <div class="lead">先分清报送方式，再决定怎么准备。三类方式的报名主体、平台、要交的东西都不一样，通知也不能混着发。</div>
+    <div class="guide-grid" id="guideGrid"></div>
+    <h2 class="sec">近期需要留意的时间</h2>
+    <div class="card" id="nearList"></div>
+    <h2 class="sec">公众号 / 平台上传，一般传什么</h2>
+    <div class="card">
+      <p><span class="lbl">作品文件</span>高清照片或扫描件，按赛事尺寸要求（绘画常见 ≤40×60cm、书法 ≤四尺对开），命名「学校-姓名-类别-作品名」。</p>
+      <p><span class="lbl">报名表</span>学生、指导教师、学校信息齐全，盖章页按通知要求扫描。</p>
+      <p><span class="lbl">过程材料</span>创作过程照片、原创承诺、未使用 AI 代笔的说明；部分赛事要求留存草稿。</p>
+      <p><span class="lbl">报送主体</span>写清是「学生个人提交」「学校统一汇总」还是「工作坊小组名义」，别混投。</p>
+      <p><span class="lbl">最后一步</span>本人登录、验证码、最终上传只能由本人或学校管理员完成，页面不能代办。</p>
+    </div>
+  </section>
+
+  <!-- ============ 给学生发通知 ============ -->
+  <section class="view" id="v-notice">
+    <div class="lead">按报送方式分成三份，语气是老师直接对同学们说的话，可直接复制发到班级群。已结束与外市赛事不进通知。</div>
+    <div class="tools">
+      <button class="act" id="btnCopyNotice">复制全文</button>
+      <button class="act ghost" id="btnCopyStu">只复制学生部分</button>
+      <button class="act ghost" id="btnDownloadNotice">下载 .txt</button>
+    </div>
+    <pre class="notice" id="noticeText"></pre>
+  </section>
+
+  <!-- ============ 资料库 ============ -->
+  <section class="view" id="v-library">
+    <div class="lead">教研前沿、评审专家、工具与名校战绩都在这里，默认收起，不影响台账阅读。完整互动版另有战绩本、备料包、邮件预览等功能。</div>
+    <div id="libBox"></div>
+  </section>
+
+  <footer>
+    <div class="frow">
+      <span>已加入赛程 <b id="mineN">0</b> 项</span>
+      <span class="bar"><i id="mineBar"></i></span>
+      <span id="mineTip">在台账里点「加入」即可记入</span>
+    </div>
+    <div>封面、成长农场、19 个工具弹窗与战绩本都在 <a href="full.html">完整功能版</a>，数据一条未删。<span id="verLine"></span></div>
+  </footer>
+</div>
+
+<script>
+/* ===== 站内数据（与完整功能版同源，逐条保留） ===== */
+const AWARDS = [
+  /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
+  {
+    id: "cn-paint-30",
+    aud: "学生",
+    name: "第三十届全国中小学生绘画书法作品比赛",
+    short: "全国绘画书法比赛(白名单第35项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第35项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中含职高)",
+    org: "中国儿童中心",
+    orgType: "教育部白名单主办·中国儿童中心(创于1995，累计参赛逾1700万人次)",
+    subject: "绘画(含绘本)/书法/摄影/造型/数字美术 · 学生参赛，教师获指导奖",
+    cycle: "每年一届；第30届 2026年4-6月征集、7-8月评审",
+    window: "2026年4月—6月（第30届主题「如花一样 追光逐日」）",
+    deadline: "2026-06-30",
+    deadlineNote: "第29届有效参赛175万余幅(件)；第30届通知已发(中国儿童中心 2026-03-28)",
+    phase: "进行中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "教育部白名单历史最久、规模最大书画赛；教师可获优秀指导教师奖，计入个人成果" },
+    materials: ["作品原件按类别与尺寸要求(绘画≤40×60cm/书法≤四尺对开等)","报名表(学生+指导教师+学校)","作品高清照片(线上初评)","原创承诺(禁止代笔/AI未标注)"],
+    tips: ["白名单内、零收费、公益属性，最稳妥的全国性书画赛道","第30届主题「如花一样 追光逐日」，紧扣家国情怀与美育素养","教师指导学生获奖可拿「优秀指导教师」证书，算成果"],
+    url: "https://www.ccc.org.cn/col/col281",
+    portal: "由学校/区教育系统推荐或官方授权平台报送(个人一般经学校统一报送)",
+    steps: ["关注学校转发通知或中国儿童中心官网","按类别创作并留存创作过程","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第35项；中国儿童中心官网 col/col281；第29届颁奖报道(中国教育新闻网 2025-07)",
+    prep: ["以学校为单位报送，个人不能直报","原创零容忍，代笔/AI未标注会被拉黑","尺寸规格必须达标，误差超限取消资格"],
+    win: ["白名单里规格最高：规模大、公益性、认可度高","教师指导奖可直接计入个人成果","覆盖绘画/书法/摄影/造型/数字美术五类"]
+  },
+  {
+    id: "cn-zhijing",
+    aud: "学生",
+    name: "「致敬英雄」全国青少年文化艺术创作主题教育竞赛",
+    short: "致敬英雄(白名单第42项)",
+    tier: "国",
+    auth: "教育部白名单·艺术体育类第42项(2025—2028学年)",
+    reg: "全国中小学生(小学/初中/高中/中职)",
+    org: "中国少年儿童文化艺术基金会",
+    orgType: "教育部白名单主办·中国少年儿童文化艺术基金会",
+    subject: "文化艺术创作(绘画/书法/征文/演讲等) · 学生参赛，教师获指导奖",
+    cycle: "每年一届",
+    window: "下届预计 2026下半年—2027上半年(待发布)",
+    deadline: "2027-07-31",
+    deadlineNote: "教育部2025—2028学年白名单第42项；主题教育类，偏思政+艺术融合",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "白名单内，公益免费，教师可获优秀指导教师奖" },
+    materials: ["创作作品(按年度主题)","报名表+指导教师","原创承诺"],
+    tips: ["白名单内，主题创作类，适合做「课程思政+美术」融合项目","教师指导奖计入成果"],
+    url: "https://www.edu.cn/",
+    portal: "由学校统一报送或官方授权平台报名",
+    steps: ["关注学校通知","按年度主题创作","学校/区统一报送"],
+    source: "教育部办公厅《2025—2028学年面向中小学生的全国性竞赛活动名单》第42项",
+    prep: ["以学校为单位报送","紧扣年度教育主题","原创零容忍"],
+    win: ["白名单很有分量，认可度中高","适合做思政融合类作品"]
+  },
+  {
+    id: "gd-hanmo",
+    aud: "学生",
+    name: "「翰墨青春 传承岭南」广东青少年书画大赛",
+    short: "广东青少年书画大赛(省白名单第30项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第30项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省美术家协会 / 广东省书法家协会 / 广东新快报社",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "绘画/书法 · 学生+教师",
+    cycle: "每年一届(2026-2028周期)",
+    window: "2026-2028学年(具体通知待省厅发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第30项；省级权威书画赛，省美协/省书协背书",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省美协+省书协主办，分量足，是最贴近广东美术老师的省级书画赛道" },
+    materials: ["书画作品原件","报名表+指导教师","学校汇总"],
+    tips: ["省美协/省书协主办，省级权威性高","广东美术老师最对口、最易出成绩的省级书画赛"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/学校统一报送",
+    steps: ["关注省厅/省美协通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第30项",
+    prep: ["由地市/学校统一报送","绘画/书法两线均可投","关注省美协官方发布"],
+    win: ["省级权威赛事、认可度高","面向广东美术教师的省级书画赛道，对口程度高"]
+  },
+  {
+    id: "gd-yuejian",
+    aud: "学生",
+    name: "「粤见花开」广东省青少年美育成果展示大展",
+    short: "粤见花开美育大展(省白名单第29项)",
+    tier: "省",
+    auth: "广东省白名单·艺术体育类第29项(2025—2028学年)",
+    reg: "广东省中小学生(小学/初中/高中/中职)",
+    org: "广东省青少年宫协会",
+    orgType: "广东省教育厅2025—2028学年全省性竞赛白名单主办",
+    subject: "美育综合展示(书画/手作/展演) · 学生+教师",
+    cycle: "每年一届",
+    window: "2026-2028学年(具体通知待发布)",
+    deadline: "2027-06-30",
+    deadlineNote: "广东省2025—2028学年白名单第29项",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省级美育综合展示，覆盖面广，适合社团整体出成果" },
+    materials: ["展示作品/节目","报名表+指导教师","学校汇总"],
+    tips: ["省级综合美育展示，书画+手作+展演皆可","适合美术社团整体打包出成果"],
+    url: "http://edu.gd.gov.cn/",
+    portal: "由广东省各地市/青少年宫/学校统一报送",
+    steps: ["关注省厅/省青少年宫协会通知","校内征集","地市推荐报送"],
+    source: "广东省教育厅《2025-2028学年面向中小学生的全省性竞赛活动名单》第29项",
+    prep: ["由地市/学校统一报送","综合类展示，社团可整体参与"],
+    win: ["省级权威、覆盖面广","适合社团整体出成果"]
+  },
+  {
+    id: "sz-meirun",
+    aud: "学生",
+    name: "首届「美润鹏城」深圳市中小学校美育成果展演(美术专场)",
+    short: "美润鹏城·深圳市美育展演(美术)",
+    tier: "市",
+    auth: "深圳市教育局官方展演",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区级推荐报送",
+    subject: "绘画/书法/装置/手工艺 · 学生集体/个人",
+    cycle: "首届2025年；拟常态化举办",
+    window: "2025年已办(复评名单已公布)；关注后续届次",
+    deadline: "",
+    deadlineNote: "2025首届复评名单含宝安中学外国语、新安中学、海韵学校等多所宝安校",
+    phase: "已办·可续报",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区多校入围2025首届复评(深圳小学、宝安中学外国语、新安中学、海韵学校等)" },
+    materials: ["美术作品(绘画/书法/装置/手工艺)","报名表+学校","汇总报送"],
+    tips: ["深圳市教育局主办，宝安区学校直接参与通道","首届已办，关注第二届征集"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局/学校统一报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市教育局《首届「美润鹏城」中小学校美育成果展演(美术专场)作品复评名单》(2025)",
+    prep: ["由区教育局统一报送","关注第二届征集时间"],
+    win: ["市级官方、宝安校可直接参与","首届多所宝安校已入围复评"]
+  },
+  {
+    id: "gd-shaoerhuahui",
+    aud: "学生",
+    name: "广东省少儿艺术花会(美术书法展)",
+    short: "广东省少儿艺术花会(省文旅厅)",
+    tier: "省",
+    auth: "广东省文化和旅游厅主办·省级综合艺术展",
+    reg: "广东省16周岁以下少年儿童(含美术书法篆刻手工艺展)",
+    org: "广东省文化和旅游厅",
+    orgType: "省政府文化主管部门主办·每3年一届(1986创办)",
+    subject: "音乐/舞蹈/戏剧/曲艺 + 美术书法篆刻手工艺展",
+    cycle: "每3年一届；第13届 2025年",
+    window: "第13届 2025年3月启幕、7月颁奖(东莞)",
+    deadline: "",
+    deadlineNote: "第13届宝安区选送作品获 1金2银3铜(2025-07)",
+    phase: "已办",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区2025第13届：音乐金奖1、曲艺铜奖1；美术书法展银奖2、铜奖2(共1金2银3铜)" },
+    materials: ["美术/书法/篆刻/手工艺作品","报名表+选送单位","地市级选拔报送"],
+    tips: ["省文旅厅主办，省级综合艺术最高平台之一","宝安区2025第13届已斩获1金2银3铜，是硬实力证明"],
+    url: "https://whlyt.gd.gov.cn/",
+    portal: "由宝安区公共文化体育服务中心/文旅部门选拔报送",
+    steps: ["关注区公共文化体育服务中心征集","区级选拔","市级/省级报送"],
+    source: "广东省第13届少儿艺术花会(2025)颁奖报道；宝安区获奖通报(读创/深圳商报 2025-07-29)",
+    prep: ["由区公共文化体育服务中心选拔报送","每3年一届，关注届次"],
+    win: ["省级综合艺术最高平台之一","宝安区2025已获1金2银3铜"]
+  },
+  {
+    id: "ba-tonghui",
+    aud: "学生",
+    name: "「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛",
+    short: "童绘端午·宝安区现场绘画赛",
+    tier: "区",
+    auth: "宝安区公共文化体育服务中心(文化馆)主办",
+    reg: "宝安区7-16岁少儿(小学一年级—初三)",
+    org: "深圳市宝安区公共文化体育服务中心(文化馆)",
+    orgType: "宝安区文化主管部门主办·区级现场赛",
+    subject: "现场绘画(传统文化/端午主题) · 学生",
+    cycle: "2025年5月31日已办(年度性嘉年华)",
+    window: "2025-05-31 现场赛(已结束，关注2026届)",
+    deadline: "",
+    deadlineNote: "2025届已结束；颁发活动证书+端午礼；关注宝安区文化馆年度通知",
+    phase: "已办",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安区文化馆主办，本区的现场绘画赛，教师可组织选送练手" },
+    materials: ["现场原创绘画(自备画具)","实名报名(7-16岁)"],
+    tips: ["本区的现场绘画赛，门槛低、氛围好","2025届已办，关注2026届征集"],
+    url: "https://whgy.szmassart.com/",
+    portal: "宝安区文化馆公众号/官网实名预约报名",
+    steps: ["关注宝安区文化馆通知","实名预约","现场创作"],
+    source: "宝安区文化馆「童绘端午·彩趣双节」百名少年艺术家现场绘画比赛通知(2025-05)",
+    prep: ["关注宝安区文化馆年度通知","年龄7-16岁，需实名"],
+    win: ["区级现场赛、门槛低","本区练手攒证书"]
+  },
+  {
+    id: "sz-arts",
+    aud: "学生",
+    name: "深圳市中小学艺术展演(艺术作品类)",
+    short: "深圳市中小学艺术展演",
+    tier: "市",
+    auth: "深圳市教育局官方·每3年一届",
+    reg: "深圳市中小学校(含宝安区)",
+    org: "深圳市教育局",
+    orgType: "深圳市教育局主办·区教育局推荐",
+    subject: "艺术表演+艺术作品(绘画/书法/手工艺) · 学生+教师",
+    cycle: "每3年一届(对接全国/省展演选拔)",
+    window: "按届次(对接广东省第八届/全国展演)",
+    deadline: "",
+    deadlineNote: "宝安区学校通过区教育局推荐参赛；是进入省/全国展演的市级通道",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "宝安学校经此通道选送省第八届中小学生艺术展演并获奖" },
+    materials: ["艺术作品原件(绘画/书法/手工艺)","报名表+指导教师","区级推荐"],
+    tips: ["市级官方最高规格艺术展，是进省/全国展演的通道","宝安区学校经区教育局推荐参赛"],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由宝安区教育局推荐报送",
+    steps: ["关注区教育局转发通知","校内征集","区级推荐报送"],
+    source: "深圳市中小学艺术展演活动(市教育局)＋广东省第八届中小学生艺术展演",
+    prep: ["由区教育局推荐报送","每3年一届，对接省/全国展演"],
+    win: ["市级官方最高规格","进入省/全国展演的通道"]
+  },
+
+  /* ============ 一、区级：学校绩效必录，最该打满 ============ */
+  {
+    id: "ba-course-3",
+    aud: "教师",
+    name: "第三届宝安区课程育人能力大赛（含艺术学科命题 / 美术命题）",
+    short: "宝安区课程育人能力大赛 · 本校重点",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "区教科院（区教育局直属）",
+    subject: "全学科 · 艺术（美术）学科命题专项、个人赛、团体赛",
+    cycle: "每年一届，9-12 月启动，次年 1-3 月评选",
+    window: "2026 年 10 月 — 2026 年 12 月（2026 初中组决赛 12 月 30 日前）",
+    deadline: "2026-12-30",
+    deadlineNote: "2026 初中教师课程育人能力大赛实施方案：决赛 12 月 30 日前，上传区教学资源平台",
+    phase: "进行中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 28, best: "一等奖多人次；美术学科命题/团体三等奖多人", note: "本校 2025-26 学年最高频赛事，87 条获奖里占 28 条；第三届已见美术学科获奖" },
+    materials: [
+      "参赛报名表（区教科院统一模板，需学校盖章）",
+      "教学设计 / 命题双向细目表（艺术学科按美术课标命题）",
+      "现场说课或命题阐释 PPT（16:9，≤20 页）",
+      "近一学年该班学生作业样本 3-5 份（佐证学习效果）",
+      "校本教研证明（科组磨课记录、听课评价表）"
+    ],
+    tips: [
+      "这是本校命中率最高的赛道：团体赛可以凑科组，个人赛报「艺术学科命题」专项，美术老师直接对口。",
+      "连续两届有本校教师拿「义务教育阶段艺术学科命题」二等奖——说明这个专项评委看的是课标理解和命题质量，不是画工。",
+      "命题类作品务必附「命题意图 + 素养对应 + 评分标准」三件套，缺一项基本无缘一等奖。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "宝安区教育资源公共服务平台 / 区教学资源平台（需学校账号登录上传）",
+    steps: [
+      "向学校教学处 / 科组报名，领取区教科院统一报名表模板",
+      "按模板填表、附命题三件套 + 说课 PPT，学校盖章",
+      "登录「区教学资源平台」按路径上传信息表与参赛作品",
+      "提交后截图留存回执（逾期系统关闭不予受理）"
+    ],
+    source: "宝安区第三届课程育人能力大赛喜报（富源学校 20 余项）+ 2026 初中教师课程育人能力大赛实施方案"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "ba-resource",
+    aud: "教师",
+    name: "宝安区优秀教育资源和网络空间评比活动",
+    short: "教育资源与网络空间评比",
+    tier: "区",
+    org: "深圳市宝安区教育局",
+    orgType: "区教育局",
+    subject: "课件 / 融合教学案例 / 国家智慧教育平台课件",
+    cycle: "每年一届，9-12 月征集，12 月评审",
+    window: "往年 9 月 — 12 月（2026 官方通知待查）",
+    deadline: "2026-12-20",
+    deadlineNote: "往年节奏推算（2026 官方通知尚未检索到，以区教育局通知为准）",
+    phase: "待发布",
+    official: false,
+    credit: 5,
+    schoolProof: { count: 12, best: "一等奖多人次", note: "本校 12 人次获奖，课件类和融合案例类分开评" },
+    materials: [
+      "课件源文件（PPT / 交互式课件，含素材包）",
+      "教学设计说明（1 页 A4，含学情、目标、环节、评价）",
+      "课堂实录片段（3-8 分钟，mp4，≤500MB）",
+      "作品登记表（区教育局模板，作者限 3 人内）",
+      "原创声明（素材版权页，注明图片来源）"
+    ],
+    tips: [
+      "分「常规课件」「常规融合教学案例」「国家中小学智慧教育平台课件」三个口子，同一份东西可拆成两件分别报，但作者顺序要一致。",
+      "美术课件的加分点：把学生作品做成可交互画廊，而不是纯图片堆叠。",
+      "12 月前必须出片，拖到 12 月系统就关了。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "宝安区教育资源公共服务平台（需学校账号登录）",
+    steps: [
+      "关注学校教学处转发通知，确认本年度征集类别与截止日",
+      "按区教育局模板准备课件 + 教学设计 + 实录片段",
+      "登录区教育资源平台上传，学校审核后提交",
+      "截图留存回执"
+    ],
+    source: "往年区教育局评比活动；本校 2025-26 学年 12 人次获奖为证"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "sz-micro-ba",
+    aud: "教师",
+    name: "深圳中小学教师微课大赛（宝安区选拔赛）",
+    short: "微课大赛 · 区选拔",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "教研院",
+    subject: "全学科（美术微课单列评审）",
+    cycle: "每年一届，区赛 3-5 月，优胜进市赛",
+    window: "2027 年 3 月 — 2027 年 6 月（下一届，待发布）",
+    deadline: "2027-04-30",
+    deadlineNote: "下一届预计 2027 年 3-5 月区赛（官方通知待发布）",
+    phase: "待发布",
+    official: false,
+    credit: 5,
+    schoolProof: { count: 14, best: "区一等奖多人次、市级二等奖", note: "区赛出线即可进市赛，一条内容两级证书" },
+    materials: [
+      "微课视频（5-8 分钟，1920×1080，H.264，≤300MB）",
+      "微课教学设计（含知识点拆解、讲解脚本）",
+      "配套学习任务单 / 分层作业",
+      "作品登记表 + 原创承诺书",
+      "字幕文件（srt，硬字幕更稳）"
+    ],
+    tips: [
+      "微课是「一条内容两级证书」的性价比之王：区赛获奖后自动进市赛评审。",
+      "美术微课选题避开「怎么画」，选「怎么看」——构图分析、色彩情绪、名画侦探，评委更认。",
+      "片头 5 秒必须出知识点标题，评委平均看 40 秒就打分。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "区教学资源平台（需学校账号登录）",
+    steps: [
+      "关注区教科院微课大赛通知，学校统一报送",
+      "上传微课视频 + 教学设计 + 任务单",
+      "区赛出线后按市赛要求补充材料"
+    ],
+    source: "本校 2025-26 学年微课获奖 14 人次；市赛时间见市教育局美育微课大赛通知"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "ba-chuying",
+    aud: "教师",
+    name: "宝安区「雏鹰计划」新教师评比",
+    short: "雏鹰计划（教龄 3 年内）",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "教研院",
+    subject: "全学科 · 按学段分组",
+    cycle: "每年一届，随课程育人能力大赛同批申报",
+    window: "2026 年 10 月 — 2026 年 12 月（随第三届课程育人同批）",
+    deadline: "2026-12-30",
+    deadlineNote: "与第三届课程育人能力大赛同批申报，仅限教龄 3 年内教师",
+    phase: "进行中",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 7, best: "二等奖多人次", note: "新教师专属通道，竞争人数少" },
+    materials: [
+      "新教师成长档案（师徒结对记录、听课笔记）",
+      "一节完整课的教学设计与反思",
+      "粉笔字 / 专业技能展示材料（美术可交作品集）",
+      "指导教师推荐意见（需签字）"
+    ],
+    tips: [
+      "教龄 3 年内才有资格，过期作废，新老师第一年就该报。",
+      "成长档案要「有痕迹」：磨课照片、改稿版本、学生反馈，比漂亮排版管用。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "区教学资源平台（需学校账号登录）",
+    steps: [
+      "学校教学处登记教龄资格，领取报名模板",
+      "整理成长档案 + 教学设计 + 作品集",
+      "平台上传，学校审核提交"
+    ],
+    source: "宝安区第三届课程育人能力大赛体系内专项"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "ba-art-student",
+    aud: "学生",
+    bigSchools: ["宝安中学(集团)"],
+    name: "宝安区中小学校美术教育成果作品征集活动",
+    short: "美术教育成果作品征集（带学生）",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "教研院",
+    subject: "美术 · 学生作品 + 指导教师",
+    cycle: "每年一届，通常 10-12 月征集",
+    window: "2026 年 10 月 — 2026 年 12 月（待发布）",
+    deadline: "2026-12-10",
+    deadlineNote: "往年 10-12 月征集（2026 官方通知待查）",
+    phase: "待发布", rate:{value:2, ease:5},
+    official: false,
+    credit: 4,
+    schoolProof: { count: 1, best: "指导学生获二等奖", note: "计入「教师指导学生获奖」表，职称评审可用" },
+    materials: [
+      "学生原作（按通知尺寸，不装裱）",
+      "作品卡（作品名、作者、年级、指导教师、创作说明 100 字）",
+      "指导教师教学说明（如何辅导、课时安排）",
+      "学生创作过程照片 3-5 张",
+      "学校汇总表（盖章）"
+    ],
+    tips: [
+      "指导奖在职称评审里算「教育教学成果」，和本人获奖同等重要，别只盯着自己画。",
+      "一次报 5-8 件学生作品，中奖概率比报 1 件高得多，成本只是多写几张作品卡。",
+      "作品卡上的创作说明一定要写「学生自己说的」，评委一眼能看出代笔。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "区教学资源平台（需学校账号登录）",
+    steps: [
+      "关注区教科院美术教研通知",
+      "收集学生原作 + 作品卡 + 过程照片，学校汇总盖章",
+      "平台上传或按通知线下报送"
+    ],
+    source: "本校 2025-26 学年指导学生获奖记录"
+  ,
+    prep: ["学生原作（按通知尺寸，不装裱）；作品卡含作品名/作者/年级/指导教师/创作说明100字","指导教师教学说明（如何辅导、课时安排）+学生创作过程照片3-5张","学校汇总表盖章"],
+    win: ["指导奖在职称评审里算「教育教学成果」，和本人获奖同等重要，别只盯着自己画","一次报5-8件学生作品，中奖概率远高于报1件，成本只是多写几张作品卡","作品卡创作说明写「学生自己说的」，防代笔质疑"]},
+  {
+    id: "ba-ai-case",
+    aud: "教师",
+    name: "宝安区教师人工智能应用案例征集活动",
+    short: "AI 应用案例征集",
+    tier: "区",
+    org: "深圳市宝安区教育局",
+    orgType: "区教育局",
+    subject: "全学科 · AI 赋能课堂",
+    cycle: "每年一届，5-7 月征集",
+    window: "2027 年 5 月 — 2027 年 7 月（下一届，待发布）",
+    deadline: "2027-06-30",
+    deadlineNote: "下一届预计 2027 年 5-7 月（官方通知待发布）",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 2, best: "三等奖 1 项", note: "新兴赛道，参赛人数少，出线相对容易" },
+    materials: [
+      "案例文本（3000 字内：问题—做法—证据—反思）",
+      "AI 工具使用截图 / 对话记录（注明工具名与提示词）",
+      "学生作品或课堂数据前后对比",
+      "课堂实录片段（可选，加分项）"
+    ],
+    tips: [
+      "美术与 AI 结合是较易切入的方向：AI 生成草图、学生二次创作，再说明「人机差异」。",
+      "必须写清「哪些是 AI 做的、哪些是学生做的」，评审现在特别查这条。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "区教育资源平台（需学校账号登录）",
+    steps: [
+      "关注区教育局 AI 应用案例征集通知",
+      "整理案例文本 + AI 使用证据 + 学生数据",
+      "平台上传"
+    ],
+    source: "本校 2025-26 学年 AI 案例获奖 2 人次"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "ba-baoan-cup",
+    aud: "教师",
+    name: "第八届「宝安杯」硬笔书法大赛",
+    short: "宝安杯硬笔书法大赛",
+    tier: "区",
+    org: "广东省硬笔书法协会、深圳市宝安区文化广电旅游体育局、宝安区文联、松岗街道办",
+    orgType: "区文化系统（协办含宝安区教育科学研究院）",
+    subject: "硬笔书法 · 全国 18 岁以上含教师，免报名费",
+    cycle: "每年一届（第八届 2026），上半年征稿",
+    window: "第八届征稿中（具体截止以征稿启事为准）",
+    deadline: "2027-03-31",
+    deadlineNote: "第八届征稿启事已发布；具体截稿日请以启事公布的二维码/主办方为准（免费参赛）",
+    phase: "待发布",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无记录（书法方向美术老师可报）", note: "免收报名费，协办含区教科院，可计入学校书法类成果" },
+    materials: [
+      "硬笔书法作品原件 1 件（A3，29.7×42cm，横竖不限，专用纸或自制纸）",
+      "作品背面右下角铅笔楷书注明：姓名、省份、地址、电话、书体、作品名",
+      "扫码填写报名表（姓名、性别、电话、身份证号、地址、作品名、书体、省份、是否工会成员）",
+      "快递面单标注「宝安杯」参赛作品"
+    ],
+    tips: [
+      "主题：深圳潮头立，翰墨绘同心。古今诗词文赋、深圳地域文化题材均可，注意用权威版本。",
+      "免收报名费，每人限投 1 件；背面注明信息 + 线上报名表两步都要做。",
+      "协办单位含宝安区教科院，书法方向的美术老师可计入学校书法类成果。"
+    ],
+    url: "http://zjmtcn.com/zjxx/shufa/272735.html",
+    portal: "按征稿启事二维码扫码报名 + 邮寄原件（以启事为准）",
+    steps: [
+      "研读第八届「宝安杯」硬笔书法大赛征稿启事",
+      "书写 A3 硬笔作品，背面铅笔注明信息",
+      "扫码填报名表，邮寄原件（面单标注「宝安杯」）"
+    ],
+    source: "第八届「宝安杯」硬笔书法大赛征稿启事（广东省硬笔书法协会等主办，协办含宝安区教科院）"
+  ,
+    prep: ["硬笔原件1件A3(29.7×42cm)，横竖不限","作品背面右下角铅笔楷书注明：姓名/省份/地址/电话/书体/作品名","扫码填线上报名表（含身份证号等）；快递面单标注「宝安杯」；免报名费，每人限1件"],
+    win: ["主题「深圳潮头立，翰墨绘同心」，古今诗词或深圳地域文化均可，用权威版本","协办含宝安区教科院，书法方向美术老师可计入学校书法类成果","背面注明+线上报名两步都要做，缺一不可"]},
+
+  /* ============ 二、市级：深圳市教育局 / 市教科院 / 市总工会 ============ */
+  {
+    id: "sz-aesthetic-micro",
+    aud: "教师",
+    name: "深圳市学科美育微课大赛",
+    short: "市学科美育微课大赛 美术主赛道",
+    tier: "市",
+    org: "深圳市教育局",
+    orgType: "市教育局",
+    subject: "美术 / 音乐 / 舞蹈 / 戏剧 · 学科美育",
+    cycle: "每年一届，通常上半年（2026 届 3 月 31 日截止）",
+    window: "2026 届已截稿；2027 届预计 2027 年 3 月",
+    deadline: "2027-03-31",
+    deadlineNote: "2026 届官方截止 2026-03-31（已截稿）；2027 届以市教育局通知为准",
+    phase: "已截稿",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 2, best: "一等奖、二等奖各 1 项", note: "本校美术/艺术老师的头号市级赛道，2026 年已有两个奖" },
+    materials: [
+      "美育微课视频（5-15 分钟，1920×1080，MP4，<1GB）",
+      "教学设计（3000 字内，含审美目标、流程、评价）",
+      "配套资源：PPT 课件、可附学习单、审美评价量表",
+      "《深圳市学科美育微课大赛报名信息表》",
+      "原创声明与肖像权授权（出现学生画面必须有）"
+    ],
+    tips: [
+      "这是美术老师很值得投入的市级奖：主办是市教育局，职称、评优、绩效全认。",
+      "评审关键词是「学科美育」——不要上成美术技法课，要讲审美判断和文化理解。",
+      "有本校教师拿一等奖的路子是「一节课讲透一件作品」，别贪多。"
+    ],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "深圳教育活动管理平台（教师本人登录上传，网址以通知为准）",
+    steps: [
+      "关注深圳市教育局《关于开展深圳市学科美育微课大赛的通知》",
+      "按附件模板准备视频 + 教学设计 + 课件 + 报名信息表",
+      "教师本人登录「深圳教育活动管理平台」上传压缩包（命名：区域/直属校+学段+学科+案例名称）",
+      "提交后不可更改，截图留存"
+    ],
+    source: "深圳市教育局官方通知：报名截止 2026-03-31，报送方式「深圳教育活动管理平台」"
+  ,
+    prep: ["美育微课5-15分钟、1920×1080、MP4、<1GB；教学设计3000字含审美目标/流程/评价","配套PPT课件、可附学习单、审美评价量表；《报名信息表》","出现学生画面必须有肖像权授权"],
+    win: ["美术老师很值得投入的市级奖，市教育局主办，职称/评优/绩效全认","评审关键词是「学科美育」——别上成美术技法课，要讲审美判断和文化理解","有本校教师拿一等奖的路子是「一节课讲透一件作品」，别贪多"]},
+  {
+    id: "sz-aesthetic-basic",
+    aud: "教师",
+    name: "深圳市中小学幼儿园美育教师教学基本功比赛",
+    short: "市美育教师基本功比赛",
+    tier: "市",
+    org: "深圳市教育局 / 深圳市教育科学研究院",
+    orgType: "市教育局 + 市教研院",
+    subject: "美术 / 书法 / 音乐 / 舞蹈 / 戏剧",
+    cycle: "两年一届左右（第三届 2025-2026；第四届预计 2027）",
+    window: "第四届预计 2027 年上半年（待发布）",
+    deadline: "2027-06-30",
+    deadlineNote: "第三届已收官，第四届预计 2027 年，需先过区赛选拔",
+    phase: "已结束",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（区赛出线后才有资格）", note: "市级正式赛事，认可度高，但要走区赛—市赛两级" },
+    materials: [
+      "区赛获奖证书（市赛报名前置条件）",
+      "教学基本功展示：命题创作 / 现场写生（美术类）",
+      "说课 PPT + 教学设计（各 1 份）",
+      "个人作品集（近 3 年，10-15 件）",
+      "才艺或专业技能展示视频（3 分钟）"
+    ],
+    tips: [
+      "美术类考「命题创作 + 说课」双项，命题创作通常是现场 3 小时，平时要练手速。",
+      "个人作品集别只放成品，放 2-3 组创作过程稿，评委会觉得你真在画画。",
+      "这条路要和区美术教研员提前打招呼，区赛名额是分配的。"
+    ],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由市教科院统一组织选拔报送（不接受个人直报）",
+    steps: [
+      "联系区美术教研员，争取区赛选拔名额",
+      "区赛出线后按市赛方案准备命题创作 + 说课 + 作品集",
+      "由市教研院统一报送"
+    ],
+    source: "深圳市教育科学研究院主办美育赛事体系；省第三届中小学美育基本功 2026-01 决赛"
+  ,
+    prep: ["区赛获奖证书（市赛报名前置条件）","教学基本功：命题创作+现场写生（美术类）；说课PPT+教学设计各1份","个人作品集（近3年，10-15件）+才艺/专业技能展示视频3分钟"],
+    win: ["美术类考「命题创作+说课」双项，命题创作通常现场3小时，平时要练手速","个人作品集别只放成品，放2-3组创作过程稿，评委会觉得你真在画画","区赛名额是分配的，要和区美术教研员提前打招呼"]},
+  {
+    id: "sz-sketch",
+    aud: "教师",
+    name: "深圳市中小学师生现场写生大赛暨写生研训活动",
+    short: "深圳中小学师生写生大赛",
+    tier: "市",
+    org: "深圳市教育科学研究院",
+    orgType: "市教研院",
+    subject: "美术 · 教师现场写生 + 研训",
+    cycle: "每年一届，通常上半年（2026 届 4 月举办）",
+    window: "2026 届已于 2026 年 4 月举办（已结束）",
+    deadline: "2027-04-30",
+    deadlineNote: "2026 届 4 月已在仙湖植物园举办（已结束）；2027 届待发布",
+    phase: "已结束",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（由市教科院按区分配名额）", note: "市教科院主办，规格高，直接锻炼美术教师专业功底" },
+    materials: [
+      "现场写生作品（按活动现场要求，通常限时用笔）",
+      "研训签到与创作过程记录",
+      "学校推荐报名（名额由市教科院分配）"
+    ],
+    tips: [
+      "这是美术老师专属的「以赛促练」平台，不拼材料拼真功夫，日常要保着手感。",
+      "名家现场示范 + 一对一答疑，是难得的免费进修机会，别只当比赛。"
+    ],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由市教科院 / 区教科院分配名额组织参加",
+    steps: [
+      "关注区教科院美术教研通知，争取学校推荐名额",
+      "活动现场完成写生，提交作品",
+      "优秀作品纳入美育浸润成果展示"
+    ],
+    source: "南方+ 2026-04 报道：深圳市教育科学研究院主办，仙湖植物园举办"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "sz-topic",
+    aud: "教师",
+    name: "深圳市义务教育阶段学科命题比赛",
+    short: "市学科命题比赛",
+    tier: "市",
+    org: "深圳市教育科学研究院",
+    orgType: "市教研院",
+    subject: "全学科 · 艺术学科单独设组",
+    cycle: "每年一届，11-12 月征集，次年 1 月评",
+    window: "2026 年 11 月 — 2027 年 1 月（待发布）",
+    deadline: "2026-12-20",
+    deadlineNote: "往年 11-12 月征集（2026 官方通知待查）",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 1, best: "三等奖 1 项", note: "命题能力是职称评审的重要观测点，市级证书认可度高于区级" },
+    materials: [
+      "命题双向细目表（知识点 × 能力层级）",
+      "试题正卷 + 参考答案 + 评分标准",
+      "命题说明（立意、素材来源、难度预估）",
+      "学生实测数据（样本 30 份以上，含得分率）"
+    ],
+    tips: [
+      "艺术学科命题要贴《艺术课程标准（2022 年版）》，欣赏·评述类题目占比别低于 40%。",
+      "附实测数据（得分率、区分度）的作品，评委会明显高看一眼。"
+    ],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "市教研院命题比赛申报系统（以当年通知为准）",
+    steps: [
+      "关注市教科院学科命题比赛通知",
+      "提交命题细目表 + 试题 + 实测数据",
+      "学校 / 区统一报送"
+    ],
+    source: "本校 2025-26 学年市/区命题获奖 6 人次"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "sz-union-art",
+    aud: "教师",
+    name: "深圳职工书画摄影大赛（深圳职工文化节）",
+    short: "市总工会书画大赛 奖金",
+    tier: "市",
+    org: "深圳市总工会（市工人文化宫总承办）",
+    orgType: "市总工会",
+    subject: "绘画 / 书法 / 摄影（含 AI 摄影组）",
+    cycle: "每年一届，6 月启动，7 月下旬截稿，8 月颁奖",
+    window: "2026 届已截稿；2027 届预计 2027 年 6-7 月",
+    deadline: "2027-07-25",
+    deadlineNote: "按 2026 第六届节奏（6/16 启动、7/25 截稿、8/28 颁奖）；2027 届待发布",
+    phase: "已截稿",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录（需「深i工」实名认证工会会员）", note: "工会系统赛事，不与教育系统冲突，可叠加申报" },
+    materials: [
+      "「深i工」平台实名认证截图（参赛硬门槛）",
+      "作品高清图（长边 ≥3000px，JPG，3-10MB）",
+      "作品信息表（名称、画种、尺寸、创作说明 200 字）",
+      "原作（入围后 5 个工作日内邮寄，勿装裱）",
+      "AI 辅助作品需注明工具、提示词、原始照片信息"
+    ],
+    tips: [
+      "绘画类每人限投 2 件，画种限中国画、油画、版画、水彩（粉）画，尺寸不超六尺全开（180×97cm）。",
+      "一等奖 1500 元 + 证书，获奖作品汇编成册并全市巡展——履历上很好看。",
+      "必须先做「深i工」实名认证，很多人卡在这一步错过截稿。",
+      "主题维度：产业奋斗风采、城市发展脉搏、人文关怀、创新创意、APEC 愿景。深圳城市题材命中率最高。"
+    ],
+    url: "https://www.sznews.com/",
+    portal: "「深i工」小程序 / 深圳市总工会官网活动专题（以当年通知为准）",
+    steps: [
+      "在「深i工」小程序完成工会会员实名认证",
+      "按专题页要求上传作品高清图 + 信息表",
+      "入围后按邮件通知邮寄原作"
+    ],
+    source: "深圳市总工会职工文化节书画摄影大赛（2026 第六届节奏）",
+    to: "「深i工」小程序扫码报名 / 深圳市总工会官网活动专题（入围后 5 个工作日内寄原作）；咨询 0755-88212164",
+    advice: "准备量小：市级赛事设奖金（一等奖 1500 元），线上提交作品，深圳在职职工均可参加"
+  ,
+    prep: ["先完成「深i工」平台实名认证（硬门槛，很多人卡这错过截稿）","作品高清图长边≥3000px、JPG、3-10MB；信息表含名称/画种/尺寸/创作说明200字","入围后5个工作日内寄原作（勿装裱）；AI辅助作品须注明工具、提示词、原始照片信息"],
+    win: ["绘画类每人限2件，画种限国画/油画/版画/水彩(粉)，尺寸不超六尺全开(180×97cm)","一等奖1500元+证书，获奖作品全市巡展，履历好看","深圳城市题材命中率最高；工会系统是学校认的官方渠道"]},
+
+  /* ============ 二·五、工会系统 / 专业协会（教师专属，校级即可参与，可叠加申报） ============ */
+  {
+    id: "ba-union-art",
+    aud: "教师",
+    name: "宝安区教育工会 / 深圳市教育工会 · 教职工书画摄影展",
+    short: "区教育工会教职工书画展 校级可报",
+    tier: "区",
+    org: "深圳市宝安区教育工会（区教育工会承办）",
+    orgType: "区教育工会",
+    subject: "国画 / 油画 / 版画 / 水彩(粉) / 书法 / 摄影（美术教师对口）",
+    cycle: "每年一届，工会系统独立征集，与教育系统赛事不冲突",
+    window: "往年 3—6 月征集（2026 以区教育工会通知为准）",
+    deadline: "2026-06-30",
+    deadlineNote: "区教育工会年度活动，需经学校工会统一报送，个人不直报",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录（工会系统，可叠加申报）", note: "离你最近、门槛最低的工会赛道，校级报名即可" },
+    materials: [
+      "作品原件（按通知尺寸，书画不装裱、摄影冲印）",
+      "作品信息卡（题目 / 画种 / 尺寸 / 创作年份 / 姓名 / 单位）",
+      "报名登记表（学校工会盖章）",
+      "原创承诺书（禁代笔、禁临摹复制）"
+    ],
+    tips: [
+      "工会系统赛事不与教育局 / 教科院赛事冲突，可叠加拿证，绩效 / 评优都认。",
+      "必须提前和校办 / 学校工会沟通报送安排，个人无法直报。",
+      "深圳城市题材、校园题材命中率最高，别一上来就画大山水。"
+    ],
+    url: "https://www.baoan.gov.cn/",
+    portal: "学校工会统一报送 / 区教育工会活动通知",
+    steps: [
+      "向学校工会报名，确认本年度征集画种与截止日",
+      "按通知备齐作品 + 信息卡 + 登记表（工会盖章）",
+      "由学校工会统一报送区教育工会",
+      "截图 / 留存入选回执"
+    ],
+    source: "宝安区 / 深圳市教育工会年度教职工书画摄影展（常规活动）",
+    to: "学校工会统一报送 / 区教育工会活动通知（个人不直报，先和校工会沟通报送安排）",
+    advice: "准备量小：本校层面即可组织，门槛较低，工会系统认可，可与其它赛事同时准备"
+  ,
+    prep: ["详见当年工会通知的尺寸 / 报送渠道","须学校工会统一报送，个人不能直报"],
+    win: ["工会赛道认原创、认题材接地气，不像专业展拼功底","校园 / 城市题材最稳","平时攒几幅能参展的成品，征集令一到就能报"]},
+  {
+    id: "cn-union-art",
+    aud: "教师",
+    name: "中国教科文卫体工会全国委员会 · 全国教职工书画摄影展",
+    short: "全国教科文卫体工会书画展 国家级工会",
+    tier: "国",
+    org: "中国教科文卫体工会全国委员会",
+    orgType: "全国产业工会（教育部主管）",
+    subject: "书法 / 国画 / 油画 / 版画 / 水彩 / 摄影（教职工组）",
+    cycle: "每两年一届（逢双年），全国教科文卫体系统征集",
+    window: "下一届预计 2027 年（以全国委员会通知为准）",
+    deadline: "2027-06-30",
+    deadlineNote: "经省教科文卫工会 → 全国委员会逐级遴选，非个人直报",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（全国级工会，认可度高）", note: "教育系统最高层级工会展，履历认可度高，可叠加申报" },
+    materials: [
+      "作品高清电子稿（JPG，≥300dpi）",
+      "作品信息表（题目 / 画种 / 尺寸 / 创作说明 200 字）",
+      "单位推荐意见（学校工会 / 上级工会盖章）",
+      "原创承诺书"
+    ],
+    tips: [
+      "这是教育口全国级工会展，比地方专业展更认「教职工身份」，美术老师对口。",
+      "走「学校 → 区 / 市教育工会 → 省教科文卫工会 → 全国」逐级推，提前半年占位。",
+      "主题贴合「教师节 / 劳动美 / 育人」主线最稳。"
+    ],
+    url: "https://www.acftu.org/",
+    portal: "经省教科文卫工会逐级报送",
+    steps: [
+      "向学校工会报名，确认本届主题与画种",
+      "备作品电子稿 + 信息表，学校工会推荐",
+      "由市 / 省教科文卫工会逐级遴选报送",
+      "留存全国入选 / 获奖证书"
+    ],
+    source: "中国教科文卫体工会全国委员会全国教职工书画摄影展（双年届）",
+    to: "经省教科文卫工会逐级报送（先向学校工会报名，再 市→省→全国 遴选）",
+    advice: "建议优先准备：全国级工会展，教育系统层级高、认可度高；需逐级报送，作品以线上提交为主"
+  ,
+    prep: ["须经工会系统逐级报送，个人不能直报","主题贴合教师节 / 劳动美主线"],
+    win: ["全国级工会展，职称 / 评优认可度高","教职工组侧重题材选择与立意表达","提前与学校工会沟通报送安排"]},
+  {
+    id: "gd-union-art",
+    aud: "教师",
+    name: "广东省教科文卫工会 · 广东省教师美术书法作品展",
+    short: "省教科文卫工会教师美展 省级工会",
+    tier: "省",
+    org: "广东省教科文卫工会（承办：省教育研究院 / 省美协协办）",
+    orgType: "省教科文卫工会",
+    subject: "国画 / 油画 / 版画 / 水彩 / 书法（教师组）",
+    cycle: "每年或每两年一届，省级工会独立征集",
+    window: "往年下半年征集（2026 以省教科文卫工会通知为准）",
+    deadline: "2026-11-30",
+    deadlineNote: "经市教育工会 / 省教科文卫工会遴选，非个人直报",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（省级工会，可叠加）", note: "广东省教师专属美展，比省美协展更认教师身份" },
+    materials: [
+      "作品原件（按通知尺寸，书画不装裱）",
+      "作品信息卡（题目 / 画种 / 尺寸 / 创作年份）",
+      "报名表（学校工会 + 上级工会盖章）",
+      "原创承诺书"
+    ],
+    tips: [
+      "面向教师的省级美展，较省美协开放展更对口。",
+      "岭南题材 / 大湾区题材有加分，深圳教师可打「湾区」牌。",
+      "必须经学校工会占位报送，别只在网上交。"
+    ],
+    url: "https://www.gdftu.org/",
+    portal: "学校工会 → 市教育工会 → 省教科文卫工会",
+    steps: [
+      "向学校工会报名，确认本年度画种与截止",
+      "备作品 + 信息卡 + 盖章报名表",
+      "由市教育工会遴选报送省教科文卫工会",
+      "留存省级入选证书"
+    ],
+    source: "广东省教科文卫工会教师美术书法作品展（年度 / 双年届）",
+    to: "学校工会→市教育工会→省教科文卫工会逐级报送；关注「广东教工」公众号发通知",
+    advice: "建议优先安排：面向教师的省级美展，对口程度高，线上提交作品即可"
+  ,
+    prep: ["须经工会系统报送，个人不能直报","岭南 / 湾区题材加分"],
+    win: ["省级教师专属展，对口且对口程度高","湾区与城市题材较为稳妥","平时攒可参展成品"]},
+  {
+    id: "gd-meixie",
+    aud: "教师",
+    name: "广东省美术家协会 · 广东美术作品展（教师可投）",
+    short: "省美协广东美展 专业展·教师可投",
+    tier: "省",
+    org: "广东省美术家协会",
+    orgType: "省级专业协会",
+    subject: "国画 / 油画 / 版画 / 水彩 / 雕塑 / 综合材料（开放投稿）",
+    cycle: "每年一届（如「广东美术作品展」年度展 / 五年届全国美展省展）",
+    window: "往年上半年征集（2026 以省美协通知为准）",
+    deadline: "2026-07-31",
+    deadlineNote: "省美协官网投稿，部分需经市美协或单位推荐",
+    phase: "待发布",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（专业展，提升专业履历）", note: "教师以个人创作者身份可投，和工会 / 教育赛事不冲突" },
+    materials: [
+      "作品高清电子稿（JPG，≥300dpi，含局部图）",
+      "作品信息（题目 / 画种 / 尺寸 / 创作年份 / 自评 200 字）",
+      "作者简历（含单位，证明教师身份可选）",
+      "原创声明"
+    ],
+    tips: [
+      "省美协开放展，美术老师以「创作者」身份投，和工会 / 教育口赛事互不影响、可叠加。",
+      "专业展拼功底与观念，别用课堂范画，要拿创作型作品。",
+      "五年一届的全国美展省展分量最重，逢届必盯。"
+    ],
+    url: "https://www.gdmeixie.com/",
+    portal: "广东省美术家协会官网投稿系统",
+    steps: [
+      "关注省美协官网 / 公众号年度征稿启事",
+      "按规格准备作品电子稿 + 信息",
+      "官网投稿或经市美协推荐",
+      "入围后寄原作，留存入选证明"
+    ],
+    source: "广东省美术家协会年度美术作品展征稿启事",
+    to: "广东省美术家协会官网 gdmeixie.com 投稿系统 / 或经市美协推荐",
+    advice: "专业系统认可度高，侧重原创作品；与工会、教育系统赛事不冲突，可同时准备"
+  ,
+    prep: ["专业展拼创作功底，非课堂范画","官网投稿或市美协推荐"],
+    win: ["专业履历加分，和工会 / 教育赛事可叠加","创作型作品才入评委眼","逢五年届全国美展省展务必盯"]},
+
+  /* ============ 三、省级 / 国家级 ============ */
+  {
+    id: "gd-union-photo",
+    aud: "教师",
+    name: "广东省职工摄影大赛（十五五启新程 光影颂劳动美）",
+    short: "省职工摄影大赛（省总工会）",
+    tier: "省",
+    org: "广东省总工会宣传教育和网络工作部、茂名市总工会",
+    orgType: "省总工会",
+    subject: "摄影 / 短视频 / AI 创作（含 AI 摄影组）",
+    cycle: "每年一届，通常 7-9 月征集，10 月评",
+    window: "2026 届 2026-09-10 截止（已截稿）；下一届预计 2027 年 7-9 月",
+    deadline: "2027-09-10",
+    deadlineNote: "2026 届征集截止 2026-09-10（已截稿）；2027 届以省总工会通知为准",
+    phase: "已截稿",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无记录（工会系统赛事，可叠加申报）", note: "省总工会主办，不与教育系统冲突，摄影/短视频方向老师可报" },
+    materials: [
+      "在「广东省摄影家协会赛事投稿系统」注册账号（contest.gdphoto.cn）",
+      "摄影/AI 作品 JPG（长边 ≥2500px，≤10MB，保留原始信息）",
+      "短视频作品（发邮箱 gdwphoto@163.com，主题注明作者 + 作品名）",
+      "选择主题方向：工魂匠心 / 工暖情深 / 工筑绿美 / 工创未来 / 省运盛事",
+      "AI 作品需注明所用工具、提示词、拍摄设备与时间地点"
+    ],
+    tips: [
+      "五个主题方向，深圳职工、产业奋斗、城市题材命中率最高。",
+      "摄影/AI 类走 contest.gdphoto.cn 在线投稿；短视频发 gdwphoto@163.com。",
+      "一等奖 500 元 + 证书，入选作者可纳入省职工文体协会摄影专委会。"
+    ],
+    url: "https://www.gdftu.org.cn/",
+    portal: "https://contest.gdphoto.cn（广东省摄影家协会赛事投稿系统；短视频发 gdwphoto@163.com）",
+    steps: [
+      "登录 contest.gdphoto.cn，选「十五五启新程 光影颂劳动美」专栏注册",
+      "按系统提示选组别（摄影组/AI 摄影组）+ 主题方向，上传作品并完善信息",
+      "短视频类按邮件要求发送至 gdwphoto@163.com"
+    ],
+    source: "广东省总工会 2026「十五五启新程 光影颂劳动美」职工摄影大赛（征集截止 2026-09-10，门户 contest.gdphoto.cn）"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-aesthetic-basic",
+    aud: "教师",
+    name: "广东省第三届中小学幼儿园美育教师教学基本功比赛",
+    short: "省美育教师基本功比赛（中小学版）",
+    tier: "省",
+    org: "广东省教育厅（广东技术师范大学承办）",
+    orgType: "省教育厅",
+    subject: "美术 / 书法 / 音乐 / 舞蹈 / 戏剧（戏曲）· 中小学组",
+    cycle: "两年一届（第三届 2025-2026；第四届预计 2027）",
+    window: "第三届 2026-01 决赛已收官；第四届预计 2027 年",
+    deadline: "2027-05-31",
+    deadlineNote: "第三届决赛 2026-01-09 至 11，拟获奖公示 2026-02-26（已结束）；第四届待发布",
+    phase: "已结束",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无（需市赛出线）", note: "全省美育领域规格最高的专业赛事，省教育厅主办；注意区分「中小学版」与仅限高校的「普通高校版」" },
+    materials: [
+      "市赛获奖证明（省赛报名前置）",
+      "教学设计 + 说课课件（美术类含专业技能展示）",
+      "专业技能作品：命题创作 1 件 + 自选作品 3 件",
+      "育人实践材料（社团、展览、美育活动记录）",
+      "个人成果表（近 5 年获奖、课题、论文）"
+    ],
+    tips: [
+      "赛制是「教学技能 + 专业技能」双模块，专业技能占分很重，平时要有能拿出手的创作。",
+      "全省分幼儿园组、中小学组、中职组，美术类单独排名，深圳选手近年稳定进一等奖。",
+      "备赛周期近一年，从区赛就要开始攒材料。",
+      "⚠ 仅限中小学/幼儿园教师；高校老师报的是另一个「普通高校美育教师基本功展示活动」（报名系统 gd.artedu.cn，2026-11-12 截止），你报不了那个。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "由地市教育局 / 市教研院逐级选拔报送（不接受个人直报）",
+    steps: [
+      "区赛 → 市赛出线（关键门槛）",
+      "按省赛方案准备教学 + 专业技能双模块材料",
+      "由市教育局统一登录省赛系统报送"
+    ],
+    source: "广东省教育厅主办、广东技术师范大学承办；2026-01-09 至 11 现场决赛，2026-02-26 拟获奖公示"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-digital-aesthetic",
+    aud: "教师",
+    name: "2026 年中小学校数字化美育资源和智能化美育应用案例征集活动",
+    short: "省数字化美育资源征集 官方已截稿",
+    tier: "省",
+    org: "广东省教育厅",
+    orgType: "省教育厅",
+    subject: "美育学科 · 数字化资源 + 智能化应用案例",
+    cycle: "年度征集（2026 届 10 月 9 日截止）",
+    window: "2026 届 2026-10-09 截止（已截稿）；下一届待发布",
+    deadline: "2026-10-09",
+    deadlineNote: "2026 届官方截止 2026-10-09 24:00（已截稿）；不接受个人直接申报，由地市教育局汇总报送",
+    phase: "已截稿",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（由地市汇总报送）", note: "省级活动，美术/数字艺术方向对口；注意需经市教育局汇总，个人不能直接报" },
+    materials: [
+      "艺术技能资源：音乐/美术/舞蹈/戏曲/设计/媒体艺术教学视频",
+      "艺术活动资源：美育实践成果、数字艺术创作成果、区域特色项目",
+      "智能化美育应用案例：AI/大数据在美育教学中的创新应用",
+      "按附件 1 要求的报送表与佐证材料"
+    ],
+    tips: [
+      "分「数字化美育资源」和「智能化美育应用案例」两大类，美术老师两路都能投。",
+      "报送网址真实存在：https://gd.jmxy.cc/zxxmyzj，但必须由地市教育局汇总，个人通道不开放。",
+      "名额分配：深圳可推荐各不超过 15 个，先在学校/区里占位。"
+    ],
+    url: "https://gd.jmxy.cc/zxxmyzj",
+    portal: "https://gd.jmxy.cc/zxxmyzj（由地市教育局汇总报送，个人不能直报）",
+    steps: [
+      "向学校/区教科院报名，争取地市推荐名额（深圳≤15 个）",
+      "按附件 1 准备数字化资源或智能化应用案例",
+      "由深圳市教育局统一通过 gd.jmxy.cc/zxxmyzj 报送，截止 2026-10-09 24:00"
+    ],
+    source: "广东省教育厅 2026 年中小学校数字化美育资源征集活动（截止 2026-10-09，报送网址 gd.jmxy.cc/zxxmyzj）"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-double",
+    aud: "教师",
+    name: "广东省「双融双创」教师素养提升大赛",
+    short: "省双融双创大赛",
+    tier: "省",
+    org: "广东省教育厅",
+    orgType: "省教育厅",
+    subject: "信息技术与学科融合 · 全学科",
+    cycle: "每年一届，通常 5-9 月",
+    window: "2027 年 5 月 — 2027 年 9 月（下一届，待发布）",
+    deadline: "2027-08-31",
+    deadlineNote: "下一届预计 2027 年 5-9 月（官方通知待发布）",
+    phase: "待发布",
+    official: false,
+    credit: 5,
+    schoolProof: { count: 3, best: "二等奖、三等奖多人次", note: "本校 3 人获奖，省教育厅主办，职称认可度高" },
+    materials: [
+      "融合创新教学案例（3000 字内）",
+      "课堂实录（完整 40 分钟或 15 分钟剪辑版）",
+      "教学设计 + 学习任务单 + 评价量表",
+      "技术应用说明（工具清单、使用场景、效果数据）",
+      "作品登记表（省平台在线填报）"
+    ],
+    tips: [
+      "「双融」= 信息技术与学科融合 + 线上线下融合，案例里必须同时体现两条。",
+      "美术老师可做「数字美术馆 + 实体创作」双线案例，天然贴合。",
+      "省赛走「校—区—市—省」四级推送，注意区里截止日比省里早 1-2 个月。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "广东省教育双融双创活动平台（以当年通知为准）",
+    steps: [
+      "关注省教育厅双融双创通知，学校初评",
+      "逐级推送：校 → 区 → 市 → 省",
+      "省平台在线填报 + 上传"
+    ],
+    source: "本校 2025-26 学年双融双创获奖 3 人次"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-experiment",
+    aud: "教师",
+    name: "广东省实验说课比赛（可走跨学科/综合实践口）",
+    short: "省实验说课比赛",
+    tier: "省",
+    org: "广东省教育厅",
+    orgType: "省教育厅",
+    subject: "理科为主 · 美术可走「跨学科/综合实践」口",
+    cycle: "每年一届，通常 6-10 月",
+    window: "2027 年 6 月 — 2027 年 10 月（下一届，待发布）",
+    deadline: "2027-09-15",
+    deadlineNote: "下一届预计 2027 年 6-10 月（官方通知待发布）",
+    phase: "待发布",
+    official: false,
+    credit: 4,
+    schoolProof: { count: 6, best: "省一等奖（团队）", note: "本校 6 人次获奖，是省赛里最容易出成绩的一条" },
+    materials: [
+      "说课视频（15 分钟内）",
+      "实验/实践设计方案",
+      "说课稿 + PPT",
+      "学生实践成果（作品、数据、照片）"
+    ],
+    tips: [
+      "美术老师报「跨学科实践」口：美术 + 物理（光学配色）、美术 + 生物（形态写生），比纯美术更容易出彩。",
+      "省一等奖多为团队申报，找科组同事搭伙，作者排序提前谈好。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "广东省实验说课活动平台（以当年通知为准）",
+    steps: [
+      "关注省教育厅实验说课通知，选跨学科实践口",
+      "准备说课视频 + 方案 + 学生成果",
+      "校 → 区 → 市 → 省 逐级推送"
+    ],
+    source: "本校 2025-26 学年省实验说课获奖 6 人次"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-youth-teach",
+    aud: "教师",
+    name: "广东省中小学青年教师教学能力大赛",
+    short: "省青年教师教学能力大赛",
+    tier: "省",
+    org: "广东省总工会、广东省教育厅（省教科文卫工会承办）",
+    orgType: "省总工会 + 省教育厅",
+    subject: "57 个学科组别 · 含美术",
+    cycle: "两年一届（第五届 2025-12 总决赛；第六届预计 2027）",
+    window: "第六届预计 2027 年下半年（待发布）",
+    deadline: "2027-10-31",
+    deadlineNote: "第五届 2025-12 总决赛已结束；第六届预计 2027 下半年",
+    phase: "已结束",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无（需市赛出线）", note: "总冠军可按程序申报广东省五一劳动奖章，是教师赛事的最高荣誉之一" },
+    materials: [
+      "市赛晋级证明",
+      "教学设计（大单元，含 3-5 课时）",
+      "说课 + 课堂教学展示（现场抽题）",
+      "学科基本功展示材料",
+      "个人成果与荣誉清单"
+    ],
+    tips: [
+      "这是唯一能通向「省五一劳动奖章」的教师赛道，值得提前两年准备。",
+      "赛制含现场抽题，靠的是平时积累，临时抱佛脚没用。",
+      "年龄一般限 40 周岁以下，美术老师要算好自己的窗口期。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "由市总工会 / 市教育局逐级选拔报送",
+    steps: [
+      "区赛 → 市赛出线",
+      "按省赛方案准备大单元教学 + 基本功展示",
+      "由省教科文卫工会统一组织"
+    ],
+    source: "广东省总工会 + 广东省教育厅联合举办；第五届 2025-12 总决赛"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-smart-edu",
+    aud: "教师",
+    name: "广东省国家中小学智慧教育平台全域应用教师数字素养提升实践大赛",
+    short: "省智慧教育平台应用大赛",
+    tier: "省",
+    org: "广东省教育厅",
+    orgType: "省教育厅",
+    subject: "融合创新应用教学案例 · 全学科",
+    cycle: "每年一届，9-12 月",
+    window: "2026 年 9 月 — 2026 年 12 月（下一届，待发布）",
+    deadline: "2026-12-31",
+    deadlineNote: "下一届预计 2026 下半年 — 2027（官方通知待发布）",
+    phase: "待发布",
+    official: false,
+    credit: 5,
+    schoolProof: { count: 1, best: "三等奖（融合创新应用教学案例）", note: "省教育厅主办，和区级评比素材复用率高" },
+    materials: [
+      "平台应用数据截图（备课、授课、作业、资源引用记录）",
+      "融合创新教学案例文本",
+      "课堂实录片段",
+      "学生使用平台的学习数据"
+    ],
+    tips: [
+      "核心是「全域应用」= 备课、授课、作业、教研四个场景都要有平台使用痕迹。",
+      "把区级「教育资源评比」那套课件搬到平台上跑一遍，截图留证，一份素材两个奖。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "国家中小学智慧教育平台广东专区活动入口（以当年通知为准）",
+    steps: [
+      "在智慧教育平台跑通备课/授课/作业四个场景并截图",
+      "整理融合创新案例文本 + 实录",
+      "按省通知平台报送"
+    ],
+    source: "本校 2025-26 学年融合创新应用案例获奖 1 人次"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "gd-shuhua",
+    aud: "学生",
+    bigSchools: [],
+    name: "「翰墨青春 传承岭南」广东青少年书画大赛",
+    short: "省青少年书画大赛（带学生）",
+    tier: "省",
+    org: "广东新快报社、广东省美术家协会、广东省书法家协会",
+    orgType: "省教育厅白名单赛事 · 省美协",
+    subject: "美术 / 书法 · 学生参赛，教师获指导奖",
+    cycle: "省白名单 2025-2028 学年艺术体育类，每学年最多 1 次",
+    window: "每年上半年（下一届 2027，待发布）",
+    deadline: "2027-05-31",
+    deadlineNote: "下一届预计 2027 上半年（以省级白名单公布时间为准）",
+    phase: "待发布", rate:{value:3, ease:4},
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "省教育厅白名单内赛事，公益免费，指导奖可用于成果" },
+    materials: [
+      "学生作品原件（书法 / 绘画，按组别尺寸）",
+      "报名表（学生信息 + 指导教师）",
+      "作品照片（用于线上初评）",
+      "原创承诺（禁止代笔，初评有查重）"
+    ],
+    tips: [
+      "白名单赛事「不收费、不与升学挂钩」，是学校最放心让学生参加的类型。",
+      "教师能拿「优秀指导教师奖」，人多报几个学生，指导奖稳。"
+    ],
+    url: "https://www.xkb.com.cn/",
+    portal: "大赛官方报名通道（以当年白名单公布为准）",
+    steps: [
+      "关注省白名单公布与大赛启动通知",
+      "组织学生创作，收原件 + 报名表",
+      "按官方通道报名（个人/集体）"
+    ],
+    source: "广东省教育厅 2025-2028 学年面向中小学生的全省性竞赛活动白名单（艺术体育类）"
+  ,
+    prep: ["学生作品原件（书法/绘画，按组别尺寸）；报名表含指导教师；作品照片线上初评","原创承诺禁代笔，初评有查重"],
+    win: ["白名单赛事、不收费、不与升学挂钩，是学校最放心让学生参加的类型","教师拿「优秀指导教师奖」，人多报几个学生指导奖更稳"]},
+  {
+    id: "cn-digital",
+    aud: "教师",
+    name: "全国师生数字素养提升实践活动（第三十届教师活动）",
+    short: "全国数字素养实践活动 · 教师（教育部）",
+    tier: "国",
+    org: "教育部教育技术与资源发展中心（中央电化教育馆）",
+    orgType: "教育部直属单位",
+    subject: "课件 / 微课 / 融合创新应用教学案例 / 论文",
+    cycle: "每年一届（第三十届为 2026 年），4 月发文，8-9 月省级推荐",
+    window: "2026 届省级报送多已关闭；第三十一届预计 2027 年 4 月发文",
+    deadline: "2027-06-30",
+    deadlineNote: "第三十届发文 2026-04-17（教技资〔2026〕18号），省级推荐多已于 2026 下半年关闭；下一届待发布",
+    phase: "已截稿",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 2, best: "区选拔赛一等奖", note: "国家级平台，需经区—市—省三级推送，本校已有教师进入区选拔" },
+    materials: [
+      "作品（课件 / 微课 / 融合创新案例，按《指南》规格）",
+      "作品登记表（盖章扫描件）",
+      "教学设计、源文件、素材包",
+      "省级推荐函（个人不能直接报，须由省统一报送）"
+    ],
+    tips: [
+      "关键规则：不接受个人报送，必须走「区—市—省」推荐链条，错过区里截止就彻底没戏。",
+      "一位教师在同一项目只能报 1 件，多报直接取消资格。",
+      "证书由中央电教馆颁发，是信息化教学类最硬的国家级证明。"
+    ],
+    url: "https://huodong.ncet.edu.cn/hd/dndsteacher",
+    portal: "https://huodong.ncet.edu.cn/hd/dndsteacher（教师活动入口；个人须经省电教馆推荐）",
+    steps: [
+      "研读《2026 年全国师生数字素养提升实践活动（第三十届教师活动）指南》",
+      "校 → 区 → 市 逐级遴选，争取省级推荐名额",
+      "由省电教馆在活动网站统一报送（个人不能直接报）"
+    ],
+    source: "教育部教育技术与资源发展中心（中央电化教育馆）教技资〔2026〕18 号，2026-04-17 发文；活动网站 huodong.ncet.edu.cn"
+  ,
+    prep: ["详见该赛事当年官方通知的尺寸/格式/报送渠道","多数须走「学校—区—市」推荐，个人不能直报，错过区里截止就彻底没戏"],
+    win: ["主题贴合是关键，跑题直接出局","原创零容忍，临摹/AI未标注/代笔会被拉黑","尺寸规格必须达标，误差超限取消资格","平时攒好课件/作品集/实录，临报才不慌"]},
+  {
+    id: "cn-paint",
+    aud: "学生",
+    bigSchools: ["深圳外国语学校(集团)","深圳大学附属中学"],
+    name: "全国中小学生绘画书法作品比赛",
+    short: "全国中小学生绘画书法比赛（带学生）",
+    tier: "国",
+    org: "中国儿童中心",
+    orgType: "教育部白名单第 35 项 · 全国妇联直属",
+    subject: "绘画 / 书法 · 学生参赛，教师获指导奖",
+    cycle: "白名单 2025-2028 学年，每学年 1 次",
+    window: "通常下半年启动、次年上半年截稿（下一届待发布）",
+    deadline: "2027-03-31",
+    deadlineNote: "下一届预计 2026 下半年启动、2027 上半年截稿（官方待发布）",
+    phase: "待发布", rate:{value:5, ease:4},
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "教育部白名单内，国家级指导奖，学生和家长最认" },
+    materials: [
+      "学生作品原件（按组别尺寸，不装裱）",
+      "报名表（学生 + 指导教师 + 学校）",
+      "作品高清照片（线上初评用）",
+      "集体报名汇总表（学校统一报送更快）"
+    ],
+    tips: [
+      "教育部白名单第 35 项，社会认可度较高的少儿书画赛事；组织学生参赛时可同时申报指导教师奖。",
+      "务必核对当年白名单编号和主办单位，市面上同名山寨赛很多。",
+      "学校集体报名通道通常比个人报名早截止，走教务处更快。"
+    ],
+    url: "https://www.moe.gov.cn/",
+    portal: "大赛官方报名通道（以当年教育部监管平台公布为准）",
+    steps: [
+      "核对当年白名单（第 35 项）与主办单位",
+      "组织学生创作，收原件 + 报名表",
+      "学校集体报名或官方通道报名"
+    ],
+    source: "教育部 2025-2028 学年面向中小学生的全国性竞赛活动白名单（第 35 项）"
+  ,
+    prep: ["学生原作按组别尺寸、不装裱；报名表含学生+指导教师+学校；高清照片用于线上初评","务必核对当年白名单编号（第35项）和主办单位（中国儿童中心），市面上同名山寨赛极多","学校集体报名通道通常比个人报名早截止，走教务处更快"],
+    win: ["社会认可度较高的少儿书画白名单赛事；组织多名学生参赛时，可同时申报指导教师奖","组织学生参赛即攒「育人成果」，职称评审里和本人获奖同等分量"]},
+
+  /* ============ 教师专属/高对口补充（教育部/省教育厅/国家语委/省文旅厅/学术团体） ============ */
+  {
+    id: "cn-jpk",
+    aud: "教师",
+    name: "“基础教育精品课”遴选（教育部办公厅）",
+    short: "基础教育精品课（教育部）",
+    tier: "国",
+    org: "教育部办公厅",
+    orgType: "教育部直属",
+    subject: "学科课程（含小学/初中/高中美术）、实验教学、人工智能教育、阅读课、科技教育",
+    cycle: "每年一届，9-10 月申报，逐级遴选至教育部",
+    window: "2026 届已启动：2026-09 发文，10 月中旬前市级推荐",
+    deadline: "2026-10-20",
+    deadlineNote: "教育部办公厅教基厅函〔2026〕22 号；2026 届 9 月发文，10 月 20 日前报市级（以各市通知为准）",
+    phase: "进行中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（国家级平台，教育部认定，职称/评优很有分量）", note: "教育部官方遴选，入选即获部级精品课证书，是所有微课类里规格最高的" },
+    materials: [
+      "微课视频（学科课程类，按平台节点录制，含学习任务单、课件、作业练习）",
+      "教学设计（对照国家课程标准，体现学科德育与综合育人）",
+      "学习任务单 + 课件（PPT）",
+      "作业练习（学科课程类须提交）",
+      "在国家中小学智慧教育平台 jpk.basic.smartedu.cn 按要求上传"
+    ],
+    tips: [
+      "这是美术老师能拿到的「部级」证书里最容易上手的一条——本质就是把一节课做成精品微课。",
+      "同一目录节点各省只推 1 节，先在校内、区内占位，比拼的是「课堂实效 + 制作规范」。",
+      "2026 届明确把美术单列在学科课程里（影视归美术），抓住节点申报别错过窗口。"
+    ],
+    url: "https://www.moe.gov.cn/srcsite/A06/s3321/202609/t20260916_1451040.html",
+    portal: "https://jpk.basic.smartedu.cn（国家中小学智慧教育平台·精品课遴选）",
+    steps: [
+      "研读教育部办公厅教基厅函〔2026〕22 号及平台制作要求",
+      "选定课程目录节点，录制微课视频 + 教学设计 + 学习单 + 课件 + 作业",
+      "登录 jpk.basic.smartedu.cn 上传，经学校→区→市→省逐级遴选",
+      "省级在名额内推荐参加教育部遴选"
+    ],
+    source: "教育部办公厅《关于开展2026年“基础教育精品课”遴选工作的通知》教基厅函〔2026〕22 号（2026-09-16）"
+  ,
+    prep: ["微课视频按国家平台节点录制，须含学习任务单、课件、作业练习","教学设计对照国家课程标准，体现学科德育与综合育人","在 jpk.basic.smartedu.cn 上传；同一目录节点各省只推1节"],
+    win: ["美术老师能拿到的「部级」证书里最容易上手——本质就是把一节课做成精品微课","先在校内、区内占位，比拼的是「课堂实效+制作规范」而非花哨","2026届明确把美术单列在学科课程里（影视归美术），抓住节点申报"]},
+  {
+    id: "cn-bimo",
+    aud: "教师",
+    name: "中华经典诵写讲大赛·“笔墨中国”汉字书写大赛（教师组）",
+    short: "笔墨中国·教师组（教育部/国家语委）",
+    tier: "国",
+    org: "教育部、国家语委",
+    orgType: "教育部直属 · 中华经典诵读工程",
+    subject: "硬笔 / 毛笔 / 粉笔（均设教师组）+ 书法文创类",
+    cycle: "每年一届（第八届 2026），5-8 月赛程",
+    window: "第八届 2026-08-05 作品提交截止；第九届预计 2027 年",
+    deadline: "2026-08-05",
+    deadlineNote: "第八届教语用函〔2026〕1 号：官网测评 + 作品提交 2026-08-05 24:00 截止（已截稿）；广东省有赛区复赛",
+    phase: "已截稿",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无（硬笔/毛笔方向美术、书法老师对口）", note: "教育部+国家语委主办，教师组独立评奖，已有教师拿全国一等奖案例" },
+    materials: [
+      "书写作品图片（硬笔 A3 内；毛笔六尺整张内竖式；300DPI 或 2-10MB JPG）",
+      "书写视频（横屏、持证 5 秒 + 书写过程 2 分钟 + 展示 5 秒，MP4≤300MB）",
+      "所抄内容版本图片（出版物章节页 + 版权页）",
+      "先在大赛官网 jdsxj.eduyun.cn 完成语言文字知识及书法常识测评（≥60 分合格方可参赛）"
+    ],
+    tips: [
+      "硬笔、毛笔、粉笔三个类别都单设「教师组」，书法/美术老师是对口赛道。",
+      "已有案例：某职校教师硬笔《毛泽东诗词选抄》获第七届全国一等奖——教师组真可获国家级奖项。",
+      "广东是举办赛区初赛的 20 个省份之一，走「官网测评→省赛区提交→全国决赛」路径，别只交官网。"
+    ],
+    url: "https://jdsxj.eduyun.cn/",
+    portal: "https://jdsxj.eduyun.cn（中华经典诵写讲大赛官网，教师本人注册报名）",
+    steps: [
+      "登录 jdsxj.eduyun.cn 完成语言文字及书法常识测评（≥60 分）",
+      "按方案上传作品图片 + 书写视频 + 内容版本证明",
+      "广东赛区作者按省赛区要求提交，进入复赛推荐全国决赛",
+      "入围决赛者邮寄纸质作品（粉笔类彩色打印 A3）"
+    ],
+    source: "教育部、国家语委《关于举办第八届中华经典诵写讲大赛的通知》教语用函〔2026〕1 号；第八届“笔墨中国”书写大赛方案",
+    to: "官网 jdsxj.eduyun.cn 教师本人注册报名（先完成知识测评≥60分，再传作品图+2分钟书写视频）",
+    advice: "级别高但准备量较大：教育部与国家语委主办，设教师组；需录制视频并参加测评，请预留时间"
+  ,
+    prep: ["硬笔≤A3、毛笔≤六尺整张竖式，300DPI或2-10MB JPG；须附所抄内容的出版物版本页（章节页+版权页）","硬笔强制规范汉字，禁繁体/异体/繁简混用，行书出现草书笔法直接淘汰；毛笔繁体可，但篆书/草书须附释文","须横屏录视频：持证5秒+书写过程2分钟+展示5秒（MP4≤300MB）","最关键门槛：先在大赛官网 jdsxj.eduyun.cn 完成语言文字知识及书法常识测评，≥60分合格才能参赛"],
+    win: ["教师组对口程度高（硬笔、毛笔、粉笔均单设教师组），已有教师获全国一等奖的案例","书写内容须出自经典诗文或正式出版物，很多人抄《党的二十大报告》金句很稳","广东是20个初赛赛区之一，走「官网测评→省赛区提交→全国决赛」，别只在官网交了事"]},
+  {
+    id: "cn-cse-art",
+    aud: "教师",
+    name: "中国教育学会中小学美术课现场展示交流活动（第九届）",
+    short: "全国中小学美术课展示（中国教育学会）",
+    tier: "国",
+    org: "中国教育学会美术教育专业委员会、《中国美术教育》编辑部",
+    orgType: "国家级学术团体（教育部业务主管）",
+    subject: "中小学美术课堂教学（分 1-3 / 4-6 / 7-9 / 高中四组，含影视、数字媒体艺术）",
+    cycle: "每数年一届（第九届 2025-10 重庆；上一届 2018，间隔 7 年）",
+    window: "第九届 2025-10-25 至 30 已举办；第十届待发布",
+    deadline: "2027-09-01",
+    deadlineNote: "第九届 2025-10 在重庆举办（已结束），由各省教研部门推荐；下一届待发布",
+    phase: "已结束",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无（全国美术教师顶级盛会，省第一→全国展示）", note: "代表各省遴选的优质课例全国展示，无单独“奖”但规格很高，是职称/名师的重要资历" },
+    materials: [
+      "教学录像（经省教研部门遴选推荐）",
+      "电子教案、教学设计、教学资源、教学案例（版权归学会）",
+      "由省级美术教研员/教研部门统一推荐，不接受个人直报"
+    ],
+    tips: [
+      "这不是普通比赛，是「全国中小学美术教育顶级盛会」——能站上去本身就意味着你是全省顶尖。",
+      "路径：校→区→市→省教研部门推荐，各省只推少量课例（如某省小学组全省第一才进全国）。",
+      "虽无一二三等奖，但「全国现场展示课例」在职称、名师工作室申报里分量极重。"
+    ],
+    url: "https://www.cse.edu.cn/index/detail.html?category=32&id=4455",
+    portal: "由省级美术教研部门推荐（中国教育学会官网报名，展示教师免培训费）",
+    steps: [
+      "关注中国教育学会美术教育专业委员会年度学术年会通知",
+      "争取省级美术教研部门推荐资格（校→区→市→省层层选拔）",
+      "按学会要求提交教学录像与资料，参加现场展示交流"
+    ],
+    source: "中国教育学会美术教育专业委员会《2025年学术年会暨第九届中小学美术课现场展示交流活动》通知（2025-10 重庆）"
+  ,
+    prep: ["教学录像经省教研部门遴选推荐；电子教案/设计/资源/案例（版权归学会）","不接受个人直报，须由省级美术教研员/教研部门统一推荐"],
+    win: ["全国中小学美术教育顶级盛会，能站上去即意味着全省顶尖","路径：校→区→市→省推荐，各省只推少量（如某省小学组全省第一才进全国）","虽无一二三等奖，但「全国现场展示课例」在职称、名师工作室申报里分量极重"]},
+  {
+    id: "gd-hanmo",
+    aud: "教师",
+    name: "“翰墨薪传”全省教师书法作品交流活动（广东省教育厅）",
+    short: "翰墨薪传·教师书法（省教育厅）",
+    tier: "省",
+    org: "广东省教育厅（广州美术学院承办）",
+    orgType: "省教育厅",
+    subject: "毛笔 / 硬笔 / 篆刻（设甲组=书法/美术专业教师、乙组=其他专业教师）",
+    cycle: "每 1-2 届，第五届 2025（报送 2025-09-01 前）；第六届预计 2027",
+    window: "第五届 2025 已收官；第六届预计 2027 年，关注省教育厅通知",
+    deadline: "2027-09-01",
+    deadlineNote: "第五届 2025-09-01 前报送（已结束）；第六届以省教育厅通知为准",
+    phase: "已结束",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无（全省教师书法专属平台，硬笔/毛笔方向对口）", note: "省教育厅主办、广美承办，近三年省二等奖以上不得再报，征稿不接受往届省级展作品" },
+    materials: [
+      "书法作品电子照片 + 报送表（WORD 版 + 盖学校公章 PDF 扫描版）",
+      "毛笔：竖式 4 尺以内（≤138×69cm）；硬笔：竖式 A3 内；篆刻：4 尺对开印屏 + 8-12 方印蜕",
+      "篆书/草书/篆刻须附释文，生僻字另附出处表",
+      "以学校为单位网上报送，不接受个人报送"
+    ],
+    tips: [
+      "这是广东省**专给教师**的书法平台，分甲组（书法/美术专业出身）和乙组（其他专业但有特长），美术老师按专业对口甲组。",
+      "不接受个人报送，必须经学校统一上传——提前和校办/工会沟通报送安排。",
+      "近三年在省里拿过二等奖以上的不能再来，但新人机会多。"
+    ],
+    url: "https://wjjy.dgjy.net/info/1041/98823.htm",
+    portal: "由学校统一通过活动系统报送（不接受个人直报）",
+    steps: [
+      "关注广东省教育厅《翰墨薪传》通知，确认甲/乙组",
+      "创作作品，准备电子照片 + 报送表（盖章）",
+      "由学校统一网上报送"
+    ],
+    source: "广东省教育厅关于举办“翰墨薪传”第五届全省教师书法作品交流活动的通知（广州美术学院承办）",
+    to: "经学校工会/校办统一报送（不接受个人直报）；关注广东省教育厅通知",
+    advice: "准备量小：省教育厅面向教师的书法平台，线上提交作品，请提前准备（近三年获省二等奖以上者不得再报）"
+  ,
+    prep: ["毛笔竖式4尺内(≤138×69cm)；硬笔竖式A3内；篆刻4尺对开印屏+8-12方印蜕","篆书/草书/篆刻须附释文，生僻字另附出处表","电子照片+报送表（WORD版+盖学校公章PDF扫描版）；以学校为单位网上报送，不接受个人"],
+    win: ["广东省专给教师的书法平台，分甲组（书法/美术专业出身）和乙组（其他专业特长），美术老师对口甲组","不接受个人报送，必须提前和校办/工会沟通报送安排","近三年在省里拿过二等奖以上的不能再来，但新人机会多"]},
+  {
+    id: "gd-lingnan",
+    aud: "教师",
+    name: "“岭南潮声”粤港澳大湾区美术作品展",
+    short: "岭南潮声·大湾区美术展（省文旅厅/省美协）",
+    tier: "省",
+    org: "广东省文化和旅游厅、广东省文联、广东省美术家协会、中山市人民政府",
+    orgType: "省文旅厅 + 省美协（专业系统）",
+    subject: "中国画/油画/版画/雕塑/水彩/漆画/壁画/宣传画/连环画/漫画/年画",
+    cycle: "每年一届（2026 届：9-12 月展，8 月截稿）",
+    window: "2026 届 2026-08-11 截稿（已截稿）；2027 届预计 2027 年夏",
+    deadline: "2027-08-11",
+    deadlineNote: "2026 届电子稿 2026-08-11 截止、原作 9-7 前寄送（已截稿）；2027 届待发布",
+    phase: "已截稿",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无（面向湾区工作/生活作者，美术老师可投）", note: "省文旅厅+省美协主办，规格高、入展即发证书+作品集，巡展至深圳宝安图书馆" },
+    materials: [
+      "作品电子高清图（≥300dpi，JPG，2-5MB；雕塑多角度 3-5 张）",
+      "《作品信息卡》（作者、题目、尺寸、创作时间、地址、手机）",
+      "2023-01-01 至今创作的作品，每人限 1 件",
+      "初评入围后寄送原作（背后注明题目/种类/尺寸/年份/姓名/身份证复印件）"
+    ],
+    tips: [
+      "作者只要「在粤港澳大湾区工作/生活」就能投，深圳美术老师完全符合——这是专业系统里离老师最近的国家级湾区展。",
+      "2026 届巡展点包含深圳市宝安区图书馆，便于本区教师观展。",
+      "主题须体现湾区人文特色，深圳城市题材较为贴切。"
+    ],
+    url: "http://mp.weixin.qq.com/s?__biz=MzI2MTI2ODQ5OQ==&mid=2247661145&idx=2&sn=1cf102f6bd25e887a028e0c6f80cf20f",
+    portal: "按各地市美协通知邮箱报送（如江门 jmsmsjxh@126.com；省展统一邮箱见征稿启事）",
+    steps: [
+      "关注广东省美术家协会公众号「岭南潮声」征稿启事",
+      "准备电子高清图 + 作品信息卡，按地市美协要求发送至指定邮箱",
+      "初评入围后寄送原作"
+    ],
+    source: "广东省文化和旅游厅等《“岭南潮声”——2026粤港澳大湾区美术作品展》征稿通知（首站中山美术馆，巡展含深圳宝安区图书馆）",
+    to: "发邮箱 932173265@qq.com（作品信息卡+高清图 JPG 2-5MB，≥300dpi）；按广东省美协公众号「岭南潮声」启事报送",
+    advice: "建议优先：在湾区工作或生活即可参加，深圳教师符合条件；2026 巡展含宝安区图书馆"
+  ,
+    prep: ["电子高清图≥300dpi、JPG、2-5MB（雕塑多角度3-5张）；填《作品信息卡》","限2023-01-01至今创作的作品，每人限1件","初评入围后才寄原作，原作背后注明题目/种类/尺寸/年份/姓名/身份证复印件"],
+    win: ["在粤港澳大湾区工作/生活即可投，深圳美术老师完全符合——专业系统里离老师最近的湾区展","2026届巡展含宝安区图书馆，本区就能看自己作品","主题体现湾区人文、深圳城市题材命中率最高；不限专业教师（和「广东联展」不同，那条排除专业教师）"]},
+  {
+    id: "gd-lianzhan",
+    aud: "教师",
+    name: "广东省美术书法摄影作品联展（第十八届）",
+    short: "省美术书法摄影联展（注意：专业教师禁赛）",
+    tier: "省",
+    org: "广东省文化和旅游厅、广东省美术家协会、广东省书法家协会、广东省摄影家协会",
+    orgType: "省文旅厅 + 省美协/书协/摄协",
+    subject: "美术 / 书法 / 摄影（群众文艺方向）",
+    cycle: "每年一届（第十八届 2026，5-12 月）",
+    window: "第十八届 2026-06-09 地市报送截止（已截稿）；第十九届预计 2027",
+    deadline: "2026-06-09",
+    deadlineNote: "第十八届 2026-06-09 前地市报送（已截稿）；注意：院校美术/书法/摄影类专业教师不得参评",
+    phase: "已截稿",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无（⚠ 美术/书法/摄影类专业教师明确不得参评）", note: "群众文艺展，面向非专业创作身份；院校艺术类专业教师被排除，确认身份后再决定" },
+    materials: [
+      "作品电子稿（美术每人限 1 幅、书法/摄影每人限 3 幅）",
+      "由地市文化广电旅游体育局组织推荐报送",
+      "作者须年满 16 周岁、在粤居住/工作、且为非专业创作身份"
+    ],
+    tips: [
+      "⚠ 关键红线：通知明确「书画院、美术馆专职创作人员及院校美术、书法、摄影类专业教师不得参评」——公办学校美术老师大概率被排除。",
+      "若你是非艺术专业出身、以兴趣身份参赛，或可尝试；否则这条直接跳过，别白忙。",
+      "同样是省文旅厅+省美协主办，但「岭南潮声」不限专业教师，那条更适合你。"
+    ],
+    url: "https://zhwhg.com/portal/category/read?id=4004&nid=150",
+    portal: "由各地市文化广电旅游体育局组织推荐（以当年通知为准）",
+    steps: [
+      "确认自身是否符合「非专业创作身份」要求",
+      "如符合，关注地市文广旅体局联展报送通知",
+      "按地市要求提交作品电子稿"
+    ],
+    source: "广东省文化和旅游厅等《广东省第十八届美术书法摄影作品联展》作品征集通知（2026-05 至 12 月）",
+    to: "由各地市文化广电旅游体育局组织推荐（注意：美术/书法/摄影类专业教师不得参评）",
+    advice: "⚠️ 跳过：院校艺术类专业教师明确禁赛，公办美术老师大概率被排除，别白忙；想投专业展走「岭南潮声」"
+  ,
+    prep: ["美术每人限1幅、书法/摄影每人限3幅；由地市文广旅体局组织推荐报送","作者须年满16周岁、在粤居住/工作、且为非专业创作身份"],
+    win: ["⚠红线：通知明确「书画院、美术馆专职创作人员及院校美术/书法/摄影类专业教师不得参评」——公办学校美术老师大概率被排除","若你是非艺术专业出身、以兴趣身份参赛或可试，否则这条直接跳过别白忙","想投专业展走「岭南潮声」，那条不限专业教师"]},
+
+  /* ============ 学生类（学生参赛 · 教师获指导奖）补充 ============ */
+  /* ---------- 本地市级/区级书画赛（规格适中·好参加，跨市印证「每市都有自家书画赛」） ---------- */
+  { aud:"学生", id:"gd-arts", name:"广东省中小学生艺术展演（艺术作品类）", short:"省中小学生艺术展演", tier:"省",
+    org:"广东省教育厅", orgType:"省级最高规格艺术展（每三年一届）", subject:"绘画/书法篆刻/摄影/手工艺 · 学生作品+指导教师",
+    cycle:"每三年一届（第八届 2024-2025，第九届待启动）", window:"学校选拔→市级→省级，层层选送", deadline:"", deadlineNote:"三年一届，下一届预计 2027 年启动（官方待发布）",
+    phase:"待发布", official:true, credit:5, rate:{value:5, ease:2},
+    schoolProof:{ count:0, best:"本校暂无记录", note:"省级最高规格，一等奖作品可报送教育部，职称很有分量" },
+    materials:["学生作品原件","学校推荐表+指导教师","市赛获奖证明（层层选送）","展演报名汇总"],
+    tips:["三年一届、门槛最高，但规格最高：省一等奖可报送教育部","必须先过校选、市选，提前一年准备","宝安中学、红岭等深圳名校都靠它出硬成果"],
+    url:"https://edu.gd.gov.cn/", portal:"由市/区教育局组织选送，学校统一报名", steps:["校内选拔","市赛","省赛展演"],
+    source:"广东省教育厅中小学艺术展演活动通知（第八届 2024-2025）",
+    prep:["三年一届、省级最高规格，必须先过校选→市选→省展演","省一等奖作品可报送教育部，职称评审分量很重","绘画/书法/摄影/手工艺均可投，提前一年布局"],
+    win:["规格最高但极难：只有层层选送的尖子能进省展","深圳可参照宝安中学、红岭等校的选送路径","不适合「广撒网」，适合重点打磨 1-2 件尖货"],
+    bigSchools:["宝安中学(集团)","红岭中学(集团)"] },
+
+  
+  
+  { aud:"学生", id:"sz-hanzi", name:"深圳市中小学规范汉字书写大赛", short:"深圳规范汉字书写大赛", tier:"市",
+    org:"深圳市教育局 / 深圳市语委", orgType:"深圳市级书法专项（每年一届）", subject:"硬笔/软笔书法 · 学生+教师",
+    cycle:"每年一届", window:"每年征集、市级评审", deadline:"", deadlineNote:"每年一届，通常下半年启动（官方待发布）",
+    phase:"待发布", official:true, credit:3, rate:{value:3, ease:5},
+    schoolProof:{ count:0, best:"本校暂无记录", note:"深圳市级书法专项，宝安学校认" },
+    materials:["书法作品原件","报名表+学校","校级选拔推荐"],
+    tips:["深圳本地的书法专项，门槛较低、便于组织","硬笔为主、软笔也可，可结合日常写字教学组织参赛","也是广东省规范汉字书写大赛的深圳选拔通道"],
+    url:"https://szeb.sz.gov.cn/", portal:"由深圳市各学校统一报名", steps:["校内选拔","市级评审"],
+    source:"深圳市教育局规范汉字书写大赛通知",
+    prep:["深圳本地书法专项，门槛较低、便于组织","硬笔为主、软笔也可，可结合日常写字教学组织参赛","是「广东省规范汉字书写大赛」的深圳选拔通道"],
+    win:["最好参加：本地专项、低门槛、宝安学校认","书法老师零成本带学生冲，攒指导奖","深圳市级专项，宝安学校认"],
+    bigSchools:[] },
+
+  
+  
+  
+    
+    {
+    id: "cn-hope",
+    aud: "学生",
+    bigSchools: ["深圳大学附属中学","深圳中学(大鹏学校)","南科大附中宝安学校","深圳市第七高级中学"],
+    name: "「希望颂」全国青少年书画艺术大展",
+    short: "希望颂全国书画大展（带学生）",
+    tier: "国",
+    org: "中国国际书画艺术研究会",
+    auth: "教育部白名单·艺术体育类第43项",
+    reg: "全国中小学生(小学/初中/高中含职高)",
+    orgType: "教育部白名单（艺术体育类）",
+    subject: "绘画 / 书法 / 摄影 / 雕塑 / 剪纸 · 学生参赛，教师获指导奖",
+    cycle: "每年一届，通常下半年启动、次年上半年截稿",
+    window: "下一届预计 2026 下半年 — 2027 上半年（待发布）",
+    deadline: "2027-07-31",
+    deadlineNote: "教育部 2022—2025 学年面向中小学生全国性竞赛活动名单（第 43 项）；2026-2027 届具体通知待发布",
+    phase: "待发布", rate:{value:5, ease:4},
+    official: false,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "教育部白名单内，公益免费，教师可获优秀指导教师奖，计入成果" },
+    materials: [
+      "学生作品原件（按组别与尺寸要求，不装裱）",
+      "报名表（学生信息 + 指导教师 + 学校）",
+      "作品高清照片（线上初评用）",
+      "原创承诺（禁止代笔，初评查重）"
+    ],
+    tips: [
+      "白名单赛事、不收费、不与升学挂钩，是学校最放心让学生参加的类型。",
+      "教师可拿「优秀指导教师奖」，一次多报几名学生，指导奖更稳。"
+    ],
+    url: "https://www.moe.gov.cn/",
+    portal: "由大赛授权组织单位 / 学校集体报名（以当年白名单公布为准）",
+    steps: [
+      "核对当年白名单与主办单位，关注授权报名通道",
+      "组织学生创作，收原件 + 报名表",
+      "通过学校集体或授权单位报名"
+    ],
+    source: "教育部 2022—2025 学年面向中小学生的全国性竞赛活动名单（第 43 项 · 中国国际书画艺术研究会）"
+  ,
+    prep: ["尺寸死规定：软笔/国画四尺对裁(138×34)或三裁(69×46)竖幅，误差≤2cm；硬笔A4竖幅；其他画种四开/八开；数字美术≤60×40cm且≥A4、≥100dpi，须附创意说明+原创声明","必须寄原作：先线上报名→下载标签贴原作背面右下角→再寄；只寄图不寄原作直接取消资格，且一律不退稿","每人最多投2幅且须不同类别（如硬笔+国画），重复投同类无效"],
+    win: ["主题须贴合真实生活：如本届「美在身边」宜取材日常小事，空泛的口号式主题不易入选","原创零容忍：代笔/高仿/抄袭/用往届作品，取消资格并拉进黑名单、永久禁赛","想拿「优秀指导教师奖」门槛：辅导≥20人，且含1个一等奖或2个二等奖、总获奖≥15人——一次多报学生最划算","零收费公益赛，凡要你交「报名费/保奖费」的中介都是骗子"]},
+  {
+    id: "sz-meirun",
+    aud: "学生",
+    bigSchools: ["红岭中学(集团)","深圳外国语学校高中园"],
+    name: "深圳市「美润鹏城」中小学校美育成果展演（美术专场）",
+    short: "深圳美润鹏城美育展演（带学生）市教育局",
+    tier: "市",
+    org: "深圳市教育局",
+    orgType: "市教育局（官方主办）",
+    subject: "绘画 / 书法篆刻 / 摄影 / 手工艺 / 装置 / 影视 / 创意设计 · 学生作品 + 指导教师",
+    cycle: "每年一届（首届 2026 年举办）",
+    window: "首届 2026 年已收官；第二届预计 2027—2028 学年",
+    deadline: "2027-12-31",
+    deadlineNote: "首届 2026-01-23 公示获奖名单（绘画、书法篆刻、摄影、手工艺、装置、影视、创意设计七类）；第二届待发布",
+    phase: "已结束",
+    official: true,
+    credit: 5, rate:{value:4, ease:4},
+    schoolProof: { count: 0, best: "本校暂无记录（市教育局主办，学校认可度高）", note: "市教育局官方美育展演，学生作品 + 指导教师，认可度高、学校认可度高" },
+    materials: [
+      "学生原作（按专场类别与尺寸要求）",
+      "作品信息卡（作品名、作者、年级、指导教师、创作说明）",
+      "指导教师辅导说明（课时安排、辅导过程）",
+      "学生创作过程照片与视频",
+      "学校汇总表（盖章）"
+    ],
+    tips: [
+      "市教育局官方美育平台，学生作品 + 指导教师双署名，职称评审「育人成果」直接可用。",
+      "覆盖 7 个类别，摄影、手工艺、装置都能报，不止绘画书法。",
+      "首届已于 2026 年 1 月公示，第二届通常随学年推进，关注深圳市教育局公示。"
+    ],
+    url: "https://szeb.sz.gov.cn/",
+    portal: "由各区教育局 / 学校统一选送（不接受个人直报）",
+    steps: [
+      "关注深圳市教育局美育展演通知，学校选拔报送",
+      "收学生原作 + 信息卡 + 过程材料，学校汇总",
+      "由区教育局统一选送市局评审"
+    ],
+    source: "深圳市教育局关于首届「美润鹏城」中小学校美育成果展演（美术专场）获奖名单公示（2026-01-23）",
+    prep: ["学生原作按专场类别与尺寸要求；作品信息卡含作品名/作者/年级/指导教师/创作说明","指导教师辅导说明（课时安排、辅导过程）+学生创作过程照片与视频","学校汇总表盖章"],
+    win: ["市教育局官方美育平台，学生作品+指导教师双署名，职称「育人成果」直接可用","覆盖7个类别（摄影/手工艺/装置都能报），不止绘画书法","创作说明要写「学生自己说的」，评委一眼能看出代笔"]},
+  {
+    id: "gd-meiyu",
+    aud: "学生",
+    bigSchools: ["红岭中学(集团)","宝安中学(集团)"],
+    name: "广东省中小学校美育成果交流展示活动",
+    short: "广东美育成果交流展示（带学生）省教育厅",
+    tier: "省",
+    org: "广东省教育厅",
+    orgType: "省教育厅（官方主办）",
+    subject: "艺术表演类 / 艺术作品类 / 艺术课程教学成果类 · 学生作品 + 指导教师",
+    cycle: "每年一届（2026 届已评）",
+    window: "2026 届已收官；2027 届预计 2027 下半年",
+    deadline: "2027-10-31",
+    deadlineNote: "2026 届深圳市推荐 86 个作品，公示 2026-10-27；2027 届待发布",
+    phase: "已结束",
+    official: true,
+    credit: 5, rate:{value:4, ease:3},
+    schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校认可度高）", note: "省教育厅官方美育展示，晋级通道：校 → 区 → 市推荐 → 省，教师获指导奖" },
+    materials: [
+      "学生艺术作品原件（书法/篆刻、摄影/视频、绘画等）",
+      "艺术课程教学成果材料（教学案例、校本课程）",
+      "指导教师信息与辅导说明",
+      "学校 / 区推荐汇总表（盖章）"
+    ],
+    tips: [
+      "省教育厅官方美育展示，是美术老师带学生出省级成绩的最硬渠道。",
+      "走「校—区—市推荐—省」晋级，先在校内占位，再争市级推荐名额。",
+      "艺术作品类含摄影/视频创作，与深圳美润鹏城可素材复用。"
+    ],
+    url: "https://edu.gd.gov.cn/",
+    portal: "由深圳市教育局统一推荐报送（不接受个人直报）",
+    steps: [
+      "关注广东省教育厅美育成果交流展示活动通知",
+      "学校选拔 → 区推荐 → 争取深圳市推荐名额（86 个/届）",
+      "由省教育厅组织评审"
+    ],
+    source: "深圳市教育局关于推荐参加 2026 年广东省中小学校美育成果交流展示活动名单公示（2026-10-27）",
+    prep: ["学生艺术作品原件（书法/篆刻、摄影/视频、绘画等）","艺术课程教学成果材料（教学案例、校本课程）+指导教师信息与辅导说明","学校/区推荐汇总表盖章"],
+    win: ["省教育厅官方美育展示，美术老师带学生出省级成绩最硬渠道","走「校—区—市推荐—省」晋级，先校内占位争市级推荐名额","摄影/视频创作与深圳「美润鹏城」素材可复用，一份作品两个奖"]},
+
+  /* ===== 2026-11 增补：宝教通 / 宝安 / 深圳 / 广东 / 教育部新白名单 真实可投赛事（均附官方出处） ===== */
+  {
+    id: "ba-jindu-paint",
+    aud: "学生",
+    bigSchools: ["宝安中学(集团)","海湾中学"],
+    name: "宝安区中小学生禁毒绘画创作比赛",
+    short: "宝安禁毒绘画比赛（带学生）",
+    tier: "区",
+    org: "宝安区禁毒办 · 宝安区教育局",
+    orgType: "区教育局 / 区禁毒办（官方）",
+    subject: "绘画 · 禁毒主题 · 学生参赛，教师获指导奖",
+    cycle: "每年一届，通常 5-6 月（6·26 国际禁毒日前）征集",
+    window: "2025 届已结束；2026 届预计 2026 年 5-6 月",
+    deadline: "2026-06-20",
+    deadlineNote: "2025 届标尚学校学生获小学组三等奖、指导教师获评优秀指导教师（真实出处已检索）",
+    phase: "待发布", rate:{value:3, ease:5},
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "区官方主题赛事，学生作品+指导教师，计入育人成果" },
+    materials: ["学生禁毒主题绘画原作（按通知尺寸）","作品信息卡（作品名/作者/年级/指导教师）","学校汇总表（盖章）"],
+    tips: ["主题性强：紧扣「健康人生·绿色无毒」，画真实生活里的拒毒故事最稳。","区官方赛事、免费，学校愿意推，指导老师可拿优秀指导教师奖。"],
+    url: "https://bjt.baoan.edu.cn/",
+    portal: "宝教通 / 学校政教处统一报送",
+    steps: ["关注宝教通禁毒绘画比赛通知","组织学生创作+收原作+学校汇总盖章","通过学校/区报送"],
+    source: "宝教通 / 宝安日报：2025 届标尚学校获奖报道",
+    prep: ["学生禁毒主题绘画原作（按通知尺寸，不装裱）","作品信息卡含作品名/作者/年级/指导教师","学校汇总表盖章"],
+    win: ["主题紧扣「健康人生·绿色无毒」，真实生活化故事最稳","区官方免费赛事，学校愿意推，指导老师可拿优秀指导教师奖"]},
+  {
+    id: "ba-netcamp",
+    aud: "学生",
+    bigSchools: ["宝安中学(集团)"],
+    name: "深圳市学生网络夏令营宝安区选拔赛 · 电脑绘画",
+    short: "网络夏令营宝安选拔·电脑绘画（带学生）",
+    tier: "区",
+    org: "深圳市宝安区教育局（市级夏令营区级选拔）",
+    orgType: "区教育局（官方）",
+    subject: "电脑绘画（仅限小学组、初中组） · 学生参赛，教师获指导奖",
+    cycle: "每年一届，通常 1-2 月作品提交、2-3 月区级评审",
+    window: "2025 届 2025.1.1-2.23 征稿（真实）；下一届预计 2026 年底-2027 初",
+    deadline: "2027-02-23",
+    deadlineNote: "2025 届宝教通已发通知：数字创作推选 40 件参加市赛，市赛优胜推荐粤港澳信息科技创新大赛",
+    phase: "待发布", rate:{value:3, ease:4},
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录", note: "晋级通道清晰：区选拔→市赛→粤港澳，性价比高" },
+    materials: ["电脑绘画电子稿（JPG/源文件）","作品创作说明（选题、软件、创作过程）","报名汇总表（学校盖章）"],
+    tips: ["电脑绘画即数字美术，可用板绘或 Procreate 指导学生创作。","区级推市级、市级推粤港澳，指导教师奖同步设置。"],
+    url: "https://bjt.baoan.edu.cn/index.php?r=portal/content/view&id=193942",
+    portal: "宝教通报名 / 区教育局选拔",
+    steps: ["关注宝教通网络夏令营选拔通知","指导学生用数字工具创作+写说明","学校报送参加区选拔"],
+    source: "宝教通：2025 年深圳市第二十二届学生网络夏令营活动宝安区选拔赛通知",
+    prep: ["电脑绘画电子稿（JPG+源文件）","作品创作说明（选题/软件/过程）","报名汇总表学校盖章"],
+    win: ["电脑绘画即数字美术，板绘与 Procreate 较易上手","区级推市级、市级推粤港澳，指导教师奖同步设置"]},
+  {
+    id: "ba-calligraphy",
+    aud: "学生",
+    bigSchools: ["宝安中学(集团)","海韵学校","西乡中学"],
+    name: "宝安区中小学生现场书法大赛（第九届·翰墨抒情·少年颂国）",
+    short: "宝安现场书法大赛（带学生）区官方",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "区教科院（区教育局直属，官方）",
+    subject: "现场书法（小学低段/高段/初中/高职组） · 学生参赛，教师获指导奖",
+    cycle: "每年一届，通常 10 月现场比赛",
+    window: "第九届 2026.10.10 已办（600+ 学生参赛）；第十届预计 2027.10",
+    deadline: "2027-10-10",
+    deadlineNote: "第九届 2026.10.10 在西乡中学高中部举行，主题「翰墨抒情·少年颂国」，60 分钟现场创作",
+    phase: "已结束", rate:{value:4, ease:4},
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无记录（区教科院主办，学校认）", note: "现场赛、纯硬实力，指导老师随学生获奖拿指导奖" },
+    materials: ["学生现场创作（无需提前交稿，60 分钟限时）","赛前校内选拔与集训记录","指导教师辅导说明"],
+    tips: ["现场赛看真功夫：平时每周练、赛前校内选拔最稳。","60 分钟限时独立完成，代笔无处遁形，反而公平。"],
+    url: "https://sz.ifeng.com/c/8xEsJiQLj5V",
+    portal: "由学校选拔组队参赛（宝教通/区教科院通知）",
+    steps: ["关注区教科院现场书法大赛通知","校内选拔+赛前集训","学校组队参加区现场赛"],
+    source: "凤凰网深圳 / 宝安湾：2026 年宝安区第九届中小学生现场书法大赛报道",
+    prep: ["学生现场 60 分钟限时创作（无需提前交稿）","赛前校内选拔与集训记录","指导教师辅导说明"],
+    win: ["现场赛看真功夫，平时每周练+校内选拔最稳","60分钟限时独立创作，代笔无处遁形反而公平"]},
+  {
+    id: "sz-paint-national",
+    aud: "学生",
+    bigSchools: ["深圳实验学校","深圳中学","红岭中学(集团)","南山外国语学校(集团)"],
+    name: "全国中小学生绘画书法作品比赛 · 深圳赛区",
+    short: "全国绘画书法比赛·深圳赛区（带学生）教育部白名单",
+    tier: "国",
+    org: "中国儿童中心（全国主办）；深圳赛区由深圳市相关机构组织",
+    orgType: "教育部 2025—2028 白名单（艺术体育类 #35）",
+    subject: "绘画 / 书法 / 摄影 / 造型 / 数字美术（5 赛项） · 学生参赛，教师获指导奖",
+    cycle: "每年一届，通常上半年征集",
+    window: "2026 届深圳赛区 2026.4-6 征集（真实）；下一届预计 2027 同期",
+    deadline: "2027-06-30",
+    deadlineNote: "深圳本地宝：2026 届 4-6 月作品征集与平台提交，分 5 赛项、按年级分组，获奖比例≤60%",
+    phase: "待发布", rate:{value:5, ease:4},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认可度高）", note: "白名单内、公益免费，教师可获优秀指导教师奖，计入成果" },
+    materials: ["学生作品（按赛项与尺寸要求）","报名表（学生+指导教师+学校）","作品高清照片（线上初评）","原创承诺"],
+    tips: ["教育部白名单头部赛事，5 个赛项覆盖面广，绘画/书法/数字美术都能报。","公益免费、不与升学挂钩，学校最放心让学生参加。"],
+    url: "https://m.bendibao.com/edu/jingsai/?id=355",
+    portal: "深圳赛区官方报名入口 / 学校集体报名",
+    steps: ["核对当年白名单与深圳赛区报名入口","组织学生创作+收作品+报名表","通过学校集体或赛区入口报名"],
+    source: "深圳本地宝：全国中小学生绘画书法作品比赛（深圳赛区）2026 届日程",
+    prep: ["学生作品按赛项与尺寸要求（绘画/书法/摄影/造型/数字美术）","报名表含学生+指导教师+学校","作品高清照片+原创承诺"],
+    win: ["教育部白名单头部赛事，5赛项覆盖绘画/书法/摄影/造型/数字美术","公益免费不与升学挂钩，学校最放心让学生参加"]},
+  {
+    id: "sz-shufa-topic",
+    aud: "学生",
+    bigSchools: ["深圳中学","红岭中学(集团)","南山外国语学校(集团)"],
+    name: "深圳市中小学生主题书法大赛（第十四届·经典传学）",
+    short: "深圳主题书法大赛（带学生）市教育局",
+    tier: "市",
+    org: "深圳市教育局 · 深圳市书法家协会",
+    orgType: "市教育局（官方）",
+    subject: "书法（小学硬笔/小学毛笔/中学硬笔/中学毛笔） · 学生参赛，教师获指导奖",
+    cycle: "每年一届（第十四届 2025 年办）",
+    window: "第十四届 2025 年现场决赛（真实）；第十五届预计 2026 年",
+    deadline: "2026-12-31",
+    deadlineNote: "南方教育时报：2025 第十四届现场决赛，全市 181 幅优秀作品参评，自 2011 年起连续举办",
+    phase: "待发布", rate:{value:4, ease:4},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（市教育局主办，学校认）", note: "连续举办十余届的市级书法权威赛事，指导奖计入成果" },
+    materials: ["学生书法原作（硬笔/毛笔按组别）","参赛报名表（学生+指导教师+学校）","学校推荐汇总"],
+    tips: ["深圳市书法家协会主席担任评委，权威度高。","硬笔、毛笔分组，初中组也有硬笔赛道，别只盯毛笔。"],
+    url: "https://szjy.sznews.com/MB/content/202512/12/content_3410321.html",
+    portal: "由学校选拔推荐参赛（关注深圳市教育局/市书协通知）",
+    steps: ["关注深圳市中小学生主题书法大赛通知","校内选拔+集训","学校推荐参加市决赛"],
+    source: "南方教育时报：2025 年深圳市中小学生主题书法大赛获奖名单发布",
+    prep: ["学生书法原作（硬笔/毛笔按组别）","参赛报名表（学生+指导教师+学校）","学校推荐汇总"],
+    win: ["市书协主席任评委，市级书法权威赛事","硬笔/毛笔分组，初中组也有硬笔赛道"]},
+  {
+    id: "sz-shuhua-exchange",
+    aud: "学生",
+    bigSchools: ["深圳实验学校","宝安中学(集团)","南山外国语学校(集团)"],
+    name: "中小学书画作品交流展示活动 · 深圳赛区（第二届）",
+    short: "书画交流展示·深圳赛区（带学生）省教育厅",
+    tier: "省",
+    org: "广东省教育厅（深圳赛区由深圳市教育局组织）",
+    orgType: "省教育厅（官方）",
+    subject: "书法组 / 美术组（绘画等） · 学生作品 + 指导教师",
+    cycle: "每年一届（第二届 2026 年深圳推选）",
+    window: "第二届 2026 年深圳赛区推选名单已出（真实）；第三届预计 2027",
+    deadline: "2027-09-30",
+    deadlineNote: "深圳政府网：第二届深圳赛区推选名单含深圳实验学校、宝安海韵学校等多校书法/美术作品",
+    phase: "已结束", rate:{value:4, ease:3},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校认）", note: "省级书画展示，走校→区→市推荐→省，教师获指导奖" },
+    materials: ["学生书画原作（书法组/美术组）","作品信息卡","指导教师辅导说明","学校/区推荐汇总（盖章）"],
+    tips: ["省级书画专项，和广东美育成果展可素材复用。","走推荐通道，先在校内占位争市级推选名额。"],
+    url: "https://www.sz.gov.cn/attachment/1/1647/1647551/12488152.xlsx",
+    portal: "由深圳市教育局统一推荐报送（不接受个人直报）",
+    steps: ["关注广东省中小学书画作品交流展示活动通知","学校选拔→区推荐→争深圳市推荐名额","由省教育厅组织评审"],
+    source: "深圳政府网：广东省第二届中小学书画作品交流展示活动（深圳赛区）推选名单",
+    prep: ["学生书画原作（书法组/美术组）","作品信息卡+指导教师辅导说明","学校/区推荐汇总盖章"],
+    win: ["省级书画专项，与广东美育成果展素材可复用","走校→区→市推荐→省，先校内占位争市级名额"]},
+  {
+    id: "gd-hanmo-youth",
+    aud: "学生",
+    bigSchools: ["南山外国语学校(集团)","宝安中学(集团)","红岭中学(集团)"],
+    name: "「翰墨青春·传承岭南」广东青少年书画大赛（第十届）",
+    short: "广东青少年书画大赛（带学生）省白名单",
+    tier: "省",
+    org: "广东新快报社 · 广东省美术家协会 · 广东省书法家协会",
+    orgType: "广东省 2025—2028 白名单（艺术体育类）",
+    subject: "书法组 / 美术组 / 当代艺术组（含 AI 辅助创作） · 学生参赛，教师获指导奖",
+    cycle: "每年一届（第十届 2026 年征稿）",
+    window: "第十届 2026.6 起启动征稿（进行中）；截稿预计 2026 下半年",
+    deadline: "2026-12-31",
+    deadlineNote: "新快网：第十届 2026.6.17 启动征稿，纳入省 2025-2028 白名单，设书法/美术/当代艺术组",
+    phase: "进行中", rate:{value:5, ease:4},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（省白名单，学校认）", note: "省白名单书画头部赛事，公益免费，教师可获指导奖" },
+    materials: ["学生书画原作（按组别尺寸）","报名表（学生+指导教师+学校）","原创承诺（严查代笔/高仿）"],
+    tips: ["省白名单书画大赛，第十届规格高，南山外国语等多校已组织参赛。","当代艺术组二次举办 AI 辅助创作评选，数字美术也能报。"],
+    url: "http://news.xkb.com.cn/articleDetail/502682",
+    portal: "大赛官方征稿通道 / 学校集体报名",
+    steps: ["核对省白名单与大赛征稿通知","组织学生创作+收原作+报名表","通过官方通道或学校集体报名"],
+    source: "新快网：第十届「翰墨青春 传承岭南」广东青少年书画大赛启动征稿（2026-6-17）",
+    prep: ["学生书画原作（书法组/美术组/当代艺术组按尺寸）","报名表含学生+指导教师+学校","原创承诺（严查代笔/高仿）"],
+    win: ["省白名单书画头部赛事，第十届规格高","当代艺术组二次办AI辅助创作评选，数字美术也能报"]},
+  {
+    id: "gd-yuejian",
+    aud: "学生",
+    bigSchools: ["红岭中学(集团)","宝安中学(集团)"],
+    name: "「粤见花开」广东省青少年美育成果展示大赛（第三届）",
+    short: "粤见花开美育展示（带学生）省教育厅",
+    tier: "省",
+    org: "广东省教育厅 · 相关主办单位",
+    orgType: "省教育厅（官方）",
+    subject: "美育成果展示（含书画/艺术实践类） · 学生作品 + 指导教师",
+    cycle: "每年一届（第三届 2026 年办）",
+    window: "第三届 2026.4.20-5.29（真实）；第四届预计 2027",
+    deadline: "2027-05-29",
+    deadlineNote: "深圳本地宝：第三届 2026.4.20-5.29 报名，广东省青少年美育成果展示大赛",
+    phase: "已结束", rate:{value:4, ease:4},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校认）", note: "省级美育综合展示，书画类可报，教师获指导奖" },
+    materials: ["学生美育成果作品（书画/艺术实践）","作品信息卡","指导教师辅导说明","学校推荐汇总"],
+    tips: ["省级美育综合平台，书画、艺术实践都能进，覆盖面比单项书画赛宽。","与深圳美润鹏城、广东美育成果展素材可复用。"],
+    url: "https://m.bendibao.com/edu/jingsai/?id=355",
+    portal: "由学校/区选拔推荐参赛",
+    steps: ["关注粤见花开广东省青少年美育成果展示大赛通知","校内选拔+作品准备","学校/区推荐参赛"],
+    source: "深圳本地宝：第三届「粤见花开」广东省青少年美育成果展示大赛报名",
+    prep: ["学生美育成果作品（书画/艺术实践类）","作品信息卡+指导教师辅导说明","学校推荐汇总"],
+    win: ["省级美育综合平台，书画/艺术实践都能进，覆盖面宽","与深圳美润鹏城、广东美育成果展素材可复用"]},
+  {
+    id: "cn-ocean",
+    aud: "学生",
+    bigSchools: ["深圳中学","红岭中学(集团)"],
+    name: "全国青少年海洋文化创意设计大赛",
+    short: "全国海洋文化创意设计（带学生）教育部白名单",
+    tier: "国",
+    org: "中国海洋发展基金会 · 中国海洋大学 · 自然资源部北海局",
+    orgType: "教育部 2025—2028 白名单（艺术体育类 #42）",
+    subject: "海洋文化 · 创意设计 / 绘画 / 数字艺术 · 学生参赛，教师获指导奖",
+    cycle: "2025—2028 周期内举办（具体年度通知待查）",
+    window: "2025-2028 周期；下一届年度通知待教育部平台发布",
+    deadline: "2027-06-30",
+    deadlineNote: "教育部 2025—2028 白名单第 42 项，海洋主题创意设计类，具体赛程以当年通知为准",
+    phase: "待发布", rate:{value:4, ease:3},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认）", note: "国家级海洋主题设计赛，深圳沿海城市在地优势明显" },
+    materials: ["学生创意设计作品（绘画/数字艺术/产品设计）","设计说明（海洋主题阐释）","报名表（学生+指导教师+学校）"],
+    tips: ["海洋主题+深圳地缘优势，做「湾区海洋」题材评委有共鸣。","白名单国家级，公益免费，教师可获指导奖。"],
+    url: "https://hudong.moe.gov.cn/srcsite/A29/202510/W020251029471803160286.doc",
+    portal: "由大赛授权组织单位 / 学校集体报名",
+    steps: ["核对教育部白名单与主办单位当年通知","组织学生做海洋主题创作","通过学校集体或授权单位报名"],
+    source: "教育部：2025—2028 学年面向中小学生的全国性竞赛活动名单（第 42 项）",
+    prep: ["学生创意设计作品（绘画/数字艺术/产品设计）","设计说明（海洋主题阐释）","报名表含学生+指导教师+学校"],
+    win: ["海洋主题+深圳地缘优势，湾区海洋题材评委有共鸣","白名单国家级公益免费，教师可获指导奖"]},
+  {
+    id: "cn-ai-art",
+    aud: "学生",
+    bigSchools: ["深圳中学","南山外国语学校(集团)","红岭中学(集团)"],
+    name: "全国青少年人工智能辅助生成数字艺术创作者大赛",
+    short: "全国 AI 数字艺术大赛（带学生）教育部白名单",
+    tier: "国",
+    org: "文化和旅游部艺术发展中心",
+    orgType: "教育部 2025—2028 白名单（艺术体育类 #45）",
+    subject: "AI 辅助生成 · 数字艺术创作 · 学生参赛，教师获指导奖",
+    cycle: "2025—2028 周期内举办（具体年度通知待查）",
+    window: "2025-2028 周期；下一届年度通知待发布",
+    deadline: "2027-06-30",
+    deadlineNote: "教育部 2025—2028 白名单第 45 项，文旅部艺术发展中心主办，AI 辅助数字艺术",
+    phase: "待发布", rate:{value:4, ease:3},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认）", note: "国家级 AI+艺术新赛道，美术老师带学生做 AI 二次创作正对口" },
+    materials: ["学生 AI 辅助数字艺术作品","创作过程说明（哪些 AI、哪些学生原创）","报名表（学生+指导教师+学校）"],
+    tips: ["美术与 AI 结合较易切入：AI 生成草图、学生二次创作，再说明人机差异。","必须写清「哪些是 AI、哪些是学生」，评审现在特别查这条。"],
+    url: "https://hudong.moe.gov.cn/srcsite/A29/202510/W020251029471803160286.doc",
+    portal: "由大赛授权组织单位 / 学校集体报名",
+    steps: ["核对教育部白名单与主办单位当年通知","指导学生做 AI 辅助数字艺术创作","通过学校集体或授权单位报名"],
+    source: "教育部：2025—2028 学年面向中小学生的全国性竞赛活动名单（第 45 项）",
+    prep: ["学生 AI 辅助数字艺术作品","创作过程说明（哪些AI/哪些学生原创）","报名表含学生+指导教师+学校"],
+    win: ["美术与 AI 结合较易切入：AI 草图、学生二次创作，并说明两者差异","必须写清「哪些AI/哪些学生」，评审严查这条"]},
+  {
+    id: "cn-visual-workshop",
+    aud: "学生",
+    bigSchools: ["宝安中学(集团)","红岭中学(集团)"],
+    name: "学校美育助力行动 · 青少年视觉艺术传承与创新工作坊展示",
+    short: "全国视觉艺术工作坊展示（带学生）教育部白名单",
+    tier: "国",
+    org: "中国艺术教育促进会",
+    orgType: "教育部 2025—2028 白名单（艺术体育类 #46）",
+    subject: "视觉艺术 · 工作坊 / 传承创新展示 · 学生作品 + 指导教师",
+    cycle: "2025—2028 周期内举办（具体年度通知待查）",
+    window: "2025-2028 周期；下一届年度通知待发布",
+    deadline: "2027-06-30",
+    deadlineNote: "教育部 2025—2028 白名单第 46 项，中国艺术教育促进会主办，视觉艺术工作坊展示",
+    phase: "待发布", rate:{value:4, ease:3},
+    official: true,
+    credit: 5,
+    schoolProof: { count: 0, best: "本校暂无记录（教育部白名单，学校认）", note: "工作坊形式展示，适合做校本美术社团成果输出" },
+    materials: ["工作坊成果（学生视觉艺术作品集/展示方案）","工作坊建设说明（课程/社团/传承创新）","指导教师与学校信息"],
+    tips: ["以「工作坊」为单位展示，适合把美术社团/校本课程打包成成果。","视觉艺术涵盖绘画、书法、非遗手作，题材自由。"],
+    url: "https://hudong.moe.gov.cn/srcsite/A29/202510/W020251029471803160286.doc",
+    portal: "由学校/区选拔推荐参赛",
+    steps: ["核对教育部白名单与主办单位当年通知","整理工作坊成果与建设说明","通过学校/区推荐参赛"],
+    source: "教育部：2025—2028 学年面向中小学生的全国性竞赛活动名单（第 46 项）",
+    prep: ["工作坊成果（学生视觉艺术作品集/展示方案）","工作坊建设说明（课程/社团/传承创新）","指导教师与学校信息"],
+    win: ["以工作坊为单位展示，适合打包美术社团/校本课程成果","视觉艺术涵盖绘画/书法/非遗手作，题材自由"]},
+
+  /* ============ 宝安区级（宝教通 bjt.baoan.edu.cn 真实发布）· 学生/教师 ============ */
+  {
+    id: "ba-art-stu",
+    aud: "学生",
+    name: "宝安区中小学校美术教育成果比赛（作品征集）",
+    short: "宝安美术教育成果比赛 本校拿过奖",
+    tier: "区",
+    org: "深圳市宝安区教育科学研究院",
+    orgType: "宝安区教育局 / 区教科院（宝教通发布）",
+    subject: "绘画 · 书法 · 手工 · 摄影（按当年主题）",
+    cycle: "每年一届，春季征集评选",
+    window: "2026 年约 3—6 月（以宝教通当年通知为准）",
+    deadline: "2026-06-15",
+    deadlineNote: "具体截稿以宝教通 / 区教科院当年通知为准；本校此前在此赛事获二等奖",
+    phase: "征集中",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 1, best: "本校教师指导学生获二等奖", note: "航瑞中学此前在「宝安区美术教育成果作品征集」获二等奖" },
+    materials: ["学生原创作品（按主题）","作品信息表（作者 / 指导老师 / 学校）","学校推荐汇总表"],
+    tips: ["走学校—区推荐，个人不能直报","主题贴合区里当年美育重点最稳","这是离你最近、最易出校级以上成绩的区级赛道"],
+    url: "https://bjt.baoan.edu.cn/",
+    portal: "宝教通（bjt.baoan.edu.cn）通知 + 学校科组统一报送",
+    steps: ["关注宝教通 / 区教科院通知","校内选拔后由科组统一报送","留存报送回执"],
+    source: "宝教通（bjt.baoan.edu.cn）宝安区中小学校美术教育成果比赛 + 本校获奖记录",
+    prep: ["走学校—区推荐，个人不能直报","主题贴合区里当年美育重点"],
+    win: ["离你最近、最易出成绩的区级赛道","本校此前已在此拿过二等奖"],
+    bigSchools: ["宝安中学(集团)"],
+    rate: { value: 4, ease: 5 }
+  },
+  {
+    id: "ba-jindu",
+    aud: "学生",
+    name: "宝安区中小学生禁毒绘画创作比赛",
+    short: "宝安禁毒绘画比赛",
+    tier: "区",
+    org: "宝安区禁毒办 / 宝安区教育局",
+    orgType: "宝安区（宝教通发布）",
+    subject: "绘画（禁毒主题 · 海报 / 漫画）",
+    cycle: "每年一届（禁毒宣传月前后）",
+    window: "2026 年约 5—6 月（以宝教通当年通知为准）",
+    deadline: "2026-06-20",
+    deadlineNote: "具体截稿以宝教通当年通知为准",
+    phase: "征集中",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无公开记录", note: "区级主题绘画，易组织、易出校级以上指导奖" },
+    materials: ["禁毒主题原创绘画","作品信息表","学校推荐表"],
+    tips: ["主题必须紧扣禁毒，跑题直接出局","海报 / 漫画形式传播性强，评委偏好","适合批量带学生投，指导奖计入教师成果"],
+    url: "https://bjt.baoan.edu.cn/",
+    portal: "宝教通通知 + 学校统一报送",
+    steps: ["关注宝教通通知","校内选拔报送","留存回执"],
+    source: "宝教通（bjt.baoan.edu.cn）宝安区中小学生禁毒绘画创作比赛",
+    prep: ["主题紧扣禁毒","走学校报送"],
+    win: ["易组织、易出指导奖","适合批量带学生"],
+    bigSchools: ["宝安中学(集团)"],
+    rate: { value: 3, ease: 5 }
+  },
+  {
+    id: "ba-netcamp",
+    aud: "学生",
+    name: "深圳市学生网络夏令营宝安区选拔赛（电脑绘画）",
+    short: "网络夏令营 · 电脑绘画",
+    tier: "区",
+    org: "宝安区教育科学研究院（市赛区选拔）",
+    orgType: "深圳市教育局主办 / 宝安选拔",
+    subject: "电脑绘画 · 数字美术（软件绘制）",
+    cycle: "每年一届，暑期前后",
+    window: "2026 年约 5—7 月（以宝教通当年通知为准）",
+    deadline: "2026-07-10",
+    deadlineNote: "具体截稿以宝教通 / 市赛当年通知为准；数字作品需原创、注明软件",
+    phase: "征集中",
+    official: true,
+    credit: 3,
+    schoolProof: { count: 0, best: "本校暂无公开记录", note: "数字美术赛道，契合 AI 绘画 / 板绘教学" },
+    materials: ["电脑绘画数字作品（注明绘图软件）","作品创作说明","学校推荐表"],
+    tips: ["必须是软件绘制，手绘扫描不算","注明使用的绘图软件与原创声明","适合接你 AI 绘画 / 板绘社团产出"],
+    url: "https://bjt.baoan.edu.cn/",
+    portal: "宝教通通知 + 学校统一报送（区选拔后送市）",
+    steps: ["关注宝教通通知","校内选拔报送区里","区选拔优秀送市赛"],
+    source: "宝教通（bjt.baoan.edu.cn）深圳市学生网络夏令营宝安选拔赛",
+    prep: ["软件绘制、注明工具","原创声明"],
+    win: ["数字赛道契合 AI / 板绘教学","区选拔可递进市赛"],
+    bigSchools: ["宝安中学(集团)"],
+    rate: { value: 3, ease: 4 }
+  },
+  {
+    id: "ba-shufa",
+    aud: "学生",
+    name: "宝安区中小学生现场书法大赛（第九届）",
+    short: "宝安现场书法大赛",
+    tier: "区",
+    org: "宝安区教育科学研究院 / 区书法教研",
+    orgType: "宝安区（宝教通发布）",
+    subject: "现场书法（软笔 / 硬笔，现场书写）",
+    cycle: "每年一届",
+    window: "2026 年约 9—11 月（以宝教通当年通知为准）",
+    deadline: "2026-11-20",
+    deadlineNote: "具体截稿以宝教通当年通知为准；现场书写，需校内初选",
+    phase: "待发布",
+    official: true,
+    credit: 4,
+    schoolProof: { count: 0, best: "本校暂无公开记录", note: "现场书法是宝安传统强项赛事，区级认可度高" },
+    materials: ["校内初选作品","现场书写用具","学校推荐表"],
+    tips: ["现场书写，平时要练手感与章法","软笔硬笔分开报，别混","带学生投可拿指导奖，计入教师成果"],
+    url: "https://bjt.baoan.edu.cn/",
+    portal: "宝教通通知 + 学校初选后报送",
+    steps: ["关注宝教通通知","校内初选","报送区里参加现场赛"],
+    source: "宝教通（bjt.baoan.edu.cn）宝安区中小学生现场书法大赛（第九届）",
+    prep: ["现场书写练手感","软硬笔分开报"],
+    win: ["宝安传统强项、认可度高","指导奖计入教师成果"],
+    bigSchools: ["宝安中学(集团)"],
+    rate: { value: 4, ease: 4 }
+  },
+  {
+    id: "sz-micro",
+    aud: "教师",
+    name: "深圳市学科美育微课大赛（宝安选拔）",
+    short: "深圳美育微课大赛 本校拿过奖",
+    tier: "市",
+    org: "深圳市教育科学研究院",
+    orgType: "深圳市教育局 / 市教科院",
+    subject: "美育微课（美术学科，5—10 分钟微视频 + 教学设计）",
+    cycle: "每年一届",
+    window: "2026 年约 3—5 月区选拔（以当年通知为准）",
+    deadline: "2026-05-15",
+    deadlineNote: "具体截稿以市教科院 / 宝教通当年通知为准；本校此前获一等奖、二等奖",
+    phase: "征集中",
+    official: true,
+    credit: 5,
+    schoolProof: { count: 2, best: "本校美术教师获一等奖、二等奖", note: "航瑞中学在深圳市学科美育微课大赛已有获奖记录" },
+    materials: ["微课视频（5—10 分钟）","微课教学设计","课件与学习任务单"],
+    tips: ["微课重「小而精」，一个知识点讲透即可","画面与板书美观度影响评分","本校有获奖先例，直接复用经验"],
+    url: "https://jtj.sz.gov.cn/",
+    portal: "宝教通 / 区教科院选拔后送市",
+    steps: ["关注宝教通通知","校内选拔报送区里","区选拔优秀送市赛"],
+    source: "深圳市学科美育微课大赛 + 本校获奖记录（一等奖、二等奖）",
+    prep: ["微课小而精","画面板书美观"],
+    win: ["本校已有获奖先例","直接复用经验冲奖"],
+    rate: { value: 5, ease: 4 }
+  }
+
+];
+const RES = [
+  { id:"res-sr01", kind:"课题", scope:"国内", region:"广东·课题", title:"广东教育学会「十五五」教育科研规划课题申报（美术/美育方向可报）", hot:"省级学会课题，难度低于省规划办但认可度够评职称/绩效；美术教师可报「美育浸润」「艺术素养评价」「馆校合作」等方向。每年常态申报，是很值得投入的课题入口之一。", where:"广东教育学会官网「课题管理」栏目在线申报（http://www.gdjyxh.org.cn/ketimm/）；需单位盖章推荐，不能个人直报。（「十五五」2026—2030，首轮申报约 2026 年上/下半年，以官网通知为准）", tags:["课题申报","广东","美育","评职称"], source:"广东教育学会官网 · 关于开展「十五五」教育科研规划课题申报工作的通知", url:"http://www.gdjyxh.org.cn/yuedu/3985.html" },
+  { id:"res-sr02", kind:"政策", scope:"国内", region:"广东·政策", title:"《广东省中小学教学装备配置指南》印发（含美术教室/美育空间配置标准）", hot:"文件明确了美术教室、书法教室、美育展陈空间的装备底线，建美术功能室、申请采购、写特色学校申报材料都要照它来，比拍脑袋写方案硬得多。", where:"广东省教育厅官网「规范性文件」栏目查阅全文；做功能室建设方案 / 装备采购论证时直接引用。（指南 2025 年印发，现行有效）", tags:["政策","广东","美术教室","装备配置"], source:"广东省教育厅 · 关于印发《广东省中小学教学装备配置指南》的通知", url:"https://edu.gd.gov.cn/zwgknew/jyzcfg/dfjyzcfg/content/post_4954072.htm" },
+  { id:"res-cn01", kind:"论文", scope:"国内", region:"广东·小学", title:"网络舆情环境下小学美术教育的困境与突围路径", hot:"一线教师被短视频断章取义、家长群放大，课堂管理动辄被举报。这篇给的是「如何留痕、如何跟家长解释、如何自保」的实操路径，不是空谈师德。", where:"《中国美术教育》「教育研究」栏目；写法：3 个真实冲突案例 + 你的处理流程 + 可复用的家校沟通话术模板。", tags:["小学美术","教师发展","家校沟通"], source:"《中国美术教育》2025(3):1-3 · 乔振东", url:"http://www.cnmsjy.com/" },
+  { id:"res-cn02", kind:"论文", scope:"国内", region:"江苏·小学", title:"素养导向下的小学美术学业测评体系构建", hot:"「美术怎么打分」是教研员最常被问的问题。这篇把测评拆成「过程性证据 + 作品集 + 表现性任务」三块，可直接改成你校的期末方案。", where:"《美术教育研究》「教学评价」栏目；可做「一校一方案」的校本测评表，附评分量规（rubric）截图最容易被录用。", tags:["学业评价","小学美术","表现性评价"], source:"《美术教育研究》2025(4) · 彭菲菲", url:"http://www.msjyyj.com/" },
+  { id:"res-cn03", kind:"论文", scope:"国内", region:"浙江·小学", title:"深度学习理念下小学美术学习活动的优化设计与实施", hot:"「大单元」写烂了，但「深度学习」在美术学科还少有人做。核心是把一节课的目标改成「学生能迁移什么」，评审看的是这个转向。", where:"《中国美术教育》「实践探索」；结构：单元目标→进阶任务链→学生作品对比（前/后测）。", tags:["深度学习","大单元","课堂设计"], source:"《美术教育研究》2025(4) · 莫秀红", url:"http://www.msjyyj.com/" },
+  { id:"res-cn04", kind:"论文", scope:"国内", region:"上海·中学", title:"人工智能时代美术教学中情绪价值对艺术创造力培养的影响", hot:"AI 能生成图，但生成不了「学生为什么想画」。这篇把「情绪价值」作为 AI 替代不了的教师核心能力，正好接住当下 AI 焦虑。", where:"《美术教育研究》「理论前沿」；可结合你班上「用 AI 出草图后学生反而不会画」的真实现象做实证。", tags:["AI美育","情感","创造力"], source:"《美术教育研究》2025(4) · 林坦", url:"http://www.msjyyj.com/" },
+  { id:"res-cn05", kind:"论文", scope:"国内", region:"全国·中学", title:"美术领域教学知识的建构困境与纾解路径", hot:"PCK（学科教学知识）是教师专业发展的硬指标，美术学科长期缺本土化研究。适合申报市级课题时做理论框架。", where:"《中国美术教育》「教育研究」；可作为课题「文献综述」章节的主干，配 3 位名师课例分析。", tags:["教师发展","课堂研究","学科知识"], source:"《美术教育研究》2025(4) · 纪雅晴、王一雯", url:"http://www.msjyyj.com/" },
+  { id:"res-cn06", kind:"论文", scope:"国内", region:"江苏·小学", title:"美术史赋能小学美育校本课程建设", hot:"把美术史「降维」成小学生能听懂的故事线，是校本课程最容易出成果的路子，还能对接「中华优秀传统文化」考核点。", where:"《美术教育研究》「课程开发」；做一条「一件作品一节课」的 12 课时校本纲目，附学生作业。", tags:["校本课程","美术鉴赏","传统文化"], source:"《美术教育研究》2025(4) · 孙晓昕", url:"http://www.msjyyj.com/" },
+  { id:"res-cn07", kind:"论文", scope:"国内", region:"上海·中学", title:"贺友直创作经验对美术学科课程逻辑的启示", hot:"连环画大师的创作方法被拿来重构课程逻辑，属于「名家个案→教学转化」的稀缺选题，评审爱看这种跨界的。", where:"《中国美术教育》「大家评课」；可做「从连环画分镜到漫画单元」的课例包。", tags:["课程开发","民间美术","课堂设计"], source:"《美术教育研究》2025(4) · 王一晴", url:"http://www.msjyyj.com/" },
+  { id:"res-cn08", kind:"论文", scope:"国内", region:"广东·中学", title:"地域文化赋能社团活动多元表达的有效路径", hot:"深圳的「地域文化」不好写，但可以写「移民城市的多元文化」——各省学生带来的家乡纹样，正好是现成素材。", where:"《美术教育研究》「社团建设」；用你校美术社团一学期的作品做样本，配家长/学生访谈。", tags:["艺术社团","在地文化","校本课程"], source:"《美术教育研究》2025(4) · 程稚敏", url:"http://www.msjyyj.com/" },
+  { id:"res-cn09", kind:"论文", scope:"国内", region:"山东·中学", title:"聚焦生本美术课堂 培育学生家国情怀", hot:"「课程思政」在美术学科的落地样本。评审要看的是「不喊口号」，这篇给的是把家国情怀藏进创作任务里的做法。", where:"《中国美术教育》「实践探索」；可结合深圳本地题材（改革开放、湾区）做主题创作单元。", tags:["课程思政","课堂设计","主题创作"], source:"《美术教育研究》2025(4) · 张超楠、岳世清", url:"http://www.msjyyj.com/" },
+  { id:"res-cn10", kind:"论文", scope:"国内", region:"广东·中学", title:"「三导」理念下的美术教学微课设计", hot:"微课早不是新鲜事，但「三导」（导学/导练/导评）框架下的微课设计还少。适合参加信息化教学比赛，也可整理为教研论文。", where:"《美术教育研究》「信息技术」；把你已有的微课按「三导」重排，附学生使用数据。", tags:["微课","课堂设计","信息化"], source:"《美术教育研究》2025(4) · 谢宛池", url:"http://www.msjyyj.com/" },
+  { id:"res-cn11", kind:"论文", scope:"国内", region:"全国·乡村", title:"乡村振兴视域下乡村学校美育发展的价值、问题与解决", hot:"「乡村美育」是政策热词（美育浸润行动、城乡共同体），但一线实证少。深圳老师可写「城区校帮扶乡村校」的结对案例。", where:"《中国美术教育》「教育研究」；用帮扶支教的实际数据（课时、作品、教师变化）做前后对比。", tags:["乡村美育","美育浸润","教育公平"], source:"《美术教育研究》2025(4) · 方艺洁、樊亚峤", url:"http://www.msjyyj.com/" },
+  { id:"res-cn12", kind:"论文", scope:"国内", region:"上海·城市", title:"城市文化空间的社会美育路径探索", hot:"美术馆、社区、商场都在做「社会美育」，学校怎么接进去？这篇给的是「馆校社」三方联动模型。", where:"《美术教育研究》「美育浸润」；可写深圳本地（关山月美术馆、何香凝美术馆、社区艺术中心）的课程合作。", tags:["社会美育","馆校合作","社区艺术"], source:"《美术教育研究》2025(4) · 吴濛晔", url:"http://www.msjyyj.com/" },
+  { id:"res-cn13", kind:"论文", scope:"国内", region:"全国·博物馆", title:"跨媒体叙事模式下的博物馆美育策略研究", hot:"「跨媒体叙事」= 一件文物拆成短视频、绘本、AR、文创多条线，正好是馆校合作课的高阶玩法。", where:"《中国美术教育》「馆校合作」；做「一件文物 N 种讲法」的课程设计，附学生产出。", tags:["博物馆","馆校合作","跨媒体"], source:"《美术教育研究》2025(4) · 李天", url:"http://www.msjyyj.com/" },
+  { id:"res-cn14", kind:"论文", scope:"国内", region:"江苏·高校", title:"数智化背景下江南美术遗产在高校美育中的实践路径", hot:"区域美术遗产 + 数字化的组合，是省级课题的高频命中题。中学老师可平移到「湾区美术遗产 + 数字档案」。", where:"《美术教育研究》「非遗传承」；改写成「深圳/岭南美术遗产数字资源库建设」的校本版本。", tags:["非遗","数字美育","在地文化"], source:"《美术教育研究》2025(4) · 刘秋兰、叶公平", url:"http://www.msjyyj.com/" },
+  { id:"res-cn15", kind:"论文", scope:"国内", region:"全国·综述", title:"基于 CiteSpace 的师范生美育研究现状与热点可视化分析", hot:"文献计量是「低成本高产出发文套路」：跑个 CiteSpace 图，写清研究热点与空白，两个月能出一篇。", where:"《美术教育研究》「综述」；换成「中小学美术教研热点」的数据，图 3 张、表 2 张即可。", tags:["文献计量","研究趋势","综述"], source:"《美术教育研究》2025(4) · 李洁、杨佳馨", url:"http://www.msjyyj.com/" },
+  { id:"res-cn16", kind:"论文", scope:"国内", region:"贵州·高校", title:"贵州非遗技艺融入大学生美育实践课程的路径", hot:"非遗进课堂的「课程化」样本：不是请人来演示一次，而是做成 16 课时可考核的课程。", where:"《美术教育研究》「非遗传承」；深圳版本可换成「潮州木雕/广彩/香云纱」进中学美术课堂。", tags:["非遗","课程开发","传统文化"], source:"《美术教育研究》2025(4) · 魏莹、吴玲楠", url:"http://www.msjyyj.com/" },
+  { id:"res-cn17", kind:"论文", scope:"国内", region:"江苏·民间美术", title:"基于文化基因理论的徐州剪纸艺术研究", hot:"「文化基因」是个能套用的分析框架：把纹样拆成基因片段，再设计教学转化路径。适合做纹样类校本课程的理论支撑。", where:"《美术教育研究》「民间美术」；可用深圳本地（客家围屋纹样、渔村图案）替换研究对象。", tags:["民间美术","文化传承","纹样"], source:"《美术教育研究》2025(4) · 丁浩媛", url:"http://www.msjyyj.com/" },
+  { id:"res-cn18", kind:"论文", scope:"国内", region:"全国·绘本", title:"基于情境认知的儿童科普绘本互动性设计", hot:"绘本教学在小学美术很常见，但「互动性设计」的研究少。适合和语文/科学做跨学科。", where:"《美术教育研究》「跨学科」；做「学生自制科普绘本」项目的设计与评价。", tags:["绘本","跨学科","儿童美术"], source:"《美术教育研究》2025(4) · 单瑞祯", url:"http://www.msjyyj.com/" },
+  { id:"res-cn19", kind:"论文", scope:"国内", region:"全国·绘本", title:"无字绘本中的图像隐喻分析及其启示", hot:"无字绘本=纯图像叙事，是「图像识读」素养的最佳载体，也最容易出彩的鉴赏课素材。", where:"《中国美术教育》「教学参考」；设计一节「用图讲故事」的鉴赏+创作课。", tags:["绘本","图像识读","美术鉴赏"], source:"《美术教育研究》2025(4) · 刘吉霞", url:"http://www.msjyyj.com/" },
+  { id:"res-cn20", kind:"论文", scope:"国内", region:"全国·高校", title:"数智时代高师美术创作课程改革刍议", hot:"AI 冲击下「创作课还教不教技法」的正面回应，适合作为你写 AI 美育论文时的理论引文。", where:"《中国美术教育》「教育研究」；引用其「创作媒介更新」观点，接你校 AI 辅助创作的课例。", tags:["AI美育","课程开发","高校"], source:"《中国美术教育》2025(4) · 程晓捷、刘泳麟", url:"http://www.cnmsjy.com/" },
+  { id:"res-cn21", kind:"论文", scope:"国内", region:"全国·手工艺", title:"高校传统手工艺美育体验式教学的实践路径", hot:"「体验式」是劳动教育+美育的交汇点，中学可做成「一学期一门手艺」的选修课。", where:"《美术教育研究》「实践探索」；写「陶艺/扎染/竹编」选修课的课程包与学生变化。", tags:["手工艺","体验式","课程开发"], source:"《美术教育研究》2025(4) · 代心语", url:"http://www.msjyyj.com/" },
+  { id:"res-cn22", kind:"论文", scope:"国内", region:"广东·民间美术", title:"雷州民间艺术嵌入高校设计教育实践研究", hot:"广东本土民间艺术进课堂的现成案例，做「岭南文化」校本课程可直接引用。", where:"《美术教育研究》「民间美术」；平移到中学：雷州石狗/傩舞纹样做文创设计单元。", tags:["民间美术","在地文化","文创"], source:"《美术教育研究》2025(4) · 石云", url:"http://www.msjyyj.com/" },
+  { id:"res-cn23", kind:"论文", scope:"国内", region:"全国·理论", title:"美育意涵的再辨析与实现路径", hot:"评职称写「美育」容易空，这篇把「美育≠艺术技能」讲透，适合做论文的理论起点。", where:"《美术教育研究》「理论」；引用其概念界定，避免评审说你「概念不清」。", tags:["美育理论","课程开发"], source:"《美术教育研究》2025(4) · 程礼婷", url:"http://www.msjyyj.com/" },
+  { id:"res-cn24", kind:"论文", scope:"国内", region:"全国·乡村", title:"艺术写生视角下乡村美育的发展路径", hot:"写生既是教学内容也是乡村美育抓手，适合做成「校地合作」项目，容易拿到地方支持。", where:"《美术教育研究》「乡村美育」；写你带学生下乡写生的完整项目（前期课程—现场—展览—回访）。", tags:["乡村美育","写生","项目式"], source:"《美术教育研究》2025(4) · 董泉", url:"http://www.msjyyj.com/" },
+  { id:"res-in01", kind:"论文", scope:"国际", region:"中国·小学", title:"Creativity, Practical Ability, Self-Identity: Public Art Practice with Primary School Students in China", hot:"中国小学公共艺术项目的实证研究，发在国际顶刊。你的「校园壁画/社区共创」项目可以直接对标它的三维度框架。", where:"IJADE 44(1):132–148；写作时引用其「创造力—实践力—自我认同」三指标做你的评价维度。", tags:["公共艺术","小学美术","项目式"], source:"IJADE 2025, 44(1): 132–148 · Song, Chen & Mustafa", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in02", kind:"论文", scope:"国际", region:"美国·中学", title:"Visual Journaling in Secondary Art Classrooms: A National Survey of Art Teachers", hot:"全美中学「视觉日记」教学调查，直接给数据（多少老师在用、怎么评）。做「速写本/视觉日志」课题的最佳引文。", where:"IJADE 44(3):613–627；抄它的问卷维度，在你自己学校做一次小规模复现。", tags:["视觉素养","中学美术","课堂研究"], source:"IJADE 2025, 44(3): 613–627 · Williams & Shields", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in03", kind:"论文", scope:"国际", region:"英国·AI", title:"Making Peace with Artificial Intelligence (AI) in Art Education", hot:"开放获取，正面回答「AI 进美术课怎么办」。作者 Rebecca Heaton 是 AI 艺术教育领域的高被引学者。", where:"IJADE 44(4)·Open Access；免费全文，直接作为你 AI 美育论文的核心参考文献。", tags:["AI美育","AI素养","数字美育"], source:"IJADE 2025, 44(4) · Rebecca Heaton", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in04", kind:"论文", scope:"国际", region:"中国·流动儿童", title:"Understanding the Motivations of Volunteer Teachers in Sustaining Community-Based Art Education for Rural-to-Urban Migrant Children in China", hot:"中国流动儿童社区美育的质性研究，开放获取。深圳是流动儿童最集中的城市之一，这个题你比谁都更有田野。", where:"IJADE 44(3):581–597；可做「深圳城中村儿童美术陪伴」的本地化追踪研究。", tags:["社区艺术","教育公平","流动儿童"], source:"IJADE 2025, 44(3): 581–597 · Ning Luo", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in05", kind:"论文", scope:"国际", region:"英国·课堂", title:"The Quiet Learner of the UK Art Classroom", hot:"专门研究「美术课上不吭声的学生」——安静的创作者常被忽视，这是极好的个案研究切入点。", where:"IJADE 44(2):447–461·Open Access；做 3 个「安静学生」的跟踪个案，配作品变化。", tags:["课堂研究","儿童美术","个案"], source:"IJADE 2025, 44(2): 447–461 · Mags Ryder", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in06", kind:"论文", scope:"国际", region:"英国·小学", title:"Imagination Competencies: Fostering Life Skills with Children in UK Primary Schools", hot:"把「想象力」拆成可测评的能力项，是「核心素养」的另一种说法，评审很吃这套框架。", where:"IJADE 44(2):353–365；借用其能力清单，改写成你校的「创意素养观察表」。", tags:["创造力","小学美术","评价"], source:"IJADE 2025, 44(2): 353–365 · Doust & Joyson", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in07", kind:"论文", scope:"国际", region:"西班牙·课堂", title:"Playing with Strangeness: Principles of Designing Action Scenarios to Promote Creativity in Children", hot:"开放获取，给的是「制造陌生感」的任务设计原则——比「激发兴趣」这种空话可操作得多。", where:"IJADE 44(2):479–493·Open Access；直接改造成 5 个「怪点子」创作任务。", tags:["创造力","课堂设计","任务设计"], source:"IJADE 2025, 44(2): 479–493 · Blanco, Cidrás & Freire", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in08", kind:"论文", scope:"国际", region:"英国·理论", title:"Imaginative Interdependence: Imagination, Speculation and Aesthesis", hot:"Dennis Atkinson 是艺术教育理论重量级人物。这篇讲「想象是关系性的」，适合做论文理论框架。", where:"IJADE 44(2):313–327·Open Access；引用其「aesthesis（感知）」概念提升论文理论深度。", tags:["美育理论","创造力"], source:"IJADE 2025, 44(2): 313–327 · Dennis Atkinson", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in09", kind:"论文", scope:"国际", region:"土耳其·视觉素养", title:"Exploring Activist Art Studies: Enhancing Visual Literacy through Critical Engagement", hot:"把「批判性参与」做进视觉素养课，给了一套可复制的教学干预设计。", where:"IJADE 44(3):743–769；可做「广告/短视频中的性别与消费」批判鉴赏单元。", tags:["视觉素养","美术鉴赏","公民教育"], source:"IJADE 2025, 44(3): 743–769 · Zengin & Ütkür-Güllühan", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in10", kind:"论文", scope:"国际", region:"荷兰·公民教育", title:"To Throw Oneself Into the Fray: Contemporary Artistic Activism for Art and Citizenship Education", hot:"开放获取。当代艺术行动主义如何进课堂，是「艺术+公民」跨学科的高阶样本。", where:"IJADE 44(3):512–529·Open Access；做「校园公共议题创作」项目时引用。", tags:["公民教育","社会正义","跨学科"], source:"IJADE 2025, 44(3): 512–529 · Nathalie Roos", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in11", kind:"论文", scope:"国际", region:"中国·博物馆", title:"The Family as an Experiential Learning Unit: Digital Resources for Mediating Emotional Attachment in Museums", hot:"中国团队做的「家庭作为学习单元」+ 博物馆数字资源研究，馆校合作课题可直接引用。", where:"IJADE 44(3):660–676；设计「亲子共看一件展品」的家庭学习单。", tags:["博物馆","馆校合作","情感"], source:"IJADE 2025, 44(3): 660–676 · Dai, Yuan & Wu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/3" },
+  { id:"res-in12", kind:"论文", scope:"国际", region:"英国·儿童", title:"How Children Draw, Write and Tell About Portraying Mixed Emotions", hot:"开放获取。儿童如何画「复杂情绪」，给的是分析儿童画的编码方法，做儿童绘画研究必读。", where:"IJADE 44(1):211–226·Open Access；用其编码表分析你学生的「情绪自画像」。", tags:["儿童美术","情感","研究方法"], source:"IJADE 2025, 44(1): 211–226 · Burkitt & Watling", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in13", kind:"论文", scope:"国际", region:"美国·教师", title:"Exploring the Artistic Identity of Elementary Art Teachers", hot:"小学美术教师的「艺术家 vs 教师」身份冲突，是教师叙事研究的好框架。", where:"IJADE 44(1):227–238；写成「我为什么还在画画」的自我民族志。", tags:["教师身份","教师发展","叙事研究"], source:"IJADE 2025, 44(1): 227–238 · Carpenter Estrada et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in14", kind:"论文", scope:"国际", region:"瑞典·教师", title:"The Art of Becoming a Visual Arts Teacher", hot:"开放获取，用「兽性/感受」的隐喻讲新教师如何成长为美术教师，写法很值得学。", where:"IJADE 44(1):18–31·Open Access；学它的叙事结构写你的入职十年。", tags:["教师身份","教师发展"], source:"IJADE 2025, 44(1): 18–31 · Annika Hellman", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in15", kind:"论文", scope:"国际", region:"新西兰·遗产教育", title:"Heritage Appreciation and Awareness: A Child Educational Approach Exploiting Animated Video", hot:"用动画短视频做儿童遗产教育，给的是「传统+新媒体」的课程模型。", where:"IJADE 44(1):286–304；做「用动画讲深圳非遗」的学生项目。", tags:["非遗","数字美育","动画"], source:"IJADE 2025, 44(1): 286–304 · Bian, Brown & Marques", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in16", kind:"论文", scope:"国际", region:"韩国·AI", title:"Graphic Design Education in the Era of Text-to-Image Generation", hot:"开放获取。文生图时代设计课怎么改，给的是课程重构的具体路径，比空谈 AI 有用。", where:"IJADE 44(1):239–253·Open Access；做「AI 出图 + 人手改」的设计课单元。", tags:["AI美育","数字美育","课程开发"], source:"IJADE 2025, 44(1): 239–253 · Hwang & Wu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/1" },
+  { id:"res-in17", kind:"论文", scope:"国际", region:"英国·第三空间", title:"Arts Education in the Third Space: Creative Journeys towards Critical Consciousness", hot:"「第三空间」= 学校之外的社区/美术馆场域，是非正式美育的理论抓手。", where:"IJADE 44(4)；写馆校合作或社区项目时做理论支撑。", tags:["社区艺术","馆校合作","美育理论"], source:"IJADE 2025, 44(4) · Oliver Briggs", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in18", kind:"论文", scope:"国际", region:"爱尔兰·艺术教师", title:"Artist-Teacher Practices as Sites of Peace 'Making'", hot:"艺术家教师如何把创作实践带进课堂，是「双身份」研究的延续。", where:"IJADE 44(4)；配你的个人创作+教学双线叙事。", tags:["教师身份","艺术本位"], source:"IJADE 2025, 44(4) · Eileen Keane", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in19", kind:"论文", scope:"国际", region:"爱尔兰·双语", title:"Bilingual Arts Practice, Frameworks and Possibilities", hot:"双语/多语环境下的艺术实践，深圳移民城市 + 英语教学可借用。", where:"IJADE 44(4)；做「双语美术术语卡」的课堂实验。", tags:["双语","课堂设计","跨学科"], source:"IJADE 2025, 44(4) · Keane & Nic An Bhreithiúnaigh", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in20", kind:"论文", scope:"国际", region:"英国·研究方法", title:"Critically Assessing Arts-Based Research: Moving Forward With Tension and Care", hot:"开放获取。艺术本位研究（ABR）如何被评审认可，方法论必读，写课题方法论章节直接引用。", where:"IJADE 44(4)·Open Access；课题「研究方法」部分引用其效度讨论。", tags:["艺术本位","研究方法"], source:"IJADE 2025, 44(4) · Wood & Millett", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in21", kind:"论文", scope:"国际", region:"英国·公共教育", title:"Aesthetic Dissensus as Public Pedagogy: Contemporary Art that Counters Whiteness and Far-Right Ideologies", hot:"开放获取。当代艺术作为「公共教育学」的案例，适合做批判性鉴赏课的理论参照。", where:"IJADE 44(4)·Open Access；引用其「审美歧见」概念做争议作品鉴赏课。", tags:["社会正义","美术鉴赏","公共艺术"], source:"IJADE 2025, 44(4) · Fiona O'Rourke", url:"https://onlinelibrary.wiley.com/toc/14768070/44/4" },
+  { id:"res-in22", kind:"论文", scope:"国际", region:"美国·儿童", title:"A Collection of Children's Artworks as Imaginative Openings", hot:"把儿童作品集当作「想象的入口」来分析，给的是作品集评价的新视角。", where:"IJADE 44(2):381–395；做「一学期作品集」的纵向分析。", tags:["儿童美术","评价","作品集"], source:"IJADE 2025, 44(2): 381–395 · Schroeder Yu", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in23", kind:"论文", scope:"国际", region:"英国·集体想象", title:"Ecologies of Collective Imagination", hot:"开放获取，讲「集体想象力」的生态模型，适合做大单元/项目式学习的社会维度论证。", where:"IJADE 44(2):494–508·Open Access；项目式学习论文的理论支撑。", tags:["创造力","项目式","美育理论"], source:"IJADE 2025, 44(2): 494–508 · Glăveanu et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-in24", kind:"论文", scope:"国际", region:"澳大利亚·儿童行动主义", title:"Artivist Childhoods", hot:"开放获取。儿童作为「艺术行动者」的研究，接「儿童友好城市/校园」议题。", where:"IJADE 44(2):462–478·Open Access；做学生参与校园改造的参与式研究。", tags:["公民教育","儿童美术","社会正义"], source:"IJADE 2025, 44(2): 462–478 · Lasczik et al.", url:"https://onlinelibrary.wiley.com/toc/14768070/44/2" },
+  { id:"res-kt01", kind:"课题", scope:"国内", region:"全国", title:"全国教育科学规划年度课题（教育部重点/一般）", hot:"教育系统最高级别课题，评职称很有分量。美术方向每年立项 10–20 项，命中点在「国家政策+可推广模型」。", where:"每年 1–3 月申报，经学校→区→市→省逐级推荐，个人不能直报。选题必须挂「美育浸润」「核心素养」等国家文件原词。", tags:["课题申报","国家级","教育部"], source:"全国教育科学规划领导小组办公室", url:"https://onsgep.moe.edu.cn/", deadline:"2027-03-15" },
+  { id:"res-kt02", kind:"课题", scope:"国内", region:"全国", title:"教育部人文社会科学研究一般项目（规划/青年）", hot:"高校系统课题，中学老师一般不能报，但可**参与高校老师的团队**做实践基地——这是很值得投入的挂名路径。", where:"每年 2–3 月申报；找本地师范院校/深大艺术学院的老师合作，你做「实验校」负责人。", tags:["课题申报","教育部","合作"], source:"教育部社科司", url:"https://www.sinoss.net/", deadline:"2027-03-20" },
+  { id:"res-kt03", kind:"课题", scope:"国内", region:"广东", title:"广东省教育科学规划课题（美育专项）", hot:"省级课题，深圳老师最现实的高级别目标。省里每年有「美育浸润」专项，对口程度高于一般课题。", where:"每年 4–6 月，经市教科院推荐；选题写「粤港澳大湾区/岭南文化」加分明显。", tags:["课题申报","省级","美育浸润"], source:"广东省教育科学规划办", url:"http://edu.gd.gov.cn/", deadline:"2027-05-30" },
+  { id:"res-kt04", kind:"课题", scope:"国内", region:"深圳", title:"深圳市教育科学规划课题（年度/重点）", hot:"市级课题，评高级教师的标配。市教科院每年 3–5 月申报，区里会先筛一轮。", where:"必须有问题意识+校本实践基础；提前一学期在区教研活动上做开题预热，命中率更高。", tags:["课题申报","市级","教科院"], source:"深圳市教育科学研究院", url:"http://www.szjky.edu.cn/", deadline:"2027-04-20" },
+  { id:"res-kt05", kind:"课题", scope:"国内", region:"宝安", title:"宝安区教育科学规划课题（微型/一般）", hot:"区级课题，最容易立项、最适合第一次做课题的老师。半年到一年结题，成果可直接升市级。", where:"每年 9–10 月，学校统一报；选题小切口（一个单元、一个评价工具）反而更容易过。", tags:["课题申报","区级","宝安"], source:"宝安区教育科学研究院", url:"https://bjt.baoan.edu.cn/", deadline:"2027-09-30" },
+  { id:"res-kt06", kind:"课题", scope:"国内", region:"广东", title:"广东省美育浸润行动计划专项", hot:"省教育厅专项，面向中小学美育帮扶、城乡共同体。有对口帮扶关系的学校几乎必中。", where:"随省厅通知申报（一般上半年）；需要高校+中小学联合体，找一家高校做牵头。", tags:["课题申报","省级","美育浸润"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-06-15" },
+  { id:"res-kt07", kind:"课题", scope:"国内", region:"全国", title:"中国美术家协会「美育浸润」相关课题/项目", hot:"美协系统的项目，偏创作+教学结合。评职称时算行业权威，但不算教育系统课题，两者可叠加。", where:"关注中国美协官网公告，一般下半年；需提交作品+教学成果双材料。", tags:["课题申报","专业协会","美育浸润"], source:"中国美术家协会", url:"https://www.caanet.org.cn/", deadline:"2027-10-31" },
+  { id:"res-kt08", kind:"课题", scope:"国内", region:"广东", title:"广东省教育研究院中小学美术教研专项", hot:"省教研院的小课题，周期短（1 年）、要求实，适合拿「课例+数据」说话。", where:"每年 3 月前后；由地市教研员推荐，先跟区美术教研员打招呼。", tags:["课题申报","省级","教研"], source:"广东省教育研究院", url:"http://gdjy.gdedu.gov.cn/", deadline:"2027-03-31" },
+  { id:"res-kt09", kind:"课题", scope:"国内", region:"深圳", title:"深圳市「十四五」美育特色学校创建项目", hot:"不是课题但胜似课题：评上特色校，全校美育经费、评优、职称名额都会倾斜。", where:"按市教育局通知申报（一般 9–11 月）；要 3 年规划+课程体系+成果展，提前备材料。", tags:["课题申报","市级","特色学校"], source:"深圳市教育局", url:"http://szeb.sz.gov.cn/", deadline:"2027-11-15" },
+  { id:"res-kt10", kind:"课题", scope:"国内", region:"校内", title:"校本课题（校级）", hot:"最低门槛，先做校级再往上滚。校级课题结题报告可以直接改成论文投《美术教育研究》。", where:"随时可立，学校教科室备案；选题=你班里真实存在的问题，一学期能做完。", tags:["课题申报","校级","入门"], source:"本校教科室", url:"#", deadline:"2027-06-30" },
+  { id:"res-kt11", kind:"课题", scope:"国内", region:"全国", title:"国家社科基金教育学一般课题", hot:"比教科规划更难，但规格最高。中学老师基本只能参与高校团队，做实验校。", where:"每年 1–2 月，限项申报；找师大教授带，你负责课堂实验与数据。", tags:["课题申报","国家级","合作"], source:"全国哲学社会科学工作办公室", url:"http://www.nopss.gov.cn/", deadline:"2027-02-28" },
+  { id:"res-kt12", kind:"课题", scope:"国内", region:"广东", title:"广东省中小学「百千万人才培养工程」专项课题", hot:"名师培养对象的配套课题，如果你在名师工作室/培养对象序列里，这是必拿的。", where:"随培养工程通知；需工作室主持人推荐，成果要求公开课+论文+辐射带动。", tags:["课题申报","省级","名师"], source:"广东省教育厅", url:"http://edu.gd.gov.cn/", deadline:"2027-07-15" },
+
+
+  { id:"res-in25", kind:"论文", scope:"国际", region:"土耳其·生成式AI", title:"An Innovative Approach in Arts Education: Student Experiences of Abstract Art Practices Supported by Generative Artificial Intelligence", hot:"2025 实证：12 名艺术教育高年级生参与 12 周生成式AI辅助抽象艺术创作，初抵触、后转正向，AI 成灵感与构图向导（SAGE Open, 15(3)）。", where:"SAGE Open (2025, 15(3))；DOI 10.1177/21582440251382812。用于「AI+美术创作」课例的理论与案例支撑。", tags:["AI","生成式AI","高等教育","创造力","土耳其"], source:"SAGE Open · Yahya Hiçyilmaz (2025)", url:"https://journals.sagepub.com/doi/10.1177/21582440251382812" },
+  { id:"res-in26", kind:"论文", scope:"国际", region:"拉脱维亚·生成式AI", title:"Generative Artificial Intelligence as a Catalyst for Change in Higher Education Art Study Programs", hot:"2025 实证：10 名艺术生于构图课同时用传统法与 GenAI，认为其是构思/概念导师而非精密创作工具（Computers, MDPI）。", where:"Computers (MDPI, 2025, 4(154))；DOI 10.3390/computers14040154。论证「AI 作为灵感伙伴」的课堂定位。", tags:["AI","生成式AI","高等教育","构图","拉脱维亚"], source:"MDPI Computers · Ansone et al. (2025)", url:"https://www.mdpi.com/2073-431X/14/4/154" },
+  { id:"res-in27", kind:"论文", scope:"国际", region:"中国·ChatGPT", title:"Interaction between Students and Artificial Intelligence in the Context of Creative Potential Development", hot:"2025 实证：美术/文学/服装三方向学生用 ChatGPT-4 辅助创意，TTCT 图形测验显示创造力潜能显著增长（Interactive Learning Environments）。", where:"Interactive Learning Environments (2025, 33(7):4460-4475)；ERIC EJ1501138。可用于「AI 助教与创造力」课题论证。", tags:["AI","ChatGPT","创造力","实验","中国"], source:"Taylor & Francis · Ming Xu (2025)", url:"https://eric.ed.gov/?id=EJ1501138" },
+  { id:"res-in28", kind:"论文", scope:"国际", region:"中国·GAN", title:"Enhancing art creation through AI-based generative adversarial networks in educational auxiliary system", hot:"2025 实证：GAN 辅助艺术创作系统，60 名本科生创作质量提升 35.4%、参与度提升 42.7%（Scientific Reports, Nature）。", where:"Scientific Reports (2025, Nature)；DOI 10.1038/s41598-025-14164-z。做「AI 评图反馈」系统的技术参照。", tags:["AI","GAN","艺术创作","系统","中国"], source:"Scientific Reports (Nature) · He & Zhang (2025)", url:"https://www.nature.com/articles/s41598-025-14164-z" },
+  { id:"res-in29", kind:"论文", scope:"国际", region:"中国·AI图像", title:"Effects of AI-generated images in visual art education on students' classroom engagement, self-efficacy and cognitive load", hot:"2025 实验：78 名五年级生分组，AI 生成图像组课堂参与度与自我效能显著更高，认知负荷无差异（Hum & Soc Sci Communications）。", where:"Humanities and Social Sciences Communications (2025, 12(1))；DOI 10.1057/s41599-025-05860-2。小学 AI 图像教学的直接实证。", tags:["AI","AI图像","参与度","自我效能","中国"], source:"Springer HSSC · Bian et al. (2025)", url:"https://www.nature.com/articles/s41599-025-05860-2" },
+  { id:"res-in30", kind:"论文", scope:"国际", region:"西班牙·神经超现实", title:"The generative artificial intelligence of images as a collaborator for creativity: a group case study", hot:"2025 混合研究：55 名西国大学生以 GenAI 协助梦境视觉化，自我表达满意度 72.4%，缓解「空白画布恐惧」（Arte, Individuo y Sociedad）。", where:"Arte, Individuo y Sociedad (2025, 37(2):339-351)；DOI 10.5209/aris.99030。接「AI 作为共创伙伴」叙事。", tags:["AI","生成式AI","自我表达","创造力","西班牙"], source:"Arte Individuo y Sociedad · Gil-Ruiz & Domínguez-Lloria (2025)", url:"https://doi.org/10.5209/aris.99030" },
+  { id:"res-in31", kind:"论文", scope:"国际", region:"波黑/克罗地亚·艺术治疗", title:"Integration of Visual Arts Methods in Education: Reducing Stress, Enhancing Introspection, and Emotional Well-being", hot:"2025 实证：视觉艺术工作坊降低压力、提升情绪稳定性，100% 参与者报告压力下降（Multidisciplinarni pristupi, 7(9)）。", where:"Multidisciplinarni pristupi (2025, 7(9):81-91)；DOI 10.59519/mper7108。情绪/心理维度艺术教育实证。", tags:["艺术治疗","幸福感","压力","情绪","波黑"], source:"Multidisciplinarni pristupi · Žmukić et al. (2025)", url:"https://www.multidisciplinarni-pristupi.com/" },
+  { id:"res-in32", kind:"论文", scope:"国际", region:"乌兹别克斯坦·心理", title:"Visual arts and psychology: emotional and creative development of general secondary school students", hot:"2025 实证：50 名 5–7 年级学生，规律视觉艺术活动提升情绪稳定与创造力（Inter education & global study, 6）。", where:"Inter education & global study (2025, 6:533-540)。中小学艺术心理发展实证。", tags:["心理学","情绪","创造力","中小学","乌兹别克"], source:"Inter education & global study · Bahriddinova (2025)", url:"https://researcher.uz/" },
+  { id:"res-in33", kind:"论文", scope:"国际", region:"美国·社会情感", title:"Promoting the Social and Emotional Well-Being of Young Adolescents in Visual Arts Classrooms", hot:"2025 著作章节：美国两所初中视觉艺术课堂的 SEL 策略——协作氛围与创作自主促进青少年社会情感能力（Routledge）。", where:"Routledge (2025)；DOI 10.4324/9781003562047-16。社会情感学习 SEL 与美术课堂结合。", tags:["社会情感","SEL","中小学","美国","幸福感"], source:"Routledge · Yuan, Elias & Blatt (2025)", url:"https://www.taylorfrancis.com/books/9781003562047/chapters/10.4324/9781003562047-16" },
+  { id:"res-in34", kind:"论文", scope:"国际", region:"印尼/马来西亚·可持续", title:"Visual and Narrative Engagements with the 'Subak' System: A Thematic Analysis of Sustainability Learning through Creative Interpretation in Bali", hot:"2025 现象图析：新加坡大学生以绘画+叙事解读巴厘岛原住民生态知识 Subak，呈现去殖民与在地化学习（JKB, 15(3)）。", where:"Jurnal Kajian Bali (2025, 15(3):14)；DOI 10.24843/JKB.2025.v15.i03.p14。生态/非遗跨文化艺术学习。", tags:["可持续","去殖民","在地","生态","印尼"], source:"JKB · Surata et al. (2025)", url:"https://irep.iium.edu.my/125838/" },
+  { id:"res-in35", kind:"论文", scope:"国际", region:"芬兰·北极工艺", title:"Felted Futures: crafting transformative learning experiences in the Arctic", hot:"2025 艺术本位行动研究：高校师生与北极村落共创羊毛毡工艺，推动循环经济和转型可持续教育（Education in the North）。", where:"Education in the North (2025, 32(3):204-227)；DOI 10.26203/ehk3-1b93。传统工艺+可持续+社区艺术教育。", tags:["可持续","工艺","行动研究","社群","芬兰"], source:"Education in the North · Huhmarniemi et al. (2025)", url:"https://www.abdn.ac.uk/eitn" },
+  { id:"res-in36", kind:"论文", scope:"国际", region:"印度·去殖民课程", title:"Graphic narratives as pedagogical tools: Diversifying the curriculum of science in schools", hot:"2025：以印度 Gond 艺术家图像叙事挑战气候危机中的殖民式人类中心叙事，主张课程多元化（Journal of Applied Learning & Teaching）。", where:"Journal of Applied Learning & Teaching (2025, 8(S1.3))；DOI 10.37074/jalt.2025.8.S1.3。图像叙事/生态艺术进课堂。", tags:["去殖民","图像叙事","生态","课程","印度"], source:"JALT · Saraswat & Das (2025)", url:"https://dx.doi.org/10.37074/jalt.2025.8.S1.3" },
+  { id:"res-in37", kind:"论文", scope:"国际", region:"越南/英国·气候参与", title:"Hope in Folded Pages: Zine-Making, Decolonial Praxis and the Power of Participatory Arts for 'a Peaceful and Sustainable Life'", hot:"2025 参与式艺术研究：越南青年以 Zine 制作表达气候韧性，跨越语言/代际隔阂，青年成知识共创者（Geographical Journal）。", where:"The Geographical Journal (2025, 192(1))；Wiley Open Access。参与式艺术+气候行动+去殖民框架。", tags:["参与式艺术","气候","去殖民","青年","越南"], source:"Geographical Journal · River of Hope (2025)", url:"https://hull-repository.worktribe.com/output/5487772" },
+  ,{ id:"res-cn41", kind:"论文", scope:"国内", region:"深圳·福田", title:"数智视域下的中小学美术教育革新——深圳市福田区中小学「人工智能艺术」研学共同体的实践与研究", hot:"深圳本地实证：福田区以「六个基于」原则建人工智能艺术研学共同体，开发个性化课程、建 AI 艺术实验室、做跨学科融合与项目式学习，是湾区 AI+美术 一线可复制样本。", where:"《中国美术》2025 年第 5 期，p.113-116；DOI 10.3969/j.issn.0256-212X.2025.05.016。", tags:["AI美术","深圳","实证研究","研学共同体"], source:"《中国美术》2025 年第 5 期", url:"https://lib.cqytxy.edu.cn/articlesearch/web_searchingDetail?id=2031624042454" }
+  ,{ id:"res-cn42", kind:"论文", scope:"国内", region:"高校·美育", title:"基于人工智能设计拓展大学生美育的探索与实践", hot:"CSSCI《中国大学教学》2026 年第 2-3 期；提出「感官扩增—实时交互—虚实融合」三维框架，论证 AI 设计推动美育从艺术鉴赏向具身认知范式转型，高校美育方向高引参考。", where:"《中国大学教学》2026 年第 2-3 期（教育部主管，CSSCI 来源期刊，复合影响因子 4.826）。", tags:["AI美育","CSSCI","高校","范式转型"], source:"山东大学艺术学院 · 赵鹏团队", url:"https://www.art.sdu.edu.cn/info/1300/18406.htm" }
+  ,{ id:"res-cn43", kind:"论文", scope:"国内", region:"高校·造型", title:"生成式人工智能赋能造型艺术基础教学的路径探索——基于色彩规律实验课程的实证研究", hot:"以西安美院「色彩规律」实验课为对象，用生成式 AI 重构造型基础教学，揭示其在提升实践效率、培养视觉素养与重构艺术认知范式中的作用，附「技术赋能 vs 人文价值平衡」路径。", where:"DOI 10.13772/j.cnki.61-1042/j.2026.02.018；2026-06-10 发表，2026-07-09 网络首发。", tags:["生成式AI","造型基础","实证研究","视觉素养"], source:"知网首发 · 西安美术学院教育教学改革项目(2025JY012)阶段成果", url:"https://cfed.cnki.net/inds/litdetail?FDk9Q0BWbUhIOmQ26weGWZPNr2sXgSdJpXk4O5CDJDzPaGM2sogTkUvXTkeHX3facb9b6JErH34inl0G3DRfuoQUs0PpfwsOWGI8LvFnvyH19rs2DytdIIrUOL6ott" }
+  ,{ id:"res-cn44", kind:"论文", scope:"国内", region:"小学·跨学科", title:"在地美食文化邂逅教育智能体——小学美术跨学科教学的创意实践", hot:"上海虹口曲阳四小以「智学魔方」智能体 + 「4+N」版画创意教学模式，解决传统版画媒材选择盲目、分层指导难、评价单一问题，是小学美术+AI 跨学科的鲜活案例。", where:"《中小学数字化教学》2026 年第 2 期。", tags:["教育智能体","小学美术","跨学科","版画"], source:"知网阅读 · 姚迩", url:"https://read.cnki.net/web/Organization/Subject?orgcode=0840059&subcode=H127" }
+  ,{ id:"res-kt13", kind:"课题", scope:"国内", region:"广东·省级重点", title:"传习与创生：高中工笔画项目式学习数智化双轨创新实践研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；以工笔画项目式学习 + 数智化双轨为路径，是美术教师做省级重点课题的标杆样本。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞外国语学校 王柴慧。", tags:["省级重点","工笔画","项目式","数智化"], source:"东莞外国语学校喜报 · 广东省教育科学规划 2026 年度重点项目立项", url:"https://dgfls.dgjy.net/info/2172/278664.htm" }
+  ,{ id:"res-kt14", kind:"课题", scope:"国内", region:"广东·省级重点", title:"区域中小学美术教师「七彩计划」实施研究", hot:"2026 年度广东省教育科学规划（中小学教师教育科研能力提升计划）重点项目立项；面向区域中小学美术教师队伍建设，是「教师发展」类课题的可报方向参考。", where:"广东省教育科学规划领导小组办公室 2026 年度重点项目；主持：东莞市教育局教研室 詹逸然。", tags:["省级重点","教师发展","区域教研"], source:"东莞市拟推荐 2026 年度省规划重点名单", url:"https://edu.dg.gov.cn/attachment/0/348/348170/4404929.xlsx" }
+  ,{ id:"res-in38", kind:"论文", scope:"国际", region:"韩国·设计教育", title:"Graphic Design Education in the Era of Text-to-Image Generation: Transitioning to Contents Creator", hot:"基于 2023 年「视觉文化与当代艺术」课程工作坊，用 Midjourney/DALL·E + TPCK 模型让学生生成欧洲设计史海报；证实生成式 AI 时代图形设计教育需重构目标与方法，学生须具备 AI 视觉素养与创意关键词能力。", where:"International Journal of Art & Design Education, 2025, 44(1), p.239-253；DOI 10.1111/jade.12558（Wiley, peer-reviewed）。", tags:["生成式AI","设计教育","视觉素养","TPCK"], source:"International Journal of Art & Design Education (Wiley)", url:"https://eric.ed.gov/?id=ej1460436" }
+  ,{ id:"res-in39", kind:"论文", scope:"国际", region:"土耳其·建筑教育", title:"An analysis of text-to-image generative models as creativity support tools", hot:"28 名建筑系大一学生用文生图模型做提示词工程生成建筑表征，配创造力支持指数(CSI)问卷；发现结构化提示词显著提升产出质量，但学生在复杂视觉概念表达与构图控制上仍吃力，呼吁加强提示词训练。", where:"International Journal of Arts and Technology, 2025；DOI 10.1504/IJART.2025.147855。", tags:["文生图","提示词工程","创造力支持","建筑教育"], source:"International Journal of Arts and Technology", url:"https://acikerisim.msgsu.edu.tr/xmlui/handle/20.500.14124/10258" }
+
+];
+const PEOPLE = [
+  { id:"p-yinshaochun", name:"尹少淳", title:"首都师范大学美术学院教授、博导", org:"首都师范大学", role:"课标组长·最高评审", lvl:"S",
+    core:"美术核心素养（图像识读、美术表现、审美判断、创意实践、文化理解）是你写论文课题的底层框架。他力推「大单元 / 大观念」教学：从零散知识点转向素养导向，用真实任务串起学习。",
+    todo:"写课题先把「核心素养」五个词挂进理论框架；单元设计用他的「大观念—基本问题—小问题」链条；引用他的核心素养体系作为立论起点最稳。",
+    works:"《美术教育学新编》《尹少淳谈美术教育》；义务教育 / 高中美术课程标准修订组组长。",
+    recent:"2026 在重庆、深圳多场讲座解读新课标修订（主题「变与不变」）；2025.12《基础教育课程》发文详解 2025 版课标修订要点。",
+    why:"你写论文 / 课题的「评审标尺」由他定——对标他的表述体系，评委一眼认得出门道。",
+    url:"https://www.cnu.edu.cn/", tags:["课标","大单元","核心素养"], known:true },
+  { id:"p-lilijia", name:"李力加", title:"浙江师范大学美术学院教授、硕导", org:"浙江师范大学", role:"课标核心·国培专家", lvl:"S",
+    core:"从「改变儿童观看方式」入手做视觉文化素养；反对纯技法训练，主张审美感知与思维发展并重。他是艺术课标研制组核心、美术子课题负责人。",
+    todo:"儿童美术 / 校本课程方向直接引用他的「视觉观看」理论；课题走「图像识读—审美判断」路径；你点名的「李丽佳」即李力加（语音误差）。",
+    works:"《走向多元的美术教学》《美术教育研究》等；教育部艺术课程标准研制组核心成员、美术子课题负责人。",
+    recent:"任广东省名师工作室学术顾问；持续推动「从改变观看方式入手」的中小学美育策略。",
+    why:"儿童美术 / 校本课程方向对标他最准；也是你点名要跟的人。",
+    url:"https://www.zjnu.edu.cn/", tags:["艺术课标","儿童美术","视觉观看"], known:true },
+  { id:"p-huanghongwu", name:"黄宏武", title:"深圳市教育科学研究院德体艺教学研究中心主任", org:"深圳市教育科学研究院", role:"本地评审·成果奖得主", lvl:"S",
+    core:"「大观念·真情感·新方式·全历程」四维范式，主张「整体育美」「四全美育」（全员、全过程、全方位、全场域）。他是深圳美术教研总牵头人。",
+    todo:"深圳老师的课题、公开课直接套「四全美育」话语；想冲深圳 / 广东成果奖，研究他的获奖范式怎么搭框架、攒证据。",
+    works:"2022 年获基础教育国家级教学成果奖一等奖（广东美术学科首个、全国首个以美术教研员身份拿一等奖）。",
+    recent:"2022 年获基础教育国家级教学成果奖一等奖；2026.9 主持深圳市高中美术新课标新教材培训。",
+    why:"你点名的「黄鸿武」即黄宏武；最该盯的本地权威，也是你课题评审圈的人。",
+    url:"https://www.szjky.edu.cn/", tags:["国家级成果奖","深圳教研","四全美育"], known:true },
+  { id:"p-qujian", name:"屈健", title:"中国美术家协会分党组书记、驻会副主席", org:"中国美术家协会", role:"行业最高层", lvl:"S",
+    core:"新时代美术高质量发展、文化自信与中华美学精神；强调坚守文化主体性、积极拥抱新技术。他是美术界行业最高层之一。",
+    todo:"写「政策方向 / 大方向」类课题、把握口风时引用；做「中国精神 / 文化自信」主题创作与课题的顶层依据。",
+    works:"中国美术家协会分党组书记、驻会副主席；多篇美术发展导向论述。",
+    recent:"2026.6 在西南大学「未来美育先锋」研讨会致辞，强调坚守文化主体性、拥抱新技术。",
+    why:"把握「大方向」与政策口风，课题立项不跑偏；行业最高层，分量最重。",
+    url:"https://www.caanet.org.cn/", tags:["政策导向","文化自信","高质量发展"], known:false },
+  { id:"p-qianchuxi", name:"钱初熹", title:"华东师范大学艺术学院教授、博导", org:"华东师范大学", role:"课标组·权威", lvl:"A",
+    core:"创造力培养、馆校合作、美术教育实证研究；倡导美术馆 / 博物馆资源进课堂，把社会资源变成课程。",
+    todo:"做「馆校合作 / 博物馆美育」课题直接对标；引用其创造力培养框架支撑「审美判断」维度。",
+    works:"华东师范大学艺术学院教授、博导；《美术教育促进青少年心理健康》等多部著作；深度参与课标修订。",
+    recent:"2026 任浙江美育研究院学术委员；2025 参与新课标修订解读。",
+    why:"华东师大系美术教育标杆，论文 / 课题引用他的框架很稳。",
+    url:"https://www.ecnu.edu.cn/", tags:["创造力","馆校合作","课标"], known:false },
+  { id:"p-huzhifan", name:"胡知凡", title:"上海师范大学美术学院教授、博导", org:"上海师范大学", role:"理论权威", lvl:"A",
+    core:"美术教育基本理论、课程标准、教材比较研究；擅长把课标转化为可操作的素养—目标映射。",
+    todo:"写理论综述 / 教材分析类论文引用；课标解读用其「素养—目标」映射表。",
+    works:"上海师范大学美术学院教授、博导；参与义务教育 / 高中美术课标修订。",
+    recent:"2026 任浙江美育研究院学术委员。",
+    why:"理论派代表，写综述 / 理论建构类论文常引。",
+    url:"https://www.shnu.edu.cn/", tags:["美术教育理论","课标","教材"], known:false },
+  { id:"p-zhengqinyan", name:"郑勤砚", title:"中央美术学院教授", org:"中央美术学院", role:"少儿艺委会主任", lvl:"A",
+    core:"少儿美术、书法教育、社会美育；强调儿童本位的创作表达，反对成人化代笔。",
+    todo:"少儿 / 书法方向评审与课题立项的口径来源；做「社会美育 / 少儿书法」课题引用。",
+    works:"中央美术学院教授；中国美协少儿美术艺术委员会主任。",
+    recent:"任中国美协少儿美术艺术委员会主任；2026 浙江美育研究院委员。",
+    why:"少儿 / 书法方向评审与课题立项的口径来源。",
+    url:"https://www.cafa.edu.cn/", tags:["少儿美术","书法","社会美育"], known:false },
+  { id:"p-zhongguorong", name:"钟国荣", title:"广东省美术教研员、正高级教师", org:"广东省教育研究院", role:"省级评审", lvl:"A",
+    core:"岭南本土文化与高中美术模块融合、教材落地转化；强调把地方资源变成可教的课。",
+    todo:"广东省课题 / 比赛评审口径，岭南文化方向必看；做「岭南文化 + 美术」课题引用其转化路径。",
+    works:"广东省教育研究院美术教研员、正高级教师；人美版高中《美术鉴赏》教学案例讲座。",
+    recent:"2026.9 在深圳培训作《提炼、深化与发展——基于人美版高中〈美术鉴赏〉教学案例分析》讲座。",
+    why:"广东省课题 / 比赛评审口径，岭南文化方向必看。",
+    url:"https://edu.gd.gov.cn/", tags:["广东教研","岭南文化","教材"], known:false },
+  { id:"p-guoshengjian", name:"郭声健", title:"湖南师范大学博导", org:"湖南师范大学", role:"美育教指委副主任", lvl:"A",
+    core:"学校美育政策、艺术教育理论、师范生培养；提出课题选题「三有」、依据「三体现」。",
+    todo:"政策类 / 规划类课题对标其「三有」「三体现」；写美育政策综述引用教指委口径。",
+    works:"湖南师范大学博导；教育部美育教指委副主任。",
+    recent:"2025.1 以评审专家视角指导省部级项目申报，提出选题「三有」、依据「三体现」。",
+    why:"教育部美育教指委层面人物，政策类课题对标他。",
+    url:"https://www.hunnu.edu.cn/", tags:["美育政策","教指委","申报指导"], known:false },
+  { id:"p-luoliping", name:"罗礼平", title:"福建师范大学美术学院院长、教授", org:"福建师范大学", role:"国家艺术基金评审", lvl:"A",
+    core:"美术学科建设、国家艺术基金申报、地域文化（红色 / 客家）学术转化。",
+    todo:"想申国家艺术基金 / 省级学科项目，照他的「地域特色学术转化」逻辑写论证。",
+    works:"福建师范大学美术学院院长、教授；国家艺术基金评审。",
+    recent:"2025.6 在赣南师大作「学科建设与国家艺术基金申报指导」座谈，强调地域特色学术转化。",
+    why:"想申国家艺术基金 / 省级学科项目，他的申报逻辑是范本。",
+    url:"https://www.fjnu.edu.cn/", tags:["国家艺术基金","学科建设","地域文化"], known:false },
+  { id:"p-zhangpeng", name:"张鹏", title:"首都师范大学美术学院博导", org:"首都师范大学", role:"课题申报指导", lvl:"A",
+    core:"美术史、近现代美术、课题论证；主张「精准解题、凝练内容」，从近十年个案研究入手。",
+    todo:"申报书怎么写、怎么立项，照他的「精准解题—个案支撑」写法；先列近十年相关研究再凝练问题。",
+    works:"首都师范大学美术学院博导；国家社科基金艺术学项目申报指导。",
+    recent:"2025.2 在湖北美院国家社科基金艺术学项目申报指导会提出「精准解题、凝练内容」「从近十年个案研究入手」。",
+    why:"课题申报书怎么写、怎么立项，他的点评最实操。",
+    url:"https://www.cnu.edu.cn/", tags:["课题申报","美术史","个案研究"], known:false },
+  { id:"p-yangcanwei", name:"杨灿伟", title:"《美术》杂志社研究员", org:"《美术》杂志社", role:"核心期刊·发表", lvl:"A",
+    core:"美术学核心期刊选题、学术规范、研究格局拓展（突破地域、跨学科融合）。",
+    todo:"想发《美术》等核心，按「拓展研究格局、跨学科融合」方向选题；注意学术规范与文献厚度。",
+    works:"《美术》杂志社研究员；核心期刊选题导向把控者。",
+    recent:"2025.2 在湖北美院申报指导会提出「拓展研究格局、突破地域限制、跨学科融合」。",
+    why:"你想发核心期刊，他的口径 = 编辑部想要的方向。",
+    url:"http://www.msfam.com.cn/", tags:["核心期刊","发表","学术规范"], known:false },
+  { id:"p-duanyundong", name:"段运冬", title:"西南大学美术学院院长、教授", org:"西南大学", role:"美育研究前沿", lvl:"A",
+    core:"中国美育自主知识体系、新大众文艺评论、美术高质量发展。",
+    todo:"前沿议题策源地，跟他的「美育自主知识体系」主题写易上档次。",
+    works:"西南大学美术学院院长、教授；主持美育高质量发展研讨会。",
+    recent:"2026.6 主持「未来美育先锋：中国式现代化与美术高质量发展」学术研讨会。",
+    why:"前沿议题策源地，跟他的主题写易上档次。",
+    url:"https://www.swu.edu.cn/", tags:["美育体系","文艺评论","前沿"], known:false },
+  { id:"p-zhenwei", name:"甄巍", title:"北京师范大学教授、艺术与传媒学院副院长", org:"北京师范大学", role:"数字美育权威", lvl:"A",
+    core:"数字艺术、AI 美育、师范美育；强调技术与人文平衡，不让技术盖过育人。",
+    todo:"AI / 数字美育方向最对标的北师大口径；做「AI + 美术教学」课题引用其框架。",
+    works:"北京师范大学教授、艺术与传媒学院副院长；数字美育研究。",
+    recent:"2026 任浙江美育研究院学术委员。",
+    why:"AI / 数字美育方向最对标的北师大口径。",
+    url:"https://www.bnu.edu.cn/", tags:["数字美育","AI","师范"], known:false },
+  { id:"p-xielifang", name:"谢丽芳", title:"中国美协少儿艺委会原副主任、「蒲公英行动」创始人", org:"中国美术家协会", role:"乡村儿童美术", lvl:"A",
+    core:"乡村学校美术教育、非遗与儿童创作、社会公益美育；「蒲公英行动」发起人。",
+    todo:"非遗 / 乡村 / 公益美育方向开山人物，立项叙事来源；做「非遗进校园」课题引用。",
+    works:"「蒲公英行动」乡村儿童美术创始人；中国美协少儿艺委会原副主任。",
+    recent:"2026 任浙江美育研究院委员；持续推动「蒲公英行动」乡村儿童美术。",
+    why:"非遗 / 乡村 / 公益美育方向的开山人物，立项叙事来源。",
+    url:"https://www.caanet.org.cn/", tags:["乡村美育","非遗","蒲公英行动"], known:false },
+  { id:"p-fengenxu", name:"冯恩旭", title:"四川省教育科学研究院教研员、正高级教师", org:"四川省教育科学研究院", role:"非遗美育·工作坊专家", lvl:"A",
+    core:"非遗进校园、艺术实践工作坊、乡村学校美育；「四川非遗美育工作坊」模式发起人。",
+    todo:"非遗 / 乡土美育方向立项与课程开发直接对标；做「工作坊 + 乡土」课题引用。",
+    works:"四川省教育科学研究院教研员、正高级教师；四川非遗美育工作坊发起人。",
+    recent:"持续在全国推广非遗美育工作坊与乡村学校美术特色课程，多地送教与师资培训。",
+    why:"非遗 / 乡土美育方向立项与课程开发的直接对标人物。",
+    url:"http://www.scjks.net/", tags:["非遗美育","工作坊","乡村美育"], known:false },
+  { id:"p-bianxia", name:"边霞", title:"南京师范大学教科院教授、博导、美育研究中心主任", org:"南京师范大学", role:"儿童艺术教育权威", lvl:"A",
+    core:"儿童艺术教育、STEAM 教育、生态式美育；主张各领域融通而非拼盘。",
+    todo:"儿童 / 低段艺术教育最高引用源之一；做「生态式 / 融合」美育课题引用。",
+    works:"南京师范大学教科院教授、博导、美育研究中心主任；世界华人美术教育协会儿童艺术教育专委会主任。",
+    recent:"任世界华人美术教育协会常务副主席兼儿童艺术教育专委会主任；持续产出儿童艺术教育研究。",
+    why:"儿童 / 低段艺术教育方向最高引用来源之一。",
+    url:"https://www.njnu.edu.cn/", tags:["儿童艺术","STEAM","生态式美育"], known:false },
+  { id:"p-limu", name:"李睦", title:"清华大学美术学院教授、艺术家", org:"清华大学", role:"基础美育倡导者", lvl:"A",
+    core:"当代艺术创作与基础美术教育、社会美育；倡导「美育是通识教育」，超越技法、回归人格与创造力。",
+    todo:"做「美育哲学 / 创造力」层面课题或讲座，他的口径最提纲挈领。",
+    works:"清华大学美术学院教授、艺术家；基础美育倡导者。",
+    recent:"近年持续在高校与社会美育论坛发声，推动美育超越技法、回归人格与创造力培养。",
+    why:"想做「美育哲学 / 创造力」层面的课题或讲座，他的口径最提纲挈领。",
+    url:"https://www.ad.tsinghua.edu.cn/", tags:["基础美育","社会美育","创造力"], known:false },
+  { id:"p-zhujingdong", name:"朱敬东", title:"浙江师范大学教授", org:"浙江师范大学", role:"国培专家", lvl:"A",
+    core:"创客 / STEAM 与美术融合、AI 美育、教师培训；主张用技术打开创作边界。",
+    todo:"STEAM / AI 美育方向直接对标，课题易中；做「跨学科融合」课题引用。",
+    works:"浙江师范大学教授；教育部「国培计划」专家。",
+    recent:"教育部「国培计划」专家；2026 浙江美育研究院委员。",
+    why:"STEAM / AI 美育方向直接对标，课题易中。",
+    url:"https://www.zjnu.edu.cn/", tags:["STEAM","AI美育","国培"], known:false },
+  { id:"p-wangdagang", name:"王大根", title:"上海师范大学美术学院教授", org:"上海师范大学", role:"美术教学论权威", lvl:"A",
+    core:"单元化教学、美术学习评价、「以学定教」；其教学论著作是美术老师的案头书。",
+    todo:"写教学法 / 单元设计类论文、做公开课最该对标；用「单元教学」重构教案与评课语言。",
+    works:"上海师范大学美术学院教授；《美术教学论》《中小学美术教学法学程》。",
+    recent:"近年持续推动中小学美术「单元教学」落地与青年教师教学能力提升，多地名师工作室特邀导师。",
+    why:"美术教学论标杆，写教学法 / 单元设计类论文、做公开课最该对标。",
+    url:"https://www.shnu.edu.cn/", tags:["美术教学论","单元教学","学习方法"], known:false },
+  { id:"p-jiaxiaochuan", name:"贾小川", title:"中国美协少儿美术艺委会副秘书长、人民教育出版社美术室主任", org:"人民教育出版社", role:"教材·少儿评审", lvl:"A",
+    core:"中小学美术教材编写、少儿美术教育；熟悉教材口径与评审标准。",
+    todo:"教材口径 + 少儿评审，校本课程 / 教材类课题对标；做「教材二次开发」引用。",
+    works:"人民教育出版社美术室主任；中国美协少儿美术艺委会副秘书长。",
+    recent:"2026 任浙江美育研究院委员。",
+    why:"教材口径 + 少儿评审，校本课程 / 教材类课题对标他。",
+    url:"https://www.pep.com.cn/", tags:["教材","少儿美术","人教版"], known:false }
+];
+const TOOLS = [
+  { id:"t-krita", name:"Krita", star:"免费开源", lang:"C++/Qt", url:"https://github.com/KDE/krita",
+    desc:"专业级免费数字绘画软件，插画 / 漫画 / 概念设计，比 PS 易上手，学生机装得起。",
+    use:"美术课数字绘画、板绘教学首选；替代收费 PS。" },
+  { id:"t-piskel", name:"Piskel", star:"12.9K stars", lang:"JS", url:"https://github.com/piskelapp/piskel",
+    desc:"网页版像素画编辑器，做精灵图 / 动画，零安装。",
+    use:"正好做星露谷风素材、带学生上像素艺术课，浏览器打开就能用。" },
+  { id:"t-comfy", name:"ComfyUI", star:"106K stars", lang:"Python", url:"https://github.com/comfyanonymous/ComfyUI",
+    desc:"节点式 Stable Diffusion 工作流，AI 绘画可控、可复现。",
+    use:"做参赛草图 / 风格探索；节点流程能批量稳定出图。" },
+  { id:"t-photocraft", name:"PhotoCraft", star:"75.6K stars", lang:"Rust", url:"https://github.com/storytold/photocraft",
+    desc:"开源 Photoshop 平替（Rust 重写），图层 / 蒙版 / PSD 全支持。",
+    use:"不想买 Adobe 的话，免费干 90% 的修图活。" },
+  { id:"t-artcraft", name:"ArtCraft", star:"38K stars", lang:"桌面 IDE", url:"https://github.com/storytold/artcraft",
+    desc:"AI 图像 / 视频创作 IDE，2D 构图 + 3D 舞台 + 几十个模型直出。",
+    use:"做动态海报 / 短视频类参赛作品，效率极高。" },
+  { id:"t-ogen", name:"Open-Generative-AI", star:"31.9K stars", lang:"多", url:"https://github.com/Anil-matcha/Open-Generative-AI",
+    desc:"免费 AI 图像 / 视频工作室，400+ 模型（Flux、Kling、Sora、Veo），无内容过滤。",
+    use:"一站式 AI 创作实验，找参赛风格参考。" },
+  { id:"t-aipic", name:"ai-picture-editor", star:"新晋", lang:"TS/Py", url:"https://github.com/yuyuanweb/ai-picture-editor",
+    desc:"自然语言驱动的 AI 修图智能体，21 种编辑工具、文生图、智能抠图。",
+    use:"随手修学生作品、抠图换背景，说人话就能改。" },
+  { id:"t-gptimg", name:"awesome-gpt-image-2", star:"33.5K stars", lang:"JS", url:"https://github.com/freestylefly/awesome-gpt-image-2",
+    desc:"544 个逆向工程提示词案例 + 20 套工业模板的 GPT 图像提示词库。",
+    use:"写 AI 绘画提示词直接抄，稳定出图不踩坑。" },
+  { id:"t-openmaic", name:"OpenMAIC", star:"40K stars", lang:"TS", url:"https://github.com/THU-MAIC/OpenMAIC",
+    desc:"一键多智能体 AI 课堂生成器：幻灯片 / 测验 / 模拟，导出 .pptx 或 .html。",
+    use:"备课神器，输入课题直接出可改课件，美术鉴赏课省时。" },
+  { id:"t-excali", name:"Excalidraw", star:"119K stars", lang:"TS", url:"https://github.com/excalidraw/excalidraw",
+    desc:"手绘风白板，画示意图 / 思维导图，导出 SVG/PNG。",
+    use:"画教案示意图、知识导图，风格和星露谷网页很搭。" },
+
+  /* ---------- 你点名要的 + Skills / 科研分析类 ---------- */
+  { id:"t-pixelfx", name:"patch-gg/pixelfx", star:"1,937", lang:"JavaScript", url:"https://github.com/patch-gg/pixelfx",
+    desc:"244 个像素风特效，每个都是能直接读的小段 Canvas 代码；还附一个 Claude Code 技能，照需求再生成新特效。MIT。",
+    use:"做星露谷风网页动效 / 游戏特效的素材和生成器，一次拿全，正好给这网站加像素动效。" },
+  { id:"t-dsh", name:"deepseek-ai/dsh-superagent-prototype", star:"4,976", lang:"TypeScript", url:"https://github.com/deepseek-ai/dsh-superagent-prototype",
+    desc:"DeepSeek 官方仓库，两天冲到 4976 星：更自主的 agent 系统原型，能自己拆任务、跑长链条。MIT，源码全开。",
+    use:"对你不是美术工具，但想看下一代 AI 有多自主、以后自动帮你更赛事库长啥样，收着看趋势。" },
+  { id:"t-acad", name:"Imbad0202/academic-research-skills", star:"53K stars", lang:"Skill", url:"https://github.com/Imbad0202/academic-research-skills",
+    desc:"面向 Claude Code 的学术研究 Skills：研究 → 写作 → 审阅 → 修订 → 定稿，覆盖论文全流程。",
+    use:"你写教研论文 / 课题报告时，让 AI 按学术规范帮你查文献、写、改、定稿。" },
+  { id:"t-sci", name:"K-Dense-AI/scientific-agent-skills", star:"53K stars", lang:"Skill", url:"https://github.com/K-Dense-AI/scientific-agent-skills",
+    desc:"科学研究 Agent Skills 合集，177 个验证可用技能 + 100+ 科研数据库，覆盖文献、数据、学术沟通。",
+    use:"做教研课题的科研分析、数据查证、文献综述时调用，比零散 prompt 靠谱。" },
+  { id:"t-openscience", name:"aipoch/open-science", star:"5.4K stars", lang:"桌面 App", url:"https://github.com/aipoch/open-science",
+    desc:"本地优先的 AI 科研工作台：可扩展 skills + MCP 工具 + Python/R 执行 + 可追溯产物，复现研究。",
+    use:"想认真做教研 / 课题的科研分析流程，本地跑不泄密，适合长期沉淀。" },
+  { id:"t-deepresearch", name:"btahir/open-deep-research", star:"2,139", lang:"TypeScript", url:"https://github.com/btahir/open-deep-research",
+    desc:"开源版 Gemini Deep Research：基于搜索结果自动生成研究报告。",
+    use:"每周更赛事 / 政策时，让它自动搜完汇总成报告，你只复核要点。" },
+  { id:"t-alphaplot", name:"AlphaPlot", star:"282", lang:"C++", url:"https://github.com/alphaunlimited/alphaplot",
+    desc:"统计分析与数据可视化，能出发表级 2D/3D 图，可深度自定义。",
+    use:"教研里要做数据图表（获奖统计、问卷分析）直接出图，省得用 Excel 凑。" },
+  { id:"t-anthropics-skills", name:"anthropics/skills", star:"186K stars", lang:"Skill 总库", url:"https://github.com/anthropics/skills",
+    desc:"Anthropic 官方 Agent Skills 公共仓库，各类可复用技能的总入口。",
+    use:"找各种现成 skill（写作 / 分析 / 科研）的源头，缺啥技能来这翻。" },
+
+  /* ---------- 再补 3 个好用的 Skills（GitHub 上挑的） ---------- */
+  { id:"t-composio", name:"ComposioHQ/awesome-claude-skills", star:"34.5K stars", lang:"Skill", url:"https://github.com/ComposioHQ/awesome-claude-skills",
+    desc:"把 AI 连到 1000+ 真实应用（Gmail / 日历 / Slack / GitHub / 网盘）的技能库。",
+    use:"你最想要的「自动发邮件 / 同步赛程到日历」就靠它连 Gmail 实现，是离自动化的关键拼图。" },
+  { id:"t-travis", name:"travisvn/awesome-claude-skills", star:"49.5K stars", lang:"清单", url:"https://github.com/travisvn/awesome-claude-skills",
+    desc:"社区最权威的 Claude Skills 总清单，持续更新、按场景分类。",
+    use:"想找新技能时先翻这份清单，避免踩野鸡仓库。" },
+  { id:"t-addy", name:"addyosmani/agent-skills", star:"42K stars", lang:"Skill", url:"https://github.com/addyosmani/agent-skills",
+    desc:"Google 工程师 Addy Osmani 的 SDLC 全周期技能（架构 / 调试 / 测试 / 文档）。",
+    use:"偏工程，但文档写作、代码化课件这类长文产出质量高，值得借。" }
+];
+const BIG_SCHOOLS = [
+  /* ---------- 深圳（原 8 所，补 city） ---------- */
+  { city:"深圳", name:"深圳大学附属中学", wechat:"深大附中", tag:"老牌美术强校，白名单赛批量产出", won:[
+    { id:"cn-hope", t:"希望颂 第9届：特等奖2、一等奖39、二等奖36、三等奖23、优秀奖2" },
+    { id:"cn-paint", t:"全国中小学生绘画书法 第29届：一等奖20、二等奖31、三等奖73" }
+  ]},
+  { city:"深圳", name:"深圳中学(大鹏学校)", wechat:"深圳中学大鹏学校", tag:"新区校，书画社团投入大", won:[
+    { id:"cn-hope", t:"希望颂 第9届：60项国家级奖（一等奖10、二等奖17、三等奖26、优秀奖7）" }
+  ]},
+  { city:"深圳", name:"南科大附中宝安学校", wechat:"南科大附中宝安学校", tag:"央美硕士师资，附中宝安校区", won:[
+    { id:"cn-hope", t:"希望颂：组织164件、一等奖29、二等奖48、三等奖63，校获「优秀美育组织机构」" }
+  ]},
+  { city:"深圳", name:"深圳市第七高级中学", wechat:"深圳市第七高级中学", tag:"美术特色校", won:[
+    { id:"cn-hope", t:"希望颂 第7届：张睿祺同学获特等奖" }
+  ]},
+  { city:"深圳", name:"深圳外国语学校(集团)", wechat:"深圳外国语学校", tag:"集团化，多校区齐发", won:[
+    { id:"cn-paint", t:"全国中小学生绘画书法 第29届：高中部28人、初中部24人获奖（一等奖共6）" }
+  ]},
+  { city:"深圳", name:"宝安中学(集团)", wechat:"宝安中学", tag:"宝安龙头，书画底蕴厚", won:[
+    { id:"ba-art-student", t:"广东省中小学书画作品交流展示活动(深圳赛区)：绘画组、书法组均有学生入选" },
+    { id:"gd-meiyu", t:"省/市美育成果展示、艺术展演多次入选" }
+  ]},
+  { city:"深圳", name:"红岭中学(集团)", wechat:"红岭中学", tag:"福田龙头，艺术展演常客", won:[
+    { id:"sz-meirun", t:"深圳市艺术展演季、美润鹏城美育展演、书法大赛多次获奖" },
+    { id:"gd-meiyu", t:"省/市美育成果展示参展" }
+  ]},
+  { city:"深圳", name:"深圳外国语学校高中园(博雅高中)", wechat:"深圳外国语学校高中园", tag:"高中园，国际艺术赛道", won:[
+    { id:"sz-meirun", t:"美润鹏城美育成果展演入围关山月美术馆；粤友杯广东国际青少年艺术创作大赛银奖" }
+  ]},
+  /* 名校战绩只保留深圳本地学校，外市战绩不再展示 */
+];
+
+const TIER = {"国":"国家级","省":"省级","市":"市级","区":"区级"};
+const WAY = {
+  self:     {t:"个人投稿",   d:"学生本人在官方通道提交，老师只做指导与提醒。"},
+  workshop: {t:"工作坊",     d:"由老师统一组织、分组完成，以小组或学校名义报送。"},
+  achv:     {t:"美育成果报送", d:"不接收个人单独投稿，学校遴选、汇总后统一报送。"},
+  teach:    {t:"教师报送",   d:"教师本人提交论文、案例、课程或教学设计。"}
+};
+const $ = function(s){ return document.querySelector(s); };
+const $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+function esc(v){
+  return String(v===undefined||v===null?"":v)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function arr(v){ return Array.isArray(v)?v:(v?[v]:[]); }
+function listHTML(v, ordered){
+  var a=arr(v).filter(Boolean);
+  if(!a.length) return '<p style="color:#6b756d">—</p>';
+  var tag=ordered?"ol":"ul";
+  return "<"+tag+">"+a.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+"</"+tag+">";
+}
+function wayOf(a){
+  if(a.aud==="教师") return "teach";
+  var t=[].concat(arr(a.steps),arr(a.prep),arr(a.materials),[a.portal,a.name,a.short,a.subject]).join(" ");
+  if(/工作坊|集体创作|现场创作|社团活动|研学|分组完成|师生合作|工坊/.test(t)) return "workshop";
+  if(/美育成果|成果报送|展演|展评|案例征集|课程成果|学校统一|单位报送|逐级|遴选|选送|优秀成果|成果展|报送名额|学校汇总|集体报名|推荐报送|以学校为单位/.test(t)) return "achv";
+  return "self";
+}
+function isEnded(a){
+  /* 以官方阶段为准：赛事库里的日期常是往届届次或预估占位，用当前时钟剔除会误杀「进行中」赛事 */
+  var ph=String(a.phase||"");
+  return /已截稿|已结束|已截止|已办|结束/.test(ph);
+}
+function stateOf(a){
+  var ph=String(a.phase||"");
+  if(/进行中|征集中/.test(ph)) return "open";
+  return "soon";
+}
+function dlKey(a){
+  var m=String(a.deadline||"").match(/^\d{4}-\d{2}-\d{2}$/);
+  return m?m[0]:"9999-99-99";
+}
+function dlText(a){
+  var m=String(a.deadline||"").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m) return m[1]+"-"+m[2]+"-"+m[3];
+  return String(a.deadline||a.window||"待公布").slice(0,14);
+}
+function nearDays(a){
+  var m=String(a.deadline||"").match(/^\d{4}-\d{2}-\d{2}$/);
+  if(!m) return null;
+  return Math.ceil((new Date(m[0]+"T23:59:59")-new Date())/86400000);
+}
+const LISTED = AWARDS.filter(function(a){ return !isEnded(a); }).sort(function(x,y){
+  var sx=stateOf(x)==="open"?0:1, sy=stateOf(y)==="open"?0:1;
+  if(sx!==sy) return sx-sy;
+  return dlKey(x).localeCompare(dlKey(y));
+});
+const ENDED = AWARDS.length-LISTED.length;
+const OPENN = LISTED.filter(function(a){return stateOf(a)==="open";}).length;
+const SOONN = LISTED.length-OPENN;
+const BYID = {}; AWARDS.forEach(function(a){ BYID[a.id]=a; });
+
+/* ===== 我的赛程（沿用完整版 hf_mine_v1，报名联动不丢） ===== */
+function mine(){
+  try{ var m=JSON.parse(localStorage.getItem("hf_mine_v1")||"[]"); return Array.isArray(m)?m:[]; }
+  catch(e){ return []; }
+}
+function saveMine(m){
+  try{ localStorage.setItem("hf_mine_v1", JSON.stringify(m)); }catch(e){}
+}
+function inMine(id){ return mine().some(function(x){ return String(x&&x.id)===String(id); }); }
+function toggleMine(id){
+  var m=mine(), i=-1;
+  m.forEach(function(x,k){ if(String(x&&x.id)===String(id)) i=k; });
+  if(i>=0) m.splice(i,1); else m.push({id:id,status:"准备中"});
+  saveMine(m); renderTable(); renderProgress();
+}
+function renderProgress(){
+  var n=mine().length;
+  $("#mineN").textContent=n;
+  $("#mineBar").style.width=(LISTED.length?Math.min(100,n/LISTED.length*100):0)+"%";
+  $("#mineTip").textContent=n?("田里已记 "+n+" 株，完整功能版可看成长农场"):"在台账里点「加入」即可记入";
+}
+
+/* ===== 台账表格 ===== */
+function filt(){
+  var t=$("#fTier").value, w=$("#fWay").value, au=$("#fAud").value,
+      st=$("#fState").value, q=$("#fQ").value.trim().toLowerCase();
+  return LISTED.filter(function(a){
+    if(t && a.tier!==t) return false;
+    if(w && wayOf(a)!==w) return false;
+    if(au && a.aud!==au) return false;
+    if(st && stateOf(a)!==st) return false;
+    if(q){
+      var hay=[a.name,a.short,a.org,a.orgType,a.subject,a.portal].join(" ").toLowerCase();
+      if(hay.indexOf(q)<0) return false;
+    }
+    return true;
+  });
+}
+function rowHTML(a){
+  var st=stateOf(a), w=wayOf(a), nd=nearDays(a);
+  var near=(st==="open"&&nd!==null&&nd>=0&&nd<=45);
+  var dl=dlText(a);
+  var win=String(a.window||"").replace(/\s+/g," ").slice(0,26);
+  return '<tr class="row" id="r_'+esc(a.id)+'" data-id="'+esc(a.id)+'">'+
+    '<td><div class="nm">'+esc(a.name)+'<span class="caret">▾</span></div>'+
+      '<div class="org">'+esc(a.org||"")+'</div></td>'+
+    '<td><span class="tag">'+esc(TIER[a.tier]||a.tier||"")+'</span></td>'+
+    '<td>'+esc(WAY[w].t)+'</td>'+
+    '<td class="c-aud">'+esc(a.aud||"")+'</td>'+
+    '<td class="c-window"><div class="dl'+(near?" near":"")+'">'+esc(dl)+'</div>'+
+      '<div class="org">'+esc(win)+'</div></td>'+
+    '<td><span class="tag '+(st==="open"?"open":"soon")+'">'+(st==="open"?"现在能报":"通知待发")+'</span></td>'+
+    '<td><button class="btn-mini'+(inMine(a.id)?" on":"")+'" data-join="'+esc(a.id)+'">'+
+      (inMine(a.id)?"已加入":"加入")+'</button></td>'+
+  '</tr>';
+}
+function detailHTML(a){
+  var w=wayOf(a), st=stateOf(a);
+  var sec=function(title,body,full){
+    return '<div class="dsec'+(full?" full":"")+'"><h4>'+title+'</h4>'+body+'</div>';
+  };
+  var h='<div class="dhead"><b>'+esc(a.name)+'</b><span>'+esc(TIER[a.tier]||"")+' · '+esc(WAY[w].t)+
+        ' · '+(st==="open"?"现在能报":"通知待发")+'</span></div><div class="dgrid">';
+  h+=sec("主办 / 授权",'<p>'+esc(a.org||"")+'</p><p style="color:#6b756d;font-size:11.5px">'+esc(a.orgType||"")+'</p>'+(a.auth?'<p style="margin-top:4px">'+esc(a.auth)+'</p>':''));
+  h+=sec("参赛对象 / 类别",'<p>'+esc(a.reg||a.aud||"")+'</p><p>'+esc(a.subject||"")+'</p>');
+  h+=sec("周期与征集期",'<p>'+esc(a.cycle||"")+'</p><p style="margin-top:4px">'+esc(a.window||"")+'</p>');
+  h+=sec("截止时间",'<p class="dl">'+esc(a.deadline||"待公布")+'</p><p style="color:#6b756d;font-size:11.5px;margin-top:4px">'+esc(a.deadlineNote||"")+'</p>');
+  h+=sec("报名通道（怎么报）",'<p>'+esc(a.portal||"")+'</p>');
+  h+=sec("提交步骤",listHTML(a.steps,true));
+  h+=sec("需要准备的材料",listHTML(a.materials,false));
+  h+=sec("准备提醒",listHTML(a.prep,false));
+  h+=sec("评审与入选提示",listHTML(a.tips,false));
+  h+=sec("值得参加的理由",listHTML(a.win,false));
+  h+=sec("本校记录",'<p>'+esc((a.schoolProof&&a.schoolProof.note)||"需自行向学校确认是否认定")+'</p>');
+  h+=sec("官方入口",a.url?'<p><a href="'+esc(a.url)+'" target="_blank" rel="noopener">打开官网 / 通知 ↗</a></p>':'<p>—</p>');
+  h+=sec("依据来源",'<p class="src">'+esc(a.source||"")+'</p>',true);
+  h+='</div>';
+  return '<td colspan="7">'+h+'</td>';
+}
+function toggleRow(id,tr){
+  var old=document.getElementById("d_"+id);
+  if(old){ old.remove(); tr.classList.remove("opened"); return; }
+  $$(".detail-row").forEach(function(x){ x.remove(); });
+  $$("tr.row.opened").forEach(function(x){ x.classList.remove("opened"); });
+  var d=document.createElement("tr");
+  d.className="detail-row"; d.id="d_"+id;
+  d.innerHTML=detailHTML(BYID[id]);
+  tr.parentNode.insertBefore(d,tr.nextSibling);
+  tr.classList.add("opened");
+}
+function renderTable(){
+  var rows=filt();
+  $("#tbody").innerHTML=rows.map(rowHTML).join("");
+  $("#empty").style.display=rows.length?"none":"block";
+  $("#shown").textContent="显示 "+rows.length+" / "+LISTED.length+" 条";
+  $$("#tbody tr.row").forEach(function(tr){
+    tr.addEventListener("click",function(e){
+      if(e.target&&e.target.getAttribute("data-join")) return;
+      toggleRow(tr.getAttribute("data-id"),tr);
+    });
+  });
+  $$("#tbody [data-join]").forEach(function(b){
+    b.addEventListener("click",function(e){
+      e.stopPropagation(); toggleMine(b.getAttribute("data-join"));
+    });
+  });
+}
+
+/* ===== 报名指南 ===== */
+function guideHTML(){
+  var defs=[
+    ["self","方式一 · 个人投稿"],["workshop","方式二 · 工作坊"],
+    ["achv","方式三 · 美育成果报送"],["teach","方式四 · 教师报送"]
+  ];
+  return defs.map(function(p){
+    var k=p[0], items=LISTED.filter(function(a){return wayOf(a)===k;});
+    var open=items.filter(function(a){return stateOf(a)==="open";});
+    return '<div class="card"><h3>'+p[1]+'　<span style="font-weight:400;color:#6b756d;font-size:12px">'+
+      items.length+' 项，其中现在能报 '+open.length+' 项</span></h3>'+
+      '<p>'+WAY[k].d+'</p>'+
+      '<p><span class="lbl">怎么报</span>'+(k==="self"?"关注学校转发通知或官网，按类别创作后由本人在官方通道提交。":
+        k==="workshop"?"课后到老师这里报名，统一组队、安排创作时间，以小组或学校名义报送。":
+        k==="achv"?"先交作品给学校，由学校遴选、汇总后统一报送，个人不要单独投。":
+        "按通知要求准备论文、案例或课程材料，由教师本人在平台提交。")+'</p>'+
+      '<p><span class="lbl">好报程度</span>'+(k==="self"?"准备量相对小，适合先试；注意尺寸与原创要求。":
+        k==="workshop"?"有老师带着做，适合初次参加；但要按小组进度走。":
+        k==="achv"?"需要学校名额，个人无法直接报，宜提前和教务处沟通。":
+        "材料较长，适合有积累的老师；可与评职称材料一起准备。")+'</p>'+
+      '<p><span class="lbl">近期可报</span>'+(open.length?open.slice(0,4).map(function(a){
+        return esc(a.short||a.name)+"（"+esc(dlText(a))+"）";}).join("、 "):"暂无已发通知的赛事，留意后续通知。")+'</p>'+
+      '</div>';
+  }).join("");
+}
+function nearHTML(){
+  var near=LISTED.filter(function(a){return stateOf(a)==="open";}).slice(0,10);
+  if(!near.length) return '<p>暂无已发通知的赛事，待发布项见台账「通知待发」。</p>';
+  return '<ul>'+near.map(function(a){
+    var nd=nearDays(a);
+    return '<li><b>'+esc(a.short||a.name)+'</b>　'+esc(TIER[a.tier]||"")+' · '+esc(WAY[wayOf(a)].t)+
+      '　截止 '+esc(dlText(a))+(nd!==null&&nd>=0?'（还有 '+nd+' 天）':'')+'</li>';
+  }).join("")+'</ul>';
+}
+
+/* ===== 给学生发通知（三套，老师书面语） ===== */
+function groupBy(arrList){
+  var g={self:[],workshop:[],achv:[],teach:[]};
+  arrList.forEach(function(a){ g[wayOf(a)].push(a); });
+  return g;
+}
+function noticeText(onlyStu){
+  var L=[];
+  var open=LISTED.filter(function(a){return stateOf(a)==="open";});
+  var soon=LISTED.filter(function(a){return stateOf(a)==="soon";});
+  var g=groupBy(open);
+  L.push("同学们好！");
+  L.push("");
+  L.push("现将本学期适合大家参加的美术类赛事整理如下，按报送方式分成三类。这些赛事均由教育部门或官方机构主办，获奖证书可记入综合素质评价，评优、评三好、特长生材料都用得上。我按赛事级别由高到低排列，请大家结合兴趣选择 1–2 项，量力而行。");
+  L.push("");
+  function block(title,intro,items){
+    L.push("【"+title+"】");
+    L.push(intro);
+    if(!items.length){ L.push("这一类目前还没有已发通知的赛事，等官方通知到了我再告诉大家。"); L.push(""); return; }
+    items.forEach(function(a,i){
+      L.push((i+1)+". "+a.name+"（"+(TIER[a.tier]||a.tier)+"，"+a.org+"）");
+      L.push("   截止："+(a.deadline||"以官方通知为准")+"；报送："+WAY[wayOf(a)].t+"。");
+    });
+    L.push("");
+  }
+  block("个人投稿","以下赛事可以本人在官方通道提交。请先看清作品尺寸与原创要求，完成后按通知上传，有问题课间来找我。",g.self);
+  block("工作坊","以下赛事由老师统一组织、分组完成，以小组或学校名义报送。想参加的同学课后告诉我，我们会安排创作时间。",g.workshop);
+  block("美育成果报送","以下赛事不接收个人单独投稿，学校遴选后统一报送。有意向的同学先把作品交给我，由学校汇总，不要自己投。",g.achv);
+  if(!onlyStu){
+    block("教师报送","以下为教师本人参加的教研与教学成果类赛事，由老师自行准备，同学们不需要报名。",g.teach);
+  }
+  L.push("另外还有 "+soon.length+" 项赛事通知尚未发布，日期为预估，我会等官方通知到了再另行说明，现在不用准备。");
+  L.push("");
+  L.push("材料清单、报名通道和提交步骤都写在网站的「赛事台账」里，点开对应赛事就能看到。报名上有任何不清楚的地方，课后直接来找我。");
+  L.push("");
+  L.push("　　　　　　　　　　　　　　　美术组　老师");
+  return L.join("\n");
+}
+
+/* ===== 资料库 ===== */
+function libHTML(){
+  function box(title,inner){
+    return '<details class="lib"><summary>'+title+'</summary><div class="body">'+inner+'</div></details>';
+  }
+  var h="";
+  var kinds={}; RES.forEach(function(r){ var k=r.kind||"其他"; (kinds[k]=kinds[k]||[]).push(r); });
+  var resInner=Object.keys(kinds).map(function(k){
+    return '<div style="padding:8px 0 4px;font-size:12px;font-weight:600;color:#2f5d50">'+esc(k)+'（'+kinds[k].length+'）</div>'+
+      kinds[k].map(function(r){
+        return '<div class="libitem"><b>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.title)+' ↗</a>':esc(r.title))+'</b>'+
+          '<div class="m">'+esc(r.scope||"")+' · '+esc(r.where||"")+' · '+esc(r.source||"")+'</div></div>';
+      }).join("");
+  }).join("");
+  h+=box("教研前沿 · "+RES.length+" 条",resInner);
+  h+=box("评审专家 · "+PEOPLE.length+" 位",PEOPLE.map(function(p){
+    return '<div class="libitem"><b>'+esc(p.name)+'</b> <span class="m">'+esc(p.title||"")+' · '+esc(p.org||"")+'</span>'+
+      '<div style="font-size:12px;margin-top:3px">'+esc(p.core||"")+'</div>'+
+      (p.todo?'<div class="m">建议：'+esc(Array.isArray(p.todo)?p.todo.join("；"):p.todo)+'</div>':'')+
+      (p.url?'<div class="m"><a href="'+esc(p.url)+'" target="_blank" rel="noopener">资料 ↗</a></div>':'')+'</div>';
+  }).join(""));
+  h+=box("工具箱 · "+TOOLS.length+" 项",TOOLS.map(function(t){
+    return '<div class="libitem"><b>'+(t.url?'<a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.name)+' ↗</a>':esc(t.name))+'</b>'+
+      '<div class="m">'+esc(t.desc||"")+'</div>'+(t.use?'<div style="font-size:12px">用途：'+esc(t.use)+'</div>':'')+'</div>';
+  }).join(""));
+  h+=box("深圳头部中学在冲什么 · "+BIG_SCHOOLS.length+" 所",BIG_SCHOOLS.map(function(b){
+    return '<div class="libitem"><b>'+esc(b.name)+'</b> <span class="m">'+esc(Array.isArray(b.city)?b.city.join("/"):(b.city||""))+' · '+esc(b.tag||"")+'</span>'+
+      '<div style="font-size:12px">'+esc(b.won||"")+'</div></div>';
+  }).join(""));
+  h+=box("往届归档 · "+ENDED+" 项（已结束 / 已截稿，不列参赛）",AWARDS.filter(isEnded).map(function(a){
+    return '<div class="libitem"><b>'+esc(a.name)+'</b><div class="m">'+esc(TIER[a.tier]||"")+' · '+esc(a.phase||"")+' · '+esc(a.org||"")+'</div></div>';
+  }).join(""));
+  h+=box("完整功能版还有什么",'<div class="libitem">封面与成长农场、战绩本、我的资料、备料包、邮件预览、参赛通知生成、重点信源、知网入口、评高级教师材料、白名单检索等，全部保留在 <a href="full.html">完整功能版 ↗</a>。</div>');
+  return h;
+}
+
+/* ===== 视图切换与初始化 ===== */
+function switchView(v){
+  $$("#nav button").forEach(function(b){ b.classList.toggle("on",b.getAttribute("data-view")===v); });
+  $$(".view").forEach(function(s){ s.classList.toggle("on",s.id==="v-"+v); });
+  window.scrollTo(0,0);
+}
+function copyText(t,tip){
+  var ta=document.createElement("textarea");
+  ta.value=t; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta);
+  toast(tip);
+}
+function toast(msg){
+  var d=document.createElement("div");
+  d.textContent=msg;
+  d.style.cssText="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#1f2420;color:#fff;padding:9px 16px;border-radius:5px;font-size:12.5px;z-index:99";
+  document.body.appendChild(d);
+  setTimeout(function(){ d.remove(); },1900);
+}
+function init(){
+  $("#counts").innerHTML="赛事库共 <b>"+AWARDS.length+"</b> 条 ｜ 现在能报 <b>"+OPENN+
+    "</b> 条 ｜ 通知待发 <b>"+SOONN+"</b> 条 ｜ 已结束/已截稿 <b>"+ENDED+"</b> 条（按你的要求不列入）"+
+    '　<span style="color:#6b756d">数据 2026-11-05 · 第 45 版</span>';
+  $("#verLine").textContent="　数据 2026-11-05 · 第 45 版";
+  $("#guideGrid").innerHTML=guideHTML();
+  $("#nearList").innerHTML=nearHTML();
+  $("#noticeText").textContent=noticeText(false);
+  $("#libBox").innerHTML=libHTML();
+  renderTable(); renderProgress();
+
+  $$("#nav button").forEach(function(b){
+    b.addEventListener("click",function(){ switchView(b.getAttribute("data-view")); });
+  });
+  ["fTier","fWay","fAud","fState","fQ"].forEach(function(id){
+    $("#"+id).addEventListener(id==="fQ"?"input":"change",renderTable);
+  });
+  $("#btnCopyNotice").addEventListener("click",function(){ copyText(noticeText(false),"已复制全文"); });
+  $("#btnCopyStu").addEventListener("click",function(){ copyText(noticeText(true),"已复制学生部分"); });
+  $("#btnDownloadNotice").addEventListener("click",function(){
+    var blob=new Blob([noticeText(false)],{type:"text/plain;charset=utf-8"});
+    var a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+    a.download="美术赛事参赛通知.txt"; a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1000);
+    toast("已下载通知文本");
+  });
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
+else init();
+</script>
+</body>
+</html>
