@@ -208,6 +208,55 @@ button.mini:hover{border-color:var(--green);color:var(--green)}
  button.act{width:100%}
  .path{font-size:13.5px;padding:9px 12px}
 }
+
+/* v58 最近正在报名 · 分类 · 一键复制 · 一键告诉家长 */
+.nowstat{background:#eae5d7;border:1px solid var(--rule2);border-left:4px solid var(--red);
+ border-radius:0 6px 6px 0;padding:10px 15px;font-size:14.5px;color:var(--ink2);margin:0 0 13px;line-height:1.7}
+.nowstat b{color:var(--red)}
+.bigacts{display:flex;gap:11px;flex-wrap:wrap;margin:0 0 16px}
+.bigacts button{font:inherit;font-size:15.5px;padding:12px 20px;border-radius:6px;cursor:pointer;font-weight:600;
+ background:var(--green);color:#fff;border:1px solid var(--green);box-shadow:0 3px 0 #16301f}
+.bigacts button:hover{background:var(--green2);color:#fff}
+.bigacts button.alt{background:var(--card);color:var(--green);box-shadow:0 3px 0 var(--rule2)}
+.bigacts button.alt:hover{background:#e7efe8;color:var(--green)}
+.catgrp{margin:0 0 14px;border:1px solid var(--rule2);border-radius:7px;background:var(--card);overflow:hidden}
+.catgrp>.ch{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;background:#eee9db;
+ border-bottom:1px solid var(--rule2);padding:9px 15px}
+.catgrp>.ch h3{font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:17.5px;font-weight:400;margin:0;color:var(--green)}
+.catgrp>.ch .tip{font-size:13px;color:var(--ink2)}
+.catgrp>.ch .num{font-size:12.5px;color:var(--muted);margin-left:auto}
+.ci{padding:11px 15px;border-bottom:1px dashed var(--rule)}
+.ci:last-child{border-bottom:0}
+.ci .n{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.5}
+.ci .n .dl{font-size:13px;color:var(--red);font-weight:600;margin-left:8px;white-space:nowrap}
+.ci .u{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:6px 0 5px}
+.ci .u code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
+ color:var(--green);word-break:break-all;flex:1;min-width:200px;background:#f4f0e4;
+ border:1px dashed var(--rule2);border-radius:4px;padding:5px 8px}
+ .ci .u button{font:inherit;font-size:13px;padding:6px 12px;border-radius:5px;cursor:pointer;
+ background:var(--green);color:#fff;border:1px solid var(--green);font-weight:600;flex:none}
+ .ci .u button:hover{background:var(--green2)}
+ .ci .u a.go{font:inherit;font-size:13.5px;padding:7px 15px;border-radius:5px;
+ background:var(--green2);color:#fff;font-weight:600;flex:none;white-space:nowrap;border-bottom:0}
+ .ci .u a.go:hover{background:var(--green);color:#fff}
+.ci .m{font-size:13px;color:var(--ink2)}
+.ci .m b{color:var(--ink);font-weight:600}
+.ptext{background:#f4f0e4;border:1px dashed var(--rule2);border-radius:6px;padding:13px 15px;
+ font-size:13.5px;line-height:1.85;color:var(--ink2);white-space:pre-wrap;word-break:break-word;margin:0}
+.ptext b{color:var(--ink)}
+.ev .acts button.cpone{font:inherit;font-size:14px;padding:11px 15px;border-radius:6px;cursor:pointer;
+ background:var(--card);color:var(--green);border:2px solid var(--green);font-weight:600}
+.ev .acts button.cpone:hover{background:#e7efe8}
+@media(max-width:640px){
+ .bigacts button{width:100%}
+ .catgrp>.ch{padding:9px 12px}
+ .catgrp>.ch h3{font-size:16px}
+ .catgrp>.ch .num{margin-left:0;width:100%}
+ .ci{padding:10px 12px}
+ .ci .u code{min-width:100%;order:2}
+ .ci .u button{order:1}
+ .ev .acts button.cpone{width:100%}
+}
 </style>
 </head>
 <body>
@@ -234,14 +283,41 @@ button.mini:hover{border-color:var(--green);color:var(--green)}
 
  <main id="main">
 
+ <section id="nowSec">
+  <div class="sec-h"><h2>一、最近正在报名的比赛</h2><span class="cnt" id="nowCnt"></span></div>
+  <div class="nowstat" id="nowStat"></div>
+  <div class="bigacts">
+   <button id="tellGo">一键告诉家长</button>
+   <button class="alt" id="cpAll">一键复制全部报名信息</button>
+  </div>
+  <div id="catList"></div>
+  <details class="box" id="ptextWrap" style="margin-top:16px">
+   <summary>给家长的通知全文 <em>· 含比赛、类别、报名链接、截止与要交的材料，可一键复制发微信</em></summary>
+   <div class="bd">
+    <div class="ptext" id="ptext"></div>
+    <div class="row" style="margin-top:10px">
+     <button class="mini" id="cpNotice2">复制通知</button>
+     <button class="mini" id="shareNotice">分享给家长</button>
+    </div>
+    <div class="tiny" style="margin-top:8px">本页只生成并复制通知；最后一步发送与实名提交须由本人在微信或官方页完成，不代发、不代报、不承诺奖项。</div>
+   </div>
+  </details>
+ </section>
+
+
  <section id="personSec">
   <div class="path"><b>1 分钟报名：</b>档案只填一次 → 点赛事的绿色按钮（报名信息自动复制、官方页自动打开）→ 官方页粘贴、上传作品、本人提交。</div>
   <div class="pcard" id="pcard"></div>
  </section>
   <section id="openSec">
-   <div class="sec-h"><h2>一、现在可以报名</h2><span class="cnt" id="openCnt"></span></div>
-   <div class="who-line" id="whoLine"></div>
-   <div id="openList"></div>
+   <div class="sec-h"><h2>二、逐项报名详情 · 链接与材料</h2><span class="cnt" id="openCnt"></span></div>
+   <details class="box" id="openBox">
+    <summary>展开逐项详情：怎么报 / 要交什么 / 官方报名按钮 <em>· 首屏分类区已给出链接，这里看细则</em></summary>
+    <div class="bd">
+     <div class="who-line" id="whoLine"></div>
+     <div id="openList"></div>
+    </div>
+   </details>
   </section>
 
 
@@ -265,7 +341,7 @@ button.mini:hover{border-color:var(--green);color:var(--green)}
   </section>
 
   <section id="wlSec">
-   <div class="sec-h"><h2>二、白名单赛事（含金量依据）</h2></div>
+   <div class="sec-h"><h2>三、白名单赛事（含金量依据）</h2></div>
    <div class="wlstat">
     <b>教育部 47 项</b><b>广东省 30 项</b><b>艺术体育类 13 + 4 项</b>
     <span>本届征稿已结束 · 下一届通知未发布</span>
@@ -304,7 +380,7 @@ button.mini:hover{border-color:var(--green);color:var(--green)}
 <div class="toast" id="toast"></div>
 
 <script>
-var OPEN=[{"who": "stu", "name": "「APEC 深圳之约 · 我为深圳代言」创意作品征集（绘画类）", "tag": "市级 · 南方报业传媒集团深圳分社 · 公益不收费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "南方+ 客户端或网页征集页点「我要投稿」，线上实名填报、上传作品图。", "gzh": "南方+（客户端「深圳教育频道」）", "apply": "https://h5.nfnews.com/young-reportor-contribute/ndvideo.html?shareFrom=nfplus&id=1318857899749437440", "applyLabel": "我要投稿 · 官方投稿页", "src": "https://www.nfnews.com/content/16VLZX5nyr.html", "srcLabel": "官方征集启事（南方+）", "note": "报送：报名信息、作品图（单份不超过 9 张）、中英双语创作说明、原创承诺。优秀作品于南方+ 深圳教育频道展呈。"}, {"who": "stu", "name": "「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（学生组）", "tag": "省级 · 省教育系统关工委公益活动 · 免费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "微信内关注「广东教育传媒」公众号 → 底部菜单「活动」→ 进入征集专栏上传作品，无需报名注册。", "gzh": "广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理", "apply": "https://www.nfnews.com/content/EynGbYxD3Z.html", "applyLabel": "活动介绍 · 征稿办法", "src": "https://www.nfnews.com/content/p3Zvm5zz3l.html", "srcLabel": "征稿说明（南方+）", "note": "可投规范汉字书写作品或「汉字焕新」数字化创意作品；专用书写纸在公众号回复「书写纸」免费下载。咨询 020-83566019。"}, {"who": "stu", "name": "第二十七届深圳读书月「世界的深圳」少年儿童书画赛", "tag": "市级 · 深圳读书月组委会办公室 · 初赛免费", "dl": "2026-11-11", "dltxt": "11 月 11 日截止", "how": "微信内搜索小程序「涂画宝」→「个人报名」上传一幅初赛电子作品。", "gzh": "「涂画宝」微信小程序 · 须在微信内办理", "apply": "http://mp.weixin.qq.com/s?__biz=MzU5OTc4NDU0Ng==&mid=2247531903&idx=5&sn=1aff8e418b529468bfc7e7d63c89f350&chksm=ffc894bc74b8e1c9bdd6a4ffe5f7be339066832f78cf65e12ac4bfd603cc7b3b84a3308c1575#rd", "applyLabel": "官方征稿启事（微信）", "src": "https://sz.bendibao.com/edu/jingsai/?id=354", "srcLabel": "深圳本地宝 · 赛事信息", "note": "如实说明：初赛免费，入围后现场决赛为自愿参加、158 元/人；本项非白名单赛事。"}, {"who": "stu", "name": "第二十六届「中华少年杯」全国少年儿童书画摄影大赛", "tag": "全国 · 社会征稿（非白名单）· 现正征稿", "dl": "2027-01-31", "dltxt": "分批截止：11/30、12/31、2027/1/31", "how": "按官网简章准备作品，邮寄投稿（以当地邮戳为准）；分三批评审。", "gzh": "官网 art-zhsn.com", "apply": "http://www.art-zhsn.com/Introduction/", "applyLabel": "官网 · 征稿通知与简章", "src": "http://www.art-zhsn.com/Introduction/", "srcLabel": "作品要求与投稿须知", "note": "如实说明：本项不在教育部/广东省白名单内，属社会艺术活动；指导单位为中国美协少儿美术艺委会学术研究中心。请以官网简章核对是否涉及证书工本费。"}, {"who": "tea", "name": "「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（教师组）", "tag": "省级 · 省教育系统关工委公益活动 · 免费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "微信内关注「广东教育传媒」公众号 → 菜单「活动」，按教师组通道提交教学论文 / 书法作品。", "gzh": "广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理", "apply": "https://www.nfnews.com/content/EynGbYxD3Z.html", "applyLabel": "活动介绍 · 征稿办法", "src": "https://www.nfnews.com/content/p3Zvm5zz3l.html", "srcLabel": "征稿说明（南方+）", "note": "咨询 020-83566019。报送：教师组作品或教学论文、作品汇总表；须原创。"}, {"who": "tea", "name": "2026 年度优秀教学设计 / AI 赋能课堂教学案例征集评选（含美术）", "tag": "教研平台活动（非白名单）· 在线提交", "dl": "2026-11-30", "dltxt": "11 月 30 日截止", "how": "在 21 世纪教育网活动页在线填写信息并上传教学设计 / 课例文件。", "gzh": "21 世纪教育网活动页", "apply": "https://bbs.21cnjy.com/activity-coupon/teaching-design", "applyLabel": "活动页 · 在线提交", "src": "https://bbs.21cnjy.com/activity-coupon/teaching-design", "srcLabel": "征集细则", "note": "如实说明：本项为教研平台征集活动，非教育部门白名单赛事；奖项与证书由平台颁发，请自行判断用途。"}, {"who": "tea", "name": "第八届「桃李绽放」全国青少年书画大会（国赛 · 指导教师奖）", "tag": "全国 · 社会艺术活动（非白名单）· 国赛征集中", "dl": "2026-12-31", "dltxt": "国赛 11 月 1 日—12 月 31 日", "how": "在广东美育服务平台查看征稿启事，按要求提交作品电子版与报名登记表。", "gzh": "广东美育服务平台 yuemeiyu.com", "apply": "https://yuemeiyu.com", "applyLabel": "平台 · 征稿启事", "src": "https://www.art-edu.com/?ctl=Index&act=actBisai", "srcLabel": "同类活动截止日期一览", "note": "如实说明：本项不在白名单内，且活动方明确「摒弃竞赛化功利导向」；设指导教师相关荣誉。请以平台简章核对费用。"}], WL_NAT=[{"no": 35, "name": "全国中小学生绘画书法作品比赛", "org": "中国儿童中心（全国妇联儿童事业发展集团）", "who": "both", "star": 1, "status": "第 30 届征稿已结束 · 通常 3—4 月启动下一届", "url": "https://www.ccc.org.cn/art/2026/4/9/art_283_231823.html", "ul": "中国儿童中心 · 第 30 届通知", "gzh": ""}, {"no": 36, "name": "「我爱祖国海疆」全国青少年航海模型教育竞赛", "org": "中国航海模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 37, "name": "「驾驭未来」全国青少年车辆模型教育竞赛", "org": "中国车辆模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 38, "name": "全国青少年模拟飞行锦标赛", "org": "国家体育总局航空无线电模型运动管理中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 39, "name": "「飞向北京·飞向太空」全国青少年航空航天模型教育竞赛活动", "org": "中国航空运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 40, "name": "全国青少年传统体育项目比赛", "org": "中国青少年宫协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 41, "name": "「希望颂」——全国青少年书画艺术大展", "org": "中国国际书画艺术研究会", "who": "both", "star": 1, "status": "第 10 届已结束（2—5 月投稿）· 通常 12 月启动下一届", "url": "https://xiwangsongds.com/", "ul": "希望颂 · 官网", "gzh": "希望颂大展"}, {"no": 42, "name": "全国中小学生海洋文化创意设计大赛", "org": "中国海洋发展基金会、中国海洋大学、自然资源部北海局", "who": "both", "star": 1, "status": "第一届已结束（3—7 月征集）· 关注官方公众号等下一届", "url": "https://haiyangbs.cn/", "ul": "大赛官网", "gzh": "中小学生海洋文化创意设计大赛"}, {"no": 43, "name": "全国青少年国防素养大赛", "org": "南京理工大学", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 44, "name": "「戏剧中国」全国青少年戏剧文化艺术大赛", "org": "中国戏剧文学学会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 45, "name": "全国青少年人工智能辅助生成数字艺术创作者大赛", "org": "文化和旅游部艺术发展中心", "who": "both", "star": 1, "status": "第一届报名已结束 · 现为线上／线下展览期（9—12 月）", "url": "https://www.aigcnyacc.com/www/index.html", "ul": "大赛官网", "gzh": ""}, {"no": 46, "name": "学校美育助力行动——青少年视觉艺术传承与创新工作坊展示", "org": "中国艺术教育促进会（人民美术出版社承办）", "who": "tea", "star": 1, "status": "2025—26 学年报名已结束（12 月—3 月）· 通常 12 月启动下一届", "url": "https://www.renmeijiaoyu.com/pages/art-submission-detail.html?id=16", "ul": "人美艺教云 · 报名入口", "gzh": ""}, {"no": 47, "name": "「常青藤」全国青少年校园戏剧创意大赛", "org": "中央戏剧学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}], WL_GD=[{"no": 27, "name": "「星海音乐学院杯」广东省中小学音乐与舞蹈大赛", "org": "星海音乐学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 28, "name": "「粤见花开」广东省青少年美育成果展示大赛", "org": "广东省青少年宫协会", "who": "both", "star": 1, "status": "第三届已结束（4 月 20 日—7 月 15 日报名）· 通常 4 月启动下一届", "url": "https://contest.codedancing.cn", "ul": "作品上传平台", "gzh": "粤见花开 / 粤赛易小程序"}, {"no": 29, "name": "「翰墨青春 传承岭南」广东青少年书画大赛", "org": "广东新快报社、广东省美术家协会、广东省书法家协会", "who": "both", "star": 1, "status": "第十届 9 月 30 日已截稿 · 通常 6 月启动下一届", "url": "https://ep.ycwb.com/epaper/xkb/resfile/2026-06-17/A03/xkb20260617A03.pdf", "ul": "第十届征稿启事（新快报）", "gzh": "新艺道"}, {"no": 30, "name": "「中山颂」广东青少年高水平音乐舞蹈作品大赛", "org": "广东省卓越质量促进中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 19, "name": "广东省青少年红色文化传承与创新创作大赛", "org": "广东省红色文化研究会", "who": "both", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 20, "name": "广东省青少年环保创意大赛", "org": "广东省环境保护宣传教育中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 23, "name": "广东省中小学生科学教育创新成果展示大赛", "org": "广东省教育促进会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}];
+var OPEN=[{"who":"stu","name":"「APEC 深圳之约 · 我为深圳代言」创意作品征集（绘画类）","tag":"市级 · 南方报业传媒集团深圳分社 · 公益不收费","dl":"2026-11-15","dltxt":"11 月 15 日截止","how":"南方+ 客户端或网页征集页点「我要投稿」，线上实名填报、上传作品图。","gzh":"南方+（客户端「深圳教育频道」）","apply":"https://h5.nfnews.com/young-reportor-contribute/ndvideo.html?shareFrom=nfplus&id=1318857899749437440","applyLabel":"我要投稿 · 官方投稿页","src":"https://www.nfnews.com/content/16VLZX5nyr.html","srcLabel":"官方征集启事（南方+）","note":"报送：报名信息、作品图（单份不超过 9 张）、中英双语创作说明、原创承诺。优秀作品于南方+ 深圳教育频道展呈。","cat":"绘画 / 创意征集"},{"who":"stu","name":"「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（学生组）","tag":"省级 · 省教育系统关工委公益活动 · 免费","dl":"2026-11-15","dltxt":"11 月 15 日截止","how":"微信内关注「广东教育传媒」公众号 → 底部菜单「活动」→ 进入征集专栏上传作品，无需报名注册。","gzh":"广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理","apply":"https://www.nfnews.com/content/EynGbYxD3Z.html","applyLabel":"活动介绍 · 征稿办法","src":"https://www.nfnews.com/content/p3Zvm5zz3l.html","srcLabel":"征稿说明（南方+）","note":"可投规范汉字书写作品或「汉字焕新」数字化创意作品；专用书写纸在公众号回复「书写纸」免费下载。咨询 020-83566019。","cat":"规范汉字书写"},{"who":"stu","name":"第二十七届深圳读书月「世界的深圳」少年儿童书画赛","tag":"市级 · 深圳读书月组委会办公室 · 初赛免费","dl":"2026-11-11","dltxt":"11 月 11 日截止","how":"微信内搜索小程序「涂画宝」→「个人报名」上传一幅初赛电子作品。","gzh":"「涂画宝」微信小程序 · 须在微信内办理","apply":"http://mp.weixin.qq.com/s?__biz=MzU5OTc4NDU0Ng==&mid=2247531903&idx=5&sn=1aff8e418b529468bfc7e7d63c89f350&chksm=ffc894bc74b8e1c9bdd6a4ffe5f7be339066832f78cf65e12ac4bfd603cc7b3b84a3308c1575#rd","applyLabel":"官方征稿启事（微信）","src":"https://sz.bendibao.com/edu/jingsai/?id=354","srcLabel":"深圳本地宝 · 赛事信息","note":"如实说明：初赛免费，入围后现场决赛为自愿参加、158 元/人；本项非白名单赛事。","cat":"书画 / 摄影"},{"who":"stu","name":"第二十六届「中华少年杯」全国少年儿童书画摄影大赛","tag":"全国 · 社会征稿（非白名单）· 现正征稿","dl":"2027-01-31","dltxt":"分批截止：11/30、12/31、2027/1/31","how":"按官网简章准备作品，邮寄投稿（以当地邮戳为准）；分三批评审。","gzh":"官网 art-zhsn.com","apply":"http://www.art-zhsn.com/Introduction/","applyLabel":"官网 · 征稿通知与简章","src":"http://www.art-zhsn.com/Introduction/","srcLabel":"作品要求与投稿须知","note":"如实说明：本项不在教育部/广东省白名单内，属社会艺术活动；指导单位为中国美协少儿美术艺委会学术研究中心。请以官网简章核对是否涉及证书工本费。","cat":"书画 / 摄影"},{"who":"tea","name":"「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（教师组）","tag":"省级 · 省教育系统关工委公益活动 · 免费","dl":"2026-11-15","dltxt":"11 月 15 日截止","how":"微信内关注「广东教育传媒」公众号 → 菜单「活动」，按教师组通道提交教学论文 / 书法作品。","gzh":"广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理","apply":"https://www.nfnews.com/content/EynGbYxD3Z.html","applyLabel":"活动介绍 · 征稿办法","src":"https://www.nfnews.com/content/p3Zvm5zz3l.html","srcLabel":"征稿说明（南方+）","note":"咨询 020-83566019。报送：教师组作品或教学论文、作品汇总表；须原创。","cat":"规范汉字书写"},{"who":"tea","name":"2026 年度优秀教学设计 / AI 赋能课堂教学案例征集评选（含美术）","tag":"教研平台活动（非白名单）· 在线提交","dl":"2026-11-30","dltxt":"11 月 30 日截止","how":"在 21 世纪教育网活动页在线填写信息并上传教学设计 / 课例文件。","gzh":"21 世纪教育网活动页","apply":"https://bbs.21cnjy.com/activity-coupon/teaching-design","applyLabel":"活动页 · 在线提交","src":"https://bbs.21cnjy.com/activity-coupon/teaching-design","srcLabel":"征集细则","note":"如实说明：本项为教研平台征集活动，非教育部门白名单赛事；奖项与证书由平台颁发，请自行判断用途。","cat":"教学设计 / 案例"},{"who":"tea","name":"第八届「桃李绽放」全国青少年书画大会（国赛 · 指导教师奖）","tag":"全国 · 社会艺术活动（非白名单）· 国赛征集中","dl":"2026-12-31","dltxt":"国赛 11 月 1 日—12 月 31 日","how":"在广东美育服务平台查看征稿启事，按要求提交作品电子版与报名登记表。","gzh":"广东美育服务平台 yuemeiyu.com","apply":"https://yuemeiyu.com","applyLabel":"平台 · 征稿启事","src":"https://www.art-edu.com/?ctl=Index&act=actBisai","srcLabel":"同类活动截止日期一览","note":"如实说明：本项不在白名单内，且活动方明确「摒弃竞赛化功利导向」；设指导教师相关荣誉。请以平台简章核对费用。","cat":"书画 / 摄影"}], WL_NAT=[{"no": 35, "name": "全国中小学生绘画书法作品比赛", "org": "中国儿童中心（全国妇联儿童事业发展集团）", "who": "both", "star": 1, "status": "第 30 届征稿已结束 · 通常 3—4 月启动下一届", "url": "https://www.ccc.org.cn/art/2026/4/9/art_283_231823.html", "ul": "中国儿童中心 · 第 30 届通知", "gzh": ""}, {"no": 36, "name": "「我爱祖国海疆」全国青少年航海模型教育竞赛", "org": "中国航海模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 37, "name": "「驾驭未来」全国青少年车辆模型教育竞赛", "org": "中国车辆模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 38, "name": "全国青少年模拟飞行锦标赛", "org": "国家体育总局航空无线电模型运动管理中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 39, "name": "「飞向北京·飞向太空」全国青少年航空航天模型教育竞赛活动", "org": "中国航空运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 40, "name": "全国青少年传统体育项目比赛", "org": "中国青少年宫协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 41, "name": "「希望颂」——全国青少年书画艺术大展", "org": "中国国际书画艺术研究会", "who": "both", "star": 1, "status": "第 10 届已结束（2—5 月投稿）· 通常 12 月启动下一届", "url": "https://xiwangsongds.com/", "ul": "希望颂 · 官网", "gzh": "希望颂大展"}, {"no": 42, "name": "全国中小学生海洋文化创意设计大赛", "org": "中国海洋发展基金会、中国海洋大学、自然资源部北海局", "who": "both", "star": 1, "status": "第一届已结束（3—7 月征集）· 关注官方公众号等下一届", "url": "https://haiyangbs.cn/", "ul": "大赛官网", "gzh": "中小学生海洋文化创意设计大赛"}, {"no": 43, "name": "全国青少年国防素养大赛", "org": "南京理工大学", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 44, "name": "「戏剧中国」全国青少年戏剧文化艺术大赛", "org": "中国戏剧文学学会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 45, "name": "全国青少年人工智能辅助生成数字艺术创作者大赛", "org": "文化和旅游部艺术发展中心", "who": "both", "star": 1, "status": "第一届报名已结束 · 现为线上／线下展览期（9—12 月）", "url": "https://www.aigcnyacc.com/www/index.html", "ul": "大赛官网", "gzh": ""}, {"no": 46, "name": "学校美育助力行动——青少年视觉艺术传承与创新工作坊展示", "org": "中国艺术教育促进会（人民美术出版社承办）", "who": "tea", "star": 1, "status": "2025—26 学年报名已结束（12 月—3 月）· 通常 12 月启动下一届", "url": "https://www.renmeijiaoyu.com/pages/art-submission-detail.html?id=16", "ul": "人美艺教云 · 报名入口", "gzh": ""}, {"no": 47, "name": "「常青藤」全国青少年校园戏剧创意大赛", "org": "中央戏剧学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}], WL_GD=[{"no": 27, "name": "「星海音乐学院杯」广东省中小学音乐与舞蹈大赛", "org": "星海音乐学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 28, "name": "「粤见花开」广东省青少年美育成果展示大赛", "org": "广东省青少年宫协会", "who": "both", "star": 1, "status": "第三届已结束（4 月 20 日—7 月 15 日报名）· 通常 4 月启动下一届", "url": "https://contest.codedancing.cn", "ul": "作品上传平台", "gzh": "粤见花开 / 粤赛易小程序"}, {"no": 29, "name": "「翰墨青春 传承岭南」广东青少年书画大赛", "org": "广东新快报社、广东省美术家协会、广东省书法家协会", "who": "both", "star": 1, "status": "第十届 9 月 30 日已截稿 · 通常 6 月启动下一届", "url": "https://ep.ycwb.com/epaper/xkb/resfile/2026-06-17/A03/xkb20260617A03.pdf", "ul": "第十届征稿启事（新快报）", "gzh": "新艺道"}, {"no": 30, "name": "「中山颂」广东青少年高水平音乐舞蹈作品大赛", "org": "广东省卓越质量促进中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 19, "name": "广东省青少年红色文化传承与创新创作大赛", "org": "广东省红色文化研究会", "who": "both", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 20, "name": "广东省青少年环保创意大赛", "org": "广东省环境保护宣传教育中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 23, "name": "广东省中小学生科学教育创新成果展示大赛", "org": "广东省教育促进会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}];
 var ROLE=localStorage.getItem('hf_role_v56')||'', SHOWALL=false, PEDIT=false, DB=null, FILES=[];
 var $=function(s){return document.querySelector(s)};
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
@@ -468,6 +544,121 @@ function expTxt(){
  setTimeout(function(){URL.revokeObjectURL(u)},3000);toast('报名资料已保存为文件');
 }
 
+
+/* ===== v58 最近正在报名 · 分类 · 一键复制 · 一键告诉家长 ===== */
+var CATORDER=['绘画 / 创意征集','规范汉字书写','书画 / 摄影','教学设计 / 案例','其他'];
+var CATTIP={
+ '绘画 / 创意征集':'交作品图与创作说明，网页或客户端线上投稿',
+ '规范汉字书写':'交书写作品，微信公众号内上传，通常无需注册',
+ '书画 / 摄影':'交一幅作品，小程序报名或按官方简章邮寄',
+ '教学设计 / 案例':'交教学设计或课堂案例文稿，按平台通知报送',
+ '其他':'按官方启事准备材料'};
+var NL=String.fromCharCode(10);
+function nowList(){return OPEN.map(function(e,i){return {e:e,i:i}}).filter(function(o){return o.e.who===ROLE})}
+function shortUrl(u){return u}
+function cnDate(s){
+ var m=/^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s||''));
+ return m?(m[2].replace(/^0/,'')+' 月 '+m[3].replace(/^0/,'')+' 日'):String(s||'');
+}
+function renderNow(){
+ var list=nowList();
+ var dls=list.map(function(o){return o.e.dl}).sort();
+ var soon=dls.length?cnDate(dls[0]):'';
+ $('#nowCnt').textContent='共 '+list.length+' 项 · 按类别分组';
+ $('#nowStat').innerHTML='<b>现在正在报名 '+list.length+' 项</b> · 最近一项 '+esc(soon)+' 截止 · '+
+   '状态按 2026 年 11 月 7 日核对。下面按「交什么」分成几类，每类都给出官方报名链接与平台/公众号。';
+ var html='';
+ CATORDER.forEach(function(c){
+  var rows=list.filter(function(o){return (o.e.cat||'其他')===c});
+  if(!rows.length)return;
+  html+='<div class="catgrp"><div class="ch"><h3>'+esc(c)+'</h3>'+
+    '<span class="tip">'+esc(CATTIP[c]||'')+'</span><span class="num">'+rows.length+' 项</span></div>';
+  rows.forEach(function(o){
+   var e=o.e;
+   html+='<div class="ci"><div class="n">'+esc(e.name)+'<span class="dl">'+esc(e.dltxt)+'</span></div>'+
+    '<div class="u"><code>'+esc(shortUrl(e.apply))+'</code>'+
+    '<button data-catcp="'+o.i+'">一键复制链接</button>'+
+    '<a class="go" href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer" data-i="'+o.i+'">带我的资料去报名 ↗</a></div>'+
+    '<div class="m"><b>平台：</b>'+esc(e.gzh)+' <b>交：</b>'+esc(e.note)+'</div></div>';
+  });
+  html+='</div>';
+ });
+ $('#catList').innerHTML=html;
+ var pt=$('#ptext');if(pt)pt.textContent=parentText();
+}
+function copyOne(i){
+ var e=OPEN[i],p=loadP()||{};
+ copy(buildText(e,p));
+ toast('已复制这一项的报名信息与链接');
+}
+function copyAll(){
+ var list=nowList(),p=loadP(),L=[];
+ L.push('【近期正在报名的美育赛事 · 报名信息汇总】');
+ L.push('核对日期：2026 年 11 月 7 日 · 共 '+list.length+' 项');
+ if(p&&p.name){L.push('报名人：'+p.name+' '+(p.school||'')+' '+(p.grade||'')+' '+(p.phone||''))}
+ L.push('');
+ CATORDER.forEach(function(c){
+  var rows=list.filter(function(o){return (o.e.cat||'其他')===c});
+  if(!rows.length)return;
+  L.push('【'+c+'】'+rows.length+' 项');
+  rows.forEach(function(o){var e=o.e;
+   L.push('· '+e.name+'（'+e.dltxt+'）');
+   L.push('  报名链接：'+e.apply);
+   L.push('  平台 / 公众号：'+e.gzh);
+   L.push('  怎么报：'+e.how);
+   L.push('  要交的材料：'+e.note);
+  });
+  L.push('');
+ });
+ L.push('以主办方当届通知为准；实名提交与原创承诺须本人完成，不代报名、不承诺奖项。');
+ copy(L.join(NL));
+ toast('全部 '+list.length+' 项报名信息已复制');
+}
+function parentText(){
+ var list=nowList(),L=[],isTea=ROLE==='tea';
+ if(isTea){
+  L.push('各位家长、老师：');
+  L.push('现将近期仍可报名的美育类活动按类别与官方入口告知如下。请按主办方当届启事准备材料，并在截止日期前由本人完成实名提交；学校不统一代报、不代收费用、不承诺奖项。');
+ }else{
+  L.push('各位家长：');
+  L.push('现将近期仍可由学生个人投稿的美育类活动按类别与官方入口告知如下。请在家长协助下按官方要求准备作品，并于截止日期前由本人完成提交。本页不代报名、不收费、不承诺奖项。');
+ }
+ L.push('');
+ CATORDER.forEach(function(c){
+  var rows=list.filter(function(o){return (o.e.cat||'其他')===c});
+  if(!rows.length)return;
+  L.push('【'+c+'】'+rows.length+' 项');
+  rows.forEach(function(o){var e=o.e;
+   L.push('· '+e.name+'　'+e.dltxt);
+   L.push('  报名链接：'+e.apply);
+   L.push('  平台 / 公众号：'+e.gzh);
+   L.push('  怎么报：'+e.how);
+   L.push('  要交的材料：'+e.note);
+  });
+  L.push('');
+ });
+ L.push('说明：白名单赛事每学年只办一届，本届征稿已结束；以上为官方媒体 / 平台征集，已逐项标注。');
+ L.push('凡向家长收费、要求转账到个人账户或声称「包奖」的渠道，请勿理会。');
+ L.push('—— 信息按 2026 年 11 月 7 日核对，报名前请以主办方当届通知复核。');
+ return L.join(NL);
+}
+function tellGo(){
+ var txt=parentText();
+ copy(txt);
+ var pt=$('#ptext');if(pt)pt.textContent=txt;
+ var w=$('#ptextWrap');if(w)w.open=true;
+ toast('给家长的通知已复制，可直接粘贴到微信');
+ if(navigator.share){try{navigator.share({title:'近期美育赛事报名通知',text:txt}).catch(function(){})}catch(e){}}
+ beep();
+}
+function shareNotice(){
+ var txt=parentText();
+ toast('通知已备好，可复制后发到微信');
+ if(navigator.share){try{navigator.share({title:'近期美育赛事报名通知',text:txt}).catch(function(){})}catch(e){}}
+ else{copy(txt);toast('已复制通知，粘贴到微信即可发送')}
+ beep();
+}
+
 /* ===== 赛事卡片 / 白名单（沿用 v56） ===== */
 function card(e,i){
  var plain=/非白名单|社会/.test(e.tag);
@@ -478,6 +669,7 @@ function card(e,i){
   '<p class="how"><b>怎么报：</b>'+esc(e.how)+'</p>'+
   '<p class="gzh">公众号 / 入口：'+esc(e.gzh)+'</p>'+
   '<div class="acts"><a class="go" href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer" data-i="'+i+'">'+esc(e.applyLabel)+' ↗</a>'+
+  '<button class="cpone" data-ci="'+i+'">一键复制报名信息</button>'+
   '<span class="done">'+(done?'已发起 · 待本人提交':'')+'</span></div>'+
   '<div class="urlrow"><code>'+esc(e.apply)+'</code><button class="cp" data-cp="'+esc(e.apply)+'">复制链接</button></div>'+
   '<p class="note">'+esc(e.note)+'</p></article>';
@@ -522,7 +714,7 @@ function render(){
  $('#wlTables').innerHTML=
    wlTable(a,'教育部 2025—2028 学年面向中小学生全国性竞赛活动名单 · 艺术体育类（第 35—47 项，共 13 项）','国家 · 艺术体育类（显示 '+a.length+' / 共 13 项）')+
    wlTable(b,'广东省 2025—2028 学年面向中小学生全省性竞赛活动名单 · 艺术体育类 4 项及创作类 3 项','广东 · 艺术/创作类（显示 '+b.length+' / 共 7 项）');
- renderP();renderNotice();renderRecs();updStat();
+ renderP();renderNotice();renderRecs();updStat();renderNow();
 }
 document.addEventListener('click',function(ev){
  var t=ev.target;
@@ -541,6 +733,15 @@ document.addEventListener('click',function(ev){
  }
  if(t.id==='pEdit'){PEDIT=true;renderP();beep();return}
  if(t.id==='pCancel'){PEDIT=false;renderP();return}
+
+ var cp1=t.closest('[data-catcp]');
+ if(cp1){copy(OPEN[+cp1.getAttribute('data-catcp')].apply);toast('报名链接已复制');beep();return}
+ var cp2=t.closest('[data-ci]');
+ if(cp2){copyOne(+cp2.getAttribute('data-ci'));beep();return}
+ if(t.id==='cpAll'){copyAll();beep();return}
+ if(t.id==='tellGo'){tellGo();return}
+ if(t.id==='cpNotice2'){copy(parentText());toast('通知已复制');beep();return}
+ if(t.id==='shareNotice'){shareNotice();return}
  if(t.id==='fAdd'){var fi=$('#finput');if(fi){$('#fileBox').open=true;fi.click();beep()}return}
  if(t.id==='expTxt'){expTxt();beep();return}
  if(t.id==='cpNotice'){copy($('#notice').textContent);toast('通知已复制');beep();return}
