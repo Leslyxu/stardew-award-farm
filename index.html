@@ -146,6 +146,68 @@ details.more code{font-family:ui-monospace,Menlo,monospace;background:#eee9db;pa
  .ev .dl{margin-left:0;width:100%}
  .ev a.go{width:100%;text-align:center}
 }
+
+/* v57 报名人档案 / 一键报名 / 文件保存 */
+.path{background:#e7efe8;border:1px solid #cddfd0;border-left:4px solid var(--green);
+ border-radius:0 6px 6px 0;padding:10px 15px;font-size:14.5px;color:var(--ink2);margin:0 0 16px;line-height:1.75}
+.path b{color:var(--green)}
+.pcard{background:var(--card);border:1px solid var(--rule2);border-left:4px solid var(--red);
+ border-radius:0 8px 8px 0;padding:15px 18px;margin:0 0 16px}
+.pcard .ph{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+.pcard .ph h3{font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:18px;font-weight:400;margin:0}
+.pcard .ph .st{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:0 0 12px}
+.grid label{display:block;font-size:13px;color:var(--ink2);margin-bottom:3px}
+.grid input{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--rule2);
+ border-radius:5px;background:#fff;color:var(--ink)}
+.grid input:focus{outline:2px solid var(--green2);border-color:var(--green2)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button.act{font:inherit;font-size:15px;padding:10px 20px;border-radius:6px;cursor:pointer;
+ background:var(--green);color:#fff;border:1px solid var(--green);box-shadow:0 3px 0 #16301f}
+button.act:hover{background:var(--green2)}
+button.act.ghost{background:transparent;color:var(--green);box-shadow:none;border:1px solid var(--rule2)}
+button.mini{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--rule2);border-radius:5px;
+ background:var(--card);color:var(--ink2);cursor:pointer}
+button.mini:hover{border-color:var(--green);color:var(--green)}
+.saved{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#f0ece0;border:1px dashed var(--rule2);
+ border-radius:6px;padding:11px 14px;font-size:15px}
+.saved b{color:var(--green)}
+.frow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#f4f0e4;border:1px solid var(--rule);
+ border-radius:6px;padding:9px 12px;margin-top:9px;font-size:14px;color:var(--ink2)}
+.frow label.mini{display:inline-block;background:var(--card);border:1px solid var(--green);color:var(--green);
+ padding:6px 13px;border-radius:5px;cursor:pointer;font-size:13.5px}
+.frow label.mini:hover{background:#e7efe8}
+.tiny{font-size:12.5px;color:var(--muted)}
+.box{border:1px solid var(--rule2);border-radius:7px;background:var(--card);margin:0 0 16px}
+.box>summary{cursor:pointer;list-style:none;padding:13px 17px;font-size:15.5px;font-weight:600;color:var(--green)}
+.box>summary::-webkit-details-marker{display:none}
+.box>summary::before{content:'\25B8  ';font-weight:400}
+.box[open]>summary::before{content:'\25BE  '}
+.box>summary em{font-style:normal;font-weight:400;font-size:13px;color:var(--muted)}
+.box .bd{padding:2px 17px 14px;font-size:14px;color:var(--ink2)}
+.sub{font-weight:600;color:var(--ink);margin:12px 0 6px;font-size:14.5px}
+.flist{list-style:none;padding:0;margin:0 0 8px}
+.flist li{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:7px 0;
+ border-bottom:1px solid var(--rule);font-size:14px}
+.flist li span.f{flex:1;min-width:150px;word-break:break-all;color:var(--ink)}
+.rec{font-size:13.5px;color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--rule)}
+.notice{white-space:pre-wrap;background:#f4f0e4;border:1px dashed var(--rule2);border-radius:5px;
+ padding:11px 13px;font-size:14px;line-height:1.8;color:var(--ink2);margin:0 0 8px}
+.ev .done{font-size:12.5px;color:var(--green);font-weight:600}
+.quick{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#e7efe8;border:1px solid #cddfd0;
+ border-radius:6px;padding:10px 13px;margin-top:10px;font-size:14px;color:var(--ink2)}
+.quick span{flex:1;min-width:170px}
+.quick a.go{background:var(--green);color:#fff;border:0;border-radius:6px;padding:9px 16px;font-size:14.5px;
+ font-weight:600;box-shadow:0 3px 0 #16301f;white-space:nowrap}
+.quick a.go:hover{color:#fff;background:var(--green2)}
+@media(max-width:640px){
+ .grid{grid-template-columns:1fr}
+ .pcard{padding:13px 14px}
+ .box>summary{font-size:14px;padding:12px 13px}
+ .box .bd{padding:2px 13px 12px}
+ button.act{width:100%}
+ .path{font-size:13.5px;padding:9px 12px}
+}
 </style>
 </head>
 <body>
@@ -171,10 +233,35 @@ details.more code{font-family:ui-monospace,Menlo,monospace;background:#eee9db;pa
  </section>
 
  <main id="main">
+
+ <section id="personSec">
+  <div class="path"><b>1 分钟报名：</b>档案只填一次 → 点赛事的绿色按钮（报名信息自动复制、官方页自动打开）→ 官方页粘贴、上传作品、本人提交。</div>
+  <div class="pcard" id="pcard"></div>
+ </section>
   <section id="openSec">
    <div class="sec-h"><h2>一、现在可以报名</h2><span class="cnt" id="openCnt"></span></div>
    <div class="who-line" id="whoLine"></div>
    <div id="openList"></div>
+  </section>
+
+
+  <section id="fileSec">
+   <details class="box" id="fileBox">
+    <summary>文件保存 · 报名记录 · 通知 <em id="pstat"></em></summary>
+    <div class="bd">
+     <div class="sub">作品 / 报名材料（保存在本机浏览器，换设备不同步）</div>
+     <div class="row" style="margin-bottom:8px">
+      <input type="file" id="finput" multiple style="font:inherit;font-size:13.5px;max-width:100%">
+      <button class="mini" id="expTxt">导出报名资料 .txt</button>
+     </div>
+     <ul class="flist" id="flist"></ul>
+     <div class="sub">已发起的报名</div>
+     <div id="recs"></div>
+     <div class="sub">通知（按当前身份生成 · 书面语 · 一键复制）</div>
+     <div class="notice" id="notice"></div>
+     <button class="mini" id="cpNotice">复制通知</button>
+    </div>
+   </details>
   </section>
 
   <section id="wlSec">
@@ -205,10 +292,11 @@ details.more code{font-family:ui-monospace,Menlo,monospace;background:#eee9db;pa
  <footer>
   <p><b>信息渠道：</b>本页每项均给出官方启事、官网或官方公众号；白名单以教育部与广东省教育厅公布名单为准。状态按 2026 年 11 月 7 日核对，报名前请以主办方当届通知复核。</p>
   <p><b>边界：</b>本站只提供官方入口与材料准备，不代实名提交、不代签名、不承诺奖项；公众号／小程序类入口须在微信内由本人办理；最后一步实名提交与原创承诺须本人完成。</p>
-  <details class="more"><summary>其他工具（通知模板 / 知网资料 / 作品存档 / 旧版完整页）</summary>
+  <details class="more"><summary>知网资料（已锁定本机，无需重填） / 旧版完整页</summary>
    <div>
-    知网入口与卡号密码已预置本机，无需重填：<code>lib.shutong121.com</code>，卡号 <code>18185519</code>，密码 <code>396330</code>。<br>
-    三套书面语分类通知、本机办理进度、作品档案与比赛海报，仍在 <a href="full.html">旧版完整功能页 ↗</a>（历史版本，赛事数据以上面本页为准）。
+    知网入口 <code>lib.shutong121.com</code>，卡号 <code>18185519</code>，密码 <code>396330</code>：
+    <button class="mini" id="cnkiCp">一键复制知网资料</button><br>
+    历史工具页：<a href="full.html">旧版完整功能页 ↗</a>（赛事数据以本页为准）。
    </div>
   </details>
  </footer>
@@ -217,23 +305,180 @@ details.more code{font-family:ui-monospace,Menlo,monospace;background:#eee9db;pa
 
 <script>
 var OPEN=[{"who": "stu", "name": "「APEC 深圳之约 · 我为深圳代言」创意作品征集（绘画类）", "tag": "市级 · 南方报业传媒集团深圳分社 · 公益不收费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "南方+ 客户端或网页征集页点「我要投稿」，线上实名填报、上传作品图。", "gzh": "南方+（客户端「深圳教育频道」）", "apply": "https://h5.nfnews.com/young-reportor-contribute/ndvideo.html?shareFrom=nfplus&id=1318857899749437440", "applyLabel": "我要投稿 · 官方投稿页", "src": "https://www.nfnews.com/content/16VLZX5nyr.html", "srcLabel": "官方征集启事（南方+）", "note": "报送：报名信息、作品图（单份不超过 9 张）、中英双语创作说明、原创承诺。优秀作品于南方+ 深圳教育频道展呈。"}, {"who": "stu", "name": "「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（学生组）", "tag": "省级 · 省教育系统关工委公益活动 · 免费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "微信内关注「广东教育传媒」公众号 → 底部菜单「活动」→ 进入征集专栏上传作品，无需报名注册。", "gzh": "广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理", "apply": "https://www.nfnews.com/content/EynGbYxD3Z.html", "applyLabel": "活动介绍 · 征稿办法", "src": "https://www.nfnews.com/content/p3Zvm5zz3l.html", "srcLabel": "征稿说明（南方+）", "note": "可投规范汉字书写作品或「汉字焕新」数字化创意作品；专用书写纸在公众号回复「书写纸」免费下载。咨询 020-83566019。"}, {"who": "stu", "name": "第二十七届深圳读书月「世界的深圳」少年儿童书画赛", "tag": "市级 · 深圳读书月组委会办公室 · 初赛免费", "dl": "2026-11-11", "dltxt": "11 月 11 日截止", "how": "微信内搜索小程序「涂画宝」→「个人报名」上传一幅初赛电子作品。", "gzh": "「涂画宝」微信小程序 · 须在微信内办理", "apply": "http://mp.weixin.qq.com/s?__biz=MzU5OTc4NDU0Ng==&mid=2247531903&idx=5&sn=1aff8e418b529468bfc7e7d63c89f350&chksm=ffc894bc74b8e1c9bdd6a4ffe5f7be339066832f78cf65e12ac4bfd603cc7b3b84a3308c1575#rd", "applyLabel": "官方征稿启事（微信）", "src": "https://sz.bendibao.com/edu/jingsai/?id=354", "srcLabel": "深圳本地宝 · 赛事信息", "note": "如实说明：初赛免费，入围后现场决赛为自愿参加、158 元/人；本项非白名单赛事。"}, {"who": "stu", "name": "第二十六届「中华少年杯」全国少年儿童书画摄影大赛", "tag": "全国 · 社会征稿（非白名单）· 现正征稿", "dl": "2027-01-31", "dltxt": "分批截止：11/30、12/31、2027/1/31", "how": "按官网简章准备作品，邮寄投稿（以当地邮戳为准）；分三批评审。", "gzh": "官网 art-zhsn.com", "apply": "http://www.art-zhsn.com/Introduction/", "applyLabel": "官网 · 征稿通知与简章", "src": "http://www.art-zhsn.com/Introduction/", "srcLabel": "作品要求与投稿须知", "note": "如实说明：本项不在教育部/广东省白名单内，属社会艺术活动；指导单位为中国美协少儿美术艺委会学术研究中心。请以官网简章核对是否涉及证书工本费。"}, {"who": "tea", "name": "「写好中国字 · 美育绽芳华」规范汉字书写主题作品征集（教师组）", "tag": "省级 · 省教育系统关工委公益活动 · 免费", "dl": "2026-11-15", "dltxt": "11 月 15 日截止", "how": "微信内关注「广东教育传媒」公众号 → 菜单「活动」，按教师组通道提交教学论文 / 书法作品。", "gzh": "广东教育传媒（微信号 guangdongjiaoyucm）· 须在微信内办理", "apply": "https://www.nfnews.com/content/EynGbYxD3Z.html", "applyLabel": "活动介绍 · 征稿办法", "src": "https://www.nfnews.com/content/p3Zvm5zz3l.html", "srcLabel": "征稿说明（南方+）", "note": "咨询 020-83566019。报送：教师组作品或教学论文、作品汇总表；须原创。"}, {"who": "tea", "name": "2026 年度优秀教学设计 / AI 赋能课堂教学案例征集评选（含美术）", "tag": "教研平台活动（非白名单）· 在线提交", "dl": "2026-11-30", "dltxt": "11 月 30 日截止", "how": "在 21 世纪教育网活动页在线填写信息并上传教学设计 / 课例文件。", "gzh": "21 世纪教育网活动页", "apply": "https://bbs.21cnjy.com/activity-coupon/teaching-design", "applyLabel": "活动页 · 在线提交", "src": "https://bbs.21cnjy.com/activity-coupon/teaching-design", "srcLabel": "征集细则", "note": "如实说明：本项为教研平台征集活动，非教育部门白名单赛事；奖项与证书由平台颁发，请自行判断用途。"}, {"who": "tea", "name": "第八届「桃李绽放」全国青少年书画大会（国赛 · 指导教师奖）", "tag": "全国 · 社会艺术活动（非白名单）· 国赛征集中", "dl": "2026-12-31", "dltxt": "国赛 11 月 1 日—12 月 31 日", "how": "在广东美育服务平台查看征稿启事，按要求提交作品电子版与报名登记表。", "gzh": "广东美育服务平台 yuemeiyu.com", "apply": "https://yuemeiyu.com", "applyLabel": "平台 · 征稿启事", "src": "https://www.art-edu.com/?ctl=Index&act=actBisai", "srcLabel": "同类活动截止日期一览", "note": "如实说明：本项不在白名单内，且活动方明确「摒弃竞赛化功利导向」；设指导教师相关荣誉。请以平台简章核对费用。"}], WL_NAT=[{"no": 35, "name": "全国中小学生绘画书法作品比赛", "org": "中国儿童中心（全国妇联儿童事业发展集团）", "who": "both", "star": 1, "status": "第 30 届征稿已结束 · 通常 3—4 月启动下一届", "url": "https://www.ccc.org.cn/art/2026/4/9/art_283_231823.html", "ul": "中国儿童中心 · 第 30 届通知", "gzh": ""}, {"no": 36, "name": "「我爱祖国海疆」全国青少年航海模型教育竞赛", "org": "中国航海模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 37, "name": "「驾驭未来」全国青少年车辆模型教育竞赛", "org": "中国车辆模型运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 38, "name": "全国青少年模拟飞行锦标赛", "org": "国家体育总局航空无线电模型运动管理中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 39, "name": "「飞向北京·飞向太空」全国青少年航空航天模型教育竞赛活动", "org": "中国航空运动协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 40, "name": "全国青少年传统体育项目比赛", "org": "中国青少年宫协会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 41, "name": "「希望颂」——全国青少年书画艺术大展", "org": "中国国际书画艺术研究会", "who": "both", "star": 1, "status": "第 10 届已结束（2—5 月投稿）· 通常 12 月启动下一届", "url": "https://xiwangsongds.com/", "ul": "希望颂 · 官网", "gzh": "希望颂大展"}, {"no": 42, "name": "全国中小学生海洋文化创意设计大赛", "org": "中国海洋发展基金会、中国海洋大学、自然资源部北海局", "who": "both", "star": 1, "status": "第一届已结束（3—7 月征集）· 关注官方公众号等下一届", "url": "https://haiyangbs.cn/", "ul": "大赛官网", "gzh": "中小学生海洋文化创意设计大赛"}, {"no": 43, "name": "全国青少年国防素养大赛", "org": "南京理工大学", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 44, "name": "「戏剧中国」全国青少年戏剧文化艺术大赛", "org": "中国戏剧文学学会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 45, "name": "全国青少年人工智能辅助生成数字艺术创作者大赛", "org": "文化和旅游部艺术发展中心", "who": "both", "star": 1, "status": "第一届报名已结束 · 现为线上／线下展览期（9—12 月）", "url": "https://www.aigcnyacc.com/www/index.html", "ul": "大赛官网", "gzh": ""}, {"no": 46, "name": "学校美育助力行动——青少年视觉艺术传承与创新工作坊展示", "org": "中国艺术教育促进会（人民美术出版社承办）", "who": "tea", "star": 1, "status": "2025—26 学年报名已结束（12 月—3 月）· 通常 12 月启动下一届", "url": "https://www.renmeijiaoyu.com/pages/art-submission-detail.html?id=16", "ul": "人美艺教云 · 报名入口", "gzh": ""}, {"no": 47, "name": "「常青藤」全国青少年校园戏剧创意大赛", "org": "中央戏剧学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}], WL_GD=[{"no": 27, "name": "「星海音乐学院杯」广东省中小学音乐与舞蹈大赛", "org": "星海音乐学院", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 28, "name": "「粤见花开」广东省青少年美育成果展示大赛", "org": "广东省青少年宫协会", "who": "both", "star": 1, "status": "第三届已结束（4 月 20 日—7 月 15 日报名）· 通常 4 月启动下一届", "url": "https://contest.codedancing.cn", "ul": "作品上传平台", "gzh": "粤见花开 / 粤赛易小程序"}, {"no": 29, "name": "「翰墨青春 传承岭南」广东青少年书画大赛", "org": "广东新快报社、广东省美术家协会、广东省书法家协会", "who": "both", "star": 1, "status": "第十届 9 月 30 日已截稿 · 通常 6 月启动下一届", "url": "https://ep.ycwb.com/epaper/xkb/resfile/2026-06-17/A03/xkb20260617A03.pdf", "ul": "第十届征稿启事（新快报）", "gzh": "新艺道"}, {"no": 30, "name": "「中山颂」广东青少年高水平音乐舞蹈作品大赛", "org": "广东省卓越质量促进中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 19, "name": "广东省青少年红色文化传承与创新创作大赛", "org": "广东省红色文化研究会", "who": "both", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 20, "name": "广东省青少年环保创意大赛", "org": "广东省环境保护宣传教育中心", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}, {"no": 23, "name": "广东省中小学生科学教育创新成果展示大赛", "org": "广东省教育促进会", "who": "stu", "star": 0, "status": "以主办单位当届通知为准", "url": "", "ul": "", "gzh": ""}];
-var ROLE=localStorage.getItem('hf_role_v56')||'', SHOWALL=false;
+var ROLE=localStorage.getItem('hf_role_v56')||'', SHOWALL=false, PEDIT=false, DB=null, FILES=[];
 var $=function(s){return document.querySelector(s)};
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
-function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},1900)}
-function beep(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var a=new C(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=660;o.type='sine';g.gain.setValueAtTime(.06,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.09);o.start();o.stop(a.currentTime+.1)}catch(e){}try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}}
-function copy(t){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast('链接已复制')},function(){fallback(t)})}else fallback(t)}
-function fallback(t){var i=document.createElement('textarea');i.value=t;document.body.appendChild(i);i.select();try{document.execCommand('copy');toast('链接已复制')}catch(e){toast('请长按链接复制')}document.body.removeChild(i)}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},2300)}
+function beep(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var a=new C(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=660;o.type='sine';g.gain.setValueAtTime(.06,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.09);o.start();o.stop(a.currentTime+.1);setTimeout(function(){a.close&&a.close()},300)}catch(e){}try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}}
+function copy(t){window.__lastCopy=t;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){},function(){fallback(t)})}else fallback(t)}
+function fallback(t){var i=document.createElement('textarea');i.value=t;i.style.position='fixed';i.style.left='-9999px';document.body.appendChild(i);i.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(i)}
 
-function card(e){
+/* ===== 报名人档案：一个人, 按身份分开存, 永久记住 ===== */
+function pkey(){return 'hf_person_v57_'+(ROLE||'stu')}
+function loadP(){try{return JSON.parse(localStorage.getItem(pkey())||'null')}catch(e){return null}}
+function saveP(p){localStorage.setItem(pkey(),JSON.stringify(p));updStat()}
+function fields(){
+ return ROLE==='tea'
+  ? [['name','姓名'],['school','任教学校'],['grade','学科 / 职务'],['phone','联系电话'],['mentor','所在科组（选填）']]
+  : [['name','姓名'],['school','学校'],['grade','年级 / 班级'],['phone','联系电话'],['mentor','指导老师（选填）']];
+}
+function fileInner(){
+ var names=FILES.length?FILES.map(function(r){return r.name}).join('、'):'';
+ return '<span>作品文件：'+(FILES.length?esc(names):'还没保存')+'</span>'+
+  '<button class="mini" id="fAdd">＋ 选择文件保存</button>'+
+  '<span class="tiny">已存 '+FILES.length+' 个 · 刷新后仍在</span>';
+}
+function fileRow(){return '<div class="frow" id="frow">'+fileInner()+'</div>'}
+function renderP(){
+ var p=loadP(), box=$('#pcard');
+ if(p&&p.name&&!PEDIT){
+  var last=recs()[0],q='';
+  if(last){
+   for(var qi=0;qi<OPEN.length;qi++){
+    if(OPEN[qi].name===last.n&&OPEN[qi].who===ROLE){
+     q='<div class="quick"><span>上次报的是「'+esc(last.n)+'」</span>'+
+       '<a class="go" href="'+esc(OPEN[qi].apply)+'" target="_blank" rel="noopener noreferrer" data-i="'+qi+'">带我的资料再报一次 ↗</a></div>';
+     break;
+    }
+   }
+  }
+  box.innerHTML='<div class="ph"><h3>报名人档案</h3><span class="st">已存本机 · 下次打开直接带上</span></div>'+
+   '<div class="saved"><b>'+esc(p.name)+'</b><span>'+esc(p.school||'')+' · '+esc(p.grade||'')+' · '+esc(p.phone||'')+'</span>'+
+   (p.mentor?'<span class="tiny">'+esc(p.mentor)+'</span>':'')+
+   '<button class="mini" id="pEdit">修改</button></div>'+q+fileRow()+
+   '<div class="tiny" style="margin-top:7px">点下面任意绿色按钮，会把这份档案连同该赛事的材料清单一起复制到剪贴板，并打开官方报名页。</div>';
+  return;
+ }
+ var p2=p||{};
+ box.innerHTML='<div class="ph"><h3>报名人档案</h3><span class="st">只填一次，以后每次报名不用再填</span></div>'+
+  '<div class="grid">'+fields().map(function(f){
+    return '<div><label>'+esc(f[1])+'</label><input id="pf_'+f[0]+'" value="'+esc(p2[f[0]]||'')+'" placeholder="'+esc(f[1])+'"></div>';
+  }).join('')+'</div>'+
+  '<div class="row"><button class="act" id="pSave">保存档案</button>'+
+  (p&&p.name?'<button class="mini" id="pCancel">取消</button>':'')+
+  '<span class="tiny">只保存在这台设备的浏览器里，不上传、不写进公开网页。</span></div>'+fileRow();
+}
+function buildText(e,p){
+ var L=[];
+ L.push('【报名信息 · 粘贴到官方表单】');
+ L.push('赛事：'+e.name);
+ L.push('截止：'+e.dltxt);
+ L.push('官方入口：'+e.apply);
+ L.push('公众号 / 平台：'+e.gzh);
+ L.push('—— 报名人 ——');
+ fields().forEach(function(f){if(p[f[0]])L.push(f[1]+'：'+p[f[0]])});
+ L.push('—— 需备材料 ——');
+ L.push(e.note);
+ L.push('—— 怎么报 ——');
+ L.push(e.how);
+ L.push('（由本机档案生成；实名提交与原创承诺须本人完成。）');
+ return L.join('\n');
+}
+function oneKey(e){
+ var p=loadP();
+ if(p&&p.name){copy(buildText(e,p));toast('报名信息已复制 · 官方页粘贴即可')}
+ else{copy(e.apply);toast('先填一次档案，下次自动带出；本次已复制官方入口')}
+ addRec(e);beep();
+}
+function recs(){try{return JSON.parse(localStorage.getItem('hf_rec_v57')||'[]')}catch(e){return []}}
+function addRec(e){
+ var r=recs();r.unshift({n:e.name,t:Date.now(),u:e.apply});
+ localStorage.setItem('hf_rec_v57',JSON.stringify(r.slice(0,20)));
+ renderRecs();updStat();
+ var c=$('#openList');if(c){var cs=c.querySelectorAll('.ev');for(var i=0;i<cs.length;i++){if(cs[i].getAttribute('data-n')===e.name){var d=cs[i].querySelector('.done');if(d)d.textContent='已发起 · 待本人提交'}}}
+ setTimeout(function(){renderP()},0);
+}
+function renderRecs(){
+ var r=recs(),el=$('#recs');if(!el)return;
+ if(!r.length){el.innerHTML='<div class="tiny">还没有记录。点绿色按钮即自动记一条，方便回看报过哪几项。</div>';return}
+ el.innerHTML=r.slice(0,6).map(function(x){
+  var d=new Date(x.t);var ts=(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+('0'+d.getMinutes()).slice(-2);
+  return '<div class="rec">'+ts+' · '+esc(x.n)+' · <a href="'+esc(x.u)+'" target="_blank" rel="noopener noreferrer">再打开 ↗</a></div>';
+ }).join('')+'<button class="mini" id="recClear" style="margin-top:8px">清空记录</button>';
+}
+function updStat(){
+ var p=loadP(),el=$('#pstat');if(!el)return;
+ el.textContent=' · 已存 '+(p&&p.name?'1 人档案':'0 人')+' · 作品 '+FILES.length+' 个 · 已发起 '+recs().length+' 次';
+}
+function noticeText(){
+ var p=loadP(),nm=p&&p.name?p.name:'（姓名）';
+ if(ROLE==='tea')return '各位老师：\n本页「现在可以报名」栏列有本学期仍可报送的美育类项目，每项均附官方入口、截止日期与材料要求。请按主办方当届启事准备材料，并在截止日前由本人完成实名提交。学生个人投稿项目由学生及家长自行办理，学校不统一代报、不代签原创承诺。\n—— '+nm;
+ return '各位同学、家长：\n本页「现在可以报名」栏列有当前可个人投稿的美育类项目，每项均附官方入口与截止日期。请在家长协助下按官方要求准备作品，并于截止日前由本人完成提交。本页不代报名、不收费、不承诺奖项；凡要求向个人转账或声称包奖的渠道请勿理会。\n—— '+nm;
+}
+function renderNotice(){var el=$('#notice');if(el)el.textContent=noticeText()}
+
+/* ===== 文件保存：IndexedDB 本机持久化 ===== */
+function idb(){
+ return new Promise(function(res,rej){
+  if(DB)return res(DB);
+  var q=indexedDB.open('hf_files_v57',1);
+  q.onupgradeneeded=function(){var d=q.result;if(!d.objectStoreNames.contains('works'))d.createObjectStore('works',{keyPath:'id',autoIncrement:true})};
+  q.onsuccess=function(){DB=q.result;res(DB)};
+  q.onerror=function(){rej(q.error)};
+ });
+}
+function putWork(f){
+ return idb().then(function(d){return new Promise(function(res,rej){
+  var tx=d.transaction('works','readwrite');
+  tx.objectStore('works').add({name:f.name,type:f.type,size:f.size,blob:f,time:Date.now()});
+  tx.oncomplete=function(){res()};tx.onerror=function(){rej(tx.error)};
+ })});
+}
+function allWorks(){
+ return idb().then(function(d){return new Promise(function(res,rej){
+  var out=[],tx=d.transaction('works','readonly'),q=tx.objectStore('works').openCursor();
+  q.onsuccess=function(){var c=q.result;if(c){out.push(c.value);c.continue()}else res(out)};
+  q.onerror=function(){rej(q.error)};
+ })});
+}
+function delWork(id){
+ return idb().then(function(d){return new Promise(function(res,rej){
+  var tx=d.transaction('works','readwrite');tx.objectStore('works').delete(id);
+  tx.oncomplete=function(){res()};tx.onerror=function(){rej(tx.error)};
+ })});
+}
+function renderFiles(){
+ return allWorks().then(function(list){
+  FILES=list;var ul=$('#flist');if(!ul)return;
+  if(!list.length){ul.innerHTML='<li><span class="f tiny">还没有保存文件。选好作品图 / 报名表后就存在本机，报名时可直接下载取回。</span></li>'}
+  else ul.innerHTML=list.map(function(r){
+   return '<li><span class="f">'+esc(r.name)+' <span class="tiny">'+(r.size/1024).toFixed(0)+' KB</span></span>'+
+    '<button class="mini" data-dl="'+r.id+'">下载</button><button class="mini" data-del="'+r.id+'">删除</button></li>';
+  }).join('');
+  updStat();var fr=$('#frow');if(fr)fr.innerHTML=fileInner();
+ }).catch(function(){var ul=$('#flist');if(ul)ul.innerHTML='<li><span class="f tiny">本机存储不可用，可改用上方「导出报名资料」保存为文件。</span></li>'});
+}
+function dlWork(id){
+ var r=null;for(var i=0;i<FILES.length;i++)if(FILES[i].id===id)r=FILES[i];
+ if(!r)return;var u=URL.createObjectURL(r.blob),a=document.createElement('a');
+ a.href=u;a.download=r.name;document.body.appendChild(a);a.click();document.body.removeChild(a);
+ setTimeout(function(){URL.revokeObjectURL(u)},3000);toast('已下载 '+r.name);
+}
+function expTxt(){
+ var p=loadP()||{},L=['【报名资料 · 本机导出】','导出时间：'+new Date().toLocaleString('zh-CN'),''];
+ L.push('—— 报名人档案 ——');fields().forEach(function(f){if(p[f[0]])L.push(f[1]+'：'+p[f[0]])});
+ L.push('');L.push('—— 现在可以报名（'+OPEN.filter(function(e){return e.who===ROLE}).length+' 项）——');
+ OPEN.filter(function(e){return e.who===ROLE}).forEach(function(e){
+  L.push('· '+e.name+'（'+e.dltxt+'）');L.push('  入口：'+e.apply);L.push('  平台：'+e.gzh);L.push('  材料：'+e.note);L.push('');
+ });
+ L.push('—— 已发起的报名 ——');recs().forEach(function(x){L.push('· '+x.n+'  '+x.u)});
+ L.push('');L.push('实名提交与原创承诺须本人完成；本页不代报名、不承诺奖项。');
+ var b=new Blob([L.join('\n')],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');
+ a.href=u;a.download='报名资料_'+(p.name||'未填档案')+'.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);
+ setTimeout(function(){URL.revokeObjectURL(u)},3000);toast('报名资料已保存为文件');
+}
+
+/* ===== 赛事卡片 / 白名单（沿用 v56） ===== */
+function card(e,i){
  var plain=/非白名单|社会/.test(e.tag);
- return '<article class="ev">'+
+ var done=recs().some(function(x){return x.n===e.name});
+ return '<article class="ev" data-n="'+esc(e.name)+'">'+
   '<div class="top"><span class="tag'+(plain?' plain':'')+'">'+esc(e.tag)+'</span><span class="dl">'+esc(e.dltxt)+'</span></div>'+
   '<h3>'+esc(e.name)+'</h3>'+
   '<p class="how"><b>怎么报：</b>'+esc(e.how)+'</p>'+
   '<p class="gzh">公众号 / 入口：'+esc(e.gzh)+'</p>'+
-  '<div class="acts"><a class="go" href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer">'+esc(e.applyLabel)+' ↗</a>'+
-  '<a class="lnk" href="'+esc(e.src)+'" target="_blank" rel="noopener noreferrer">'+esc(e.srcLabel)+' ↗</a></div>'+
+  '<div class="acts"><a class="go" href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer" data-i="'+i+'">'+esc(e.applyLabel)+' ↗</a>'+
+  '<span class="done">'+(done?'已发起 · 待本人提交':'')+'</span></div>'+
   '<div class="urlrow"><code>'+esc(e.apply)+'</code><button class="cp" data-cp="'+esc(e.apply)+'">复制链接</button></div>'+
   '<p class="note">'+esc(e.note)+'</p></article>';
 }
@@ -264,12 +509,12 @@ function render(){
  $('#gate').style.display='none';$('#main').classList.add('on');
  document.querySelectorAll('.js-role').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-role')===ROLE)});
  var isStu=ROLE==='stu';
- var list=OPEN.filter(function(e){return e.who===ROLE});
+ var list=OPEN.map(function(e,i){return {e:e,i:i}}).filter(function(o){return o.e.who===ROLE});
  $('#openCnt').textContent='共 '+list.length+' 项 · '+(isStu?'学生 / 家长视图':'教师视图');
  $('#whoLine').textContent=isStu
    ?'当前：学生 / 家长。下面只列学生可个人投稿的赛事，教师专属报送项已移出本视图。'
    :'当前：教师。下面只列教师本人可报送或学校单位组织的项目，学生个人投稿项已移出本视图。';
- $('#openList').innerHTML=list.map(card).join('');
+ $('#openList').innerHTML=list.map(function(o){return card(o.e,o.i)}).join('');
  var a=fit(WL_NAT),b=fit(WL_GD),n=a.length+b.length;
  $('#wlCnt').textContent='（与你相关 '+n+' 项 · 明细共 20 项）';
  $('#wlTitle').textContent=(isStu?'学生':'教师')+'相关 · 白名单 '+(SHOWALL?'完整 20 项':n+' 项');
@@ -277,17 +522,45 @@ function render(){
  $('#wlTables').innerHTML=
    wlTable(a,'教育部 2025—2028 学年面向中小学生全国性竞赛活动名单 · 艺术体育类（第 35—47 项，共 13 项）','国家 · 艺术体育类（显示 '+a.length+' / 共 13 项）')+
    wlTable(b,'广东省 2025—2028 学年面向中小学生全省性竞赛活动名单 · 艺术体育类 4 项及创作类 3 项','广东 · 艺术/创作类（显示 '+b.length+' / 共 7 项）');
+ renderP();renderNotice();renderRecs();updStat();
 }
 document.addEventListener('click',function(ev){
- var r=ev.target.closest('.js-role');
- if(r){ROLE=r.getAttribute('data-role');localStorage.setItem('hf_role_v56',ROLE);SHOWALL=false;beep();render();window.scrollTo(0,0);return}
- var c=ev.target.closest('.cp');
- if(c){copy(c.getAttribute('data-cp'));beep();return}
- if(ev.target.id==='toggleAll'){SHOWALL=!SHOWALL;render();beep();return}
- if(ev.target.closest('a.go')){beep()}
+ var t=ev.target;
+ var r=t.closest('.js-role');
+ if(r){ROLE=r.getAttribute('data-role');localStorage.setItem('hf_role_v56',ROLE);SHOWALL=false;PEDIT=false;beep();render();window.scrollTo(0,0);return}
+ if(t.closest('a.go')){
+  var g=t.closest('a.go');oneKey(OPEN[+g.getAttribute('data-i')]);return;   // 不阻断链接跳转
+ }
+ var c=t.closest('.cp');
+ if(c){copy(c.getAttribute('data-cp'));toast('链接已复制');beep();return}
+ if(t.id==='toggleAll'){SHOWALL=!SHOWALL;render();beep();return}
+ if(t.id==='pSave'){
+  var p={};fields().forEach(function(f){var el=$('#pf_'+f[0]);p[f[0]]=el?el.value.trim():''});
+  if(!p.name){toast('请至少填写姓名');return}
+  saveP(p);PEDIT=false;renderP();renderNotice();toast('档案已存本机，以后报名自动带上');beep();return;
+ }
+ if(t.id==='pEdit'){PEDIT=true;renderP();beep();return}
+ if(t.id==='pCancel'){PEDIT=false;renderP();return}
+ if(t.id==='fAdd'){var fi=$('#finput');if(fi){$('#fileBox').open=true;fi.click();beep()}return}
+ if(t.id==='expTxt'){expTxt();beep();return}
+ if(t.id==='cpNotice'){copy($('#notice').textContent);toast('通知已复制');beep();return}
+ if(t.id==='cnkiCp'){copy('知网入口 lib.shutong121.com\n卡号 18185519\n密码 396330');toast('知网资料已复制');beep();return}
+ if(t.id==='recClear'){localStorage.removeItem('hf_rec_v57');renderRecs();updStat();render();toast('记录已清空');return}
+ var d=t.closest('[data-dl]');
+ if(d){dlWork(+d.getAttribute('data-dl'));beep();return}
+ var x=t.closest('[data-del]');
+ if(x){delWork(+x.getAttribute('data-del')).then(renderFiles);toast('已删除');beep();return}
 });
-document.addEventListener('change',function(){});
-render();
+document.addEventListener('change',function(ev){
+ if(ev.target.id==='finput'){
+  var fs=Array.prototype.slice.call(ev.target.files||[]);
+  if(!fs.length)return;
+  Promise.all(fs.map(putWork)).then(function(){renderFiles();ev.target.value='';toast('已在本机保存 '+fs.length+' 个文件');beep()})
+   .catch(function(){toast('保存失败，可改用导出报名资料');});
+ }
+});
+render();renderFiles();
+
 </script>
 </body>
 </html>
