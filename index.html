@@ -22,7 +22,6 @@ a:hover{color:var(--red);border-bottom-color:var(--red)}
 .ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
  flex:none;vertical-align:-2px}
 .ic.lg{width:19px;height:19px}
-/* 顶栏 */
 header{background:var(--card);border-bottom:1px solid var(--line)}
 .hd{display:flex;align-items:center;gap:12px;padding:13px 0}
 .hd img{width:34px;height:34px;border-radius:8px;object-fit:cover;flex:none}
@@ -31,7 +30,6 @@ header{background:var(--card);border-bottom:1px solid var(--line)}
 .roles button{font:inherit;font-size:13.5px;padding:7px 14px;border-radius:7px;cursor:pointer;
  background:transparent;color:var(--ink2);border:1px solid var(--line);display:flex;align-items:center;gap:6px}
 .roles button.on{background:var(--green);color:#fff;border-color:var(--green)}
-/* 身份门 */
 #gate{text-align:center;padding:46px 0 56px}
 #gate img{width:190px;max-width:56vw;height:auto;border-radius:16px;margin-bottom:20px}
 #gate h1{font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:27px;font-weight:400;margin:0 0 8px}
@@ -40,25 +38,22 @@ header{background:var(--card);border-bottom:1px solid var(--line)}
 .gate-btns button{font:inherit;font-size:17px;padding:17px 30px;min-width:190px;border-radius:10px;cursor:pointer;
  background:var(--green);color:#fff;border:1px solid var(--green);display:flex;align-items:center;justify-content:center;gap:9px}
 .gate-btns button.tea{background:var(--card);color:var(--green)}
-/* 主体 */
 main{display:none;padding:24px 0 30px}
 main.on{display:block}
 .h2{display:flex;align-items:center;gap:9px;font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;
  font-size:21px;font-weight:400;margin:0 0 14px}
-.h2 .cnt{font-family:inherit;font-size:13px;color:var(--muted);margin-left:auto;font-weight:400;display:flex;align-items:center;gap:5px}
+.h2 .cnt{font-family:inherit;font-size:13px;color:var(--muted);margin-left:auto;display:flex;align-items:center;gap:5px}
 .statline{display:flex;align-items:center;gap:22px;flex-wrap:wrap;color:var(--ink2);font-size:14.5px;
  background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:0 0 16px}
 .statline b{color:var(--green);font-size:16px}
 .statline .d{color:var(--red);font-weight:600}
-.bigacts{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
-.bigacts button{font:inherit;font-size:15px;padding:12px 20px;border-radius:9px;cursor:pointer;font-weight:600;
- display:flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:1px solid var(--green)}
-.bigacts button.alt{background:var(--card);color:var(--green)}
-/* 档案 */
-.pcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 26px}
-.pcard .ph{display:flex;align-items:center;gap:9px;margin-bottom:12px;color:var(--green);
+.tell{display:flex;margin:0 0 22px}
+.tell button{font:inherit;font-size:16px;padding:14px 26px;border-radius:9px;cursor:pointer;font-weight:600;
+ display:flex;align-items:center;gap:9px;background:var(--green);color:#fff;border:1px solid var(--green)}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:0 0 26px}
+.pcard .ph{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:var(--green);
  font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:0 0 13px}
 .grid label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:4px}
 .grid input{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);
  border-radius:7px;background:#fff;color:var(--ink)}
@@ -69,16 +64,13 @@ button.mini{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--
  background:var(--card);color:var(--ink2);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 button.mini:hover{border-color:var(--green);color:var(--green)}
 .saved{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--soft);border:1px solid var(--line);
- border-radius:8px;padding:11px 14px;font-size:15px;margin-bottom:10px}
+ border-radius:8px;padding:11px 14px;font-size:15px}
 .saved b{color:var(--green);font-size:16px}
 .saved .kv{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:14px}
-.frow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:11px;margin-top:11px;
- border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
-.frow .lb{display:flex;align-items:center;gap:7px}
-.quick{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--soft);border:1px solid var(--line);
- border-radius:8px;padding:10px 13px;margin-top:10px;font-size:14px;color:var(--ink2)}
+.quick{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);
+ margin-top:11px;padding-top:11px;font-size:14px;color:var(--ink2)}
 .quick span{flex:1;min-width:150px}
-/* 分类与赛事：用行，不用嵌套卡片 */
+.quick a.mini{border-bottom:0}
 .grp{margin:0 0 22px}
 .grp .gh{display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:2px}
 .grp .gh b{font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:18px;font-weight:400;color:var(--green)}
@@ -88,43 +80,22 @@ button.mini:hover{border-color:var(--green);color:var(--green)}
 .ev .nm{font-size:16.5px;line-height:1.5;font-weight:600;color:var(--ink);margin:0 0 9px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
 .ev .lvl{font-size:12px;color:var(--green);background:var(--soft);border:1px solid var(--line);
  padding:2px 9px;border-radius:20px;font-weight:400;white-space:nowrap}
-.meta{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.meta{display:flex;flex-direction:column;gap:6px;margin:0 0 11px}
 .meta .r{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--ink2)}
 .meta .r .ic{color:var(--muted);margin-top:3px}
 .meta .r .k{color:var(--muted);flex:none}
-.meta .r a,.meta .r code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
- color:var(--green);word-break:break-all}
 .meta .r .dl{color:var(--red);font-weight:600}
 .urow{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--line);
  border-radius:8px;padding:9px 11px;margin:0 0 12px}
 .urow .ic{margin-top:3px;color:var(--muted)}
-.urow code{flex:1;min-width:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
- color:var(--green);word-break:break-all;line-height:1.55}
-.urow button{font:inherit;font-size:12.5px;padding:5px 11px;border:1px solid var(--line);border-radius:6px;
- background:var(--card);color:var(--ink2);cursor:pointer;white-space:nowrap;flex:none}
-.evacts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.evacts button.go{font:inherit;font-size:15px;padding:11px 20px;border-radius:8px;cursor:pointer;font-weight:600;
- background:var(--green);color:#fff;border:1px solid var(--green);display:flex;align-items:center;gap:8px}
-.evacts .done{font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px}
-/* 报名单：本页产出的东西 */
-.slip{background:var(--card);border:1px solid var(--green);border-radius:10px;margin:14px 0 2px;overflow:hidden}
-.slip .sh{display:flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:10px 16px;
- font-family:"Songti SC","Noto Serif CJK SC",Georgia,serif;font-size:16.5px}
-.slip .sb{padding:14px 18px 6px}
-.slip .line{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:14.5px;border-bottom:1px dashed var(--line)}
-.slip .line:last-child{border-bottom:0}
-.slip .line .k{color:var(--muted);flex:none;min-width:88px;display:flex;align-items:center;gap:7px}
-.slip .line .v{color:var(--ink);word-break:break-all;flex:1;min-width:0}
-.slip .line .v a{font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
-.slip .sec{font-size:12.5px;color:var(--green);letter-spacing:1px;margin:12px 0 2px;display:flex;align-items:center;gap:7px}
-.slip .foot{display:flex;gap:9px;flex-wrap:wrap;padding:12px 18px 16px}
-.slip .foot button{font:inherit;font-size:13.5px;padding:8px 14px;border-radius:7px;cursor:pointer;
- display:flex;align-items:center;gap:7px;background:var(--green);color:#fff;border:1px solid var(--green)}
-.slip .foot button.g{background:var(--card);color:var(--green)}
-.slip .foot a{font:inherit;font-size:13.5px;padding:8px 14px;border-radius:7px;
- border:1px solid var(--line);color:var(--ink2);display:flex;align-items:center;gap:7px}
-.slip .hint{font-size:12.5px;color:var(--muted);padding:0 18px 12px}
-/* 折叠区 */
+.urow a{flex:1;min-width:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+ word-break:break-all;line-height:1.55;color:var(--green)}
+.evacts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+a.go{font:inherit;font-size:16px;font-weight:600;padding:12px 26px;border-radius:8px;
+ background:var(--green);color:#fff;border:1px solid var(--green);border-bottom:1px solid var(--green);
+ display:inline-flex;align-items:center;gap:9px}
+a.go:hover{background:var(--green2);color:#fff;border-color:var(--green2)}
+.evacts .done{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
 details.bx{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:0 0 14px}
 details.bx>summary{cursor:pointer;list-style:none;padding:13px 17px;font-size:15px;font-weight:600;
  color:var(--green);display:flex;align-items:center;gap:9px}
@@ -133,13 +104,9 @@ details.bx>summary .cv{margin-left:auto;transition:.2s}
 details.bx[open]>summary .cv{transform:rotate(180deg)}
 details.bx>summary em{font-style:normal;font-weight:400;font-size:13px;color:var(--muted)}
 details.bx .bd{padding:2px 17px 16px;font-size:14px;color:var(--ink2)}
+details.bx .bd .pcard{border:0;padding:0;margin:0}
 .ptext{white-space:pre-wrap;background:var(--soft);border:1px solid var(--line);border-radius:8px;
  padding:13px 15px;font-size:13.5px;line-height:1.85;color:var(--ink2);word-break:break-word;margin:0}
-.flist{list-style:none;padding:0;margin:8px 0 0}
-.flist li{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
-.flist li .f{flex:1;min-width:150px;word-break:break-all;color:var(--ink)}
-.rec{font-size:13.5px;color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}
-.tiny{font-size:12.5px;color:var(--muted)}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin-top:10px}
 table{border-collapse:collapse;width:100%;min-width:420px;font-size:13.5px}
 th{text-align:left;background:var(--soft);color:var(--ink);font-weight:600;padding:9px 12px;border-bottom:1px solid var(--line)}
@@ -149,7 +116,7 @@ td.no{font-family:ui-monospace,Menlo,monospace;color:var(--muted);width:48px}
 td.nm{color:var(--ink)}
 .srcbar{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
 .srcbar a{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
- border-radius:7px;padding:7px 12px;font-size:13.5px}
+ border-radius:7px;padding:7px 12px;font-size:13.5px;border-bottom:1px solid var(--line)}
 footer{border-top:1px solid var(--line);margin-top:26px;padding:16px 0 40px;font-size:13.5px;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;
  padding:10px 20px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:.22s;z-index:99}
@@ -162,14 +129,11 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:16px 0 40px;font
  #gate img{width:150px}
  #gate h1{font-size:23px}
  .gate-btns button{font-size:16px;padding:15px 20px;min-width:150px}
- .bigacts button{width:100%;justify-content:center}
+ .tell button{width:100%;justify-content:center}
  .grid{grid-template-columns:1fr}
  .pcard{padding:15px}
  button.act{width:100%}
- .statline{gap:14px}
- .slip .line .k{min-width:76px}
- .slip .foot button,.slip .foot a{flex:1;justify-content:center;min-width:120px}
- .evacts button.go{width:100%;justify-content:center}
+ a.go{width:100%;justify-content:center}
 }
 </style>
 </head>
@@ -184,18 +148,14 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:16px 0 40px;font
 <symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/></symbol>
 <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41 12 22l-9-9V3h10l7.59 7.59a2 2 0 0 1 0 2.82z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
-<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
 <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
-<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
 <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></symbol>
-<symbol id="i-clip" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h6"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
 <symbol id="i-edit" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></symbol>
 <symbol id="i-cv" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
 <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.12"/></symbol>
 <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
-<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
-<symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
 </defs></svg>
 
 <header><div class="wrap hd">
@@ -220,39 +180,24 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:16px 0 40px;font
 
  <main id="main">
   <div class="statline" id="statline"></div>
-  <div class="bigacts">
-   <button id="tellGo"><svg class="ic"><use href="#i-send"/></svg>一键告诉家长</button>
-   <button class="alt" id="cpAll"><svg class="ic"><use href="#i-copy"/></svg>一键复制全部报名信息</button>
-  </div>
-
-  <section id="personSec">
-   <div class="pcard" id="pcard"></div>
-  </section>
 
   <section id="listSec">
    <div class="h2"><svg class="ic lg"><use href="#i-pin"/></svg>正在报名<span class="cnt" id="listCnt"></span></div>
    <div id="catList"></div>
   </section>
 
-  <details class="bx" id="noticeBox">
-   <summary><svg class="ic"><use href="#i-send"/></svg>给家长的通知<em id="noticeEm"></em><svg class="ic cv"><use href="#i-cv"/></svg></summary>
-   <div class="bd">
-    <div class="ptext" id="ptext"></div>
-    <div class="row" style="display:flex;gap:9px;flex-wrap:wrap;margin-top:11px">
-     <button class="mini" id="cpNotice2"><svg class="ic"><use href="#i-copy"/></svg>复制通知</button>
-     <button class="mini" id="shareNotice"><svg class="ic"><use href="#i-send"/></svg>分享给家长</button>
-    </div>
-   </div>
+  <div class="tell"><button id="tellGo"><svg class="ic"><use href="#i-send"/></svg>一键告诉家长</button></div>
+
+  <details class="bx" id="personBox">
+   <summary><svg class="ic"><use href="#i-user"/></svg>报名人档案<em id="pSummary"></em><svg class="ic cv"><use href="#i-cv"/></svg></summary>
+   <div class="bd" style="padding-top:12px"><div class="pcard" id="pcard"></div></div>
   </details>
 
-  <details class="bx" id="fileBox">
-   <summary><svg class="ic"><use href="#i-clip"/></svg>文件与记录<em id="pstat"></em><svg class="ic cv"><use href="#i-cv"/></svg></summary>
+  <details class="bx" id="noticeBox">
+   <summary><svg class="ic"><use href="#i-send"/></svg>给家长的通知<svg class="ic cv"><use href="#i-cv"/></svg></summary>
    <div class="bd">
-    <input type="file" id="finput" multiple style="font:inherit;font-size:13.5px;max-width:100%">
-    <ul class="flist" id="flist"></ul>
-    <div style="margin:14px 0 6px;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:7px"><svg class="ic"><use href="#i-check"/></svg>已发起的报名</div>
-    <div id="recs"></div>
-    <div style="margin-top:12px"><button class="mini" id="expTxt"><svg class="ic"><use href="#i-down"/></svg>导出报名资料</button></div>
+    <div class="ptext" id="ptext"></div>
+    <div style="margin-top:11px"><button class="mini" id="shareNotice"><svg class="ic"><use href="#i-send"/></svg>发给家长</button></div>
    </div>
   </details>
 
@@ -271,9 +216,7 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding:16px 0 40px;font
  <footer>
   <details class="bx" style="margin:0">
    <summary><svg class="ic"><use href="#i-book"/></svg>知网资料<svg class="ic cv"><use href="#i-cv"/></svg></summary>
-   <div class="bd">入口 lib.shutong121.com　卡号 18185519　密码 396330
-    <div style="margin-top:10px"><button class="mini" id="cnkiCp"><svg class="ic"><use href="#i-copy"/></svg>复制知网资料</button></div>
-   </div>
+   <div class="bd">入口 lib.shutong121.com　卡号 18185519　密码 396330</div>
   </details>
  </footer>
 </div>
@@ -303,7 +246,7 @@ var WL=[
 [23,'广东省中小学生科学教育创新成果展示大赛','学生']
 ];
 var CATORDER=['绘画创意征集','规范汉字书写','书画摄影','教学设计案例'];
-var ROLE=localStorage.getItem('hf_role_v56')||'', PEDIT=false, DB=null, FILES=[], SLIP=-1;
+var ROLE=localStorage.getItem('hf_role_v56')||'', PEDIT=false;
 var NL=String.fromCharCode(10);
 var $=function(s){return document.querySelector(s)};
 function I(n,cls){return '<svg class="ic'+(cls?' '+cls:'')+'"><use href="#i-'+n+'"/></svg>'}
@@ -312,103 +255,37 @@ function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearT
 function beep(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var a=new C(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=660;o.type='sine';g.gain.setValueAtTime(.06,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.09);o.start();o.stop(a.currentTime+.1);setTimeout(function(){a.close&&a.close()},300)}catch(e){}try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}}
 function copy(t){window.__lastCopy=t;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){},function(){fallback(t)})}else fallback(t)}
 function fallback(t){var i=document.createElement('textarea');i.value=t;i.style.position='fixed';i.style.left='-9999px';document.body.appendChild(i);i.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(i)}
-function dl(name,txt){var b=new Blob([txt],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');
- a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);
- setTimeout(function(){URL.revokeObjectURL(u)},3000)}
 function cnDate(s){var m=/^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s||''));return m?(m[2].replace(/^0/,'')+' 月 '+m[3].replace(/^0/,'')+' 日'):String(s||'')}
 
-/* 档案：一个人，按身份分开存本机 */
 function pkey(){return 'hf_person_v57_'+(ROLE||'stu')}
 function loadP(){try{return JSON.parse(localStorage.getItem(pkey())||'null')}catch(e){return null}}
-function saveP(p){localStorage.setItem(pkey(),JSON.stringify(p));updStat()}
+function saveP(p){localStorage.setItem(pkey(),JSON.stringify(p))}
 function fields(){return ROLE==='tea'
  ? [['name','姓名'],['school','任教学校'],['grade','学科职务'],['phone','联系电话'],['mentor','所在科组']]
  : [['name','姓名'],['school','学校'],['grade','年级班级'],['phone','联系电话'],['mentor','指导老师']]}
-function fileRow(){return '<div class="frow"><span class="lb">'+I('clip')+'作品文件 '+FILES.length+' 个</span>'+
- '<button class="mini" id="fAdd">'+I('plus')+'选择文件保存</button>'+
- '<button class="mini" id="expTxt2">'+I('down')+'导出报名资料</button></div>'}
+function lastOpen(){try{return JSON.parse(localStorage.getItem('hf_last_v60')||'null')}catch(e){return null}}
 function renderP(){
- var p=loadP(),box=$('#pcard');
+ var p=loadP(),box=$('#pcard'),last=lastOpen(),q='',sum=$('#pSummary');
+ if(sum)sum.textContent=p&&p.name?('已记住 '+p.name):'可选，填一次就记住';
+ if(last&&last.who===ROLE){
+  q='<div class="quick">'+I('pin')+'<span>上次点进 '+esc(last.n)+'</span>'+
+   '<a class="mini" href="'+esc(last.u)+'" target="_blank" rel="noopener noreferrer" data-last="1">'+I('ext')+'再进报名页</a></div>';
+ }
  if(p&&p.name&&!PEDIT){
-  var last=recs()[0],q='';
-  if(last){for(var i=0;i<OPEN.length;i++){if(OPEN[i].name===last.n&&OPEN[i].who===ROLE){
-   q='<div class="quick">'+I('clip')+'<span>上次报的 '+esc(last.n)+'</span>'+
-    '<button class="mini" data-again="'+i+'">'+I('check')+'再报一次</button></div>';break}}}
   box.innerHTML='<div class="ph">'+I('user','lg')+'报名人档案</div>'+
    '<div class="saved"><b>'+esc(p.name)+'</b>'+
    '<span class="kv">'+I('school')+esc(p.school||'')+'</span>'+
    '<span class="kv">'+I('tag')+esc(p.grade||'')+'</span>'+
    '<span class="kv">'+I('phone')+esc(p.phone||'')+'</span>'+
-   (p.mentor?'<span class="kv">'+I('user')+esc(p.mentor)+'</span>':'')+
-   '<button class="mini" id="pEdit">'+I('edit')+'修改</button></div>'+q+fileRow();
+   '<button class="mini" id="pEdit">'+I('edit')+'修改</button></div>'+q;
   return;
  }
  var p2=p||{};
  box.innerHTML='<div class="ph">'+I('user','lg')+'报名人档案</div>'+
   '<div class="grid">'+fields().map(function(f){
    return '<div><label>'+esc(f[1])+'</label><input id="pf_'+f[0]+'" value="'+esc(p2[f[0]]||'')+'" placeholder="'+esc(f[1])+'"></div>'}).join('')+'</div>'+
-  '<button class="act" id="pSave">'+I('check')+'保存档案</button>'+fileRow();
+  '<button class="act" id="pSave">'+I('check')+'记住这个人</button>'+q;
 }
-function recs(){try{return JSON.parse(localStorage.getItem('hf_rec_v57')||'[]')}catch(e){return []}}
-function addRec(e){var r=recs();r.unshift({n:e.name,t:Date.now(),u:e.apply});
- localStorage.setItem('hf_rec_v57',JSON.stringify(r.slice(0,20)));renderRecs();updStat()}
-function renderRecs(){var r=recs(),el=$('#recs');if(!el)return;
- el.innerHTML=r.length?r.slice(0,6).map(function(x){var d=new Date(x.t),ts=(d.getMonth()+1)+'/'+d.getDate();
-  return '<div class="rec">'+I('check')+'<span>'+ts+' '+esc(x.n)+'</span><a href="'+esc(x.u)+'" target="_blank" rel="noopener noreferrer">打开 '+I('ext')+'</a></div>'}).join('')
-  +'<button class="mini" id="recClear" style="margin-top:9px">'+I('x')+'清空记录</button>'
-  :'<div class="tiny">暂无</div>'}
-function updStat(){var p=loadP(),el=$('#pstat');if(!el)return;
- el.textContent='';}
-
-/* 报名单：本页真正产出的东西 */
-function slipText(e,p){
- var L=['报名单','',
-  '赛事 '+e.name,
-  '类别 '+e.cat,
-  '级别 '+e.lvl,
-  '截止 '+e.dltxt,
-  '报名链接 '+e.apply,
-  '平台 '+e.gzh,
-  '怎么交 '+e.act,
-  '要交的材料 '+e.need,
-  '',
-  '报名人'];
- fields().forEach(function(f){L.push(f[1]+' '+(p&&p[f[0]]?p[f[0]]:'（未填）'))});
- return L.join(NL);
-}
-function slipHtml(e,p){
- var h='<div class="slip"><div class="sh">'+I('clip','lg')+'我的报名单</div><div class="sb">';
- function line(ic,k,v){return '<div class="line"><span class="k">'+I(ic)+esc(k)+'</span><span class="v">'+v+'</span></div>'}
- h+=line('award','赛事',esc(e.name));
- h+=line('tag','类别',esc(e.cat)+'　'+esc(e.lvl));
- h+=line('cal','截止','<span style="color:var(--red);font-weight:600">'+esc(e.dltxt)+'</span>');
- h+=line('app','平台',esc(e.gzh));
- h+=line('check','怎么交',esc(e.act));
- h+=line('file','要交的',esc(e.need));
- h+=line('link','报名链接','<a href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer">'+esc(e.apply)+'</a>');
- h+='<div class="sec">'+I('user')+'报名人</div>';
- fields().forEach(function(f){
-  var v=p&&p[f[0]]?esc(p[f[0]]):'<span class="tiny">未填</span>';
-  h+=line('user',f[1],v);
- });
- h+='</div><div class="hint">'+I('check')+'已自动复制，去官方页粘贴即可</div>'+
-  '<div class="foot">'+
-  '<button data-slipcp="1">'+I('copy')+'复制报名单</button>'+
-  '<button class="g" data-slipdl="1">'+I('down')+'存成文件</button>'+
-  '<a href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer">'+I('ext')+'打开官方页</a>'+
-  '</div></div>';
- return h;
-}
-function openSlip(i){
- var e=OPEN[i],p=loadP();
- if(!p||!p.name){PEDIT=true;renderP();$('#personSec').scrollIntoView({behavior:'smooth',block:'center'});
-  toast('先填一次档案，之后点一下就出报名单');return}
- SLIP=i;copy(slipText(e,p));addRec(e);renderP();renderList();beep();
- toast('报名单已生成并复制');
- setTimeout(function(){var s=$('.slip');if(s)s.scrollIntoView({behavior:'smooth',block:'nearest'})},60);
-}
-
-/* 分类赛事清单 */
 function nowList(){return OPEN.map(function(e,i){return {e:e,i:i}}).filter(function(o){return o.e.who===ROLE})}
 function renderList(){
  var list=nowList(),html='';
@@ -417,18 +294,16 @@ function renderList(){
   if(!rows.length)return;
   html+='<div class="grp"><div class="gh">'+I('pin','lg')+'<b>'+esc(c)+'</b><span class="num">'+rows.length+' 项</span></div>';
   rows.forEach(function(o){
-   var e=o.e,done=recs().some(function(x){return x.n===e.name});
+   var e=o.e,last=lastOpen(),done=last&&last.n===e.name;
    html+='<div class="ev"><div class="nm">'+esc(e.name)+'<span class="lvl">'+esc(e.lvl)+'</span></div>'+
     '<div class="meta">'+
     '<div class="r">'+I('cal')+'<span class="k">截止</span><span class="dl">'+esc(e.dltxt)+'</span></div>'+
     '<div class="r">'+I('app')+'<span class="k">平台</span>'+esc(e.gzh)+'</div>'+
     '<div class="r">'+I('file')+'<span class="k">要交</span>'+esc(e.need)+'</div>'+
     '</div>'+
-    '<div class="urow">'+I('link')+'<code>'+esc(e.apply)+'</code><button data-cp="'+esc(e.apply)+'">'+I('copy')+'复制</button></div>'+
-    '<div class="evacts"><button class="go" data-slip="'+o.i+'">'+I('clip')+'生成我的报名单</button>'+
-    (done?'<span class="done">'+I('check')+'已生成</span>':'')+'</div>';
-   if(SLIP===o.i)html+=slipHtml(e,loadP());
-   html+='</div>';
+    '<div class="urow">'+I('link')+'<a href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer">'+esc(e.apply)+'</a></div>'+
+    '<div class="evacts"><a class="go" href="'+esc(e.apply)+'" target="_blank" rel="noopener noreferrer" data-go="'+o.i+'">'+
+    I('ext','lg')+'立即报名</a>'+(done?'<span class="done">'+I('check')+'刚点过</span>':'')+'</div></div>';
   });
   html+='</div>';
  });
@@ -452,71 +327,12 @@ function parentText(){
  var p=loadP();L.push('—— '+(p&&p.name?p.name:''));
  return L.join(NL);
 }
-function copyAll(){
- var list=nowList(),L=['近期正在报名的美育赛事　共 '+list.length+' 项',''];
- CATORDER.forEach(function(c){
-  var rows=list.filter(function(o){return o.e.cat===c});
-  if(!rows.length)return;
-  L.push('【'+c+'】');
-  rows.forEach(function(o){var e=o.e;
-   L.push(e.name);L.push('  截止 '+e.dltxt);L.push('  报名 '+e.apply);
-   L.push('  平台 '+e.gzh);L.push('  要交 '+e.need);L.push('  怎么交 '+e.act);L.push('');
-  });
- });
- copy(L.join(NL));toast('全部 '+list.length+' 项已复制');
-}
-function tellGo(){
- var t=parentText();copy(t);$('#ptext').textContent=t;$('#noticeBox').open=true;
- toast('通知已复制，粘贴到微信即可');
- if(navigator.share){try{navigator.share({title:'美育赛事报名通知',text:t}).catch(function(){})}catch(e){}}
- beep();
-}
 function shareNotice(){
- var t=parentText();
+ var t=parentText();copy(t);$('#ptext').textContent=t;$('#noticeBox').open=true;
+ toast('通知已生成，可直接发给家长');
  if(navigator.share){try{navigator.share({title:'美育赛事报名通知',text:t}).catch(function(){})}catch(e){}}
- else{copy(t);toast('通知已复制，粘贴到微信即可')}
  beep();
 }
-function expTxt(){
- var p=loadP()||{},L=['报名资料',''];
- fields().forEach(function(f){if(p[f[0]])L.push(f[1]+' '+p[f[0]])});
- L.push('');
- var list=nowList();L.push('正在报名 '+list.length+' 项');
- list.forEach(function(o){var e=o.e;L.push('');L.push(e.name);L.push('  截止 '+e.dltxt);
-  L.push('  报名 '+e.apply);L.push('  平台 '+e.gzh);L.push('  要交 '+e.need);L.push('  怎么交 '+e.act)});
- L.push('');L.push('已发起的报名');
- recs().forEach(function(x){L.push(x.n+'　'+x.u)});
- dl('报名资料_'+(p.name||'未填档案')+'.txt',L.join(NL));toast('报名资料已存成文件');
-}
-
-/* 文件保存 IndexedDB */
-function idb(){return new Promise(function(res,rej){if(DB)return res(DB);
- var q=indexedDB.open('hf_files_v57',1);
- q.onupgradeneeded=function(){var d=q.result;if(!d.objectStoreNames.contains('works'))d.createObjectStore('works',{keyPath:'id',autoIncrement:true})};
- q.onsuccess=function(){DB=q.result;res(DB)};q.onerror=function(){rej(q.error)}})}
-function putWork(f){return idb().then(function(d){return new Promise(function(res,rej){
- var tx=d.transaction('works','readwrite');tx.objectStore('works').add({name:f.name,type:f.type,size:f.size,blob:f,time:Date.now()});
- tx.oncomplete=function(){res()};tx.onerror=function(){rej(tx.error)}})})}
-function allWorks(){return idb().then(function(d){return new Promise(function(res,rej){
- var out=[],tx=d.transaction('works','readonly'),q=tx.objectStore('works').openCursor();
- q.onsuccess=function(){var c=q.result;if(c){out.push(c.value);c.continue()}else res(out)};q.onerror=function(){rej(q.error)}})})}
-function delWork(id){return idb().then(function(d){return new Promise(function(res,rej){
- var tx=d.transaction('works','readwrite');tx.objectStore('works').delete(id);
- tx.oncomplete=function(){res()};tx.onerror=function(){rej(tx.error)}})})}
-function renderFiles(){return allWorks().then(function(list){
- FILES=list;var ul=$('#flist');if(!ul)return;
- ul.innerHTML=list.length?list.map(function(r){
-  return '<li><span class="f">'+esc(r.name)+' <span class="tiny">'+(r.size/1024).toFixed(0)+' KB</span></span>'+
-   '<button class="mini" data-dl="'+r.id+'">'+I('down')+'下载</button>'+
-   '<button class="mini" data-del="'+r.id+'">'+I('x')+'删除</button></li>'}).join(''):'<li><span class="f tiny">暂无</span></li>';
- var fr=$('.frow .lb');if(fr)fr.innerHTML=I('clip')+'作品文件 '+FILES.length+' 个';
- }).catch(function(){var ul=$('#flist');if(ul)ul.innerHTML='<li><span class="f tiny">暂无</span></li>'})}
-function dlWork(id){var r=null;for(var i=0;i<FILES.length;i++)if(FILES[i].id===id)r=FILES[i];if(!r)return;
- var u=URL.createObjectURL(r.blob),a=document.createElement('a');a.href=u;a.download=r.name;
- document.body.appendChild(a);a.click();document.body.removeChild(a);
- setTimeout(function(){URL.revokeObjectURL(u)},3000);toast('已下载 '+r.name)}
-
-/* 主渲染 */
 function render(){
  if(!ROLE){$('#gate').style.display='block';$('#main').classList.remove('on');return}
  $('#gate').style.display='none';$('#main').classList.add('on');
@@ -526,54 +342,27 @@ function render(){
   '<span>'+I('cal')+'最近 <span class="d">'+esc(cnDate(dls[0]||''))+'</span> 截止</span>'+
   '<span>'+I('user')+(ROLE==='tea'?'教师视图':'学生家长视图')+'</span>';
  $('#listCnt').innerHTML=I('tag')+list.length+' 项';
- $('#noticeEm').textContent='';
- $('#wlCnt').textContent='';
  $('#wlCnt').textContent='共 '+WL.length+' 项';
  $('#wlBody').innerHTML=WL.map(function(r){return '<tr><td class="no">'+r[0]+'</td><td class="nm">'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>'}).join('');
  $('#ptext').textContent=parentText();
- SLIP=-1;
- renderP();renderList();renderRecs();renderFiles();updStat();
+ renderP();renderList();
 }
-
-/* 事件 */
 document.addEventListener('click',function(ev){
  var t=ev.target;
  var r=t.closest('.js-role');
  if(r){ROLE=r.getAttribute('data-role');localStorage.setItem('hf_role_v56',ROLE);PEDIT=false;beep();render();window.scrollTo(0,0);return}
- var cp=t.closest('[data-cp]');
- if(cp){copy(cp.getAttribute('data-cp'));toast('报名链接已复制');beep();return}
- var sl=t.closest('[data-slip]');
- if(sl){openSlip(+sl.getAttribute('data-slip'));return}
- var scp=t.closest('[data-slipcp]');
- if(scp&&SLIP>=0){copy(slipText(OPEN[SLIP],loadP()));toast('报名单已复制');beep();return}
- var sdl=t.closest('[data-slipdl]');
- if(sdl&&SLIP>=0){var e=OPEN[SLIP],p=loadP()||{};dl('报名单_'+(p.name||'未填')+'_'+e.cat+'.txt',slipText(e,p));toast('报名单已存成文件');beep();return}
- var ag=t.closest('[data-again]');
- if(ag){openSlip(+ag.getAttribute('data-again'));return}
- if(t.id==='tellGo'){tellGo();return}
- if(t.id==='cpAll'){copyAll();beep();return}
- if(t.id==='cpNotice2'){copy(parentText());toast('通知已复制');beep();return}
- if(t.id==='shareNotice'){shareNotice();return}
+ var g=t.closest('[data-go]');
+ if(g){var e=OPEN[+g.getAttribute('data-go')];
+  localStorage.setItem('hf_last_v60',JSON.stringify({n:e.name,u:e.apply,who:ROLE,t:Date.now()}));
+  renderP();renderList();beep();return}
+ var la=t.closest('[data-last]');
+ if(la){beep();return}
+ if(t.id==='tellGo'||t.id==='shareNotice'){shareNotice();return}
  if(t.id==='pSave'){
   var p={};fields().forEach(function(f){var el=$('#pf_'+f[0]);p[f[0]]=el?el.value.trim():''});
   if(!p.name){toast('请至少填写姓名');return}
-  saveP(p);PEDIT=false;renderP();toast('档案已存本机');beep();return}
+  saveP(p);PEDIT=false;renderP();toast('已记住，下次直接点报名');beep();return}
  if(t.id==='pEdit'){PEDIT=true;renderP();beep();return}
- if(t.id==='fAdd'){var fi=$('#finput');if(fi){fi.click();beep()}return}
- if(t.id==='expTxt'||t.id==='expTxt2'){expTxt();beep();return}
- if(t.id==='cnkiCp'){copy('知网入口 lib.shutong121.com'+NL+'卡号 18185519'+NL+'密码 396330');toast('知网资料已复制');beep();return}
- if(t.id==='recClear'){localStorage.removeItem('hf_rec_v57');renderRecs();renderList();toast('已清空');return}
- var d=t.closest('[data-dl]');
- if(d){dlWork(+d.getAttribute('data-dl'));beep();return}
- var x=t.closest('[data-del]');
- if(x){delWork(+x.getAttribute('data-del')).then(renderFiles);toast('已删除');beep();return}
-});
-document.addEventListener('change',function(ev){
- if(ev.target.id==='finput'){
-  var fs=Array.prototype.slice.call(ev.target.files||[]);if(!fs.length)return;
-  Promise.all(fs.map(putWork)).then(function(){renderFiles();ev.target.value='';toast('已在本机保存 '+fs.length+' 个文件');beep()})
-   .catch(function(){toast('保存失败，可改用导出报名资料')});
- }
 });
 render();
 </script>
