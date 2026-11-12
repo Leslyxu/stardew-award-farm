@@ -576,6 +576,7 @@ body{font-size:16px;line-height:1.72}
       <span class="tag">🛠️ GitHub 开源工具箱 · 美术老师备课用</span>
       <span class="sp"></span>
       <span class="tag" id="toolsCount">—</span>
+      <button class="btn blue sm" data-share>📎 素材一键分享</button>
     </div>
     <div class="grid" id="toolsGrid"></div>
   </div>
@@ -625,6 +626,7 @@ body{font-size:16px;line-height:1.72}
 
 <!-- 我的资料 / 设置 -->
 <div class="mask" id="mSettings"><div class="modal px" id="settingsBody"></div></div>
+<div class="mask" id="mShare"><div class="modal px" id="shareBody" style="max-width:640px"></div></div>
 
 <!-- 学生赛 · 一键生成文案 -->
 <div class="mask" id="mStuCopy"><div class="modal px" id="stuCopyBody"></div></div>
@@ -679,7 +681,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-04 · 第 33 版（农场加会走的牛鸡鸭、移除本校战绩面板、比赛卡片加「📧 直接发邮箱」、封面黑条修复）";
+const DATA_VERSION = "2026-11-12 · 第 34 版（新增 AI 协作·趋势独立区、我的常用文件包、一键发邮箱自动带清单、素材一键分享带附件）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -3216,7 +3218,15 @@ var TOOLS = [
     use:"想找新技能时先翻这份清单，避免踩野鸡仓库。" },
   { id:"t-addy", name:"addyosmani/agent-skills", star:"42K★", lang:"Skill", url:"https://github.com/addyosmani/agent-skills",
     desc:"Google 工程师 Addy Osmani 的 SDLC 全周期技能（架构 / 调试 / 测试 / 文档）。",
-    use:"偏工程，但文档写作、代码化课件这类长文产出质量高，值得借。" }
+    use:"偏工程，但文档写作、代码化课件这类长文产出质量高，值得借。" },
+
+  /* ---------- AI 协作·趋势（非美术工具，独立区，不参与美术筛选） ---------- */
+  { id:"t-improve", name:"shadcn/improve", star:"11/12 +361★", lang:"Agent Skill", url:"https://github.com/shadcn/improve", cat:"trend",
+    desc:"2026-11-12 GitHub 全语言日榜第 4。「计划就是产品」：最贵的模型只负责读懂代码 + 写清楚方案，便宜模型去执行，自己一个字不改，用来控制改动范围和成本。",
+    use:"借它的思路省积分：以后让我改这个站，先出方案再动手，少返工、少烧分。非美术工具，仅供了解趋势。" },
+  { id:"t-astryx", name:"meta/astryx", star:"11/12 +2,776★", lang:"TypeScript", url:"https://github.com/meta/astryx", cat:"trend",
+    desc:"2026-11-12 GitHub 日榜榜首（连续两天第 1，累计 25,259★）。Meta 内部用了八年的设计系统开源：150+ 可换肤组件，人和 AI 照同一套规则搭页面、风格不跑偏（React 19+，Beta）。",
+    use:"借它「人和 AI 同一套规则、风格不跑偏」的理念，给这个反复改版的站固化一份改版风格约定。非美术工具，仅供了解趋势。" }
 ];
 
 /* ============================================================
@@ -4045,14 +4055,23 @@ var PEOPLE = [
       '<span class="badge b-lang">' + esc(t.lang) + "</span></div>" +
       '<div class="cn">' + esc(t.name) + "</div>" +
       '<div class="sec" style="margin:6px 0"><div class="mini">' + esc(t.desc) + "</div></div>" +
-      '<div class="sec" style="margin:6px 0;background:#fff7e6"><div class="mini"><b>🎨 对你有用：</b>' + esc(t.use) + "</div></div>" +
+      '<div class="sec" style="margin:6px 0;background:' + (t.cat==="trend" ? "#f3f0ff" : "#fff7e6") + '"><div class="mini"><b>' + (t.cat==="trend" ? "🧭 借思路：" : "🎨 对你有用：") + '</b>' + esc(t.use) + "</div></div>" +
       '<div class="ct" style="margin-top:6px"><a class="badge b-link" href="' + esc(t.url) + '" target="_blank" rel="noopener">GitHub ↗</a></div>' +
       "</div>";
   }
   function renderTools() {
-    var tools = state.art ? TOOLS.filter(isArt) : TOOLS;
+    var normal = TOOLS.filter(function(t){ return t.cat !== "trend"; });
+    var trend = TOOLS.filter(function(t){ return t.cat === "trend"; });
+    var tools = state.art ? normal.filter(isArt) : normal;
     $("#toolsCount").textContent = "共 " + tools.length + " 个开源工具" + (state.art ? "（美术/书法相关）" : "");
-    $("#toolsGrid").innerHTML = tools.map(toolCard).join("");
+    var h = "";
+    if (trend.length) {
+      h += '<div class="sec" style="grid-column:1/-1;border-left:5px solid #6c5ce7;background:#f4f1ff">' +
+        '<div style="font-weight:800;margin-bottom:4px">🧭 AI 协作 · 趋势（非美术工具 · 单独列出 · 不参与上面的美术筛选）</div>' +
+        '<div class="mini" style="margin-bottom:8px">下面这几条跟美术/书法无关，是 2026-11-12 GitHub 日榜里「借思路」用的：省积分的分工、人和 AI 统一风格。别当绘画工具点——放这儿就是给你看一眼趋势。</div>' +
+        '<div class="grid">' + trend.map(toolCard).join("") + '</div></div>';
+    }
+    $("#toolsGrid").innerHTML = h + tools.map(toolCard).join("");
   }
 
   /* ---------- 评审专家 / 关键人物 ---------- */
@@ -4105,7 +4124,7 @@ var PEOPLE = [
     return '<div class="fld"><label>' + label + '</label><input id="' + id + '" value="' + esc(val || "") + '"></div>';
   }
   function loadSet() {
-    return load(LS.settings, { name: "", school: "航瑞中学", grade: "", subject: "美术", phone: "", mail: "", sign: "", recvMail: "", submails: "", updateUrl: "" });
+    return load(LS.settings, { name: "", school: "航瑞中学", grade: "", subject: "美术", phone: "", mail: "", sign: "", recvMail: "", submails: "", updateUrl: "", packLink: "", packList: "" });
   }
   function parseSubmails(txt) {
     var o = {}; (txt || "").split(/\n|；|;|，|,/).forEach(function (l) {
@@ -4122,14 +4141,64 @@ var PEOPLE = [
     return "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
   }
   function firstEmail(str){ var m=(str||"").match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/); return m?m[0]:""; }
+  function packNote(){
+    var s = loadSet(), L = [];
+    if(s.packLink) L.push("常用文件包（网盘）：" + s.packLink);
+    if(s.packList) L.push("常用文件清单：\n" + s.packList);
+    if(s.sign) L.push(s.sign);
+    return L.join("\n");
+  }
   function openMail(id){
     var a = (typeof ALL!=="undefined"?ALL:[]).filter(function(x){return x.id===id;})[0];
     if(!a) return;
-    var to = firstEmail(toOf(a)) || "";
+    var to = resolveRecv(a) || firstEmail(toOf(a)) || "";
     var subj = "【投稿】" + a.name + "（截稿 " + fmtDate(a.deadline) + "）";
-    var body = "老师好：\n\n拟投稿：" + a.name + "\n主办：" + (a.org||"") + "\n截稿：" + fmtDate(a.deadline) + "\n投到：" + toOf(a) + "\n官方：" + (a.url||"（见官方通知）") + "\n\n【需附材料】\n" + ((a.materials&&a.materials.length)?a.materials.map(function(m,i){return (i+1)+". "+m;}).join("\n"):"（见官方通知）") + "\n\n请附上常用投稿材料：报名表 / 作品高清图(JPG 2-5MB,≥300dpi) / 作者信息表。\n\n—— 来自「奖杯农场」一键投稿";
+    var mats = (a.materials&&a.materials.length) ? a.materials.map(function(m,i){return (i+1)+". "+m;}).join("\n") : "（见官方通知）";
+    var pn = packNote();
+    var body = "老师好：\n\n拟投稿：" + a.name + "\n主办：" + (a.org||"") + "\n截稿：" + fmtDate(a.deadline) + "\n投到：" + toOf(a) + "\n官方：" + (a.url||"（见官方通知）") +
+      "\n\n【本场需附材料】\n" + mats +
+      (pn ? "\n\n【我的常用文件包】\n" + pn : "") +
+      "\n\n（附件请把上面的文件在邮件里手动附上；网页不能自动附加本地文件。想一键带附件，用「📎 素材一键分享」。）" +
+      "\n\n—— 来自「奖杯农场」一键投稿";
     window.location.href = mailtoURL(to, subj, body); beep(880,.08);
   }
+
+  /* ---------- 📎 素材一键分享：把微信里存下来的照片 / 画带出去 ---------- */
+  function openShare(){
+    var h = '<button class="btn sm close" data-close>关闭</button><h2>📎 素材一键分享</h2>';
+    h += '<div class="mini" style="margin:4px 0 8px">网页读不到微信聊天记录（浏览器安全限制，任何网站都做不到），但可以把微信里<b>存下来</b>的照片 / 画，从这里直接带附件发到邮箱或微信。</div>';
+    h += '<div class="sec" style="background:#fff7e6"><div class="mini"><b>怎么把微信里的图弄出来：</b><br>微信里长按图片 →「保存图片 / 另存为」→ 回到这里点「选择文件」→ 从相册 / 文件里选中 → 点「调起系统分享」，然后选「邮件 / 微信 / 存储」即可（手机浏览器支持真正带附件）。</div></div>';
+    h += '<div class="sec"><h5>① 选素材（可多选，图片 / PDF / 文档 / 压缩包）</h5><input type="file" id="shFiles" multiple accept="image/*,.pdf,.doc,.docx,.zip"><div class="mini" id="shInfo" style="margin-top:6px">还没选文件。</div></div>';
+    h += '<div class="sec"><h5>② 随附说明（自动带你的常用文件包与落款）</h5><div class="mini">' + (esc(packNote()) || "（在「我的资料 → 常用文件包」里填网盘链接 / 清单，这里会自动带出）") + '</div></div>';
+    h += '<div class="sec"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn green" id="shGo">📤 调起系统分享（带附件）</button><button class="btn blue" id="shMail">📧 只发邮件正文</button><button class="btn" id="shSet">⚙ 去填常用文件包</button></div><div class="mini" id="shTip" style="margin-top:8px"></div></div>';
+    $("#shareBody").innerHTML = h;
+    $("#mShare").classList.add("on"); if(typeof beep==="function") beep(680,.06);
+    var files = [];
+    $("#shFiles").addEventListener("change", function(e){
+      files = Array.prototype.slice.call(e.target.files||[]);
+      $("#shInfo").textContent = files.length ? ("已选 " + files.length + " 个：" + files.map(function(f){return f.name;}).join("、")) : "还没选文件。";
+    });
+    $("#shGo").addEventListener("click", function(){
+      if(!files.length){ $("#shTip").textContent = "先点「选择文件」把素材选上。"; return; }
+      if(navigator.canShare && navigator.canShare({files:files})){
+        navigator.share({files:files, title:"参赛作品素材", text:packNote()}).then(function(){ $("#shTip").textContent="已调起分享，选「邮件 / 微信」即可发出 ✅"; }).catch(function(){});
+      } else {
+        $("#shTip").innerHTML = '这个浏览器不支持直接带附件分享。请用<b>手机浏览器</b>（Safari / Chrome）打开本站再试，或点「📧 只发邮件正文」后在邮件里手动附加文件。';
+      }
+    });
+    $("#shMail").addEventListener("click", function(){
+      var s2 = loadSet();
+      window.location.href = mailtoURL(s2.recvMail || s2.mail || "", "参赛作品素材", packNote() + "\n\n（附件请手动附上；文件清单见上。）");
+      beep(880,.08);
+    });
+    $("#shSet").addEventListener("click", function(){ $("#mShare").classList.remove("on"); openSettings(); });
+    $$("#mShare [data-close]").forEach(function(b){ b.addEventListener("click", function(){ $("#mShare").classList.remove("on"); }); });
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest("[data-share]");
+    if(b){ openShare(); }
+  });
+
   function openSettings() {
     var s = loadSet();
     var h = '<button class="btn sm close" data-close>关闭</button><h2>我的资料 · 常用信息</h2>';
@@ -4152,10 +4221,16 @@ var PEOPLE = [
       '<button class="btn" id="sImpBtn">恢复配置</button>' +
       '<input type="file" id="sImp" accept=".json" style="display:none">' +
       '</div><div class="mini" style="margin-top:7px">备份会把「我的资料 + 战绩本 + 勾选进度 + 自建赛事」打成一个 JSON，换电脑或清缓存前导出带走。恢复会覆盖当前本机数据。</div></div>';
-    $("#settingsBody").innerHTML = h;
+         h += '<div class="sec" style="border-left:4px solid #6c5ce7"><h5>⑤ 常用文件包（照片 / 画 / 报名表，一次填好，每封投稿邮件自动带出）</h5>' +
+       fld("网盘链接（微云 / 腾讯文档 / 百度网盘等）", "sPackLink", s.packLink) +
+       '<div class="mini" style="margin-top:6px">常用文件清单（每行一个，投稿邮件里自动列出，提醒你该附哪些）：</div>' +
+       '<textarea id="sPackList" style="margin-top:6px" placeholder="作品高清图 JPG（≥300dpi）&#10;报名表（签字扫描）&#10;作者信息表&#10;学生证件照">' + esc(s.packList) + '</textarea>' +
+       '<div class="mini" style="margin-top:6px">⚠️ 网页出于安全，<b>不能自动把你手机 / 电脑里的文件塞进邮件附件</b>（所有网站都做不到）。这里填的是「链接 + 清单」，发邮件时自动写进正文；要真正带附件，用下面的「📎 素材一键分享」。</div>' +
+       '<div style="margin-top:8px"><button class="btn blue sm" data-share>📎 素材一键分享（把微信里存下的照片/画带出去）</button></div></div>';
+     $("#settingsBody").innerHTML = h;
     $("#mSettings").classList.add("on");
     $("#sSave").addEventListener("click", function () {
-      var ns = { name: $("#sName").value.trim(), school: $("#sSchool").value.trim(), grade: $("#sGrade").value.trim(), subject: $("#sSubject").value.trim(), phone: $("#sPhone").value.trim(), mail: $("#sMail").value.trim(), recvMail: $("#sRecv").value.trim(), submails: $("#sSub").value, sign: $("#sSign").value.trim(), updateUrl: $("#sUpd").value.trim() };
+      var ns = { name: $("#sName").value.trim(), school: $("#sSchool").value.trim(), grade: $("#sGrade").value.trim(), subject: $("#sSubject").value.trim(), phone: $("#sPhone").value.trim(), mail: $("#sMail").value.trim(), recvMail: $("#sRecv").value.trim(), submails: $("#sSub").value, sign: $("#sSign").value.trim(), updateUrl: $("#sUpd").value.trim(), packLink: ($("#sPackLink") ? $("#sPackLink").value.trim() : ""), packList: ($("#sPackList") ? $("#sPackList").value : "") };
       save(LS.settings, ns);
       var p = load(LS.prof, {}); p.name = ns.name; p.school = ns.school; p.subject = ns.subject; p.phone = ns.phone; p.mail = ns.mail; save(LS.prof, p);
       toast("资料已保存"); beep(1046, .08); openSettings();
