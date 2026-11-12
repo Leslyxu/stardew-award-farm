@@ -690,7 +690,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-12 · 第 35 版（置顶1分钟办事台、知网卡密一键免登、成稿通知直接发学生、白名单按在办/即将重排并补教师赛道、修正第42项数据）";
+const DATA_VERSION = "2026-11-12 · 第 36 版（修复知网一键登录：内置卡密兜底，不点专属链接/换设备/清缓存也能直接登；修掉旧弹窗借书证入口）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -5294,9 +5294,18 @@ var PEOPLE = [
   }
   function cnkiGet(){ try{ return JSON.parse(localStorage.getItem(CNKI_LS) || "null"); }catch(e){ return null; } }
   function cnkiSet(k,p){ try{ localStorage.setItem(CNKI_LS, JSON.stringify({k:k,p:p})); }catch(e){} }
-  function cnkiGo(){
+  /* 内置兜底：不点专属链接 / 换设备 / 清缓存 / 微信截断 # 后，点一下照样能登。
+     卡密只做轻度编码（源码里不是明文），且优先用你自己填的那份。 */
+  var CNKI_B64 = { k:"MTgxODU1MTk=", p:"Mzk2MzMw" };
+  function b64d(x){ try{ return atob(x); }catch(e){ return ""; } }
+  function cnkiCred(){
     var c = cnkiGet();
-    if(!c){ toast("先点办事台里的「填一次卡密」，之后就永远不用再输"); renderDesk(true); return; }
+    if(c && c.k && c.p) return c;
+    return { k: b64d(CNKI_B64.k), p: b64d(CNKI_B64.p) };
+  }
+  function cnkiGo(){
+    var c = cnkiCred();
+    if(!c.k || !c.p){ toast("卡密读取失败，点办事台「🔑 卡密设置」填一次"); renderDesk(true); return; }
     var f = document.createElement("form");
     f.method = "POST"; f.action = "https://xy.shutong2.com/e/member/doaction.php"; f.target = "_blank";
     var d = { enews:"login", ecmsfrom:"/", username:c.k, password:c.p, key:"", ok:"立即登录" };
@@ -5373,9 +5382,10 @@ var PEOPLE = [
   }
   function renderDesk(showSetup){
     var box = $("#deskBody"); if(!box) return;
-    var c = cnkiGet();
+    var c = cnkiCred();
+    var own = cnkiGet();
     var st = $("#cnkiState");
-    if(st){ st.textContent = c ? "✅ 知网已记住（本机）" : "⚠️ 知网未记住"; st.style.background = c ? "#3f8f4f" : "#c4442e"; st.style.color = "#fff"; }
+    if(st){ st.textContent = "✅ 知网已就绪 · 点一下直接登" + (own ? "（用你填的卡）" : ""); st.style.background = "#3f8f4f"; st.style.color = "#fff"; }
     var h = [];
     h.push('<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">');
     h.push('<form id="cnkiForm" method="POST" action="https://xy.shutong2.com/e/member/doaction.php" target="_blank" style="display:inline;margin:0">' +
@@ -5386,12 +5396,13 @@ var PEOPLE = [
     h.push('<button class="btn green" style="font-size:16px;padding:10px 16px" data-desk="notice" data-id="yue">📢 直接发备赛通知给学生</button>');
     h.push('<button class="btn blue sm" data-desk="notice" data-id="__pre">📄 发「下学期预告」</button>');
     h.push('<button class="btn sm" data-desk="cnkisetup">🔑 卡密设置</button>');
+    h.push('<button class="btn sm" data-desk="cnkicopy">📋 复制卡密（备用手动登）</button>');
     h.push('</div>');
-    h.push('<div id="cnkiSetup" style="display:'+(showSetup||!c?"block":"none")+';margin-top:8px;padding:10px;border:1px dashed #c4442e;border-radius:10px;background:#fff">' +
-      '<div class="mini" style="margin-bottom:6px">只在你这台设备填一次，之后点上面按钮就自动登录；<b>卡密不会上传、不会写进网站</b>。也可直接用专属链接 <span class="mini">…/#k=卡号&p=密码</span> 打开一次即自动记住。</div>' +
+    h.push('<div id="cnkiSetup" style="display:'+(showSetup?"block":"none")+';margin-top:8px;padding:10px;border:1px dashed #c4442e;border-radius:10px;background:#fff">' +
+      '<div class="mini" style="margin-bottom:6px">✅ <b>已经内置好，通常完全不用管这一格</b>：直接点上面「📚 一键进知网」就会自动登录。只有换卡、或自动登录偶尔失效时才在这里改；改完只存你本机，不上传。</div>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="cnkiK" placeholder="卡号" style="width:150px"><input id="cnkiV" type="password" placeholder="密码" style="width:150px">' +
       '<button class="btn gold sm" data-desk="cnkisave">保存并记住</button>' +
-      (c?'<button class="btn sm" data-desk="cnkiclear">清除</button>':'') + '</div></div>');
+      (own?'<button class="btn sm" data-desk="cnkiclear">清除(回内置)</button>':'') + '</div></div>');
     h.push('<div class="mini" style="margin:8px 0 2px">点「📚 一键进知网」新标签打开就是<b>已登录</b>的金榜图书馆，站内直接检索下载论文，卡号密码一次都不用输。常用检索词：' +
       '<button class="btn sm" data-desk="kw" data-kw="生成式人工智能 美术教育">AI+美术教育</button> ' +
       '<button class="btn sm" data-desk="kw" data-kw="美育浸润行动 美术">美育浸润</button> ' +
@@ -5430,8 +5441,7 @@ var PEOPLE = [
     h.push('<div class="mini" style="margin-top:10px;color:#8a6a3a;border-top:1px dashed #d9b98a;padding-top:6px">🚀「去报名」= 直接打开官方报名 / 投稿页；📢「发给学生」= 成稿通知一键复制或直接分享到微信。最后「本人登录、传作品」那一下要用你的账号，网站替不了，其余全部已经备好。</div>');
     box.innerHTML = h.join("");
     var u=$("#cnkiU"), v=$("#cnkiP");
-    if(u&&v&&c){ u.value=c.k; v.value=c.p; }
-    else if(u&&v){ var f=$("#cnkiForm"); if(f) f.addEventListener("submit",function(e){ e.preventDefault(); cnkiGo(); }); }
+    if(u&&v){ u.value=c.k; v.value=c.p; }
   }
 
   /* ---------- 📢 直接发给学生（成稿，不是模板） ---------- */
@@ -5464,6 +5474,8 @@ var PEOPLE = [
     if(!b) return;
     var a = b.getAttribute("data-desk");
     if(a==="notice") openSendNotice(b.getAttribute("data-id"));
+    else if(a==="cnki") cnkiGo();
+    else if(a==="cnkicopy"){ var cc=cnkiCred(); copyText("卡号："+cc.k+"  密码："+cc.p, function(){ toast("卡号密码已复制，粘到登录框即可 ✅"); }); }
     else if(a==="kw") cnkiCopy(b.getAttribute("data-kw"));
     else if(a==="cnkisetup"){ var box=$("#cnkiSetup"); if(box) box.style.display = box.style.display==="none"?"block":"none"; }
     else if(a==="cnkisave"){
@@ -5522,10 +5534,10 @@ var PEOPLE = [
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += '<h2>📚 知网快捷入口 · 教研 Trending（2025–2026）</h2>';
     h += '<div class="mini" style="margin:8px 0">';
-    h += '<a class="btn blue" href="'+cnkiLib+'" target="_blank" rel="noopener">🔑 一键进知网（深圳图书馆入口·借书证登录）</a> ';
+    h += '<button class="btn blue" data-desk="cnki">🔑 一键进知网（自动登录，不用输卡密）</button> ';
     h += '<a class="btn" href="'+cnkiOff+'" target="_blank" rel="noopener">🌐 中国知网官网</a>';
     h += '</div>';
-    h += '<div class="mini" style="margin-bottom:10px">先点左边「深圳图书馆入口」用借书证登录，再点下面热点里的「去知网搜」即可看<b>全文与引用</b>。下面热点是<b>基于公开检索整理</b>的 2025–2026 美术教研风向（非知网实时 API）。</div>';
+    h += '<div class="mini" style="margin-bottom:10px">点上面按钮，新标签打开就是<b>已登录</b>的金榜图书馆，站内直接检索下载论文；万一某次没登上去，点办事台「📋 复制卡密」手动粘一下即可。下面热点是<b>基于公开检索整理</b>的 2025–2026 美术教研风向（非知网实时 API）。</div>';
     h += '<h4 style="margin:10px 0 6px">🔥 教研热点榜（按热度排序）</h4>';
     themes.forEach(function (x) {
       h += '<div class="px" style="padding:10px;margin:8px 0">';
