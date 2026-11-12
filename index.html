@@ -473,9 +473,17 @@ body{font-size:16px;line-height:1.72}
     <span class="tag">刷新于 <b id="lastRefresh">未刷新</b></span>
   </div>
 
-    <div class="banner px">
-    <b>怎么用：</b>选级别 → 点卡片看「硬性要求 + 好入选·避坑」→ 照「提交步骤」投。最后一步（本人登录 + 验证码 + 上传作品）只能你做，我替不了，但材料与模板都备好。
+  <!-- ⚡ 1 分钟办事台 · 点一下就办完 -->
+  <div class="px" id="quickDesk" style="margin:14px 0 6px;border:2px solid #c4442e;border-radius:14px;background:linear-gradient(180deg,#fffdf7,#fff4e4);box-shadow:0 6px 20px rgba(196,68,46,.13)">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px dashed #d9b98a">
+      <b style="font-size:19px">⚡ 1 分钟办事台</b>
+      <span class="mini">点一下就办完 · 报名 / 发学生各 1 分钟 · 不教步骤</span>
+      <span class="sp"></span>
+      <span class="tag" id="cnkiState">知网：检查中</span>
+    </div>
+    <div id="deskBody" style="padding:10px 14px"></div>
   </div>
+
   <div class="banner px" id="recBanner" style="display:none"></div>
   <div class="tabs mode" id="modeTabs">
     <button class="tab on" data-mode="tch">👩‍🏫 教师赛事</button>
@@ -627,6 +635,7 @@ body{font-size:16px;line-height:1.72}
 <!-- 我的资料 / 设置 -->
 <div class="mask" id="mSettings"><div class="modal px" id="settingsBody"></div></div>
 <div class="mask" id="mShare"><div class="modal px" id="shareBody" style="max-width:640px"></div></div>
+<div class="mask" id="mNotice"><div class="modal px" id="noticeBody" style="max-width:700px"></div></div>
 
 <!-- 学生赛 · 一键生成文案 -->
 <div class="mask" id="mStuCopy"><div class="modal px" id="stuCopyBody"></div></div>
@@ -681,7 +690,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-12 · 第 34 版（新增 AI 协作·趋势独立区、我的常用文件包、一键发邮箱自动带清单、素材一键分享带附件）";
+const DATA_VERSION = "2026-11-12 · 第 35 版（置顶1分钟办事台、知网卡密一键免登、成稿通知直接发学生、白名单按在办/即将重排并补教师赛道、修正第42项数据）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -717,9 +726,9 @@ const AWARDS = [
     id: "cn-zhijing",
     aud: "学生",
     name: "「致敬英雄」全国青少年文化艺术创作主题教育竞赛",
-    short: "致敬英雄(白名单第42项)",
+    short: "致敬英雄(旧名单·已移出)",
     tier: "国",
-    auth: "教育部白名单·艺术体育类第42项(2025—2028学年)",
+    auth: "2022—2025 学年旧白名单；2025—2028 新名单未列入（仅存档，勿按现行白名单报名）",
     reg: "全国中小学生(小学/初中/高中/中职)",
     org: "中国少年儿童文化艺术基金会",
     orgType: "教育部白名单主办·中国少年儿童文化艺术基金会",
@@ -727,7 +736,7 @@ const AWARDS = [
     cycle: "每年一届",
     window: "下届预计 2026下半年—2027上半年(待发布)",
     deadline: "2027-07-31",
-    deadlineNote: "教育部2025—2028学年白名单第42项；主题教育类，偏思政+艺术融合",
+    deadlineNote: "现行 2025—2028 白名单第 42 项是「全国中小学生海洋文化创意设计大赛」；本条为旧名单存档，非在办赛事",
     phase: "待发布",
     official: false,
     credit: 4,
@@ -5270,6 +5279,201 @@ var PEOPLE = [
     });
   }
 
+  /* ============ ⚡ 1 分钟办事台：知网一键登录 / 成稿通知 / 在办赛事 ============ */
+  /* 卡密不写进公开源码：由专属链接 #k=..&p=.. 注入，只存本机 localStorage */
+  var CNKI_LS = "hf_cnki_v1";
+  function cnkiSave(){
+    try{
+      var h = location.hash || "";
+      var m = h.match(/k=([^&]+)/), q = h.match(/p=([^&]+)/);
+      if(m && q){
+        localStorage.setItem(CNKI_LS, JSON.stringify({ k: decodeURIComponent(m[1]), p: decodeURIComponent(q[1]) }));
+        if(history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+      }
+    }catch(e){}
+  }
+  function cnkiGet(){ try{ return JSON.parse(localStorage.getItem(CNKI_LS) || "null"); }catch(e){ return null; } }
+  function cnkiSet(k,p){ try{ localStorage.setItem(CNKI_LS, JSON.stringify({k:k,p:p})); }catch(e){} }
+  function cnkiGo(){
+    var c = cnkiGet();
+    if(!c){ toast("先点办事台里的「填一次卡密」，之后就永远不用再输"); renderDesk(true); return; }
+    var f = document.createElement("form");
+    f.method = "POST"; f.action = "https://xy.shutong2.com/e/member/doaction.php"; f.target = "_blank";
+    var d = { enews:"login", ecmsfrom:"/", username:c.k, password:c.p, key:"", ok:"立即登录" };
+    Object.keys(d).forEach(function(k){ var i=document.createElement("input"); i.type="hidden"; i.name=k; i.value=d[k]; f.appendChild(i); });
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    toast("已登录知网，新标签里直接检索下载 ✅"); if(typeof beep==="function") beep(1046,.08);
+  }
+  function cnkiCopy(kw){
+    var t = kw || "";
+    copyText(t, function(){ toast("检索词已复制，进知网粘贴即可"); });
+  }
+  function copyText(t, cb){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){ if(cb) cb(); }).catch(function(){ copyFallback(t,cb); });
+    } else copyFallback(t,cb);
+  }
+  function copyFallback(t,cb){
+    try{ var ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); if(cb) cb(); }
+    catch(e){ toast("复制失败，请长按选中文字"); }
+  }
+  function shareText(t,title){
+    if(navigator.share){ navigator.share({ title: title||"备赛通知", text: t }).catch(function(){}); }
+    else { copyText(t); toast("已复制，粘到学生群 / 家长群即可 ✅"); }
+  }
+
+  /* ---------- 真实可核实数据：现在真能报 / 即将开展 / 老师能拿 ---------- */
+  var DESK_NOW = [
+    { id:"yue", name:"首届粤美育规范汉字书写大赛", tag:"🟢 正在征稿 · 有教师组 · 11/20 截稿",
+      org:"广东省国培艺术研究院规范汉字书写委员会 / 粤美育服务平台",
+      apply:"https://www.yuemeiyu.com/?list_34/264.html",
+      note:"公益免费 · 非教育部白名单（省级平台赛事）· 硬笔/毛笔 · 教师可本人参加教师组",
+      notice:"【书法比赛 · 现在就能报】各位同学、家长：\n\n首届「粤美育」规范汉字书写大赛开始征稿，公益免费，学校统一组织，欢迎参加。\n\n▸ 截稿：2026年11月20日（请 11月18日前 把作品原件交到美术组）\n▸ 参加对象：中小学生（少儿组 13岁以下 / 少年组 13—17岁）；书法老师另有教师组\n▸ 写什么：硬笔（楷书、行楷）或毛笔（楷书、行楷、隶书）；古今中华优秀诗文、名言警句，内容积极向上，须用规范汉字（不写繁体字、异体字）\n▸ 作品规格：硬笔不少于 20 字，8开或 A4 竖版，黑色墨水钢笔/中性笔；毛笔不少于 10 字，最大不超过宣纸四尺整纸\n▸ 每人硬笔或毛笔类最多 2 幅，且须为不同书体\n▸ 全程不收取任何费用\n▸ 评奖：11月25—30日初评、12月1—10日终评、12月25日公布成绩；设一、二、三等奖及优秀奖，一等奖作品在平台官网与公众号展出\n\n作品原件请交到：航瑞中学 美术组\n组委会咨询：陈老师 13267391993\n官方通知：https://www.yuemeiyu.com/?list_34/264.html\n\n—— 航瑞中学美术组" },
+    { id:"hemei", name:"禾美——第四届全国青少年书画创意大赛", tag:"🟢 11/6 刚发布征稿 · 书画类",
+      org:"广东岭南美术院支持 / 禾美全国青少年书画创意大赛组委会",
+      apply:"https://www.163.com/dy/article/LB2IRLJO0514LGHL.html",
+      note:"非教育部白名单 · 主题「禾美」· 截稿与投稿细则以组委会官方启事为准（学校收到完整通知会第一时间同步）",
+      notice:"【书画比赛 · 新启动】各位同学、家长：\n\n「禾美——第四届全国青少年书画创意大赛」已于 2026年11月6日 发布征稿启事，主题「禾美」，以书画创作感受美、表现美、创造美，由广东岭南美术院支持、书画名家与美术教育家组成评审委员会。\n\n▸ 目前状态：征稿刚启动，截稿时间、作品规格、投稿通道以组委会官方启事为准\n▸ 现在可以做的：围绕「禾美」主题先构思、起草稿、开始创作；学校拿到完整通知后会第一时间把具体要求发到群里\n▸ 官方征稿启事：https://www.163.com/dy/article/LB2IRLJO0514LGHL.html\n\n有兴趣的同学可以先动笔，作品完成后交到美术组统一登记。\n\n—— 航瑞中学美术组" }
+  ];
+  var DESK_SOON = [
+    { id:"s35", no:35, name:"第31届 全国中小学生绘画书法作品比赛", org:"中国儿童中心",
+      win:"预计 2027年3—4月发通知、5—6月平台投稿（本届第30届已于2026年8月评审完毕）",
+      url:"https://www.ccc.org.cn/", applyName:"公众号「学与玩杂志」→ 全国中小学生竞赛展演活动智慧服务平台" },
+    { id:"s41", no:41, name:"第11届「希望颂」全国青少年书画艺术大展", org:"中国国际书画艺术研究会",
+      win:"预计 2027年2—5月报名投稿（第十届已于2026年8月2日开幕表彰，新一届报名尚未公布）",
+      url:"https://www.gjshyjh.com/", applyName:"公众号「希望颂大展」" },
+    { id:"s42", no:42, name:"第2届 全国中小学生海洋文化创意设计大赛", org:"中国海洋发展基金会、中国海洋大学、自然资源部北海局",
+      win:"预计 2027年3—6月征稿（首届 2026年3/1—6/30 征稿，10—12月颁奖展览；主题「和美海洋」）",
+      url:"https://www.cfocean.org.cn/", applyName:"官网 mcdnpss.com / 公众号「中小学生海洋文化创意设计大赛」" },
+    { id:"s45", no:45, name:"全国青少年人工智能辅助生成数字艺术创作者大赛", org:"文化和旅游部艺术发展中心",
+      win:"2025—2028 白名单新增项 · 首届举办时间待官方公布",
+      url:"https://www.mct.gov.cn/", applyName:"待官方公布" },
+    { id:"s46", no:46, name:"学校美育助力行动——青少年视觉艺术传承与创新工作坊展示", org:"中国艺术教育促进会",
+      win:"2025—2028 白名单新增项 · 展示活动时间待公布",
+      url:"https://www.moe.gov.cn/", applyName:"待官方公布" }
+  ];
+  var DESK_TEACHER = [
+    { name:"园丁颂 · 全国美术教师作品大展（第6届）", org:"中国国际书画艺术研究会 + 阜阳师范大学",
+      desc:"教师本人投稿的全国性专业大展，评奖、巡展、美育学术研讨。第5届征稿已于 2026年8月10日 截止，第6届待公布，现在可以先备作品。",
+      url:"https://www.gjshyjh.com/" },
+    { name:"优秀（美育）指导教师奖", org:"绘画书法比赛 / 希望颂 / 海洋文化创意设计大赛 均设",
+      desc:"指导学生获等级奖即可认定，是教师个人成果最稳的一条。希望颂设「优秀美育指导教师」，海洋设计大赛国赛等级奖指导教师可获「优秀指导教师奖」。",
+      url:"https://shds.zget.org/" },
+    { name:"粤美育规范汉字书写大赛 · 教师组", org:"广东省国培艺术研究院",
+      desc:"现在就能报（11/20 截稿），教师本人可投硬笔/毛笔，公益免费，设一、二、三等奖。",
+      url:"https://www.yuemeiyu.com/?list_34/264.html" }
+  ];
+  var PRE_NOTICE = "【下学期美术/书法赛事预告 · 先练起来】各位同学、家长：\n\n教育部 2025—2028 学年白名单里跟美术、书法、设计相关的国家级赛事，下一届集中在 2027年上半年 启动，学校会统一组织报名，有兴趣的同学现在就可以先按主题构思、积累作品：\n\n1. 第31届全国中小学生绘画书法作品比赛（中国儿童中心）——绘画（含绘本）、书法、摄影、造型、数字美术\n2. 第11届「希望颂」全国青少年书画艺术大展——软笔/硬笔书法、国画、儿童画、油画、素描、水彩、数字美术\n3. 第2届全国中小学生海洋文化创意设计大赛——平面设计、手工艺模型、数字媒体、AIGC（主题「和美海洋」）\n4. 全国青少年人工智能辅助生成数字艺术创作者大赛（新增项）\n5. 学校美育助力行动·青少年视觉艺术传承与创新工作坊展示（新增项）\n\n以上均为公益赛事、不收费、不与升学挂钩。正式通知一到，学校会第一时间把截稿时间、作品规格和报名方式发到群里。\n\n—— 航瑞中学美术组";
+
+  function deskItemFind(id){
+    var all = DESK_NOW.concat(DESK_SOON);
+    for(var i=0;i<all.length;i++) if(all[i].id===id) return all[i];
+    return null;
+  }
+  function renderDesk(showSetup){
+    var box = $("#deskBody"); if(!box) return;
+    var c = cnkiGet();
+    var st = $("#cnkiState");
+    if(st){ st.textContent = c ? "✅ 知网已记住（本机）" : "⚠️ 知网未记住"; st.style.background = c ? "#3f8f4f" : "#c4442e"; st.style.color = "#fff"; }
+    var h = [];
+    h.push('<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">');
+    h.push('<form id="cnkiForm" method="POST" action="https://xy.shutong2.com/e/member/doaction.php" target="_blank" style="display:inline;margin:0">' +
+      '<input type="hidden" name="enews" value="login"><input type="hidden" name="ecmsfrom" value="/">' +
+      '<input type="hidden" name="key" value=""><input type="hidden" name="ok" value="立即登录">' +
+      '<input type="hidden" name="username" id="cnkiU" value=""><input type="hidden" name="password" id="cnkiP" value="">' +
+      '<button type="submit" class="btn gold" style="font-size:16px;padding:10px 16px">📚 一键进知网看论文</button></form>');
+    h.push('<button class="btn green" style="font-size:16px;padding:10px 16px" data-desk="notice" data-id="yue">📢 直接发备赛通知给学生</button>');
+    h.push('<button class="btn blue sm" data-desk="notice" data-id="__pre">📄 发「下学期预告」</button>');
+    h.push('<button class="btn sm" data-desk="cnkisetup">🔑 卡密设置</button>');
+    h.push('</div>');
+    h.push('<div id="cnkiSetup" style="display:'+(showSetup||!c?"block":"none")+';margin-top:8px;padding:10px;border:1px dashed #c4442e;border-radius:10px;background:#fff">' +
+      '<div class="mini" style="margin-bottom:6px">只在你这台设备填一次，之后点上面按钮就自动登录；<b>卡密不会上传、不会写进网站</b>。也可直接用专属链接 <span class="mini">…/#k=卡号&p=密码</span> 打开一次即自动记住。</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="cnkiK" placeholder="卡号" style="width:150px"><input id="cnkiV" type="password" placeholder="密码" style="width:150px">' +
+      '<button class="btn gold sm" data-desk="cnkisave">保存并记住</button>' +
+      (c?'<button class="btn sm" data-desk="cnkiclear">清除</button>':'') + '</div></div>');
+    h.push('<div class="mini" style="margin:8px 0 2px">点「📚 一键进知网」新标签打开就是<b>已登录</b>的金榜图书馆，站内直接检索下载论文，卡号密码一次都不用输。常用检索词：' +
+      '<button class="btn sm" data-desk="kw" data-kw="生成式人工智能 美术教育">AI+美术教育</button> ' +
+      '<button class="btn sm" data-desk="kw" data-kw="美育浸润行动 美术">美育浸润</button> ' +
+      '<button class="btn sm" data-desk="kw" data-kw="非遗 美术教学 校本课程">非遗进课堂</button>（点了自动复制，进知网粘贴）</div>');
+
+    /* 🟢 现在就能报 */
+    h.push('<div style="margin-top:12px;font-weight:800;font-size:16px;border-left:5px solid #3f8f4f;padding-left:8px">🟢 现在就能报</div>');
+    DESK_NOW.forEach(function(x){
+      h.push('<div class="px" style="margin:8px 0;padding:10px;border:1px solid #cfe3c4;border-radius:10px;background:#f7fdf4">' +
+        '<div style="font-weight:800">'+esc(x.name)+' <span class="tag" style="background:#3f8f4f;color:#fff">'+esc(x.tag)+'</span></div>' +
+        '<div class="mini" style="margin:3px 0">'+esc(x.org)+'　·　'+esc(x.note)+'</div>' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">' +
+        '<a class="btn gold sm" href="'+esc(x.apply)+'" target="_blank" rel="noopener">🚀 去报名 / 看投稿要求</a>' +
+        '<button class="btn green sm" data-desk="notice" data-id="'+x.id+'">📢 发给学生</button></div></div>');
+    });
+
+    /* 🟡 即将开展 · 白名单（美术/书法/设计，只列在办或即将，已结束不列） */
+    h.push('<div style="margin-top:14px;font-weight:800;font-size:16px;border-left:5px solid #d99b2e;padding-left:8px">🟡 即将开展 · 教育部白名单（只留美术 / 书法 / 设计 · 已结束的不列）</div>');
+    h.push('<div class="mini" style="margin:4px 0 8px">教育部 2025—2028 学年白名单共 47 项，艺术体育类 13 项；下面 5 项是跟美术、书法、视觉艺术真正相关的。目前本届都已结束，处在 2027 上半年下一届的空窗期——<b>现在先备作品，通知一到就能报</b>。</div>');
+    DESK_SOON.forEach(function(x){
+      h.push('<div class="px" style="margin:6px 0;padding:9px;border:1px solid #efd9a8;border-radius:10px;background:#fffaf0">' +
+        '<div style="font-weight:700">第 '+x.no+' 项 · '+esc(x.name)+'</div>' +
+        '<div class="mini" style="margin:2px 0">'+esc(x.org)+'　|　'+esc(x.win)+'</div>' +
+        '<div class="mini">报名渠道：'+esc(x.applyName)+'　<a href="'+esc(x.url)+'" target="_blank" rel="noopener">🔗 官方</a></div></div>');
+    });
+    h.push('<div class="mini" style="margin:6px 0">📌 更正：现行白名单<b>第 42 项是「全国中小学生海洋文化创意设计大赛」</b>，不是「致敬英雄」（那是上一轮旧名单，已移出，站内已修正标注）。</div>');
+
+    /* 👩‍🏫 老师自己能拿的 */
+    h.push('<div style="margin-top:14px;font-weight:800;font-size:16px;border-left:5px solid #6c5ce7;padding-left:8px">👩‍🏫 老师自己能参加的 / 能拿的（不止学生赛）</div>');
+    DESK_TEACHER.forEach(function(x){
+      h.push('<div class="px" style="margin:6px 0;padding:9px;border:1px solid #ddd2f5;border-radius:10px;background:#faf7ff">' +
+        '<div style="font-weight:700">'+esc(x.name)+'　<a href="'+esc(x.url)+'" target="_blank" rel="noopener">🔗 官方</a></div>' +
+        '<div class="mini" style="margin:2px 0">'+esc(x.org)+'</div><div class="mini">'+esc(x.desc)+'</div></div>');
+    });
+
+    h.push('<div class="mini" style="margin-top:10px;color:#8a6a3a;border-top:1px dashed #d9b98a;padding-top:6px">🚀「去报名」= 直接打开官方报名 / 投稿页；📢「发给学生」= 成稿通知一键复制或直接分享到微信。最后「本人登录、传作品」那一下要用你的账号，网站替不了，其余全部已经备好。</div>');
+    box.innerHTML = h.join("");
+    var u=$("#cnkiU"), v=$("#cnkiP");
+    if(u&&v&&c){ u.value=c.k; v.value=c.p; }
+    else if(u&&v){ var f=$("#cnkiForm"); if(f) f.addEventListener("submit",function(e){ e.preventDefault(); cnkiGo(); }); }
+  }
+
+  /* ---------- 📢 直接发给学生（成稿，不是模板） ---------- */
+  function openSendNotice(id){
+    var x = deskItemFind(id), title, txt;
+    if(id==="__pre" || !x){ title="下学期赛事预告"; txt=PRE_NOTICE; }
+    else { title=x.name; txt=x.notice; }
+    var h = '<button class="btn sm close" data-close>关闭</button><h2>📢 直接发给学生</h2>';
+    h += '<div class="mini" style="margin:4px 0 8px">下面是<b>写好的成稿</b>（不是模板、没有要填的空格）：点「一键复制」去微信粘贴即发，或点「直接分享」选学生群 / 家长群。<br>赛事：'+esc(title)+'</div>';
+    h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">' +
+      '<button class="btn gold" id="ntCopy">📋 一键复制（去微信粘贴）</button>' +
+      '<button class="btn green" id="ntShare">📤 直接分享到微信 / 群</button>' +
+      '<button class="btn blue" id="ntMail">📧 发到班级邮箱</button></div>';
+    h += '<pre class="out" id="ntBox" style="white-space:pre-wrap;word-break:break-word">'+esc(txt)+'</pre>';
+    h += '<div class="mini" style="margin-top:6px">落款已用「航瑞中学美术组」；要改落款去「我的资料」填签名后告诉我，我给你换成你自己的。</div>';
+    $("#noticeBody").innerHTML = h;
+    $("#mNotice").classList.add("on"); if(typeof beep==="function") beep(760,.06);
+    $("#ntCopy").addEventListener("click", function(){ copyText(txt, function(){ toast("已复制 ✅ 去学生群粘贴即发"); beep(1046,.08); }); });
+    $("#ntShare").addEventListener("click", function(){ shareText(txt, title); });
+    $("#ntMail").addEventListener("click", function(){
+      var s2=(typeof loadSet==="function")?loadSet():{};
+      window.location.href = "mailto:" + encodeURIComponent(s2.recvMail||s2.mail||"") + "?subject=" + encodeURIComponent("【备赛通知】"+title) + "&body=" + encodeURIComponent(txt);
+    });
+    $$("#mNotice [data-close]").forEach(function(b){ b.addEventListener("click", function(){ $("#mNotice").classList.remove("on"); }); });
+  }
+
+  /* 办事台统一事件委托 */
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest("[data-desk]");
+    if(!b) return;
+    var a = b.getAttribute("data-desk");
+    if(a==="notice") openSendNotice(b.getAttribute("data-id"));
+    else if(a==="kw") cnkiCopy(b.getAttribute("data-kw"));
+    else if(a==="cnkisetup"){ var box=$("#cnkiSetup"); if(box) box.style.display = box.style.display==="none"?"block":"none"; }
+    else if(a==="cnkisave"){
+      var k=($("#cnkiK")?$("#cnkiK").value.trim():""), v=($("#cnkiV")?$("#cnkiV").value.trim():"");
+      if(!k||!v){ toast("卡号和密码都填一下"); return; }
+      cnkiSet(k,v); toast("已记住 ✅ 以后点一下就登录"); renderDesk(); if(typeof beep==="function") beep(1046,.08);
+    }
+    else if(a==="cnkiclear"){ try{ localStorage.removeItem(CNKI_LS); }catch(e2){} renderDesk(true); toast("已清除"); }
+  });
+
   /* ---------- 知网快捷入口 · 教研 Trending（2025–2026） ---------- */
   function openCNKI() {
     var cnkiLib = "https://lib.shutong121.com";          // 深圳图书馆·知网入口（用借书证登录）
@@ -5617,11 +5821,12 @@ var PEOPLE = [
   $("#btnSettings").addEventListener("click", openSettings);
   $("#btnDigest").addEventListener("click", sendDigestEmail);
   $("#btnPack").addEventListener("click", buildBatchPack);
-  $("#btnStuCopy").addEventListener("click", openStuCopy);
+  $("#btnStuCopy").addEventListener("click", function(){ openSendNotice("yue"); });
   $("#btnSubmit").addEventListener("click", openSubmit);
   $("#btnBig").addEventListener("click", openBig);
   $("#btnSources").addEventListener("click", openSources);
-  $("#btnCNKI").addEventListener("click", openCNKI);
+  $("#btnCNKI").addEventListener("click", cnkiGo);
+  cnkiSave(); renderDesk();
   $("#btnPeople").addEventListener("click", openPeople);
   $("#btnArt").addEventListener("click", function () {
     state.art = !state.art;
