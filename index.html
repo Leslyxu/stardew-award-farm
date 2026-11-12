@@ -2689,7 +2689,7 @@ const AWARDS = [
     tier: "省",
     org: "广东省教育厅（深圳赛区由深圳市教育局组织）",
     orgType: "省教育厅（官方）",
-    subject: "书法组 / 美术组（绘画等） · 学生作品 + 指导教师",
+    subject: "书法类 / 绘画类（绘画等） · 学生作品 + 指导教师",
     cycle: "每年一届（第二届 2026 年深圳推选）",
     window: "第二届 2026 年深圳赛区推选名单已出（真实）；第三届预计 2027",
     deadline: "2027-09-30",
@@ -2698,13 +2698,13 @@ const AWARDS = [
     official: true,
     credit: 5,
     schoolProof: { count: 0, best: "本校暂无记录（省教育厅主办，学校认）", note: "省级书画展示，走校→区→市推荐→省，教师获指导奖" },
-    materials: ["学生书画原作（书法组/美术组）","作品信息卡","指导教师辅导说明","学校/区推荐汇总（盖章）"],
+    materials: ["学生书画原作（书法类/绘画类）","作品信息卡","指导教师辅导说明","学校/区推荐汇总（盖章）"],
     tips: ["省级书画专项，和广东美育成果展可素材复用。","走推荐通道，先在校内占位争市级推选名额。"],
     url: "https://www.sz.gov.cn/attachment/1/1647/1647551/12488152.xlsx",
     portal: "由深圳市教育局统一推荐报送（不接受个人直报）",
     steps: ["关注广东省中小学书画作品交流展示活动通知","学校选拔→区推荐→争深圳市推荐名额","由省教育厅组织评审"],
     source: "深圳政府网：广东省第二届中小学书画作品交流展示活动（深圳赛区）推选名单",
-    prep: ["学生书画原作（书法组/美术组）","作品信息卡+指导教师辅导说明","学校/区推荐汇总盖章"],
+    prep: ["学生书画原作（书法类/绘画类）","作品信息卡+指导教师辅导说明","学校/区推荐汇总盖章"],
     win: ["省级书画专项，与广东美育成果展素材可复用","走校→区→市推荐→省，先校内占位争市级名额"]},
   {
     id: "gd-hanmo-youth",
@@ -2715,7 +2715,7 @@ const AWARDS = [
     tier: "省",
     org: "广东新快报社 · 广东省美术家协会 · 广东省书法家协会",
     orgType: "广东省 2025—2028 白名单（艺术体育类）",
-    subject: "书法组 / 美术组 / 当代艺术组（含 AI 辅助创作） · 学生参赛，教师获指导奖",
+    subject: "书法类 / 绘画类 / 当代艺术类（含 AI 辅助创作） · 学生参赛，教师获指导奖",
     cycle: "每年一届（第十届 2026 年征稿）",
     window: "第十届 2026.6 起启动征稿（进行中）；截稿预计 2026 下半年",
     deadline: "2026-12-31",
@@ -2730,7 +2730,7 @@ const AWARDS = [
     portal: "大赛官方征稿通道 / 学校集体报名",
     steps: ["核对省白名单与大赛征稿通知","组织学生创作+收原作+报名表","通过官方通道或学校集体报名"],
     source: "新快网：第十届「翰墨青春 传承岭南」广东青少年书画大赛启动征稿（2026-6-17）",
-    prep: ["学生书画原作（书法组/美术组/当代艺术组按尺寸）","报名表含学生+指导教师+学校","原创承诺（严查代笔/高仿）"],
+    prep: ["学生书画原作（书法类/绘画类/当代艺术组按尺寸）","报名表含学生+指导教师+学校","原创承诺（严查代笔/高仿）"],
     win: ["省白名单书画头部赛事，第十届规格高","当代艺术组二次办AI辅助创作评选，数字美术也能报"]},
   {
     id: "gd-yuejian",
@@ -3114,7 +3114,7 @@ const BIG_SCHOOLS = [
     { id:"cn-paint", t:"全国中小学生绘画书法 第29届：高中部28人、初中部24人获奖（一等奖共6）" }
   ]},
   { city:"深圳", name:"宝安中学(集团)", wechat:"宝安中学", tag:"宝安龙头，书画底蕴厚", won:[
-    { id:"ba-art-student", t:"广东省中小学书画作品交流展示活动(深圳赛区)：绘画组、书法组均有学生入选" },
+    { id:"ba-art-student", t:"广东省中小学书画作品交流展示活动(深圳赛区)：绘画组、书法类均有学生入选" },
     { id:"gd-meiyu", t:"省/市美育成果展示、艺术展演多次入选" }
   ]},
   { city:"深圳", name:"红岭中学(集团)", wechat:"红岭中学", tag:"福田龙头，艺术展演常客", won:[
@@ -4289,7 +4289,7 @@ var PEOPLE = [
     h += '<div class="mini" style="margin:4px 0 8px">网页读不到微信聊天记录（浏览器安全限制，任何网站都做不到），但可以把微信里<b>存下来</b>的照片 / 画，从这里直接带附件发到邮箱或微信。</div>';
     h += '<div class="sec" style="background:#fff7e6"><div class="mini"><b>怎么把微信里的图弄出来：</b><br>微信里长按图片 →「保存图片 / 另存为」→ 回到这里点「选择文件」→ 从相册 / 文件里选中 → 点「调起系统分享」，然后选「邮件 / 微信 / 存储」即可（手机浏览器支持真正带附件）。</div></div>';
     h += '<div class="sec"><h5>① 选素材（可多选，图片 / PDF / 文档 / 压缩包）</h5><input type="file" id="shFiles" multiple accept="image/*,.pdf,.doc,.docx,.zip"><div class="mini" id="shInfo" style="margin-top:6px">还没选文件。</div></div>';
-    h += '<div class="sec"><h5>② 随附说明（自动带你的常用文件包与落款）</h5><div class="mini">' + (esc(packNote()) || "（在「我的资料 → 常用文件包」里填网盘链接 / 清单，这里会自动带出）") + '</div></div>';
+    h += '<div class="sec"><h5>② 随附说明（随附常用文件包说明）</h5><div class="mini">' + (esc(packNote()) || "（在「我的资料 → 常用文件包」里填网盘链接 / 清单，这里会自动带出）") + '</div></div>';
     h += '<div class="sec"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn green" id="shGo">📤 调起系统分享（带附件）</button><button class="btn blue" id="shMail">📧 只发邮件正文</button><button class="btn" id="shSet">⚙ 去填常用文件包</button></div><div class="mini" id="shTip" style="margin-top:8px"></div></div>';
     $("#shareBody").innerHTML = h;
     $("#mShare").classList.add("on"); if(typeof beep==="function") beep(680,.06);
@@ -4331,7 +4331,7 @@ var PEOPLE = [
     h += '<div class="sec"><h5>② 一键发邮箱 · 默认收件邮箱</h5><div class="grid2">' + fld("默认收件邮箱", "sRecv", s.recvMail) + '</div>' +
       '<div class="mini" style="margin-top:6px">常用投稿邮箱（每行一个：<b>赛事关键词=邮箱</b>，生成投稿邮件时自动匹配该赛事，例：<br>绘画书法=art@school.edu.cn　希望颂=xx@163.com）</div>' +
       '<textarea id="sSub" style="margin-top:6px" placeholder="绘画书法=art@school.edu.cn\n希望颂=xx@163.com">' + esc(s.submails) + '</textarea></div>';
-    h += '<div class="sec"><h5>③ 个人落款 / 签名</h5><textarea id="sSign" placeholder="如：李老师">' + esc(s.sign || "") + '</textarea></div>';
+    h += '<div class="sec"><h5>③ 署名（可选，通知里不带）</h5><textarea id="sSign" placeholder="如：李老师">' + esc(s.sign || "") + '</textarea></div>';
     h += '<div class="sec"><h5>④ 自动更新 · 远程数据地址（可选）</h5>' +
       fld("远程 data.js 地址", "sUpd", s.updateUrl) +
       '<div class="mini" style="margin-top:6px">留空＝离线版，点「刷新」只重排本地数据。填一个网上能访问的 <b>data.js</b> 地址后，点「刷新」会自动拉取新数据（新赛事 / 政策变动）；版本不变则提示「已是最新」。想让我每周帮你刷新两次，就在微信里喊我一声，我重新检索后把新 data.js 发你替换即可。</div></div>';
@@ -4463,7 +4463,7 @@ var PEOPLE = [
     lines.push("▸ 身份证、银行卡等敏感信息请自行手填，本邮件不含任何证件号；");
     lines.push("▸ 各赛事官网登录、验证码、上传作品这一步只能本人操作，材料与模板本系统已备好。");
     lines.push("");
-    lines.push("（本邮件由「奖杯农场」一键生成，数据存你本机浏览器，不上传）");
+    lines.push("（本邮件，数据存你本机浏览器，不上传）");
     return lines.join("\n");
   }
   function openDigestModal(body, subj, to) {
@@ -4551,7 +4551,7 @@ var PEOPLE = [
       "<div class='meta'>生成日期：" + stamp + "　申报人：" + esc(p.name || "＿＿＿") + "　单位：" + esc(p.school || "＿＿＿") + "　共 " + total + " 条未截止赛事</div>" +
       "<div class='warn'>⚠️ 使用说明：本包为「材料草稿」，请逐项核对后<b>据实润色、本人签名 / 单位盖章</b>再提交。标「不能个人直报」的需先走单位报送或逐级推荐。<b>身份证、银行卡等敏感信息请自行手填，本包不含任何证件号。</b>各官网登录、验证码、上传作品这步只能本人操作。</div>" +
       secs.join("\n") +
-      "<hr><div class='meta'>本材料总包由「奖杯农场」一键生成，数据存你本机浏览器，不上传。</div>" +
+      "<hr><div class='meta'>本材料总包，数据存你本机浏览器，不上传。</div>" +
       "</body></html>";
     var b = new Blob([html], { type: "text/html;charset=utf-8" });
     var u = URL.createObjectURL(b), el = document.createElement("a");
@@ -4790,7 +4790,7 @@ var PEOPLE = [
     var N = [];
     N.push("【" + a.name + "】参赛通知");
     N.push("");
-    N.push("各位老师、家长：");
+    N.push("参赛说明：");
     N.push("本赛事为中小学生赛道（主办：" + a.org + "，级别：" + (TIER_TXT[a.tier] || a.tier) + "），由教师组织选送，学生创作、教师计指导成果。有意参赛者请按下方步骤提交作品。");
     N.push("");
     N.push("📌 参赛对象：" + (/白名单|中小/.test(a.orgType + a.org) ? "全国 / 全省中小学生（分小学、初中、高中组）" : "本校在校学生"));
@@ -4806,12 +4806,10 @@ var PEOPLE = [
     N.push("　▸ 建议提前 3 天收齐学生作品，留出盖章、扫描、上传时间；");
     N.push("　▸ 作品卡上的「创作说明」请写学生自己想说的话。");
     N.push("");
-    N.push("指导教师：" + (prof.school || "本校") + "　（联系方式见班级群）");
-    N.push("—— 本通知由「奖杯农场」一键生成");
 
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>学生参赛通知 · " + esc(a.short || a.name) + "</h2>";
-    h += '<div class="mini" style="margin-top:4px">本赛事为<b>中小学生赛道</b>：学生创作，教师组织选送并计<b>指导成果</b>。下面这份是按教师口吻整理的参赛说明草稿，供你参考 / 改写后使用。</div>';
+    h += '<div class="mini" style="margin-top:4px">本赛事为<b>中小学生赛道</b>：学生创作，教师组织选送并计<b>指导成果</b>。以下为启事要点。</div>';
     h += '<div class="sec"><h5>① 可直接发的通知</h5><div class="notice-box" id="noticeText">' + esc(N.join("\n")) + "</div>" +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:7px">' +
       '<button class="btn gold sm" id="btnCopyNotice">复制通知</button>' +
@@ -4945,7 +4943,7 @@ var PEOPLE = [
     var txt = studentCopyText();
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>📋 赛事通知文案（教师备赛草稿）</h2>";
-    h += '<div class="mini" style="margin-top:4px">下面是<b>最近可投</b>的中小学生官方赛事，按<b>教师发通知</b>的口吻整理好（开头、要点、落款）。这是给你<b>自己备赛 / 起草通知</b>用的草稿，落款默认用「我的资料」里填的签名，可按需改写后再发。</div>';
+    h += '<div class="mini" style="margin-top:4px">下面是<b>最近可投</b>的中小学生官方赛事，按官方启事整理的参赛说明。</div>';
     h += '<div class="sec"><h5>① 整份文案（可直接复制 / 下载）</h5>' +
       '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px">' +
       '<button class="btn gold sm" id="btnCopyStu">复制全文</button>' +
@@ -5512,9 +5510,9 @@ var PEOPLE = [
       desc:"现在就能报（11/20 截稿），教师本人可投硬笔/毛笔，公益免费，设一、二、三等奖。",
       url:"https://www.yuemeiyu.com/?list_34/264.html" }
   ];
-  var PRE_NOTICE = "【下学期美术/书法赛事预告 · 先练起来】各位同学、家长：\n\n教育部 2025—2028 学年白名单里跟美术、书法、设计相关的国家级赛事，下一届集中在 2027年上半年 启动，有兴趣的同学现在就可以先按主题构思、积累作品，通知公布后自行报名：\n\n1. 第31届全国中小学生绘画书法作品比赛（中国儿童中心）——绘画（含绘本）、书法、摄影、造型、数字美术\n2. 第11届「希望颂」全国青少年书画艺术大展——软笔/硬笔书法、国画、儿童画、油画、素描、水彩、数字美术\n3. 第2届全国中小学生海洋文化创意设计大赛——平面设计、手工艺模型、数字媒体、AIGC（主题「和美海洋」）\n4. 全国青少年人工智能辅助生成数字艺术创作者大赛（新增项）\n5. 学校美育助力行动·青少年视觉艺术传承与创新工作坊展示（新增项）\n\n以上均为公益赛事、不收费、不与升学挂钩。正式通知公布后，请按各赛事官方渠道自行报名。\n\n（整理自教育部及各赛事官方公开信息）";
+  var PRE_NOTICE = "📌 教育部白名单 · 美术 / 书法 / 设计相关赛事\n\n下一届通知官方尚未发布。2025—2028 学年名单中与美术、书法、设计相关的项目：\n\n1. 第31届全国中小学生绘画书法作品比赛（中国儿童中心）\n2. 第11届「希望颂」全国青少年书画艺术大展（中国国际书画艺术研究会）\n3. 第2届全国中小学生海洋文化创意设计大赛\n4. 全国青少年人工智能辅助生成数字艺术创作者大赛（文化和旅游部艺术发展中心 · 白名单新增项）\n5. 学校美育助力行动 · 青少年视觉艺术传承与创新工作坊展示（中国艺术教育促进会 · 白名单新增项）\n\n📌 名单原文：https://www.moe.gov.cn/ （共 47 项，第 42 项为「全国中小学生海洋文化创意设计大赛」）";
 
-  var ALL_NOTICE = "【美术 / 书法赛事汇总 · 请同学和家长自行报名】\n各位同学、家长：\n\n下面把目前能查到的、跟美术 / 书法 / 设计相关的赛事一次性列齐，均为官方公开信息。请按各赛事官方渠道自行报名或投稿，具体以官方原文为准。\n\n━━━━━━━━━━━━━━━━\n🟢 现在就能参加（2 项）\n━━━━━━━━━━━━━━━━\n\n1️⃣ 首届「粤美育」规范汉字书写大赛\n· 状态：正在征稿，2026年11月20日截稿\n· 对象：中小学生（少儿组 13岁以下 / 少年组 13—17岁）；另设教师组\n· 内容：硬笔（楷书 / 行楷）或毛笔（楷书 / 行楷 / 隶书）；古今诗文、名言警句，须用规范汉字\n· 规格：硬笔不少于 20 字、8开或 A4 竖版；毛笔不少于 10 字、不超四尺整纸；每人每类最多 2 幅且为不同书体\n· 费用：全程免费（省级公益赛事，非教育部白名单）\n· 报名：无在线报名入口，请按官方通知要求自备作品原件、自行寄送 / 提交\n· 官方通知：https://www.yuemeiyu.com/?list_34/264.html\n· 组委会咨询：陈老师 13267391993\n\n2️⃣ 禾美——第四届全国青少年书画创意大赛\n· 状态：征稿中，2026年12月15日截稿（以快递寄出时间为准）\n· 对象：中小学生组（按年级）及成人组；书法、美术两大类\n· 内容：主题「禾美」，须本人原创，严禁代笔 / AI 代生成\n· 规格：只收作品原件。硬笔 A3 以内竖式；毛笔四尺整张以内；美术 4开或8开\n· ⚠️ 费用：每件作品评审费 35 元（非公益、非白名单），邮寄费自理\n· 报名：请自行按官方启事缴费并寄送作品原件到组委会（广东肇庆）\n· 官方启事：https://www.163.com/dy/article/LB4LI2DQ0514FGQ7.html\n· 登记表邮箱：370799276@qq.com\n\n━━━━━━━━━━━━━━━━\n🟡 即将开展 · 教育部白名单（国家级，2027 年上半年）\n━━━━━━━━━━━━━━━━\n本届均已结束，下一届集中在 2027 年上半年启动。现在可先按主题构思、积累作品；正式通知公布后按官方渠道自行报名，不与升学挂钩、不收费。\n\n3️⃣ 第31届 全国中小学生绘画书法作品比赛（中国儿童中心）\n    绘画（含绘本）/ 书法 / 摄影 / 造型 / 数字美术；预计 2027年3—4月发通知、5—6月投稿\n4️⃣ 第11届「希望颂」全国青少年书画艺术大展（中国国际书画艺术研究会）\n    软硬笔书法 / 国画 / 儿童画 / 油画 / 素描 / 水彩 / 数字美术；预计 2027年2—5月\n5️⃣ 第2届 全国中小学生海洋文化创意设计大赛（主题「和美海洋」）\n    平面设计 / 手工艺模型 / 数字媒体 / AIGC；预计 2027年3—6月\n6️⃣ 全国青少年人工智能辅助生成数字艺术创作者大赛（文化和旅游部艺术发展中心 · 白名单新增项）\n    首届时间待官方公布\n7️⃣ 学校美育助力行动 · 青少年视觉艺术传承与创新工作坊展示（中国艺术教育促进会 · 白名单新增项）\n    时间待官方公布\n\n📌 教育部 2025—2028 学年白名单共 47 项（艺术体育类 13 项），名单见 https://www.moe.gov.cn/ 。其中第 42 项为「全国中小学生海洋文化创意设计大赛」。\n\n━━━━━━━━━━━━━━━━\n说明：本通知整理自各赛事官方公开启事，时间、规格、收费与报名方式请以官方原文为准。";
+  var ALL_NOTICE = "📌 美术 / 书法赛事 · 按启事自行报名\n\n一、现在正在征稿（2 项）\n\n1. 首届「粤美育」规范汉字书写大赛\n   📌 启事：https://www.yuemeiyu.com/?list_34/264.html （2026-09-29 发布）\n   📌 主办：广东省国培艺术研究院规范汉字书写委员会；承办：粤美育服务平台\n   📌 截稿：2026年11月20日\n   📌 组别：少儿组（13岁以下）、少年组（13—17岁）、教师组（18岁及以上）\n   📌 作品：硬笔（楷书、行楷）或毛笔（楷书、行楷、隶书）；古今中华优秀诗文、名言警句；须用规范汉字，不用繁体字、异体字\n   📌 规格：硬笔不少于20字，8开或A4竖版，黑色钢笔/中性笔；毛笔不少于10字，不超4尺整纸；硬笔类或毛笔类每人最多2幅，须不同书体\n   📌 费用：公益活动，不收取任何费用\n   📌 报名：启事未写明投稿方式，按启事所留电话咨询 → 陈老师 13267391993\n   📌 后续：初评 11月25—30日，终评 12月1—10日，成绩 12月25日公布\n\n2. 禾美——第四届全国青少年书画创意大赛\n   📌 启事（网易号「艺术与绘画」2026-11-07 转载）：https://www.163.com/dy/article/LB4LI2DQ0514FGQ7.html\n   📌 支持单位：广东岭南美术院\n   📌 截稿：2026年12月15日（以快递寄出时间为准）\n   📌 组别：中小学生硬笔组、毛笔组、绘画组，及成人组\n   📌 作品：主题「禾美」，本人原创，严禁代笔（组委会有权要求视频核验创作过程）\n   📌 规格：只收作品原件，毛笔不超四尺整张（138cm×69cm），超尺寸不予评审；每类限投1件\n   📌 费用：评审费 35 元 / 件（海外 35 美元），按件计费，未缴费不予参评；快递费自理，不接收到付件\n   📌 报名三步：① 按启事缴费（组委会微信 HemeiShuhua_2026 或银行转账）→ ② 电子版《集体参赛登记表》发 370799276@qq.com，纸质版随作品寄出 → ③ 顺丰 / EMS 寄「广东省肇庆市端州区蓝塘北路臻汇园禾谷堂书画教育中心，杨老师 13346578559」\n\n二、教育部白名单赛事 · 本届已结束，下一届通知官方尚未发布（5 项）\n\n3. 第31届全国中小学生绘画书法作品比赛（中国儿童中心）https://www.ccc.org.cn/\n4. 第11届「希望颂」全国青少年书画艺术大展（中国国际书画艺术研究会）\n5. 第2届全国中小学生海洋文化创意设计大赛\n6. 全国青少年人工智能辅助生成数字艺术创作者大赛（文化和旅游部艺术发展中心 · 白名单新增项）\n7. 学校美育助力行动 · 青少年视觉艺术传承与创新工作坊展示（中国艺术教育促进会 · 白名单新增项）\n\n📌 名单原文：教育部《2025—2028学年面向中小学生的全国性竞赛活动名单》，共 47 项，第 42 项为「全国中小学生海洋文化创意设计大赛」：https://www.moe.gov.cn/\n📌 时间、收费、投稿方式以各条启事原文为准。";
 
   function deskItemFind(id){
     var all = DESK_NOW.concat(DESK_SOON);
@@ -5564,14 +5562,14 @@ var PEOPLE = [
 
     /* 🟡 即将开展 · 白名单（美术/书法/设计，只列在办或即将，已结束不列） */
     h.push('<div style="margin-top:14px;font-weight:800;font-size:16px;border-left:5px solid #d99b2e;padding-left:8px">🟡 即将开展 · 教育部白名单（只留美术 / 书法 / 设计 · 已结束的不列）</div>');
-    h.push('<div class="mini" style="margin:4px 0 8px">教育部 2025—2028 学年白名单共 47 项，艺术体育类 13 项；下面 5 项是跟美术、书法、视觉艺术真正相关的。目前本届都已结束，处在 2027 上半年下一届的空窗期——<b>现在先备作品，通知一到就能报</b>。</div>');
+    h.push('<div class="mini" style="margin:4px 0 8px">教育部 2025—2028 学年白名单共 47 项，其中 5 项与美术、书法、设计相关。本届均已结束，下一届通知官方尚未发布。</div>');
     DESK_SOON.forEach(function(x){
       h.push('<div class="px" style="margin:6px 0;padding:9px;border:1px solid #efd9a8;border-radius:10px;background:#fffaf0">' +
         '<div style="font-weight:700">第 '+x.no+' 项 · '+esc(x.name)+'</div>' +
         '<div class="mini" style="margin:2px 0">'+esc(x.org)+'　|　'+esc(x.win)+'</div>' +
         '<div class="mini">渠道：'+esc(x.applyName)+'　<a href="'+esc(x.url)+'" target="_blank" rel="noopener">🔗 主办单位官网（非报名页）</a></div></div>');
     });
-    h.push('<div class="mini" style="margin:6px 0">📌 更正：现行白名单<b>第 42 项是「全国中小学生海洋文化创意设计大赛」</b>，不是「致敬英雄」（那是上一轮旧名单，已移出，站内已修正标注）。</div>');
+    h.push('<div class="mini" style="margin:6px 0">📌 白名单第 42 项为「全国中小学生海洋文化创意设计大赛」。</div>');
 
     /* 👩‍🏫 老师自己能拿的 */
     h.push('<div style="margin-top:14px;font-weight:800;font-size:16px;border-left:5px solid #6c5ce7;padding-left:8px">👩‍🏫 老师自己能参加的 / 能拿的（不止学生赛）</div>');
@@ -5581,36 +5579,26 @@ var PEOPLE = [
         '<div class="mini" style="margin:2px 0">'+esc(x.org)+'</div><div class="mini">'+esc(x.desc)+'</div></div>');
     });
 
-    h.push('<div class="mini" style="margin-top:10px;color:#8a6a3a;border-top:1px dashed #d9b98a;padding-top:6px">每场比赛点「看官方征稿通知」，同学 / 家长自己按官方渠道报名；📢「发全部比赛通知」= 把所有赛事整理成一份成稿，一键复制或直接分享到学生 / 家长群，不用来回找、也不用代收作品。</div>');
+    h.push('<div class="mini" style="margin-top:10px;color:#8a6a3a;border-top:1px dashed #d9b98a;padding-top:6px">📢 点「发全部比赛通知」= 7 项赛事一份成稿，复制后到群里粘贴。</div>');
     box.innerHTML = h.join("");
     var u=$("#cnkiU"), v=$("#cnkiP");
     if(u&&v){ u.value=c.k; v.value=c.p; }
     var cf=$("#cnkiForm"); if(cf) cf.addEventListener("submit",function(e){ if(!(c.k&&c.p)){ e.preventDefault(); gateShow(); toast("先输一次密码"); } });
   }
 
-  /* ---------- 📢 直接发给学生（成稿，不是模板） ---------- */
+  /* ---------- 📢 发全部比赛通知（成稿，只描述事实） ---------- */
   function openSendNotice(id){
-    var x = deskItemFind(id), title, txt;
-    if(id==="__all"){ title="全部美术 / 书法赛事汇总"; txt=ALL_NOTICE; }
-    else if(id==="__pre"){ title="赛事预告"; txt=PRE_NOTICE; }
-    else if(x){ title=x.name; txt=x.notice; }
-    else { title="全部美术 / 书法赛事汇总"; txt=ALL_NOTICE; }
-    var h = '<button class="btn sm close" data-close>关闭</button><h2>📢 直接发给学生</h2>';
-    h += '<div class="mini" style="margin:4px 0 8px">下面是<b>写好的成稿</b>（不是模板、没有要填的空格）：点「一键复制」去微信粘贴即发，或点「直接分享」选学生群 / 家长群。<br>赛事：'+esc(title)+'</div>';
+    var title, txt;
+    if(id==="__pre"){ title="赛事预告"; txt=PRE_NOTICE; }
+    else { title="全部美术 / 书法赛事"; txt=ALL_NOTICE; }
+    var h = '<button class="btn sm close" data-close>关闭</button><h2>📢 全部比赛通知</h2>';
+    h += '<div class="mini" style="margin:4px 0 8px">7 项赛事一份成稿：2 项正在征稿，5 项本届已结束。点「复制全部」后到微信 / 群里粘贴即发。</div>';
     h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">' +
-      '<button class="btn gold" id="ntCopy">📋 一键复制（去微信粘贴）</button>' +
-      '<button class="btn green" id="ntShare">📤 直接分享到微信 / 群</button>' +
-      '<button class="btn blue" id="ntMail">📧 发到班级邮箱</button></div>';
+      '<button class="btn gold" id="ntCopy">📋 复制全部通知</button></div>';
     h += '<pre class="out" id="ntBox" style="white-space:pre-wrap;word-break:break-word">'+esc(txt)+'</pre>';
-    h += '<div class="mini" style="margin-top:6px">成稿整理自各赛事官方公开启事，未署名任何学校 / 科组；同学和家长按官方渠道自行报名。</div>';
     $("#noticeBody").innerHTML = h;
     $("#mNotice").classList.add("on"); if(typeof beep==="function") beep(760,.06);
-    $("#ntCopy").addEventListener("click", function(){ copyText(txt, function(){ toast("已复制 ✅ 去学生群粘贴即发"); beep(1046,.08); }); });
-    $("#ntShare").addEventListener("click", function(){ shareText(txt, title); });
-    $("#ntMail").addEventListener("click", function(){
-      var s2=(typeof loadSet==="function")?loadSet():{};
-      window.location.href = "mailto:" + encodeURIComponent(s2.recvMail||s2.mail||"") + "?subject=" + encodeURIComponent("【备赛通知】"+title) + "&body=" + encodeURIComponent(txt);
-    });
+    $("#ntCopy").addEventListener("click", function(){ copyText(txt, function(){ toast("已复制 ✅ 到群里粘贴即发"); beep(1046,.08); }); });
     $$("#mNotice [data-close]").forEach(function(b){ b.addEventListener("click", function(){ $("#mNotice").classList.remove("on"); }); });
   }
 
@@ -5721,7 +5709,7 @@ var PEOPLE = [
     var opts = studentCompOptions().map(function (n) { return '<option value="' + esc(n) + '">' + esc(n) + '</option>'; }).join("");
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += "<h2>📤 学生作品投稿 · 自助通道</h2>";
-    h += '<div class="mini" style="margin-top:4px">同学你好，这里是<b>自助投稿通道</b>：填好信息点「提交」，就会生成一份投稿单，<b>不用专门来找老师</b>。老师会在后台统一查看、统一报送。带 <span style="color:#c0392b">*</span> 为必填。</div>';
+    h += '<div class="mini" style="margin-top:4px">同学你好，这里是<b>自助投稿通道</b>：填好信息点「提交」，会生成一份投稿单。带 <span style="color:#c0392b">*</span> 为必填。</div>';
     h += '<div class="sec"><form id="submitForm" onsubmit="return false">'
       + '<div class="fld"><label>学生姓名 <span style="color:#c0392b">*</span></label><input id="sfName" maxlength="20" placeholder="如：张三"></div>'
       + '<div class="fld"><label>班级</label><input id="sfClass" maxlength="20" placeholder="如：初二(3)班"></div>'
@@ -5849,7 +5837,7 @@ var PEOPLE = [
       if (act.dataset.act === "detail") openDetail(id);
       if (act.dataset.act === "resmind") openResMind(id);
       if (act.dataset.act === "submit") { $("#mDetail").classList.remove("on"); openSubmit(id); }
-      if (act.dataset.act === "notice") { $("#mDetail").classList.remove("on"); openNotice(id); }
+      if (act.dataset.act === "notice") { $("#mDetail").classList.remove("on"); openSendNotice("__all"); }
       if (act.dataset.act === "track") track(id);
       if (act.dataset.act === "mail") { $("#mDetail").classList.remove("on"); openMail(id); }
       return;
