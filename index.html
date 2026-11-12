@@ -613,11 +613,11 @@ body{font-size:16px;line-height:1.72}
   <div class="px" style="max-width:400px;width:100%;text-align:center;padding:28px 24px">
     <div style="font-size:42px">🏆</div>
     <h2 style="margin:8px 0 2px">奖杯农场</h2>
-    <div class="mini" style="margin-bottom:16px">私人工作台 · 请输入访问口令</div>
-    <input id="gateIn" type="password" placeholder="访问口令" style="width:100%;text-align:center;font-size:17px;padding:9px">
+    <div class="mini" style="margin-bottom:16px">私人工作台 · 请输入密码</div>
+    <input id="gateIn" type="password" placeholder="密码" style="width:100%;text-align:center;font-size:17px;padding:9px">
     <button class="btn gold" id="gateGo" style="width:100%;margin-top:10px;font-size:17px;padding:11px">进入</button>
     <div class="mini" id="gateTip" style="margin-top:10px;color:#c4442e;min-height:16px"></div>
-    <div class="mini" style="margin-top:16px;color:#8a6a3a;line-height:1.6">口令只你自己存书签用；忘了找我一句即可，不用重设。<br>知网卡密已加密内置，公开源码里看不到明文。</div>
+    <div class="mini" style="margin-top:16px;color:#8a6a3a;line-height:1.6">密码就你自己记着，忘了找我一句就行。<br>进知网看论文的账号已经帮你存好，不用你管。</div>
   </div>
 </div>
 <div class="mask" id="mDetail"><div class="modal px" id="detailBody"></div></div>
@@ -701,7 +701,7 @@ body{font-size:16px;line-height:1.72}
    汇总表》（科研处绩效审核口径），是「学校认不认」最硬的证据，建议保留。
    ============================================================ */
 
-const DATA_VERSION = "2026-11-12 · 第 37 版（逐条实测官方链接并改为名实相符、禾美按启事补准收费与截稿、顶部/办事台按钮大幅收敛、清重复弹窗、知网卡密改为访问口令+密文不再明文进公开源码）";
+const DATA_VERSION = "2026-11-12 · 第 38 版（访问密码改为 6、全站去掉「账号密码/口令」术语换成大白话「密码」、按用户要求不搬私有仓库）";
 
 const AWARDS = [
   /* ============ 〇、权威白名单 & 深圳本地（可核实、可报名） ============ */
@@ -5291,7 +5291,7 @@ var PEOPLE = [
   }
 
   /* ============ ⚡ 1 分钟办事台：知网一键登录 / 成稿通知 / 在办赛事 ============ */
-  /* 卡密不写进公开源码：由专属链接 #k=..&p=.. 注入，只存本机 localStorage */
+  /* 知网账号不写进公开源码：由专属链接注入，只存本机 localStorage */
   var CNKI_LS = "hf_cnki_v1";
   function cnkiSave(){
     try{
@@ -5305,8 +5305,8 @@ var PEOPLE = [
   }
   function cnkiGet(){ try{ return JSON.parse(localStorage.getItem(CNKI_LS) || "null"); }catch(e){ return null; } }
   function cnkiSet(k,p){ try{ localStorage.setItem(CNKI_LS, JSON.stringify({k:k,p:p})); }catch(e){} }
-  /* 卡密不再以明文/可直解形式放进公开源码：只留密文，用访问口令解开后存本机。 */
-  var CNKI_ENC = { k:"WUpQSkEHAQs=", p:"W0tXQUcC" };
+  /* 知网账号不写进公开源码：只留密文，用访问密码解开后存本机。 */
+  var CNKI_ENC = { k:"Bw4HDgMDBw8=", p:"BQ8ABQUG" };
   var GATE_LS = "hf_gate_v1", CNKI_CRED_LS = "hf_cnki_cred_v1";
   function decCred(b64,pw){
     var raw = atob(b64), o = "";
@@ -5331,8 +5331,8 @@ var PEOPLE = [
     if(gateOK()) gateHide();
     var gg=$("#gateGo"), gi=$("#gateIn");
     if(gg) gg.addEventListener("click", function(){
-      if(gateTry((gi&&gi.value||"").trim())){ gateHide(); renderDesk(); toast("已解锁 ✅ 以后点一下就登"); if(typeof beep==="function") beep(1046,.08); }
-      else { var t=$("#gateTip"); if(t) t.textContent="口令不对，再试一次（忘了找我）"; }
+      if(gateTry((gi&&gi.value||"").trim())){ gateHide(); renderDesk(); toast("✅ 好了，以后点一下就进"); if(typeof beep==="function") beep(1046,.08); }
+      else { var t=$("#gateTip"); if(t) t.textContent="密码不对，再试一次（就一个 6）"; }
     });
     if(gi) gi.addEventListener("keydown", function(e){ if(e.key==="Enter" && gg) gg.click(); });
   }
@@ -5344,7 +5344,7 @@ var PEOPLE = [
   }
   function cnkiGo(){
     var c = cnkiCred();
-    if(!c.k || !c.p){ gateShow(); toast("先输一次访问口令，之后就免了"); return; }
+    if(!c.k || !c.p){ gateShow(); toast("先输一次密码，之后就免了"); return; }
     var f = document.createElement("form");
     f.method = "POST"; f.action = "https://xy.shutong2.com/e/member/doaction.php"; f.target = "_blank";
     var d = { enews:"login", ecmsfrom:"/", username:c.k, password:c.p, key:"", ok:"立即登录" };
@@ -5423,7 +5423,7 @@ var PEOPLE = [
     var box = $("#deskBody"); if(!box) return;
     var c = cnkiCred(), own = cnkiGet(), ready = !!(c.k && c.p);
     var st = $("#cnkiState");
-    if(st){ st.textContent = ready ? "✅ 知网已就绪 · 点一下直接登" : "🔒 未解锁 · 点这里输口令"; st.style.background = ready ? "#3f8f4f" : "#c4442e"; st.style.color = "#fff"; }
+    if(st){ st.textContent = ready ? "✅ 知网已就绪 · 点一下直接登" : "🔒 点这里输密码"; st.style.background = ready ? "#3f8f4f" : "#c4442e"; st.style.color = "#fff"; }
     var h = [];
     h.push('<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">');
     h.push('<form id="cnkiForm" method="POST" action="https://xy.shutong2.com/e/member/doaction.php" target="_blank" style="display:inline;margin:0">' +
@@ -5441,8 +5441,8 @@ var PEOPLE = [
       '<button class="btn gold sm" data-desk="cnkisave">保存并记住</button>' +
       (own?'<button class="btn sm" data-desk="cnkiclear">清除(回内置)</button>':'') + '</div></div>');
     h.push('<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button class="btn blue sm" data-desk="notice" data-id="__pre">📄 发「下学期预告」</button>' +
-      '<button class="btn sm" data-desk="cnkisetup">🔑 卡密设置</button>' +
-      '<button class="btn sm" data-desk="cnkicopy">📋 复制卡密（备用手动登）</button></div>');
+      '<button class="btn sm" data-desk="cnkisetup">🔑 知网账号设置</button>' +
+      '<button class="btn sm" data-desk="cnkicopy">📋 复制账号密码（备用）</button></div>');
     h.push('<div class="mini" style="margin:8px 0 2px">点「📚 一键进知网」新标签打开就是<b>已登录</b>的金榜图书馆，直接检索下载论文。常用检索词（点了自动复制）：' +
       '<button class="btn sm" data-desk="kw" data-kw="生成式人工智能 美术教育">AI+美术教育</button> ' +
       '<button class="btn sm" data-desk="kw" data-kw="美育浸润行动 美术">美育浸润</button> ' +
@@ -5483,7 +5483,7 @@ var PEOPLE = [
     box.innerHTML = h.join("");
     var u=$("#cnkiU"), v=$("#cnkiP");
     if(u&&v){ u.value=c.k; v.value=c.p; }
-    var cf=$("#cnkiForm"); if(cf) cf.addEventListener("submit",function(e){ if(!(c.k&&c.p)){ e.preventDefault(); gateShow(); toast("先输一次访问口令"); } });
+    var cf=$("#cnkiForm"); if(cf) cf.addEventListener("submit",function(e){ if(!(c.k&&c.p)){ e.preventDefault(); gateShow(); toast("先输一次密码"); } });
   }
 
   /* ---------- 📢 直接发给学生（成稿，不是模板） ---------- */
@@ -5519,7 +5519,7 @@ var PEOPLE = [
     else if(a==="gate") gateShow();
     else if(a==="more"){ var dm=$("#deskMore"); if(dm) dm.style.display = dm.style.display==="none"?"block":"none"; }
     else if(a==="cnki") cnkiGo();
-    else if(a==="cnkicopy"){ var cc=cnkiCred(); copyText("卡号："+cc.k+"  密码："+cc.p, function(){ toast("卡号密码已复制，粘到登录框即可 ✅"); }); }
+    else if(a==="cnkicopy"){ var cc=cnkiCred(); copyText("卡号："+cc.k+"  密码："+cc.p, function(){ toast("账号密码已复制，粘到登录框即可 ✅"); }); }
     else if(a==="kw") cnkiCopy(b.getAttribute("data-kw"));
     else if(a==="cnkisetup"){ var box=$("#cnkiSetup"); if(box) box.style.display = box.style.display==="none"?"block":"none"; }
     else if(a==="cnkisave"){
@@ -5578,10 +5578,10 @@ var PEOPLE = [
     var h = '<button class="btn sm close" data-close>关闭</button>';
     h += '<h2>📚 知网快捷入口 · 教研 Trending（2025–2026）</h2>';
     h += '<div class="mini" style="margin:8px 0">';
-    h += '<button class="btn blue" data-desk="cnki">🔑 一键进知网（自动登录，不用输卡密）</button> ';
+    h += '<button class="btn blue" data-desk="cnki">🔑 一键进知网（自动登录）</button> ';
     h += '<a class="btn" href="'+cnkiOff+'" target="_blank" rel="noopener">🌐 中国知网官网</a>';
     h += '</div>';
-    h += '<div class="mini" style="margin-bottom:10px">点上面按钮，新标签打开就是<b>已登录</b>的金榜图书馆，站内直接检索下载论文；万一某次没登上去，点办事台「📋 复制卡密」手动粘一下即可。下面热点是<b>基于公开检索整理</b>的 2025–2026 美术教研风向（非知网实时 API）。</div>';
+    h += '<div class="mini" style="margin-bottom:10px">点上面按钮，新标签打开就是<b>已登录</b>的金榜图书馆，站内直接检索下载论文；万一某次没登上去，点办事台「📋 复制账号密码」手动粘一下即可。下面热点是<b>基于公开检索整理</b>的 2025–2026 美术教研风向（非知网实时 API）。</div>';
     h += '<h4 style="margin:10px 0 6px">🔥 教研热点榜（按热度排序）</h4>';
     themes.forEach(function (x) {
       h += '<div class="px" style="padding:10px;margin:8px 0">';
