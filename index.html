@@ -6044,6 +6044,12 @@ var PEOPLE = [
     if (h.indexOf("d=") === 0) openDetail(h.slice(2));
     else if (h.indexOf("s=") === 0) openSubmit(h.slice(2));
   })();
+
+  // —— 全局导出：第3段脚本（悬浮球图谱 / 我的农场 / 农场游戏）需要这些助手 ——
+  window.$ = $; window.$$ = $$;
+  window.toast = toast; window.beep = beep; window.tapFx = tapFx;
+  window.load = load; window.save = save;
+  window.setMode = setMode; window.openResMind = openResMind;
 })();
 
 </script>
