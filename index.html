@@ -14,12 +14,9 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
 body{
- background:var(--paper);
- color:var(--ink);
+ background:var(--paper);color:var(--ink);
  font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
- padding:14px 0 0;
- -webkit-font-smoothing:antialiased;
- /* 淡淡的格纹，像素农场那种纸感 */
+ padding:14px 0 0;-webkit-font-smoothing:antialiased;
  background-image:radial-gradient(rgba(74,47,24,.045) 1px,transparent 1px);
  background-size:14px 14px;
 }
@@ -28,35 +25,50 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 /* 顶部插画 */
 .banner{position:relative;border:3px solid var(--line);border-radius:16px;overflow:hidden;
  background:#8fc45e;box-shadow:5px 5px 0 rgba(74,47,24,.16);line-height:0}
-.banner img{width:100%;height:130px;object-fit:cover;object-position:center 44%;display:block}
+.banner img{width:100%;height:112px;object-fit:cover;object-position:center 52%;display:block}
 .bar{display:flex;align-items:center;justify-content:space-between;margin:9px 2px 0}
 .who{font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
 .date{font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
 
+/* 三类切换 */
+.picks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:10px 0 0}
+.pk{font:inherit;font-size:12.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2.5px solid rgba(74,47,24,.26);border-radius:12px;padding:8px 4px 7px;cursor:pointer;
+ display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.3;
+ box-shadow:2px 2px 0 rgba(74,47,24,.09);transition:transform .1s}
+.pk b{font-size:15px;font-weight:900;color:var(--ink3);font-variant-numeric:tabular-nums;line-height:1.2}
+.pk.on{background:var(--yellow);border-color:var(--line);box-shadow:3px 3px 0 rgba(74,47,24,.22)}
+.pk.on b{color:var(--ink)}
+.pk:active{transform:translate(1px,1px)}
+.hint{margin:7px 3px 0;font-size:11.5px;color:var(--ink3);line-height:1.45}
+
 /* 小标题 */
-.lead{display:flex;align-items:center;gap:7px;margin:18px 2px 9px;
+.lead{display:flex;align-items:center;gap:7px;margin:12px 2px 8px;
  font-size:14px;font-weight:800;color:var(--ink);letter-spacing:.02em}
 .lead::after{content:"";flex:1;height:2px;border-radius:2px;
  background:repeating-linear-gradient(90deg,rgba(74,47,24,.16) 0 5px,transparent 5px 10px)}
 
 /* 主卡 */
 .hero{background:var(--yellow);border:3px solid var(--line);border-radius:16px;
- padding:14px 15px 13px;box-shadow:5px 5px 0 rgba(74,47,24,.2)}
-.hrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+ padding:12px 15px 12px;box-shadow:5px 5px 0 rgba(74,47,24,.2)}
+.hrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.72);
  border:2px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px;
  font-size:11.5px;font-weight:700;color:var(--ink)}
 .chip .e{display:flex;color:var(--ink)}
 .chip .e svg{width:15px;height:15px;stroke-width:2}
 .days{display:flex;align-items:baseline;gap:2px;margin:0 0 4px}
-.days b{font-size:48px;font-weight:900;line-height:.95;letter-spacing:-.03em;
+.days b{font-size:45px;font-weight:900;line-height:.95;letter-spacing:-.03em;
  font-variant-numeric:tabular-nums;text-shadow:2px 2px 0 rgba(255,255,255,.75)}
 .days span{font-size:20px;font-weight:900;margin-left:3px}
+.days.rz b{font-size:26px;letter-spacing:0}
+.days.rz span{font-size:15px}
 .hero h2{margin:0 0 5px;font-size:19px;line-height:1.35;font-weight:800;letter-spacing:-.01em}
-.hero .meta{margin:0 0 12px;font-size:12.5px;color:#8a6b34;font-weight:600}
+.hero .meta{margin:0 0 9px;font-size:12.5px;color:#8a6b34;font-weight:600}
 .tl{display:flex;gap:7px;margin:0 0 3px;font-size:13.5px;line-height:1.55;color:#5a4425}
 .tl i{font-style:normal;color:#a8863f}
 .tl2{margin:0 0 12px;font-size:13.5px;line-height:1.55;color:#8a7135}
+.acts{display:grid;grid-template-columns:1fr auto;gap:7px}
 .cta{display:flex;align-items:center;justify-content:space-between;width:100%;
  font:inherit;font-size:14.5px;font-weight:800;color:#fffdf6;background:var(--line);
  border:0;border-radius:11px;padding:13px 15px;cursor:pointer;
@@ -65,32 +77,37 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 .cta i{display:flex;opacity:.85}
 .cta i svg{transition:transform .22s}
 .cta.act i svg{transform:rotate(180deg)}
+.cta2{width:auto;display:flex;align-items:center;gap:5px;padding:13px 14px;
+ background:#fffdf6;color:var(--line);border:2.5px solid var(--line);
+ box-shadow:3px 3px 0 rgba(46,28,12,.2)}
+.cta2 span{font-size:13px;white-space:nowrap}
 
 /* 次卡 */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px}
 .card{border:3px solid var(--line);border-radius:14px;padding:12px 12px 11px;
  font:inherit;text-align:left;cursor:pointer;color:inherit;display:flex;flex-direction:column;
- gap:3px;box-shadow:4px 4px 0 rgba(74,47,24,.16);min-height:104px}
+ gap:3px;box-shadow:4px 4px 0 rgba(74,47,24,.16);min-height:94px}
 .card:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(74,47,24,.16)}
 .g{background:var(--green)} .b{background:var(--blue)}
 .card .e{display:flex;margin-bottom:2px;color:var(--ink2)}
-.card .e svg{width:22px;height:22px;color:#3f3018;stroke-width:2}
+.card .e svg{width:21px;height:21px;color:#3f3018;stroke-width:2}
 .card .d{font-size:22px;font-weight:900;line-height:1.05;letter-spacing:-.02em;
  font-variant-numeric:tabular-nums;text-shadow:1.5px 1.5px 0 rgba(255,255,255,.7)}
 .card .d small{font-size:11.5px;font-weight:800;margin-left:1px}
+.card .d.rz{font-size:13.5px;letter-spacing:0;line-height:1.3;padding:3px 0}
 .card .t{font-size:12.5px;line-height:1.4;font-weight:700;color:#4a3a20}
 .card .s{font-size:11px;color:#6b5836;margin-top:auto;padding-top:5px;font-weight:600}
 
 /* 其他 */
-.more{width:100%;margin:16px 0 0;background:var(--card);border:3px solid var(--line);
+.more{width:100%;margin:12px 0 0;background:var(--card);border:3px solid var(--line);
  border-radius:13px;font:inherit;font-size:13px;font-weight:700;color:var(--ink2);
  padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
  box-shadow:4px 4px 0 rgba(74,47,24,.13)}
 .more u{text-decoration:none;font-size:11px;color:var(--ink3)}
-#rest{padding-top:4px}
-.grp{display:flex;align-items:center;gap:6px;margin:14px 2px 7px;font-size:12px;font-weight:800;color:var(--ink2)}
+#rest{padding-top:2px}
+#rest[hidden],.more[hidden],.duo[hidden],.lead[hidden]{display:none!important}
 .row{display:flex;align-items:center;gap:9px;padding:11px 12px;background:var(--card);
- border:2px solid var(--line);border-radius:11px;margin-bottom:7px;cursor:pointer;
+ border:2px solid var(--line);border-radius:11px;margin-top:7px;cursor:pointer;
  box-shadow:3px 3px 0 rgba(74,47,24,.1)}
 .row .e{display:flex;color:var(--ink2)}
 .row .e svg{width:16px;height:16px}
@@ -99,17 +116,27 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
  font-variant-numeric:tabular-nums}
 .row .dd.hot{color:var(--red)}
 
+/* 我的作品箱 */
+.boxbtn{width:100%;margin:14px 0 0;display:flex;align-items:center;gap:10px;
+ background:var(--card);border:3px solid var(--line);border-radius:13px;padding:11px 13px;
+ font:inherit;text-align:left;cursor:pointer;box-shadow:4px 4px 0 rgba(74,47,24,.13);color:inherit}
+.boxbtn .e{display:flex;color:var(--ink2)}
+.boxbtn .e svg{width:20px;height:20px;stroke-width:2}
+.boxbtn b{display:block;font-size:13.5px;font-weight:800;color:var(--ink)}
+.boxbtn i{display:block;font-style:normal;font-size:11px;color:var(--ink3)}
+.boxbtn u{margin-left:auto;text-decoration:none;color:var(--ink3);font-size:17px}
+
 /* 明细 */
 .det{background:#fffdf6;border:2px dashed rgba(74,47,24,.35);border-radius:11px;
  padding:2px 12px 8px;margin:2px 0 8px}
 .det .r{display:flex;gap:9px;padding:7px 0;border-top:1px dashed rgba(74,47,24,.14);font-size:12.5px;line-height:1.7}
 .det .r:first-child{border-top:0}
-.det .r b{flex:0 0 48px;color:var(--ink3);font-weight:700}
+.det .r b{flex:0 0 46px;color:var(--ink3);font-weight:700}
 .det .r span{flex:1;color:var(--ink2);word-break:break-word}
 .det .r span a{color:#b4531f}
-.hero .det{background:rgba(255,255,255,.82);border-color:rgba(74,47,24,.3);margin-top:12px;margin-bottom:0}
+.hero .det{background:rgba(255,255,255,.82);border-color:rgba(74,47,24,.3);margin-top:11px;margin-bottom:0}
 
-.end{height:22px}
+.end{height:20px}
 .msgw{padding:14px 0 0;text-align:center}
 .msgw button{font:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);
  background:var(--card);border:2px solid rgba(74,47,24,.28);border-radius:999px;
@@ -119,20 +146,33 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 #mask{position:fixed;inset:0;background:rgba(58,42,24,.45);display:none;z-index:70}
 #mask.on{display:block}
 #sheet{position:fixed;left:0;right:0;bottom:0;background:#fffdf6;border-top:3px solid var(--line);
- border-radius:20px 20px 0 0;max-height:84vh;overflow:auto;z-index:80;padding:18px 18px 26px;display:none}
+ border-radius:20px 20px 0 0;max-height:86vh;overflow:auto;z-index:80;padding:18px 18px 26px;display:none}
 #sheet.on{display:block}
-#sheet h3{margin:0 0 3px;font-size:16px;font-weight:800}
-#sheet p{margin:0 0 12px;font-size:12px;color:var(--ink3)}
-#sheet textarea{width:100%;min-height:290px;font:13px/1.85 inherit;color:var(--ink2);
+#sheet h3{margin:0 0 3px;font-size:16.5px;font-weight:800;line-height:1.4}
+#sheet .sub{margin:0 0 4px;font-size:12px;color:var(--ink3)}
+#sheet textarea{width:100%;min-height:220px;font:12.5px/1.85 inherit;color:var(--ink2);
  padding:11px;border:2px solid var(--line);border-radius:11px;resize:vertical;background:#fff}
-#sheet .cp{margin-top:11px;width:100%;font:inherit;font-size:14px;font-weight:800;
+#sheet .cp{margin-top:10px;width:100%;font:inherit;font-size:14px;font-weight:800;
  background:var(--line);color:#fffdf6;border:0;border-radius:11px;padding:13px;cursor:pointer;
  box-shadow:3px 3px 0 rgba(46,28,12,.3)}
+.pkb .lb{margin:15px 0 6px;font-size:11.5px;font-weight:800;color:var(--ink3);letter-spacing:.04em}
+.pkb ol{margin:0;padding-left:19px;font-size:13px;line-height:1.85;color:var(--ink2)}
+.pkb ol li{margin-bottom:3px;word-break:break-word}
+.nmc{font-size:12.5px;font-weight:700;background:var(--yellow);border:2px dashed rgba(74,47,24,.42);
+ border-radius:9px;padding:8px 10px;word-break:break-all;line-height:1.5}
+.wh{font-size:12.5px;color:var(--ink2);line-height:1.6;word-break:break-word}
+.wh a{color:#b4531f}
+.box p{margin:0 0 10px;font-size:13px;line-height:1.75;color:var(--ink2)}
+.box .n{display:flex;gap:9px;margin:0 0 11px;font-size:13px;line-height:1.65;color:var(--ink2)}
+.box .n b{flex:0 0 15px;color:#b4531f;font-weight:900}
+.box .dl{display:block;margin-top:14px;text-align:center;font:inherit;font-size:13.5px;
+ font-weight:800;color:#fffdf6;background:var(--line);border-radius:11px;padding:13px;
+ text-decoration:none;box-shadow:3px 3px 0 rgba(46,28,12,.3)}
 #toast{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-12px);
  background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
  border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:360px){.days b{font-size:40px}.hero h2{font-size:17.5px}}
+@media(max-width:360px){.days b{font-size:40px}.hero h2{font-size:17.5px}.pk{font-size:11.5px}}
 </style>
 </head>
 <body>
@@ -140,15 +180,25 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 <div class="banner"><img src="farm-banner.webp" alt="奖杯农场"></div>
 <div class="bar"><span class="who">宝安区 · 美术老师</span><span class="date" id="dt"></span></div>
 
-<p class="lead">这周先做这一件</p>
+<nav class="picks" id="picks">
+ <button class="pk on" data-g="self">自己能投<b>--</b></button>
+ <button class="pk" data-g="sch">要学校报<b>--</b></button>
+ <button class="pk" data-g="stu">发给学生<b>--</b></button>
+</nav>
+<p class="hint" id="hint"></p>
+
+<p class="lead" id="lead1">这周最急</p>
 <article class="hero" id="hero"></article>
 
-<p class="lead">顺手能拿的</p>
+<p class="lead" id="lead2">还能顺手</p>
 <div class="duo" id="duo"></div>
 <div id="duoDet"></div>
 
-<button class="more" id="moreBtn"><span id="moreTxt">其他</span><u id="moreArr">展开 ⌄</u></button>
+<button class="more" id="moreBtn" hidden><span id="moreTxt"></span><u id="moreArr">展开 ⌄</u></button>
 <div id="rest" hidden></div>
+
+<button class="boxbtn" id="boxBtn"><span class="e"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.8 7.4h14.4v8.2c0 .6-.5 1.1-1.1 1.1H3.9c-.6 0-1.1-.5-1.1-1.1z"/><path d="M2.4 4.2h15.2v3.2H2.4z"/><path d="M8.4 10.6h3.2"/></svg></span>
+ <span><b>我的作品箱</b><i>作品放哪、怎么命名、投稿包在哪</i></span><u>›</u></button>
 
 <div class="msgw"><button id="msgBtn">发家长群的话术</button></div>
 <div class="end"></div>
@@ -159,14 +209,11 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 <div id="toast"></div>
 
 <script>
-var LANES={"lw":{"name":"论文","hint":"写完就能投","items":[{"id":"sz-jyxh-2026","nm":"深圳市教育学会 2026 年度主题论文","due":"2026-12-15","org":"深圳市教育学会","lv":"市","rows":[["主办","深圳市教育学会（市教育局主管的市级学会）"],["主题","大中小幼一体化培养的育人接力与实践创新。分「学段衔接类」「跨学段类」，小学可写小幼衔接、小初衔接"],["谁能报","市教育学会个人会员；每人限 1 篇，多人联合申报对每位参与人也算 1 篇"],["时间","2026-10-30 至 12-15，逾期或材料不全不受理"],["硬要求","未公开发表；文字重复率 ≤20%；要有真实校本案例（做法+过程+成效+反思），有调研数据、图表更占优"],["交什么","论文正文（按通知附件格式）+ 查重报告，官网在线提交"],["投到哪","szsjyxh.cn →「大中小幼一体化…」主题论文征集专用版块"],["待遇","择优汇编结集、部分作者受邀论坛交流；不收费"],["门槛","必须先是学会个人会员（会费按学会规定），非会员不予受理"],["咨询","廖老师 0755-82248007；余老师 0755-82246534"]]},{"id":"gd-jyxh-essay","nm":"广东教育学会 年度学术讨论会征文","due":"","org":"广东教育学会","lv":"省","next":"每年 7—9 月","rows":[["主办","广东教育学会（省教育厅主管）"],["时间","每年 7—9 月发通知、暑期截稿（2026 年度已截，等下一轮）"],["硬要求","查重 <20%；如同意推荐知网，另需 AIGC 检测 <30%；每人限 1 篇，须第一作者"],["交什么","附件1 + 论文正文 + 查重报告 + 附件2，Word 版；文件名「论文编号+市+学校+姓名」"],["投到哪","gdjyxh.org.cn 在线缴费并上传，同时寄纸质 2 份 + 发 gdjyxhxs@126.com（三步缺一不可）"],["待遇","一二三等奖；优秀征文推荐《广东教育》《广东教学报》发表，可入知网会议论文集"],["费用","收评审费（会员与非会员不同价）"]]}]},"kt":{"name":"课题","hint":"按申报季排","items":[{"id":"kt-gd","nm":"广东省教育科学规划课题","due":"","org":"广东省教育厅","lv":"省","next":"每年春季","rows":[["主办","广东省教育厅（省教育科学规划领导小组办公室）"],["级别","省级·规划课题，评职称、评优最硬的一类"],["时间","每年春季发布申报通知，经学校—区—市逐级推荐，个人不能直报"],["交什么","课题申请书（盖章）、论证活页、推荐汇总表"],["投到哪","省教育科研管理平台，入口以省教育厅通知为准；区里一般先在宝教通发转发通知"],["节奏","申报 3—5 月 → 立项 7—8 月 → 中期 次年 11 月 → 结题 第三年 3 月"]]},{"id":"kt-sz","nm":"深圳市教育科学规划课题","due":"","org":"深圳市教育局","lv":"市","next":"每年 3—4 月","rows":[["主办","深圳市教育局 / 市教育科学研究院"],["级别","市级·规划课题"],["时间","每年 3—4 月申报，学校推荐、区里汇总"],["交什么","课题申请书、论证活页；预期成果要写清楚（一般要求公开发表论文 1 篇）"],["投到哪","深圳市教育科研管理系统（账号由学校科研处开）"],["说明","先看本校科研处转发通知，区里名额有限，越早报越好"]]},{"id":"kt-ba","nm":"宝安区教育科学规划课题","due":"","org":"宝安区教科院","lv":"区","next":"申报 3—4 月","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级课题——学校绩效必录，最稳的一块"],["时间","申报 3—4 月；中期检查 11 月；结题材料审核每年 3-31（宝教通「课题结题材料审核」长期有效）"],["交什么","申请书 / 中期报告 / 结题报告 + 成果附件"],["投到哪","宝教通（bjt.baoan.edu.cn）→ 活动广场 → 科研活动汇总"],["说明","区课题是省、市课题的前置台阶，先拿区级再往上冲"]]}]},"bs":{"name":"教学比赛","hint":"区里正在收","items":[{"id":"ba-meiyu-school","nm":"宝安区「美育一件事」校级亮点做法展示","due":"2026-12-31","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院（区教育局平台发布）"],["级别","区级——本校绩效必录口径"],["截止","2026-12-31"],["交什么","校级亮点做法材料，在宝教通活动页上传"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1835912&type=3"],["说明","具体格式、字数、件数以活动页公告为准（要登录才看得到）；这是美术老师最容易出彩的区级口子"]]},{"id":"ba-ai-art","nm":"2026 宝安区高中 AI 赋能学科育人典型案例（美术）","due":"2026-12-02","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2026-12-02（还剩不到 10 天）"],["交什么","AI 赋能学科育人的教学案例，按学科分开征集，美术单列"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836312&type=3"],["说明","只要案例，不用交视频；适合把你这学期用 AI 备课/生成素材的做法写成一页纸"]]},{"id":"ba-bjt-case","nm":"2026 宝安区「宝教通」平台应用案例征集","due":"2027-01-24","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2027-01-24"],["交什么","用宝教通做教学/教研的应用案例"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836296&type=3"],["说明","门槛低、竞争小，寒假前能写完"]]},{"id":"ba-res-2026","nm":"2026 宝安区教育资源与网络空间评比（课件/微课/案例）","due":"2026-11-23","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级——本校去年在这一项拿了 12 个奖，是性价比最高的一项"],["截止","2026-11-23（今天截止，今年来不及了）"],["分项","课件 / 微课 / 教学案例 / 网络空间，四项分开报"],["投到哪","宝教通活动广场，各分项单独入口"],["说明","明年 11 月同一时间还会开，提前两周准备"]]}]},"xs":{"name":"学生","hint":"只放白名单","items":[{"id":"bantu","nm":"“美丽中国”第七届全国版图知识竞赛","due":"2027-03-31","org":"自然资源部宣教中心","lv":"白名单","rows":[["主办","自然资源部宣传教育中心（2025—2028 学年教育部白名单）"],["谁能报","全国中小学生，分小学组 / 中学组"],["怎么报","pecmnr.cn/gjbt →「开始」→「学生注册」→ 选「个人」；填组别、姓名、地区、身份证号、手机、密码。个人参赛不审核，提交即通过"],["答题","12-01 起至 2027-03-31；小学 20 题 10 分钟，中学 40 题 20 分钟；可答两次取高分"],["奖项","一二三等奖、「国家版图小卫士」；教师有优秀指导教师奖"],["证书","2027-04-20 起查结果，07-31 前下载"],["费用","0 元"]]},{"id":"cn-paint-31","nm":"第三十一届全国中小学生绘画书法作品比赛","due":"","org":"中国儿童中心","lv":"白名单","next":"通知待发","rows":[["主办","中国儿童中心（教育部白名单第 35 项）"],["状态","2026-11-13 已在嘉兴启动第 31 届；报名通知和主题还没发"],["往年节奏","4 月发通知、5—6 月平台提交、7—8 月评审"],["唯一渠道","微信公众号「学与玩杂志」→ 活动报名 → 活动服务平台（shds.zget.org），个人线上报名，免费"],["交什么","作品照片 + 学生与作品合影；作品标签打印贴在原件背面，原件寄组委会"],["规格","绘画 ≤40×60cm（国画四尺三开）；书法 ≤四尺对开；摄影 ≥500K 并注明设备"],["说明","等通知，别提前收作品；教师指导奖要求至少辅导 20 人、其中有获奖"]]}]}};
-var TLDR={"ba-ai-art":["一页纸教学案例，不交视频","宝教通上传，登录就能交"],"sz-jyxh-2026":["8000 字以内，查重 ≤20%","要先有市教育学会会员"],"ba-meiyu-school":["校级做法材料，图文即可","宝教通活动页上传"],"ba-bjt-case":["拿宝教通上课的经历写成案例","门槛最低，寒假前能写完"],"ba-res-2026":["课件 / 微课 / 案例，四类分开报","明年 11 月还会开"],"bantu":["学生自己手机上答题，免费","12-01 开考，先注册"]};
-var ICON={"bs": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.4 3.2 16.9 5.7 8.4 14.2 4.6 15.4 5.8 11.6z\"/><path d=\"M3.6 16.6h12.8\"/></svg>", "lw": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4.6\" y=\"2.9\" width=\"10.8\" height=\"14.2\" rx=\"1.8\"/><path d=\"M7.4 7h5.2M7.4 10h5.2M7.4 13h3.2\"/></svg>", "kt": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.9 5.2c2-.9 4-.9 6.1 0v10c-2.1-.9-4.1-.9-6.1 0z\"/><path d=\"M16.1 5.2c-2-.9-4-.9-6.1 0v10c2.1-.9 4.1-.9 6.1 0z\"/></svg>", "xs": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 17.2V3\"/><path d=\"M6 3.8h9.2l-2.3 3.2 2.3 3.2H6z\"/></svg>"};
-var SN={"ba-ai-art":"AI 赋能学科育人案例（美术）","ba-meiyu-school":"「美育一件事」校级做法","sz-jyxh-2026":"市教育学会 · 主题论文","ba-bjt-case":"「宝教通」平台应用案例","ba-res-2026":"教育资源与网络空间评比","gd-jyxh-essay":"省教育学会 · 年度征文"};
+var D={"sz-jyxh-2026":{"id":"sz-jyxh-2026","nm":"深圳市教育学会 2026 年度主题论文","due":"2026-12-15","org":"深圳市教育学会","lv":"市","rows":[["主办","深圳市教育学会（市教育局主管的市级学会）"],["主题","大中小幼一体化培养的育人接力与实践创新。分「学段衔接类」「跨学段类」，小学可写小幼衔接、小初衔接"],["谁能报","市教育学会个人会员；每人限 1 篇，多人联合申报对每位参与人也算 1 篇"],["时间","2026-10-30 至 12-15，逾期或材料不全不受理"],["硬要求","未公开发表；文字重复率 ≤20%；要有真实校本案例（做法+过程+成效+反思），有调研数据、图表更占优"],["交什么","论文正文（按通知附件格式）+ 查重报告，官网在线提交"],["投到哪","szsjyxh.cn →「大中小幼一体化…」主题论文征集专用版块"],["待遇","择优汇编结集、部分作者受邀论坛交流；不收费"],["门槛","必须先是学会个人会员（会费按学会规定），非会员不予受理"],["咨询","廖老师 0755-82248007；余老师 0755-82246534"]],"grp":"self","ch":"官网在线提交","pk":{"mins":"6 小时（分 3 次写）","files":["01_论文正文.docx（8000 字以内，按通知附件格式）","02_查重报告.pdf（重复率 ≤20%）","03_会员证明截图.png"],"name":"论文_姓名_学校_大中小幼一体化","body":"【题目】小幼衔接期美术学习习惯的接力培养——以我校一年级入学前两周为例\n\n【摘要】（200 字左右，四句话：问题—做法—证据—结论）\n一年级新生入学后普遍出现\"不敢下笔、画不满一张纸\"，根因是幼儿园以游戏为主的表达习惯，在小学被\"画得像不像\"的评价打断。我校用\"三张纸\"过渡法（自由涂鸦纸—半结构轮廓纸—完整构图纸），在入学前两周做衔接，并请幼儿园大班老师共同设计第一张纸。开学一个月后，能独立完成一张完整构图的学生由 41% 升到 78%。建议把\"表达连续性\"而非\"技能起点\"作为小幼衔接的评价口径。\n\n【关键词】小幼衔接；美术；学习习惯；评价口径\n\n【正文结构】（8000 字以内，按此五节写）\n一、问题的提出（1200 字）政策背景 + 本校新生入学测查数据\n二、现状与归因（1500 字）三类典型表现 + 3 个学生个案\n三、做法（2500 字）\"三张纸\"过渡法的设计、课时安排、与幼儿园的联合教研\n四、成效与证据（1800 字）前后测对比表、学生作品对比、家长问卷\n五、反思（1000 字）什么问题没解决、下一步怎么改\n\n【必须注意】\n· 未公开发表过（公众号、校刊都算发表，别用旧文）\n· 查重 ≤20%，引用要标\n· 要有真实校本案例：做法 + 过程 + 成效 + 反思，缺一块就掉档\n· 每人限 1 篇；多人联合申报，对每个参与人也算占 1 篇名额"}},"gd-jyxh-essay":{"id":"gd-jyxh-essay","nm":"广东教育学会 年度学术讨论会征文","due":"","org":"广东教育学会","lv":"省","next":"每年 7—9 月","rows":[["主办","广东教育学会（省教育厅主管）"],["时间","每年 7—9 月发通知、暑期截稿（2026 年度已截，等下一轮）"],["硬要求","查重 <20%；如同意推荐知网，另需 AIGC 检测 <30%；每人限 1 篇，须第一作者"],["交什么","附件1 + 论文正文 + 查重报告 + 附件2，Word 版；文件名「论文编号+市+学校+姓名」"],["投到哪","gdjyxh.org.cn 在线缴费并上传，同时寄纸质 2 份 + 发 gdjyxhxs@126.com（三步缺一不可）"],["待遇","一二三等奖；优秀征文推荐《广东教育》《广东教学报》发表，可入知网会议论文集"],["费用","收评审费（会员与非会员不同价）"]],"grp":"self","ch":"官网+邮箱+纸质","pk":{"mins":"下一轮 7 月再动","files":["01_附件1（申报表）","02_论文正文.docx","03_查重报告.pdf","04_附件2","05_纸质 2 份（寄）"],"name":"论文编号+市+学校+姓名","body":"三步缺一不可，少一步就算没交：\n① gdjyxh.org.cn 在线缴费并上传电子稿\n② 寄纸质 2 份到学会\n③ 发一份到 gdjyxhxs@126.com\n\n查重 <20%；如同意推荐知网，还要 AIGC 检测 <30%。"}},"kt-gd":{"id":"kt-gd","nm":"广东省教育科学规划课题","due":"","org":"广东省教育厅","lv":"省","next":"每年春季","rows":[["主办","广东省教育厅（省教育科学规划领导小组办公室）"],["级别","省级·规划课题，评职称、评优最硬的一类"],["时间","每年春季发布申报通知，经学校—区—市逐级推荐，个人不能直报"],["交什么","课题申请书（盖章）、论证活页、推荐汇总表"],["投到哪","省教育科研管理平台，入口以省教育厅通知为准；区里一般先在宝教通发转发通知"],["节奏","申报 3—5 月 → 立项 7—8 月 → 中期 次年 11 月 → 结题 第三年 3 月"]],"grp":"sch","ch":"学校—区—市逐级报","pk":{"mins":"一个月（要过三道关）","files":["01_课题申请书（盖章）","02_论证活页","03_推荐汇总表"],"name":"省课题_姓名_学科_2027","body":"省级规划课题，个人不能直报，必须学校—区—市逐级推荐。\n一般先有区级课题在研或已结题，才推得上去。\n\n【节奏】申报 3—5 月 → 立项 7—8 月 → 中期次年 11 月 → 结题第三年 3 月\n\n【建议】今年先报区课题，明年拿区级成果去冲市级，后年再冲省级。一次跨两级基本没戏。"}},"kt-sz":{"id":"kt-sz","nm":"深圳市教育科学规划课题","due":"","org":"深圳市教育局","lv":"市","next":"每年 3—4 月","rows":[["主办","深圳市教育局 / 市教育科学研究院"],["级别","市级·规划课题"],["时间","每年 3—4 月申报，学校推荐、区里汇总"],["交什么","课题申请书、论证活页；预期成果要写清楚（一般要求公开发表论文 1 篇）"],["投到哪","深圳市教育科研管理系统（账号由学校科研处开）"],["说明","先看本校科研处转发通知，区里名额有限，越早报越好"]],"grp":"sch","ch":"学校推荐、区里汇总","pk":{"mins":"两周","files":["01_课题申请书","02_论证活页","03_学校推荐意见"],"name":"市课题_姓名_学科_2027","body":"每年 3—4 月申报，学校推荐、区里汇总，名额有限，越早报越好。\n账号由学校科研处开，个人没法自己注册。\n\n【关键】预期成果要写\"公开发表论文 1 篇\"——评审看这个判断你能不能结题。"}},"kt-ba":{"id":"kt-ba","nm":"宝安区教育科学规划课题","due":"","org":"宝安区教科院","lv":"区","next":"申报 3—4 月","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级课题——学校绩效必录，最稳的一块"],["时间","申报 3—4 月；中期检查 11 月；结题材料审核每年 3-31（宝教通「课题结题材料审核」长期有效）"],["交什么","申请书 / 中期报告 / 结题报告 + 成果附件"],["投到哪","宝教通（bjt.baoan.edu.cn）→ 活动广场 → 科研活动汇总"],["说明","区课题是省、市课题的前置台阶，先拿区级再往上冲"]],"grp":"sch","ch":"学校/区里统一报","pk":{"mins":"一周（要学校先点头）","files":["01_课题申请书（学校盖章）","02_论证活页（匿名，不能出现校名人名）","03_汇总表（学校科研处填）"],"name":"区课题_姓名_学科_2027","body":"【选题】越小越好，别写\"核心素养\"这种大词\n反例：核心素养视角下的高中美术教学研究\n正例：高中美术鉴赏课\"一张画三个问题\"提问法的实践研究\n\n【申请书三段怎么写】\n1. 选题依据：一句话说清\"现在哪里痛\" + 已有研究没解决什么\n2. 研究内容：3 个子问题，每个配 1 个可交付成果（问卷/课例/评价表）\n3. 预期成果：至少 1 篇公开发表论文 + 1 套可复用材料\n\n【匿名要求】论证活页里出现校名、人名直接作废，写完互相查一遍。"}},"ba-meiyu-school":{"id":"ba-meiyu-school","nm":"宝安区「美育一件事」校级亮点做法展示","due":"2026-12-31","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院（区教育局平台发布）"],["级别","区级——本校绩效必录口径"],["截止","2026-12-31"],["交什么","校级亮点做法材料，在宝教通活动页上传"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1835912&type=3"],["说明","具体格式、字数、件数以活动页公告为准（要登录才看得到）；这是美术老师最容易出彩的区级口子"]],"grp":"self","ch":"宝教通自传","pk":{"mins":"2 小时（配图最花时间）","files":["01_校级做法材料.docx（图文并茂，按活动页模板）","02_活动照片 6–8 张（原图，别压缩）","03_学校方案或通知扫描件"],"name":"美育一件事_学校名_2026","body":"【一句话做法】把\"美育一件事\"做成全校每周固定的一节 20 分钟\"看一张画\"\n\n【三块写清】\n1. 做了什么：每周一午间 20 分钟，全校同看一张画（名作 / 学生作品轮换），班主任带 3 个问题讨论。\n2. 怎么落地：谁排片单、谁拍摄、怎么和美术课打通、怎么记录。\n3. 看到什么变化：参与班级数、学生作品数量、家长反馈。\n\n【配图优先顺序】全校同看一张画的现场 > 学生作品墙 > 教师研讨 > 活动海报。\n具体字数、件数以活动页公告为准（要登录才看得到）。"}},"ba-ai-art":{"id":"ba-ai-art","nm":"2026 宝安区高中 AI 赋能学科育人典型案例（美术）","due":"2026-12-02","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2026-12-02（还剩不到 10 天）"],["交什么","AI 赋能学科育人的教学案例，按学科分开征集，美术单列"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836312&type=3"],["说明","只要案例，不用交视频；适合把你这学期用 AI 备课/生成素材的做法写成一页纸"]],"grp":"self","ch":"宝教通自传","pk":{"mins":"90 分钟（今晚就能写完）","files":["01_案例正文.docx（一页纸，1200 字内）","02_过程图 2–3 张（AI 草图 / 学生改稿对比）"],"name":"2026AI案例_美术_姓名_学校","body":"【标题】AI 当\"参照系\"：高中美术构图课的一次改法\n\n【学校/学科/年级】深圳市宝安区____学校　美术　高一\n\n【背景与问题】（150 字）\n学生不是不会画，是\"不敢下笔\"——起稿阶段反复擦，一节课画不完一张。原因是脑子里没有构图参照。\n\n【做法】（500 字，三步，这是评审最看的部分）\n1. 课前：用 AI 按同一题目生成 3 版不同构图的草图，只作参照，不发给学生当范画。\n2. 课中：学生先手绘 15 分钟小稿 → 再与 3 版 AI 草图并排看 → 只回答一个问题\"我的主体放在哪、为什么\" → 回去改自己的稿。\n3. 课后：交\"前后对比图\"+ 50 字自评，说明改了什么、为什么改。\n\n【成效】（200 字，要有数）\n本班 42 人，一节课完成完整构图的人数由 18 人增至 35 人；平均起稿修改次数由 4.2 次降到 1.8 次。\n\n【反思】（150 字）\nAI 只给参照不给答案，避免代笔；同时讲清版权：AI 图不作成品提交，只作课堂对照材料。\n\n【附件】3 张过程图 + 1 组学生前后对比"}},"ba-bjt-case":{"id":"ba-bjt-case","nm":"2026 宝安区「宝教通」平台应用案例征集","due":"2027-01-24","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2027-01-24"],["交什么","用宝教通做教学/教研的应用案例"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836296&type=3"],["说明","门槛低、竞争小，寒假前能写完"]],"grp":"self","ch":"宝教通自传","pk":{"mins":"2 小时（寒假前做完）","files":["01_应用案例.docx","02_平台使用截图 4–6 张（带界面，别只截结果）"],"name":"宝教通案例_姓名_学校","body":"【案例名】用宝教通把一次作业讲评从\"课后\"搬到\"课前\"\n\n【写四段】\n1. 原来怎么做：收作业→批→下次课讲评，隔了 3 天，学生早忘了。\n2. 用平台怎么改：作业拍照上传→课前 10 分钟看全班共性问题→课上只讲那 3 个。\n3. 效果：讲评时间从 25 分钟压到 10 分钟，个别辅导多了 15 分钟。\n4. 可复制性：哪一步最关键、别的学科怎么照做。\n\n门槛低、竞争小，是这一组里最容易拿的一个。"}},"ba-res-2026":{"id":"ba-res-2026","nm":"2026 宝安区教育资源与网络空间评比（课件/微课/案例）","due":"2026-11-23","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级——本校去年在这一项拿了 12 个奖，是性价比最高的一项"],["截止","2026-11-23（今天截止，今年来不及了）"],["分项","课件 / 微课 / 教学案例 / 网络空间，四项分开报"],["投到哪","宝教通活动广场，各分项单独入口"],["说明","明年 11 月同一时间还会开，提前两周准备"]],"grp":"self","ch":"宝教通自传","pk":{"mins":"今年已截止，明年 11 月提前两周备","files":["01_课件.pptx 或 微课.mp4","02_教学案例.docx","03_报名表"],"name":"分项_学科_姓名_学校","body":"四个分项分开报，一项一份材料，别混在一个包：\n· 课件：PPT + 教学设计\n· 微课：5–8 分钟视频 + 字幕\n· 教学案例：一页纸\n· 网络空间：空间截图 + 说明\n\n去年本校在这一项拿了 12 个奖，是性价比最高的一项。明年同一时间开，提前两周准备。"}},"bantu":{"id":"bantu","nm":"“美丽中国”第七届全国版图知识竞赛","due":"2027-03-31","org":"自然资源部宣教中心","lv":"白名单","rows":[["主办","自然资源部宣传教育中心（2025—2028 学年教育部白名单）"],["谁能报","全国中小学生，分小学组 / 中学组"],["怎么报","pecmnr.cn/gjbt →「开始」→「学生注册」→ 选「个人」；填组别、姓名、地区、身份证号、手机、密码。个人参赛不审核，提交即通过"],["答题","12-01 起至 2027-03-31；小学 20 题 10 分钟，中学 40 题 20 分钟；可答两次取高分"],["奖项","一二三等奖、「国家版图小卫士」；教师有优秀指导教师奖"],["证书","2027-04-20 起查结果，07-31 前下载"],["费用","0 元"]],"grp":"stu","ch":"学生手机上自己注册","pk":{"mins":"家长 3 分钟注册","files":["学生身份证号","学校全称","一个能收短信的手机号","自设密码"],"name":"不用建文件，全程手机网页","body":"家长操作四步：\n1. 手机打开 pecmnr.cn/gjbt/que-register.html\n2. 点\"学生注册\"，参赛方式选\"个人\"\n3. 填组别、姓名、地区、身份证号、手机号、密码\n4. 提交即通过，不用审核\n\n12-01 才开考，现在先注册。小学 20 题 10 分钟，中学 40 题 20 分钟，可考两次取高分。免费。"}},"cn-paint-31":{"id":"cn-paint-31","nm":"第三十一届全国中小学生绘画书法作品比赛","due":"","org":"中国儿童中心","lv":"白名单","next":"通知待发","rows":[["主办","中国儿童中心（教育部白名单第 35 项）"],["状态","2026-11-13 已在嘉兴启动第 31 届；报名通知和主题还没发"],["往年节奏","4 月发通知、5—6 月平台提交、7—8 月评审"],["唯一渠道","微信公众号「学与玩杂志」→ 活动报名 → 活动服务平台（shds.zget.org），个人线上报名，免费"],["交什么","作品照片 + 学生与作品合影；作品标签打印贴在原件背面，原件寄组委会"],["规格","绘画 ≤40×60cm（国画四尺三开）；书法 ≤四尺对开；摄影 ≥500K 并注明设备"],["说明","等通知，别提前收作品；教师指导奖要求至少辅导 20 人、其中有获奖"]],"grp":"stu","ch":"家长在公众号自己报","pk":{"mins":"通知没发，先别收作品","files":["作品照片（≥500K）","学生与作品合影","作品标签（打印贴原件背面）","原件（寄组委会）"],"name":"组别_姓名_作品名","body":"第 31 届 11-13 已在嘉兴启动，报名通知和主题还没发。\n往年节奏：4 月发通知 → 5–6 月平台提交 → 7–8 月评审。\n\n唯一渠道：微信公众号\"学与玩杂志\"→ 活动报名 → 活动服务平台（shds.zget.org），个人线上报名，免费。\n\n规格：绘画 ≤40×60cm（国画四尺三开）；书法 ≤四尺对开；摄影 ≥500K 并注明设备。\n教师指导奖要求至少辅导 20 人、其中有获奖——现在就可以开始攒人。"}}};
+var ICON={"self": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.4 3.2 16.9 5.7 8.4 14.2 4.6 15.4 5.8 11.6z\"/><path d=\"M3.6 16.6h12.8\"/></svg>", "sch": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8.2 10 4l7 4.2-7 4.2z\"/><path d=\"M5.6 10v4.4c0 1 2 1.7 4.4 1.7s4.4-.7 4.4-1.7V10\"/></svg>", "stu": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 17.2V3\"/><path d=\"M6 3.8h9.2l-2.3 3.2 2.3 3.2H6z\"/></svg>", "box": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.8 7.4h14.4v8.2c0 .6-.5 1.1-1.1 1.1H3.9c-.6 0-1.1-.5-1.1-1.1z\"/><path d=\"M2.4 4.2h15.2v3.2H2.4z\"/><path d=\"M8.4 10.6h3.2\"/></svg>", "lw": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4.6\" y=\"2.9\" width=\"10.8\" height=\"14.2\" rx=\"1.8\"/><path d=\"M7.4 7h5.2M7.4 10h5.2M7.4 13h3.2\"/></svg>", "kt": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.9 5.2c2-.9 4-.9 6.1 0v10c-2.1-.9-4.1-.9-6.1 0z\"/><path d=\"M16.1 5.2c-2-.9-4-.9-6.1 0v10c2.1-.9 4.1-.9 6.1 0z\"/></svg>", "bs": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.4 3.2 16.9 5.7 8.4 14.2 4.6 15.4 5.8 11.6z\"/><path d=\"M3.6 16.6h12.8\"/></svg>"};
+var SN={"ba-ai-art": "AI 赋能学科育人案例（美术）", "ba-meiyu-school": "「美育一件事」校级做法", "sz-jyxh-2026": "市教育学会 · 主题论文", "ba-bjt-case": "「宝教通」平台应用案例", "ba-res-2026": "教育资源与网络空间评比", "gd-jyxh-essay": "省教育学会 · 年度征文", "kt-ba": "区教育科学规划课题", "kt-sz": "市教育科学规划课题", "kt-gd": "省教育科学规划课题", "bantu": "全国版图知识竞赛", "cn-paint-31": "全国绘画书法比赛（31届）"};
+var TLDR={"ba-ai-art": ["一页纸教学案例，不交视频", "宝教通上传，登录就能交"], "sz-jyxh-2026": ["8000 字以内，查重 ≤20%", "要先有市教育学会会员"], "ba-meiyu-school": ["校级做法材料，图文即可", "宝教通活动页上传"], "ba-bjt-case": ["拿宝教通上课的经历写成案例", "门槛最低，寒假前能写完"], "ba-res-2026": ["课件 / 微课 / 案例，四类分开报", "今年已截，明年 11 月还开"], "bantu": ["学生自己手机上答题，免费", "12-01 开考，先注册"], "cn-paint-31": ["通知还没发，先别收作品", "家长在公众号自己报，免费"], "kt-ba": ["区级课题，省市区里最稳的一块", "要学校先点头，不能个人直报"], "kt-sz": ["市级课题，一般要先有区级", "每年 3—4 月，学校推荐"], "kt-gd": ["省级规划课题，最硬的一类", "要过学校—区—市三道关"], "gd-jyxh-essay": ["查重 <20%，限第一作者", "今年已截，等 7 月"]};
 var MSG="各位家长，有个免费的比赛可以让孩子练练手，教育部白名单里的：\n“美丽中国”第七届全国版图知识竞赛（中小学组）。\n\n报名网址：https://www.pecmnr.cn/gjbt/que-register.html\n打开后点“学生注册”，参赛方式选“个人”，填孩子姓名、身份证号、地区、手机号，自己设个密码，提交就通过了，不用审核。\n\n提醒一句：手机上字比较小，两指放大一下再看。\n\n12月1日才开考，现在先报名就行。小学组20道题10分钟，中学组40道题20分钟，单选加多选，每人能考两次，取高分。\n\n考的是国家版图和自然资源常识，想让孩子准备一下的，“i自然”App里有学习专区。\n\n报名到2027年3月31日截止，有问题问我。";
-var SHORT={"深圳市宝安区教育科学研究院":"区教科院","宝安区教科院":"区教科院",
- "深圳市教育学会":"市教育学会","广东教育学会":"省教育学会","广东省教育厅":"省教育厅",
- "深圳市教育局 / 市教育科学研究院":"市教科院","自然资源部宣教中心":"自然资源部","中国儿童中心":"中国儿童中心"};
 </script>
 <script>
 function $(s){return document.querySelector(s)}
@@ -176,13 +223,34 @@ function days(d){if(!d)return null;var p=String(d).split('-');if(p.length<3)retu
  var t=new Date();t.setHours(0,0,0,0);var e=new Date(+p[0],+p[1]-1,+p[2]);
  return Math.round((e-t)/86400000)}
 function mmdd(d){var p=String(d).split('-');return p[1]+'-'+p[2]}
-function all(){var a=[];Object.keys(LANES).forEach(function(k){
-  LANES[k].items.forEach(function(x){x.__k=k;a.push(x)})});return a}
-function inPlay(){return all().filter(function(x){var n=days(x.due);return n!=null&&n>=1})
- .sort(function(a,b){return days(a.due)-days(b.due)})}
 function linkify(t){
  return esc(t).replace(/(https?:\/\/[^\s，。）)]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>')
   .replace(/((?:[a-z0-9-]+\.)+(?:cn|org|com|net)(?:\/[^\s，。）)]*)?)/g,'<a href="https://$1" target="_blank" rel="noopener">$1</a>')
+}
+var GT={self:'自己能投',sch:'要学校报',stu:'发给学生'};
+var GH={self:'不盖章、不求人，自己上网就能交',
+        sch:'要学校推荐、逐级上报，个人报不了',
+        stu:'教育部白名单，家长手机上自己报，免费'};
+var LEAD={self:['这周最急','还能顺手'],sch:['最硬的一块','也要过三道关'],stu:['先发这一条','另一个等通知']};
+
+function byGroup(g){
+ var a=Object.keys(D).map(function(k){return D[k]}).filter(function(x){return x.grp===g});
+ a.sort(function(x,y){
+  var p=days(x.due),q=days(y.due);
+  if(p==null&&q==null)return 0;
+  if(p==null)return 1;
+  if(q==null)return -1;
+  if(p<=0&&q>0)return 1;
+  if(q<=0&&p>0)return -1;
+  return p-q;
+ });
+ return a;
+}
+function daysHTML(it,big){
+ var n=days(it.due);
+ if(n==null) return '<div class="days rz"><b>'+esc(it.next||'待定')+'</b></div>';
+ if(n===0) return '<div class="days rz"><b>今天</b><span>截止</span></div>';
+ return '<div class="days"><b>'+n+'</b><span>天</span></div>';
 }
 function detHTML(it){
  var rows=(it.rows||[]).map(function(r){
@@ -201,84 +269,147 @@ function toggle(id,btn){
  if(btn&&btn.classList.contains('cta'))btn.classList.toggle('act',on)
 }
 function heroHTML(it){
- var n=days(it.due), tl=TLDR[it.id]||['',''];
- return '<div class="hrow"><span class="chip"><span class="e">'+ICON[it.__k]+'</span>'+
-  esc(it.lv)+'级 · '+esc(SHORT[it.org]||it.org)+'</span></div>'+
-  '<div class="days"><b>'+n+'</b><span>天</span></div>'+
+ var n=days(it.due), tl=TLDR[it.id]||['',''], pk=it.pk;
+ var meta=(n==null?esc(it.next||'待定'):(n===0?'11-23 今天截止':mmdd(it.due)+' 截止'))+
+   ' · '+esc(it.ch)+' · 交 '+pk.files.length+' 个文件';
+ return '<div class="hrow"><span class="chip"><span class="e">'+ico(it.id)+'</span>'+
+   esc(it.lv)+'级 · '+esc(it.org)+'</span></div>'+
+  daysHTML(it,1)+
   '<h2>'+esc(SN[it.id]||it.nm)+'</h2>'+
-  '<p class="meta">'+mmdd(it.due)+' 截止</p>'+
+  '<p class="meta">'+meta+'</p>'+
   '<p class="tl"><i>·</i><span>'+esc(tl[0])+'</span></p>'+
-  '<p class="tl2">'+esc(tl[1])+'</p>'+
-  '<button class="cta js-tog" data-id="'+it.id+'"><span>看 6 行要求</span><i><svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></i></button>'+
-  detHTML(it);
+  '<div class="acts">'+
+   '<button class="cta js-tog" data-id="'+it.id+'"><span>看要求</span><i><svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></i></button>'+
+   '<button class="cta2 js-pk" data-id="'+it.id+'"><span>投稿包</span><svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>'+
+  '</div>'+detHTML(it);
 }
-function render(){
- var d=new Date();
- $('#dt').textContent=(d.getMonth()+1)+' 月 '+d.getDate()+' 日';
- var list=inPlay().filter(function(x){return x.__k!=='xs'});
- var hero=list[0], duo=list.slice(1,3);
- $('#hero').innerHTML=heroHTML(hero);
- $('#duo').innerHTML=duo.map(function(it){
-   var n=days(it.due);
-   return '<button class="card js-tog '+(it.__k==='lw'?'g':'b')+'" data-id="'+it.id+'">'+
-    '<span class="e">'+ICON[it.__k]+'</span>'+
-    '<span class="d">'+n+'<small>天</small></span>'+
-    '<span class="t">'+esc(SN[it.id]||it.nm)+'</span>'+
-    '<span class="s">'+mmdd(it.due)+' 截</span></button>'
- }).join('');
- $('#duoDet').innerHTML=duo.map(function(it){return detHTML(it)}).join('');
-
- var groups=[['bs','区里其他'],['lw','论文 · 下一轮'],['kt','课题 · 按季报'],['xs','学生 · 只放白名单']];
- var used={};used[hero.id]=1;duo.forEach(function(x){used[x.id]=1});
- var h='';
- groups.forEach(function(g){
-   var items=LANES[g[0]].items.filter(function(x){return !used[x.id]});
-   items.sort(function(a,b){var x=days(a.due),y=days(b.due);
-     if(x==null)return 1;if(y==null)return -1;return x-y});
-   if(!items.length)return;
-   h+='<div class="grp">'+g[1]+'</div>';
-   items.forEach(function(it){
-     var n=days(it.due);
-     var dd=it.next?it.next:(n==null?'待定':(n<0?'已截止':(n===0?'今天截':mmdd(it.due)+' 截')));
-     var hot=(n!=null&&n>=0&&n<=14)?' hot':'';
-     h+='<div class="row js-tog" data-id="'+it.id+'"'+(n!=null&&n<1?' style="opacity:.5"':'')+'>'+
-        '<span class="e">'+ICON[it.__k]+'</span><span class="nm">'+esc(it.nm)+
-        '</span><span class="dd'+hot+'">'+dd+'</span></div>'+detHTML(it);
-   });
+function cardHTML(it,i){
+ var n=days(it.due), d;
+ if(n==null) d='<span class="d rz">'+esc(it.next||'待定')+'</span>';
+ else if(n===0) d='<span class="d rz">今天截止</span>';
+ else d='<span class="d">'+n+'<small>天</small></span>';
+ return '<button class="card js-tog '+(i%2?'b':'g')+'" data-id="'+it.id+'">'+
+  '<span class="e">'+ico(it.id)+'</span>'+d+
+  '<span class="t">'+esc(SN[it.id]||it.nm)+'</span>'+
+  '<span class="s">'+esc(it.ch)+'</span></button>'
+}
+var LANE={'sz-jyxh-2026':'lw','gd-jyxh-essay':'lw','ba-ai-art':'bs','ba-meiyu-school':'bs',
+ 'ba-bjt-case':'bs','ba-res-2026':'bs','kt-gd':'kt','kt-sz':'kt','kt-ba':'kt',
+ 'bantu':'stu','cn-paint-31':'stu'};
+function ico(id){return ICON[LANE[id]||'bs']}
+var cur='self';
+function render(g){
+ cur=g||'self';
+ var a=byGroup(cur);
+ $('#picks').querySelectorAll('.pk').forEach(function(b){
+   b.classList.toggle('on',b.getAttribute('data-g')===cur)});
+ Object.keys(GT).forEach(function(k){
+   var b=$('#picks [data-g="'+k+'"] b');
+   if(b) b.textContent=Object.keys(D).filter(function(x){return D[x].grp===k}).length;
  });
- $('#rest').innerHTML=h;
- $('#moreTxt').textContent='其他 '+document.querySelectorAll('#rest .row').length+' 项 · 课题 / 学生 / 已过';
+ $('#hint').textContent=GH[cur];
+ $('#lead1').textContent=LEAD[cur][0];
+ $('#lead2').textContent=LEAD[cur][1];
+
+ var h=a[0];
+ $('#hero').innerHTML=h?heroHTML(h):'';
+ var duo=a.slice(1,3);
+ $('#duo').innerHTML=duo.map(cardHTML).join('');
+ $('#duoDet').innerHTML=duo.map(detHTML).join('');
+ $('#lead2').hidden=!duo.length;
+ $('#duo').hidden=!duo.length;
+
+ var rest=a.slice(3);
+ var btn=$('#moreBtn');
+ if(!rest.length){btn.hidden=true;$('#rest').hidden=true;$('#rest').innerHTML=''}
+ else{
+  btn.hidden=false;
+  $('#rest').innerHTML=rest.map(function(it){
+    var n=days(it.due);
+    var dd=it.next?it.next:(n==null?'待定':(n<0?'已截止':(n===0?'今天截':mmdd(it.due)+' 截')));
+    var hot=(n!=null&&n>=1&&n<=14)?' hot':'';
+    return '<div class="row js-tog" data-id="'+it.id+'"'+(n!=null&&n<=0?' style="opacity:.55"':'')+'>'+
+      '<span class="e">'+ico(it.id)+'</span><span class="nm">'+esc(SN[it.id]||it.nm)+
+      '</span><span class="dd'+hot+'">'+dd+'</span></div>'+detHTML(it);
+  }).join('');
+  $('#moreTxt').textContent='其余 '+rest.length+' 项';
+  $('#moreArr').textContent='展开 ⌄';
+ }
 }
+function openPK(id){
+ var it=D[id];if(!it)return;
+ var n=days(it.due);
+ var sub=(n==null?esc(it.next||'待定'):(n===0?'今天截止':(n>0?'还剩 '+n+' 天 · '+mmdd(it.due)+' 截止':'')))
+   +' · 大概 '+esc(it.pk.mins);
+ var h='<h3>'+esc(SN[id]||it.nm)+'</h3><p class="sub">'+sub+'</p><div class="pkb">'+
+  '<div class="lb">要交这 '+it.pk.files.length+' 个文件</div><ol>'+
+  it.pk.files.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ol>'+
+  '<div class="lb">文件怎么命名</div><div class="nmc">'+esc(it.pk.name)+'</div>'+
+  '<div class="lb">正文 / 表单内容 · 点下面按钮复制</div>'+
+  '<textarea id="pkBox" readonly>'+esc(it.pk.body)+'</textarea>'+
+  '<button class="cp" id="cpPk">复制这段</button>'+
+  '<div class="lb">投到哪</div><div class="wh">'+linkify(firstUrl(it))+'</div>'+
+  '</div>';
+ $('#sheet').innerHTML=h;
+ window.__pkBody=it.pk.body;
+ $('#sheet').classList.add('on');$('#mask').classList.add('on');
+}
+function firstUrl(it){
+ var r=(it.rows||[]).filter(function(x){return /投到哪|投递|渠道|入口/.test(x[0])})[0];
+ return r?r[1]:(it.pk.files.length?'见上方要求':'');
+}
+function openBox(){
+ var h='<h3>我的作品箱</h3><p class="sub">备一次，后面每个比赛都能直接用</p><div class="box">'+
+  '<div class="n"><b>1</b><span><strong>作品原件</strong>——书法 / 水彩 / 摄影 / 课件 / 论文，原图别压缩。手机相册建一个相簿就叫「2026投稿」，全放这。</span></div>'+
+  '<div class="n"><b>2</b><span><strong>投稿正文</strong>——每条点「投稿包」，骨架我已经写好了，复制改校名就能交。</span></div>'+
+  '<div class="n"><b>3</b><span><strong>报名表 / 授权书</strong>——只有要盖章的才用得上，就是「要学校报」那三项。</span></div>'+
+  '<p style="margin-top:14px"><strong>云盘怎么放</strong><br>腾讯微云或腾讯文档建一个文件夹「2026投稿」，<b>一个赛事一个子文件夹</b>，名字就用投稿包里那个命名格式。以后手机上随时能开。</p>'+
+  '<p>我也打包了一份，解压后每个赛事一个文件夹，里面是「要求.md」「命名.txt」「正文.txt」和一个空的「作品」夹。</p>'+
+  '<a class="dl" href="投稿包.zip" download>下载投稿包（zip）</a>'+
+  '</div>';
+ $('#sheet').innerHTML=h;
+ $('#sheet').classList.add('on');$('#mask').classList.add('on');
+}
+function openMsg(){
+ $('#sheet').innerHTML='<h3>发家长群</h3><p class="sub">照原样发就行，家长看得懂</p>'+
+  '<textarea id="msgBox" readonly>'+esc(MSG)+'</textarea>'+
+  '<button class="cp" id="cpMsg">复制</button>';
+ $('#sheet').classList.add('on');$('#mask').classList.add('on');
+}
+function closeSheet(){$('#sheet').classList.remove('on');$('#mask').classList.remove('on')}
+function cpText(t,okMsg){
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+   navigator.clipboard.writeText(t).then(function(){toast(okMsg)}).catch(fb);
+ }else fb();
+ function fb(){
+   var box=document.querySelector('#sheet textarea');var ok=false;
+   if(box){try{box.focus();box.select();box.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e){}}
+   toast(ok?okMsg:'已选中，长按复制');
+ }
+}
+function toast(m){var el=$('#toast');el.textContent=m;el.classList.add('on');
+ setTimeout(function(){el.classList.remove('on')},1800)}
+
 document.addEventListener('click',function(e){
+ var g=e.target.closest('.pk');
+ if(g){render(g.getAttribute('data-g'));return}
  var t=e.target.closest('.js-tog');
  if(t){toggle(t.getAttribute('data-id'),t);return}
+ var p=e.target.closest('.js-pk');
+ if(p){openPK(p.getAttribute('data-id'));return}
  if(e.target.closest('#moreBtn')){
    var r=$('#rest'),open=r.hidden;r.hidden=!open;
    $('#moreArr').textContent=open?'收起 ⌃':'展开 ⌄';
  }
+ if(e.target.closest('#boxBtn'))openBox();
  if(e.target.id==='msgBtn')openMsg();
  if(e.target.id==='mask')closeSheet();
- if(e.target.id==='cpMsg')copyMsg();
+ if(e.target.id==='cpMsg')cpText(MSG,'已复制，去家长群粘贴');
+ if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-function openMsg(){
- var s=$('#sheet');
- s.innerHTML='<h3>发家长群</h3><p>照原样发就行，家长看得懂</p>'+
-  '<textarea id="msgBox" readonly>'+esc(MSG)+'</textarea>'+
-  '<button class="cp" id="cpMsg">复制</button>';
- s.classList.add('on');$('#mask').classList.add('on');
-}
-function closeSheet(){$('#sheet').classList.remove('on');$('#mask').classList.remove('on')}
-function copyMsg(){
- var t=$('#msgBox');t.focus();t.select();
- if(navigator.clipboard&&navigator.clipboard.writeText){
-   navigator.clipboard.writeText(MSG).then(function(){toast('已复制，去家长群粘贴')}).catch(fb);
- }else fb();
- function fb(){var ok=false;try{t.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e2){}
-   toast(ok?'已复制，去家长群粘贴':'已选中，长按复制')}
-}
-function toast(m){var el=$('#toast');el.textContent=m;el.classList.add('on');
- setTimeout(function(){el.classList.remove('on')},1800)}
-render();
+var d=new Date();
+$('#dt').textContent=(d.getMonth()+1)+' 月 '+d.getDate()+' 日';
+render('self');
 </script>
 </body>
 </html>
