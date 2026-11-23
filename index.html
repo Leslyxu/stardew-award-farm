@@ -3,129 +3,155 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>这周投什么</title>
+<title>这周投什么 · 奖杯农场</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 :root{
- --ink:#15181f; --ink2:#3d434f; --ink3:#818b9c; --line:#e6e9ef;
- --bg:#f4f5f8; --card:#fff; --dark:#171a21;
+ --ink:#3a2a18; --ink2:#6b5638; --ink3:#a08c6c;
+ --line:#4a2f18; --paper:#fdf6e5; --card:#fffdf6;
+ --yellow:#ffd964; --green:#cdeaa5; --blue:#c3e2f7; --red:#e05a3a;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);
+body{
+ background:var(--paper);
+ color:var(--ink);
  font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
- padding:0 0 40px;
- -webkit-font-smoothing:antialiased}
-main{max-width:520px;margin:0 auto;padding:26px 20px 0}
+ padding:14px 0 0;
+ -webkit-font-smoothing:antialiased;
+ /* 淡淡的格纹，像素农场那种纸感 */
+ background-image:radial-gradient(rgba(74,47,24,.045) 1px,transparent 1px);
+ background-size:14px 14px;
+}
+main{max-width:520px;margin:0 auto;padding:0 16px 0}
 
-/* 顶栏 */
-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px}
-.who{font-size:13px;color:var(--ink3);letter-spacing:.02em}
-.dt{font-size:13px;color:var(--ink3);font-variant-numeric:tabular-nums}
+/* 顶部插画 */
+.banner{position:relative;border:3px solid var(--line);border-radius:16px;overflow:hidden;
+ background:#8fc45e;box-shadow:5px 5px 0 rgba(74,47,24,.16);line-height:0}
+.banner img{width:100%;height:130px;object-fit:cover;object-position:center 44%;display:block}
+.bar{display:flex;align-items:center;justify-content:space-between;margin:9px 2px 0}
+.who{font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
+.date{font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
 
 /* 小标题 */
-.lead{font-size:13px;color:var(--ink3);margin:0 0 10px;letter-spacing:.04em}
+.lead{display:flex;align-items:center;gap:7px;margin:18px 2px 9px;
+ font-size:14px;font-weight:800;color:var(--ink);letter-spacing:.02em}
+.lead::after{content:"";flex:1;height:2px;border-radius:2px;
+ background:repeating-linear-gradient(90deg,rgba(74,47,24,.16) 0 5px,transparent 5px 10px)}
 
 /* 主卡 */
-.hero{background:var(--dark);color:#fff;border-radius:20px;padding:22px 22px 20px;
- box-shadow:0 10px 30px -14px rgba(20,24,34,.5)}
-.overline{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.left{font-size:13px;color:#9aa4b6;letter-spacing:.03em}
-.left b{color:#fff;font-size:38px;font-weight:700;line-height:1;
- font-variant-numeric:tabular-nums;margin:0 2px;vertical-align:-5px;letter-spacing:-.02em}
-.pill{font-size:11.5px;color:#c9d2e2;border:1px solid rgba(255,255,255,.22);
- border-radius:999px;padding:3px 10px;white-space:nowrap}
-.hero h2{margin:0 0 6px;font-size:21px;line-height:1.35;font-weight:650;letter-spacing:-.01em}
-.hero .meta{margin:0 0 16px;font-size:13px;color:#98a2b4}
-.hero .tl{margin:0 0 4px;font-size:14.5px;color:#e7ebf2;line-height:1.6}
-.hero .tl2{margin:0 0 18px;font-size:14.5px;color:#98a2b4;line-height:1.6}
+.hero{background:var(--yellow);border:3px solid var(--line);border-radius:16px;
+ padding:14px 15px 13px;box-shadow:5px 5px 0 rgba(74,47,24,.2)}
+.hrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.72);
+ border:2px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px;
+ font-size:11.5px;font-weight:700;color:var(--ink)}
+.chip .e{display:flex;color:var(--ink)}
+.chip .e svg{width:15px;height:15px;stroke-width:2}
+.days{display:flex;align-items:baseline;gap:2px;margin:0 0 4px}
+.days b{font-size:48px;font-weight:900;line-height:.95;letter-spacing:-.03em;
+ font-variant-numeric:tabular-nums;text-shadow:2px 2px 0 rgba(255,255,255,.75)}
+.days span{font-size:20px;font-weight:900;margin-left:3px}
+.hero h2{margin:0 0 5px;font-size:19px;line-height:1.35;font-weight:800;letter-spacing:-.01em}
+.hero .meta{margin:0 0 12px;font-size:12.5px;color:#8a6b34;font-weight:600}
+.tl{display:flex;gap:7px;margin:0 0 3px;font-size:13.5px;line-height:1.55;color:#5a4425}
+.tl i{font-style:normal;color:#a8863f}
+.tl2{margin:0 0 12px;font-size:13.5px;line-height:1.55;color:#8a7135}
 .cta{display:flex;align-items:center;justify-content:space-between;width:100%;
- font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:#fff;
- border:0;border-radius:12px;padding:13px 16px;cursor:pointer}
-.cta i{font-style:normal;color:var(--ink3);font-weight:400}
+ font:inherit;font-size:14.5px;font-weight:800;color:#fffdf6;background:var(--line);
+ border:0;border-radius:11px;padding:13px 15px;cursor:pointer;
+ box-shadow:3px 3px 0 rgba(46,28,12,.35)}
+.cta:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(46,28,12,.35)}
+.cta i{display:flex;opacity:.85}
+.cta i svg{transition:transform .22s}
+.cta.act i svg{transform:rotate(180deg)}
 
 /* 次卡 */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;
- padding:14px 14px 13px;text-align:left;font:inherit;cursor:pointer;color:inherit;
- display:flex;flex-direction:column;gap:3px;min-height:104px}
-.card:active{background:#fafbfc}
-.card .d{font-size:19px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.2}
-.card .d.hot{color:#c0392b}
-.card .t{font-size:13.5px;color:var(--ink2);line-height:1.45;font-weight:500}
-.card .s{font-size:11.5px;color:var(--ink3);margin-top:auto;padding-top:6px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{border:3px solid var(--line);border-radius:14px;padding:12px 12px 11px;
+ font:inherit;text-align:left;cursor:pointer;color:inherit;display:flex;flex-direction:column;
+ gap:3px;box-shadow:4px 4px 0 rgba(74,47,24,.16);min-height:104px}
+.card:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(74,47,24,.16)}
+.g{background:var(--green)} .b{background:var(--blue)}
+.card .e{display:flex;margin-bottom:2px;color:var(--ink2)}
+.card .e svg{width:22px;height:22px;color:#3f3018;stroke-width:2}
+.card .d{font-size:22px;font-weight:900;line-height:1.05;letter-spacing:-.02em;
+ font-variant-numeric:tabular-nums;text-shadow:1.5px 1.5px 0 rgba(255,255,255,.7)}
+.card .d small{font-size:11.5px;font-weight:800;margin-left:1px}
+.card .t{font-size:12.5px;line-height:1.4;font-weight:700;color:#4a3a20}
+.card .s{font-size:11px;color:#6b5836;margin-top:auto;padding-top:5px;font-weight:600}
 
-/* 更多 */
-.more{width:100%;margin-top:16px;background:none;border:0;font:inherit;
- font-size:13.5px;color:var(--ink3);padding:14px 4px;cursor:pointer;
- display:flex;align-items:center;justify-content:space-between;
- border-top:1px solid var(--line)}
-.more u{text-decoration:none;font-size:11px;color:#aab3c2}
-
-/* 其他区 */
-#rest{padding-top:6px}
-.grp{margin:18px 0 8px;font-size:12px;color:var(--ink3);letter-spacing:.05em}
-.row{display:flex;align-items:center;gap:10px;padding:13px 14px;background:#fff;
- border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer}
-.row .nm{flex:1;font-size:14px;line-height:1.45;color:var(--ink2)}
-.row .dd{font-size:12px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
-.row .dd.hot{color:#c0392b}
+/* 其他 */
+.more{width:100%;margin:16px 0 0;background:var(--card);border:3px solid var(--line);
+ border-radius:13px;font:inherit;font-size:13px;font-weight:700;color:var(--ink2);
+ padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+ box-shadow:4px 4px 0 rgba(74,47,24,.13)}
+.more u{text-decoration:none;font-size:11px;color:var(--ink3)}
+#rest{padding-top:4px}
+.grp{display:flex;align-items:center;gap:6px;margin:14px 2px 7px;font-size:12px;font-weight:800;color:var(--ink2)}
+.row{display:flex;align-items:center;gap:9px;padding:11px 12px;background:var(--card);
+ border:2px solid var(--line);border-radius:11px;margin-bottom:7px;cursor:pointer;
+ box-shadow:3px 3px 0 rgba(74,47,24,.1)}
+.row .e{display:flex;color:var(--ink2)}
+.row .e svg{width:16px;height:16px}
+.row .nm{flex:1;font-size:13.5px;line-height:1.4;color:var(--ink);font-weight:600}
+.row .dd{font-size:11.5px;color:var(--ink3);white-space:nowrap;font-weight:700;
+ font-variant-numeric:tabular-nums}
+.row .dd.hot{color:var(--red)}
 
 /* 明细 */
-.det{background:#fff;border:1px solid var(--line);border-radius:12px;
- padding:4px 14px 10px;margin:-2px 0 10px}
-.det.on{display:block}
-.det>*:first-child{padding-top:10px}
-.det .r{display:flex;gap:10px;padding:7px 0;border-top:1px solid #f0f2f6;font-size:13px;line-height:1.7}
+.det{background:#fffdf6;border:2px dashed rgba(74,47,24,.35);border-radius:11px;
+ padding:2px 12px 8px;margin:2px 0 8px}
+.det .r{display:flex;gap:9px;padding:7px 0;border-top:1px dashed rgba(74,47,24,.14);font-size:12.5px;line-height:1.7}
 .det .r:first-child{border-top:0}
-.det .r b{flex:0 0 52px;color:var(--ink3);font-weight:400}
+.det .r b{flex:0 0 48px;color:var(--ink3);font-weight:700}
 .det .r span{flex:1;color:var(--ink2);word-break:break-word}
-.det .r span a{color:#1a56a8}
-.hero .det{margin-top:12px;margin-bottom:0;background:#fff}
-#duoDet .det{margin-top:2px}
+.det .r span a{color:#b4531f}
+.hero .det{background:rgba(255,255,255,.82);border-color:rgba(74,47,24,.3);margin-top:12px;margin-bottom:0}
 
-/* 话术 */
-.msgw{margin-top:30px;text-align:center}
-.msgw button{font:inherit;font-size:12.5px;color:#9aa3b2;background:none;border:0;
- padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;
- text-decoration-color:#d4d9e2}
+.end{height:22px}
+.msgw{padding:14px 0 0;text-align:center}
+.msgw button{font:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);
+ background:var(--card);border:2px solid rgba(74,47,24,.28);border-radius:999px;
+ padding:8px 16px;cursor:pointer;box-shadow:2px 2px 0 rgba(74,47,24,.1)}
 
 /* 浮层 */
-#mask{position:fixed;inset:0;background:rgba(12,15,22,.4);display:none;z-index:70}
+#mask{position:fixed;inset:0;background:rgba(58,42,24,.45);display:none;z-index:70}
 #mask.on{display:block}
-#sheet{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;
- max-height:84vh;overflow:auto;z-index:80;padding:20px 20px 28px;display:none}
+#sheet{position:fixed;left:0;right:0;bottom:0;background:#fffdf6;border-top:3px solid var(--line);
+ border-radius:20px 20px 0 0;max-height:84vh;overflow:auto;z-index:80;padding:18px 18px 26px;display:none}
 #sheet.on{display:block}
-#sheet h3{margin:0 0 4px;font-size:16px;font-weight:650}
-#sheet p{margin:0 0 14px;font-size:12.5px;color:var(--ink3)}
-#sheet textarea{width:100%;min-height:300px;font:13.5px/1.85 inherit;color:var(--ink2);
- padding:12px;border:1px solid var(--line);border-radius:12px;resize:vertical;background:#fcfcfd}
-#sheet .cp{margin-top:12px;width:100%;font:inherit;font-size:14px;font-weight:600;
- background:var(--ink);color:#fff;border:0;border-radius:12px;padding:14px;cursor:pointer}
-#toast{position:fixed;left:50%;top:20px;transform:translateX(-50%) translateY(-12px);
- background:var(--ink);color:#fff;font-size:12.5px;padding:9px 16px;border-radius:999px;
- opacity:0;pointer-events:none;transition:.2s;z-index:99}
+#sheet h3{margin:0 0 3px;font-size:16px;font-weight:800}
+#sheet p{margin:0 0 12px;font-size:12px;color:var(--ink3)}
+#sheet textarea{width:100%;min-height:290px;font:13px/1.85 inherit;color:var(--ink2);
+ padding:11px;border:2px solid var(--line);border-radius:11px;resize:vertical;background:#fff}
+#sheet .cp{margin-top:11px;width:100%;font:inherit;font-size:14px;font-weight:800;
+ background:var(--line);color:#fffdf6;border:0;border-radius:11px;padding:13px;cursor:pointer;
+ box-shadow:3px 3px 0 rgba(46,28,12,.3)}
+#toast{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-12px);
+ background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
+ border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:360px){.left b{font-size:32px}.hero h2{font-size:19px}}
+@media(max-width:360px){.days b{font-size:40px}.hero h2{font-size:17.5px}}
 </style>
 </head>
 <body>
 <main>
-<header>
-  <span class="who">宝安区 · 美术</span>
-  <span class="dt" id="dt"></span>
-</header>
+<div class="banner"><img src="farm-banner.webp" alt="奖杯农场"></div>
+<div class="bar"><span class="who">宝安区 · 美术老师</span><span class="date" id="dt"></span></div>
 
 <p class="lead">这周先做这一件</p>
 <article class="hero" id="hero"></article>
 
-<p class="lead" style="margin-top:26px">顺手能拿的</p>
+<p class="lead">顺手能拿的</p>
 <div class="duo" id="duo"></div>
 <div id="duoDet"></div>
 
 <button class="more" id="moreBtn"><span id="moreTxt">其他</span><u id="moreArr">展开 ⌄</u></button>
 <div id="rest" hidden></div>
 
-<div class="msgw"><button id="msgBtn">发家长群的话术（版图竞赛）</button></div>
+<div class="msgw"><button id="msgBtn">发家长群的话术</button></div>
+<div class="end"></div>
 </main>
 
 <div id="mask"></div>
@@ -134,14 +160,15 @@ header{display:flex;align-items:baseline;justify-content:space-between;margin-bo
 
 <script>
 var LANES={"lw":{"name":"论文","hint":"写完就能投","items":[{"id":"sz-jyxh-2026","nm":"深圳市教育学会 2026 年度主题论文","due":"2026-12-15","org":"深圳市教育学会","lv":"市","rows":[["主办","深圳市教育学会（市教育局主管的市级学会）"],["主题","大中小幼一体化培养的育人接力与实践创新。分「学段衔接类」「跨学段类」，小学可写小幼衔接、小初衔接"],["谁能报","市教育学会个人会员；每人限 1 篇，多人联合申报对每位参与人也算 1 篇"],["时间","2026-10-30 至 12-15，逾期或材料不全不受理"],["硬要求","未公开发表；文字重复率 ≤20%；要有真实校本案例（做法+过程+成效+反思），有调研数据、图表更占优"],["交什么","论文正文（按通知附件格式）+ 查重报告，官网在线提交"],["投到哪","szsjyxh.cn →「大中小幼一体化…」主题论文征集专用版块"],["待遇","择优汇编结集、部分作者受邀论坛交流；不收费"],["门槛","必须先是学会个人会员（会费按学会规定），非会员不予受理"],["咨询","廖老师 0755-82248007；余老师 0755-82246534"]]},{"id":"gd-jyxh-essay","nm":"广东教育学会 年度学术讨论会征文","due":"","org":"广东教育学会","lv":"省","next":"每年 7—9 月","rows":[["主办","广东教育学会（省教育厅主管）"],["时间","每年 7—9 月发通知、暑期截稿（2026 年度已截，等下一轮）"],["硬要求","查重 <20%；如同意推荐知网，另需 AIGC 检测 <30%；每人限 1 篇，须第一作者"],["交什么","附件1 + 论文正文 + 查重报告 + 附件2，Word 版；文件名「论文编号+市+学校+姓名」"],["投到哪","gdjyxh.org.cn 在线缴费并上传，同时寄纸质 2 份 + 发 gdjyxhxs@126.com（三步缺一不可）"],["待遇","一二三等奖；优秀征文推荐《广东教育》《广东教学报》发表，可入知网会议论文集"],["费用","收评审费（会员与非会员不同价）"]]}]},"kt":{"name":"课题","hint":"按申报季排","items":[{"id":"kt-gd","nm":"广东省教育科学规划课题","due":"","org":"广东省教育厅","lv":"省","next":"每年春季","rows":[["主办","广东省教育厅（省教育科学规划领导小组办公室）"],["级别","省级·规划课题，评职称、评优最硬的一类"],["时间","每年春季发布申报通知，经学校—区—市逐级推荐，个人不能直报"],["交什么","课题申请书（盖章）、论证活页、推荐汇总表"],["投到哪","省教育科研管理平台，入口以省教育厅通知为准；区里一般先在宝教通发转发通知"],["节奏","申报 3—5 月 → 立项 7—8 月 → 中期 次年 11 月 → 结题 第三年 3 月"]]},{"id":"kt-sz","nm":"深圳市教育科学规划课题","due":"","org":"深圳市教育局","lv":"市","next":"每年 3—4 月","rows":[["主办","深圳市教育局 / 市教育科学研究院"],["级别","市级·规划课题"],["时间","每年 3—4 月申报，学校推荐、区里汇总"],["交什么","课题申请书、论证活页；预期成果要写清楚（一般要求公开发表论文 1 篇）"],["投到哪","深圳市教育科研管理系统（账号由学校科研处开）"],["说明","先看本校科研处转发通知，区里名额有限，越早报越好"]]},{"id":"kt-ba","nm":"宝安区教育科学规划课题","due":"","org":"宝安区教科院","lv":"区","next":"申报 3—4 月","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级课题——学校绩效必录，最稳的一块"],["时间","申报 3—4 月；中期检查 11 月；结题材料审核每年 3-31（宝教通「课题结题材料审核」长期有效）"],["交什么","申请书 / 中期报告 / 结题报告 + 成果附件"],["投到哪","宝教通（bjt.baoan.edu.cn）→ 活动广场 → 科研活动汇总"],["说明","区课题是省、市课题的前置台阶，先拿区级再往上冲"]]}]},"bs":{"name":"教学比赛","hint":"区里正在收","items":[{"id":"ba-meiyu-school","nm":"宝安区「美育一件事」校级亮点做法展示","due":"2026-12-31","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院（区教育局平台发布）"],["级别","区级——本校绩效必录口径"],["截止","2026-12-31"],["交什么","校级亮点做法材料，在宝教通活动页上传"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1835912&type=3"],["说明","具体格式、字数、件数以活动页公告为准（要登录才看得到）；这是美术老师最容易出彩的区级口子"]]},{"id":"ba-ai-art","nm":"2026 宝安区高中 AI 赋能学科育人典型案例（美术）","due":"2026-12-02","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2026-12-02（还剩不到 10 天）"],["交什么","AI 赋能学科育人的教学案例，按学科分开征集，美术单列"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836312&type=3"],["说明","只要案例，不用交视频；适合把你这学期用 AI 备课/生成素材的做法写成一页纸"]]},{"id":"ba-bjt-case","nm":"2026 宝安区「宝教通」平台应用案例征集","due":"2027-01-24","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级"],["截止","2027-01-24"],["交什么","用宝教通做教学/教研的应用案例"],["投到哪","bjt.baoan.edu.cn/cams/cams/home/resource?id=1836296&type=3"],["说明","门槛低、竞争小，寒假前能写完"]]},{"id":"ba-res-2026","nm":"2026 宝安区教育资源与网络空间评比（课件/微课/案例）","due":"2026-11-23","org":"宝安区教科院","lv":"区","rows":[["主办","深圳市宝安区教育科学研究院"],["级别","区级——本校去年在这一项拿了 12 个奖，是性价比最高的一项"],["截止","2026-11-23（今天截止，今年来不及了）"],["分项","课件 / 微课 / 教学案例 / 网络空间，四项分开报"],["投到哪","宝教通活动广场，各分项单独入口"],["说明","明年 11 月同一时间还会开，提前两周准备"]]}]},"xs":{"name":"学生","hint":"只放白名单","items":[{"id":"bantu","nm":"“美丽中国”第七届全国版图知识竞赛","due":"2027-03-31","org":"自然资源部宣教中心","lv":"白名单","rows":[["主办","自然资源部宣传教育中心（2025—2028 学年教育部白名单）"],["谁能报","全国中小学生，分小学组 / 中学组"],["怎么报","pecmnr.cn/gjbt →「开始」→「学生注册」→ 选「个人」；填组别、姓名、地区、身份证号、手机、密码。个人参赛不审核，提交即通过"],["答题","12-01 起至 2027-03-31；小学 20 题 10 分钟，中学 40 题 20 分钟；可答两次取高分"],["奖项","一二三等奖、「国家版图小卫士」；教师有优秀指导教师奖"],["证书","2027-04-20 起查结果，07-31 前下载"],["费用","0 元"]]},{"id":"cn-paint-31","nm":"第三十一届全国中小学生绘画书法作品比赛","due":"","org":"中国儿童中心","lv":"白名单","next":"通知待发","rows":[["主办","中国儿童中心（教育部白名单第 35 项）"],["状态","2026-11-13 已在嘉兴启动第 31 届；报名通知和主题还没发"],["往年节奏","4 月发通知、5—6 月平台提交、7—8 月评审"],["唯一渠道","微信公众号「学与玩杂志」→ 活动报名 → 活动服务平台（shds.zget.org），个人线上报名，免费"],["交什么","作品照片 + 学生与作品合影；作品标签打印贴在原件背面，原件寄组委会"],["规格","绘画 ≤40×60cm（国画四尺三开）；书法 ≤四尺对开；摄影 ≥500K 并注明设备"],["说明","等通知，别提前收作品；教师指导奖要求至少辅导 20 人、其中有获奖"]]}]}};
-var TLDR={"ba-ai-art":["一页纸教学案例，不交视频","宝教通活动页上传，登录就能交"],"sz-jyxh-2026":["8000 字以内，查重 ≤20%","必须先有市教育学会会员身份"],"ba-meiyu-school":["校级做法材料，图文即可","宝教通活动页上传"],"ba-bjt-case":["拿宝教通上课的经历写成案例","门槛最低，寒假前能写完"],"ba-res-2026":["课件 / 微课 / 案例，四类分开报","明年 11 月同一时间还会开"],"bantu":["学生自己手机上答题，免费","12-01 开考，先注册"]};
+var TLDR={"ba-ai-art":["一页纸教学案例，不交视频","宝教通上传，登录就能交"],"sz-jyxh-2026":["8000 字以内，查重 ≤20%","要先有市教育学会会员"],"ba-meiyu-school":["校级做法材料，图文即可","宝教通活动页上传"],"ba-bjt-case":["拿宝教通上课的经历写成案例","门槛最低，寒假前能写完"],"ba-res-2026":["课件 / 微课 / 案例，四类分开报","明年 11 月还会开"],"bantu":["学生自己手机上答题，免费","12-01 开考，先注册"]};
+var ICON={"bs": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.4 3.2 16.9 5.7 8.4 14.2 4.6 15.4 5.8 11.6z\"/><path d=\"M3.6 16.6h12.8\"/></svg>", "lw": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4.6\" y=\"2.9\" width=\"10.8\" height=\"14.2\" rx=\"1.8\"/><path d=\"M7.4 7h5.2M7.4 10h5.2M7.4 13h3.2\"/></svg>", "kt": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.9 5.2c2-.9 4-.9 6.1 0v10c-2.1-.9-4.1-.9-6.1 0z\"/><path d=\"M16.1 5.2c-2-.9-4-.9-6.1 0v10c2.1-.9 4.1-.9 6.1 0z\"/></svg>", "xs": "<svg viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 17.2V3\"/><path d=\"M6 3.8h9.2l-2.3 3.2 2.3 3.2H6z\"/></svg>"};
+var SN={"ba-ai-art":"AI 赋能学科育人案例（美术）","ba-meiyu-school":"「美育一件事」校级做法","sz-jyxh-2026":"市教育学会 · 主题论文","ba-bjt-case":"「宝教通」平台应用案例","ba-res-2026":"教育资源与网络空间评比","gd-jyxh-essay":"省教育学会 · 年度征文"};
 var MSG="各位家长，有个免费的比赛可以让孩子练练手，教育部白名单里的：\n“美丽中国”第七届全国版图知识竞赛（中小学组）。\n\n报名网址：https://www.pecmnr.cn/gjbt/que-register.html\n打开后点“学生注册”，参赛方式选“个人”，填孩子姓名、身份证号、地区、手机号，自己设个密码，提交就通过了，不用审核。\n\n提醒一句：手机上字比较小，两指放大一下再看。\n\n12月1日才开考，现在先报名就行。小学组20道题10分钟，中学组40道题20分钟，单选加多选，每人能考两次，取高分。\n\n考的是国家版图和自然资源常识，想让孩子准备一下的，“i自然”App里有学习专区。\n\n报名到2027年3月31日截止，有问题问我。";
 var SHORT={"深圳市宝安区教育科学研究院":"区教科院","宝安区教科院":"区教科院",
  "深圳市教育学会":"市教育学会","广东教育学会":"省教育学会","广东省教育厅":"省教育厅",
  "深圳市教育局 / 市教育科学研究院":"市教科院","自然资源部宣教中心":"自然资源部","中国儿童中心":"中国儿童中心"};
 </script>
 <script>
-var OPEN=null;
 function $(s){return document.querySelector(s)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -149,18 +176,13 @@ function days(d){if(!d)return null;var p=String(d).split('-');if(p.length<3)retu
  var t=new Date();t.setHours(0,0,0,0);var e=new Date(+p[0],+p[1]-1,+p[2]);
  return Math.round((e-t)/86400000)}
 function mmdd(d){var p=String(d).split('-');return p[1]+'-'+p[2]}
-function all(){
- var a=[];Object.keys(LANES).forEach(function(k){
-  LANES[k].items.forEach(function(x){x.__k=k;a.push(x)})});
- return a}
-function byId(id){return all().filter(function(x){return x.id===id})[0]}
-function inPlay(){
- return all().filter(function(x){
-   var n=days(x.due);return n!=null&&n>=1
- }).sort(function(a,b){return days(a.due)-days(b.due)})}
+function all(){var a=[];Object.keys(LANES).forEach(function(k){
+  LANES[k].items.forEach(function(x){x.__k=k;a.push(x)})});return a}
+function inPlay(){return all().filter(function(x){var n=days(x.due);return n!=null&&n>=1})
+ .sort(function(a,b){return days(a.due)-days(b.due)})}
 function linkify(t){
  return esc(t).replace(/(https?:\/\/[^\s，。）)]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>')
-  .replace(/((?:[a-z0-9-]+\.)+(?:cn|org|com|net|edu\.cn)(?:\/[^\s，。）)]*)?)/g,'<a href="https://$1" target="_blank" rel="noopener">$1</a>')
+  .replace(/((?:[a-z0-9-]+\.)+(?:cn|org|com|net)(?:\/[^\s，。）)]*)?)/g,'<a href="https://$1" target="_blank" rel="noopener">$1</a>')
 }
 function detHTML(it){
  var rows=(it.rows||[]).map(function(r){
@@ -173,40 +195,40 @@ function toggle(id,btn){
  document.querySelectorAll('.det').forEach(function(x){
    if(x!==d&&x.style.display==='block'){x.style.display='none';
      var b=document.querySelector('.js-tog[data-id="'+x.id.slice(2)+'"]');
-     if(b&&b.querySelector('i'))b.querySelector('i').textContent='→'}
+     if(b&&b.classList.contains('cta'))b.classList.remove('act')}
  });
  d.style.display=on?'block':'none';
- if(btn){var i=btn.querySelector('i');if(i)i.textContent=on?'⌃':'→'}
+ if(btn&&btn.classList.contains('cta'))btn.classList.toggle('act',on)
 }
 function heroHTML(it){
- var n=days(it.due);
- var tl=TLDR[it.id]||['',''];
- var out='<div class="overline"><div class="left">剩 <b>'+n+'</b> 天</div>'+
-  '<span class="pill">'+esc(it.lv)+'级 · '+esc(SHORT[it.org]||it.org.replace(/（.*?）/g,''))+'</span></div>'+
-  '<h2>'+esc(it.nm)+'</h2>'+
+ var n=days(it.due), tl=TLDR[it.id]||['',''];
+ return '<div class="hrow"><span class="chip"><span class="e">'+ICON[it.__k]+'</span>'+
+  esc(it.lv)+'级 · '+esc(SHORT[it.org]||it.org)+'</span></div>'+
+  '<div class="days"><b>'+n+'</b><span>天</span></div>'+
+  '<h2>'+esc(SN[it.id]||it.nm)+'</h2>'+
   '<p class="meta">'+mmdd(it.due)+' 截止</p>'+
-  '<p class="tl">'+esc(tl[0])+'</p><p class="tl2">'+esc(tl[1])+'</p>'+
-  '<button class="cta js-tog" data-id="'+it.id+'"><span>看 6 行要求</span><i>→</i></button>'+
+  '<p class="tl"><i>·</i><span>'+esc(tl[0])+'</span></p>'+
+  '<p class="tl2">'+esc(tl[1])+'</p>'+
+  '<button class="cta js-tog" data-id="'+it.id+'"><span>看 6 行要求</span><i><svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l5 5 5-5"/></svg></i></button>'+
   detHTML(it);
- return out;
 }
 function render(){
- var d=new Date();var M=d.getMonth()+1,D=d.getDate();
- $('#dt').textContent=M+' 月 '+D+' 日';
+ var d=new Date();
+ $('#dt').textContent=(d.getMonth()+1)+' 月 '+d.getDate()+' 日';
  var list=inPlay().filter(function(x){return x.__k!=='xs'});
- var hero=list[0], duo=list.slice(1,3), rest=list.slice(3);
+ var hero=list[0], duo=list.slice(1,3);
  $('#hero').innerHTML=heroHTML(hero);
  $('#duo').innerHTML=duo.map(function(it){
    var n=days(it.due);
-   return '<button class="card js-tog" data-id="'+it.id+'">'+
-    '<span class="d'+(n<=14?' hot':'')+'">'+n+' 天</span>'+
-    '<span class="t">'+esc(it.nm.replace(/^\d{4} (宝安区|深圳市)/,'').replace(/^\./,''))+'</span>'+
-    '<span class="s">'+mmdd(it.due)+' 截 <span style="float:right">›</span></span></button>'
+   return '<button class="card js-tog '+(it.__k==='lw'?'g':'b')+'" data-id="'+it.id+'">'+
+    '<span class="e">'+ICON[it.__k]+'</span>'+
+    '<span class="d">'+n+'<small>天</small></span>'+
+    '<span class="t">'+esc(SN[it.id]||it.nm)+'</span>'+
+    '<span class="s">'+mmdd(it.due)+' 截</span></button>'
  }).join('');
  $('#duoDet').innerHTML=duo.map(function(it){return detHTML(it)}).join('');
 
- // 其他
- var groups=[['bs','区里其他'],['lw','论文·下一轮'],['kt','课题·按季报'],['xs','学生·只放白名单']];
+ var groups=[['bs','区里其他'],['lw','论文 · 下一轮'],['kt','课题 · 按季报'],['xs','学生 · 只放白名单']];
  var used={};used[hero.id]=1;duo.forEach(function(x){used[x.id]=1});
  var h='';
  groups.forEach(function(g){
@@ -219,24 +241,24 @@ function render(){
      var n=days(it.due);
      var dd=it.next?it.next:(n==null?'待定':(n<0?'已截止':(n===0?'今天截':mmdd(it.due)+' 截')));
      var hot=(n!=null&&n>=0&&n<=14)?' hot':'';
-     h+='<div class="row js-tog" data-id="'+it.id+'"'+(n!=null&&n<1?' style="opacity:.55"':'')+'><span class="nm">'+esc(it.nm)+
+     h+='<div class="row js-tog" data-id="'+it.id+'"'+(n!=null&&n<1?' style="opacity:.5"':'')+'>'+
+        '<span class="e">'+ICON[it.__k]+'</span><span class="nm">'+esc(it.nm)+
         '</span><span class="dd'+hot+'">'+dd+'</span></div>'+detHTML(it);
    });
  });
  $('#rest').innerHTML=h;
- var cnt=document.querySelectorAll('#rest .row').length;
- $('#moreTxt').textContent='其他 '+cnt+' 项 · 课题 / 学生 / 已过';
+ $('#moreTxt').textContent='其他 '+document.querySelectorAll('#rest .row').length+' 项 · 课题 / 学生 / 已过';
 }
 document.addEventListener('click',function(e){
  var t=e.target.closest('.js-tog');
- if(t){var id=t.getAttribute('data-id');toggle(id,t);return}
- if(e.target.id==='moreBtn'||e.target.closest('#moreBtn')){
+ if(t){toggle(t.getAttribute('data-id'),t);return}
+ if(e.target.closest('#moreBtn')){
    var r=$('#rest'),open=r.hidden;r.hidden=!open;
    $('#moreArr').textContent=open?'收起 ⌃':'展开 ⌄';
  }
- if(e.target.id==='msgBtn'){openMsg()}
- if(e.target.id==='mask'){closeSheet()}
- if(e.target.id==='cpMsg'){copyMsg()}
+ if(e.target.id==='msgBtn')openMsg();
+ if(e.target.id==='mask')closeSheet();
+ if(e.target.id==='cpMsg')copyMsg();
 });
 function openMsg(){
  var s=$('#sheet');
@@ -248,14 +270,11 @@ function openMsg(){
 function closeSheet(){$('#sheet').classList.remove('on');$('#mask').classList.remove('on')}
 function copyMsg(){
  var t=$('#msgBox');t.focus();t.select();
- var done=function(){toast('已复制，去家长群粘贴')};
  if(navigator.clipboard&&navigator.clipboard.writeText){
-   navigator.clipboard.writeText(MSG).then(done).catch(fallback);
- }else fallback();
- function fallback(){
-   var ok=false;try{t.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e){}
-   toast(ok?'已复制，去家长群粘贴':'已选中，长按复制');
- }
+   navigator.clipboard.writeText(MSG).then(function(){toast('已复制，去家长群粘贴')}).catch(fb);
+ }else fb();
+ function fb(){var ok=false;try{t.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e2){}
+   toast(ok?'已复制，去家长群粘贴':'已选中，长按复制')}
 }
 function toast(m){var el=$('#toast');el.textContent=m;el.classList.add('on');
  setTimeout(function(){el.classList.remove('on')},1800)}
