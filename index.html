@@ -523,7 +523,7 @@ document.addEventListener('click',function(e){
  if(e.target.id==='cpMsg')cpText(stuText(),'已复制提前准备版（未开始，别当报名通知发）');
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var BUILD='2026-11-24 22:13',VER='89';
+var BUILD='2026-11-24 22:18',VER='90';
 $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
 /* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
 (function(){
@@ -533,22 +533,8 @@ $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
   .then(function(j){ if(String(j.v)!==VER){ b.classList.add('stale'); t('↻ 新版 v'+j.v); } })
   .catch(function(){});
  b.onclick=function(){
-  b.disabled=true; t('检查中…');
-  fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
-   .then(function(j){
-    if(String(j.v)!==VER){
-      if(sessionStorage.getItem('rfTry')){
-        sessionStorage.removeItem('rfTry'); t('强制重载…');
-        location.replace(location.pathname+'?r='+Date.now()); return;
-      }
-      sessionStorage.setItem('rfTry','1'); t('载入 v'+j.v+'…');
-      location.replace(location.pathname+'?r='+Date.now());
-    } else {
-      sessionStorage.removeItem('rfTry'); b.disabled=false; b.classList.remove('stale');
-      t('已是最新 ✓'); setTimeout(function(){t('↻ 刷新')},2000);
-    }
-   })
-   .catch(function(){ location.replace(location.pathname+'?r='+Date.now()); });
+  b.disabled=true; t('重新拉取…');
+  location.replace(location.pathname+'?r='+Date.now());
  };
 })();
 
