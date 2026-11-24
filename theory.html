@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>理论靠山 · 谁审你的稿 + 国际上在做什么</title>
+<style>
+:root{--ink:#3a2a18;--ink2:#6b5638;--ink3:#a08c6c;--line:#4a2f18;
+--paper:#fdf6e5;--card:#fffdf6;--yellow:#ffd964;--green:#cdeaa5;--blue:#c3e2f7;--red:#e05a3a;--pink:#f7d6de}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);
+ font:15px/1.62 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+ background-image:radial-gradient(rgba(74,47,24,.045) 1px,transparent 1px);background-size:14px 14px;
+ padding:0 0 46px;-webkit-font-smoothing:antialiased}
+main,header{max-width:620px;margin:0 auto;padding:0 16px}
+header{padding-top:14px}
+.back{display:inline-block;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;
+ border:2px solid rgba(74,47,24,.3);border-radius:999px;padding:3px 11px;background:var(--card)}
+h1{font-size:23px;font-weight:900;margin:9px 0 3px;letter-spacing:-.01em}
+.sub{margin:0 0 12px;font-size:12.5px;color:var(--ink3);line-height:1.5}
+.nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin:0 0 14px;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2px solid rgba(74,47,24,.26);border-radius:999px;padding:5px 12px;text-decoration:none}
+.nav a b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.lead{background:var(--yellow);border:2.5px solid var(--line);border-radius:14px;
+ box-shadow:4px 4px 0 rgba(74,47,24,.85);padding:13px 15px;margin:0 0 22px}
+.lead p{margin:0 0 7px;font-size:13.5px;line-height:1.6}
+.lead p:last-child{margin:0}
+.lead b{font-weight:900}
+
+h2{font-size:16.5px;font-weight:900;margin:30px 0 4px;padding-left:9px;
+ border-left:5px solid var(--line);line-height:1.35}
+h2 span{display:block;font-size:11.5px;font-weight:700;color:var(--ink3);margin-top:3px;padding-left:0}
+.hint{font-size:12.5px;color:var(--ink2);margin:8px 0 12px;line-height:1.55}
+
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:13px;
+ box-shadow:3px 3px 0 rgba(74,47,24,.15);padding:13px 14px 12px;margin:0 0 11px;position:relative}
+.card.star{box-shadow:3px 3px 0 var(--red);border-color:var(--line)}
+.card h3{margin:0 0 2px;font-size:15px;font-weight:900;line-height:1.45;padding-right:56px}
+.badge{display:inline-block;font-size:10.5px;font-weight:800;color:var(--ink);
+ background:var(--green);border:1.5px solid var(--line);border-radius:999px;
+ padding:1px 8px;margin:0 0 8px;line-height:1.5}
+.card.star .badge{background:var(--pink)}
+.role{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:0 0 9px}
+.role b{color:var(--ink)}
+.card p{margin:0 0 8px;font-size:13.5px;line-height:1.62}
+.card p:last-of-type{margin-bottom:0}
+.card p b.k{display:inline-block;font-size:11px;font-weight:900;background:var(--blue);
+ border:1.5px solid var(--line);border-radius:5px;padding:0 5px;margin-right:5px;vertical-align:1.5px}
+.card p b.k.y{background:var(--yellow)}
+.card p b.k.g{background:var(--green)}
+.card p b.k.r{background:var(--pink)}
+.q{background:#f7f0dd;border-left:3px solid var(--ink3);border-radius:0 7px 7px 0;
+ padding:7px 10px;margin:0 0 8px;font-size:13px;line-height:1.6}
+.src{font-size:11.5px;color:var(--ink3);line-height:1.55;margin:9px 0 0;
+ border-top:1.5px dashed rgba(74,47,24,.2);padding-top:8px;word-break:break-word}
+.src a{color:var(--ink2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.cp{position:absolute;top:10px;right:10px;font:inherit;font-size:10.5px;font-weight:800;color:var(--ink2);
+ background:var(--card);border:1.8px solid rgba(74,47,24,.3);border-radius:999px;padding:2px 8px;cursor:pointer}
+.cp:active{background:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 14px;
+ background:var(--card);border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 9px;text-align:left;border-bottom:1.5px solid rgba(74,47,24,.16);vertical-align:top;line-height:1.5}
+th{background:#f2e8cf;font-weight:900;font-size:11.5px;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td:first-child,td:last-child{white-space:nowrap}
+td b{font-weight:900}
+
+.tpl{background:var(--card);border:2.5px dashed var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.tpl h4{margin:0 0 7px;font-size:13px;font-weight:900}
+.tpl p{margin:0;font-size:13px;line-height:1.7}
+.tpl p+p{margin-top:8px}
+
+.warn{background:#fdeae2;border:2.5px solid var(--red);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.warn p{margin:0;font-size:13px;line-height:1.62}
+.warn p+p{margin-top:7px}
+.warn b{color:#a83318}
+
+ol.traps{padding-left:0;list-style:none;counter-reset:t;margin:0 0 10px}
+ol.traps li{counter-increment:t;position:relative;background:var(--card);border:2.5px solid var(--line);
+ border-radius:12px;padding:12px 14px 12px 42px;margin:0 0 10px;font-size:13.2px;line-height:1.62}
+ol.traps li::before{content:counter(t);position:absolute;left:12px;top:11px;width:21px;height:21px;
+ background:var(--red);color:#fff;font-size:12px;font-weight:900;border-radius:50%;
+ display:flex;align-items:center;justify-content:center}
+ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
+
+.foot{margin:26px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+.foot a{font-size:12.5px;font-weight:800;color:var(--ink);text-decoration:none;background:var(--card);
+ border:2.5px solid var(--line);border-radius:11px;padding:9px 13px;box-shadow:3px 3px 0 rgba(74,47,24,.15)}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(10px);
+ background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
+ border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<header>
+ <a class="back" href="index.html">‹ 返回这周投什么</a>
+ <h1>理论靠山</h1>
+ <p class="sub">你的稿子是谁在审、他们信什么、国际上在做什么。全部是能查到的原文和真刊，没有一句是我编的。</p>
+ <div class="nav">
+  <a href="#dose">① 引用剂量 <b>先看这个</b></a>
+  <a href="#cn">② 国内 8 人</a>
+  <a href="#pol">③ 文件 4 份</a>
+  <a href="#intl">④ 国际 11 条</a>
+  <a href="#tpl">⑤ 抄这两段</a>
+  <a href="#trap">⑥ 五个雷</a>
+ </div>
+</header>
+
+<main>
+<div class="lead">
+ <p><b>先说结论：</b>评审不是看你读了多少书，是看你<b>说的话和课标对不对得上</b>、<b>做的事有没有学生证据</b>。</p>
+ <p>国内这一半解决「别白做」——引对人、引对版本；国际这一半解决「有新意」——但这些只占你稿子的两成，剩下八成必须是你的课堂和学生作品。</p>
+</div>
+
+<h2 id="dose">① 引用剂量：多了反而扣分<span>一份 3000 字申报书/论文，理论引用 5 处以内</span></h2>
+<p class="hint">这条最反直觉，但最真实。评审一天看几十份，通篇"某某指出"的，第一反应是「没自己的东西」。</p>
+<table>
+ <tr><th>位置</th><th>引什么</th><th>数量</th></tr>
+ <tr><td>开头定调</td><td>总书记回信原句 / 课标原句</td><td><b>1–2 处</b></td></tr>
+ <tr><td>理论依据</td><td>一位定标准的（尹少淳或胡知凡）+ 一位本地的（房尚昆或周凤甫）</td><td><b>2 处</b></td></tr>
+ <tr><td>国际对标</td><td>OECD 报告 或 美国标准 或 工作室思维，只引结论</td><td><b>1–2 处</b></td></tr>
+ <tr><td>其余篇幅</td><td>你的课、你的学生、你的数据、你的作品图</td><td><b>80%</b></td></tr>
+</table>
+<div class="warn">
+ <p><b>一句话记法：</b>理论是"我为什么这么做"，不是"我读过谁"。写完自己念一遍，凡是删掉也不影响理解的引文，全删。</p>
+</div>
+
+<h2 id="cn">② 国内：定标准的 6 人 + 卡你稿子的 2 人<span>前 6 位管全国口径，后 2 位管广东和深圳</span></h2>
+<p class="hint">排序不是按名气，是按「对你的稿子有多大影响」。带 ★ 的两位，是你最该先读的。</p>
+
+<div class="card">
+ <button class="cp" data-cp="1">复制</button>
+ <h3>尹少淳</h3><span class="badge">定标准的</span>
+ <p class="role">首都师范大学美术学院教授、博导；教育部美术课程标准研制（修订）组组长，<b>连续 20 年主持</b>国家基础美术教育课程标准制订修订；国家教材委员会专家委员会委员；中国美协少儿美术艺术委员会主任。</p>
+ <p><b class="k">他主张</b>核心素养不是知识点堆叠，是「在真实情境中解决问题时表现出来的综合品质」；提倡<b>大观念（big idea）</b>教学，教学要在归纳与演绎之间来回走；目标要用 <b>KUD</b>（知道 Know — 理解 Understand — 做 Do）三层来写。</p>
+ <p><b class="k y">怎么用</b>写大单元时，目标别写「让学生了解/掌握……」，改成三层：「知道什么事实 — 理解什么观念 — 能做出什么」。光这一步，就和九成的稿子拉开差距了。</p>
+ <p class="src">《美术核心素养大家谈》（主编，湖南美术出版社）｜2024 年 11 月长三角美术教育论坛演讲《大观念何指？咋教》</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="2">复制</button>
+ <h3>胡知凡</h3><span class="badge">定标准的</span>
+ <p class="role">上海师范大学教育学院教授；义务教育美术课标、普通高中美术课标（2017 年版）研制修订核心成员；教育部教材局美术教材审查专家。</p>
+ <p><b class="k">他主张</b><b>「重理解的课程设计」</b>（逆向设计）：先确定重要的学习成果 → 再确定可接受的成就证据 → 最后才设计路径；用<b>大概念</b>统整碎片化内容；推行<b>表现性评估</b>与<b>表现性任务</b>设计。</p>
+ <p><b class="k y">怎么用</b>评价那一段，别只写「作品评分」。改成「表现性任务 + 评分规则（rubric）」，把「学生要做出什么、什么算好」写清楚。这是他 2024 年还在讲的东西，也是现在评审最认的评价写法。</p>
+ <p class="src">《核心素养与世界中小学美术课程》（上海教育出版社，2020）｜2024 年 11 月论坛《美术学科表现性评估与表现性任务设计》</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="3">复制</button>
+ <h3>钱初熹</h3><span class="badge">传统文化 + AI</span>
+ <p class="role">华东师范大学教授、博导；《美术教学理论与方法》作者，国内美术教育研究方法的主要奠基者之一。</p>
+ <p><b class="k">她主张</b>传统文化要<b>「守正创新」</b>，不是把纹样搬进课堂；要有<b>国际视野</b>再做本土转化；AI 时代该教「机器替不了的创造力与问题解决」，教育理念要向「全球共同利益」转变。</p>
+ <p><b class="k y">怎么用</b>非遗、传统纹样、民间美术类选题，用「守正创新」当骨架，比通篇「传承」高一档。写 AI 美育时，她那句「不要教会被机器人取代的单纯技术」几乎可以直接当立论。</p>
+ <p class="src">《美术教学理论与方法》（高等教育出版社）｜《核心素养视域下美术课程改革的国际视野与本土思考》</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="4">复制</button>
+ <h3>王大根</h3><span class="badge">深度学习</span>
+ <p class="role">上海师范大学教授；《中小学美术教学论》作者，师范美术教材的主要编写者之一。</p>
+ <p><b class="k">他主张</b>核心素养 = 必备品格 + 关键能力；主张<b>深度学习</b>与<b>真实性学习任务</b>，反对把美术拆成碎片化知识点训练。</p>
+ <p><b class="k y">怎么用</b>单元设计里要写「真实情境任务」时引他，比引空泛的建构主义实在。</p>
+ <p class="src">《中小学美术教学论》（南京师范大学出版社）</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="5">复制</button>
+ <h3>房尚昆</h3><span class="badge">★ 深圳</span>
+ <p class="role"><b>深圳中学正高级教师、特级教师</b>；<b>教育部义务教育艺术课程标准修订组核心成员</b>；人民美术出版社义务教育美术教材副主编；中国美术家协会会员、中国版画家协会理事。</p>
+ <p><b class="k r">为什么你必须知道他</b>他是深圳本地人，又是课标修订组的人。宝安报市里、市里报省里的材料，口径大概率绕不开他——他反复讲的就是<b>大单元教学设计</b>和<b>课程改革</b>。你写的东西如果还是「一节课一个技法」，在他那一关就过不去。</p>
+ <p><b class="k y">怎么用</b>大单元框架照他的路子搭：<b>主题 → 大观念 → 任务链 → 评价</b>。他在「南方教研大讲堂」系统讲过这套，可以找来看。</p>
+ <p class="src">百度百科·房尚昆｜深圳中学</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="6">复制</button>
+ <h3>周凤甫</h3><span class="badge">★ 广东</span>
+ <p class="role">广东省教育研究院体艺科主任、<b>广东省美术教研员</b>；教育部普通高中美术课标、义务教育美术课标修订组核心成员；中国教育学会美术教育专业委员会副理事长。</p>
+ <p><b class="k r">为什么你必须知道他</b>省级报送的第一道口在他这儿。省教研员的取向，直接决定什么样的稿子能出省。</p>
+ <p><b class="k y">怎么用</b>省级论文/教研成果，题目里带「单元」「素养」「评价」「岭南/广东」更容易进他的视野；纯技法心得很难。</p>
+ <p class="src">中国教育学会美术教育专业委员会·专家介绍｜广东省教育研究院</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="7">复制</button>
+ <h3>李力加</h3><span class="badge">课例研究</span>
+ <p class="role">浙江师范大学教授；《名师如何炼就名课·美术卷》主编。</p>
+ <p><b class="k">他主张</b>教师成长靠<b>课例研究</b>——一节课反复磨、反复改、反复记录，而不是靠写空泛的「经验总结」。</p>
+ <p><b class="k y">怎么用</b>写「磨课」「同课异构」「课例研究」型论文时引他，比引纯理论落地得多。</p>
+ <p class="src">《名师如何炼就名课·美术卷》（主编）</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="8">复制</button>
+ <h3>孔新苗</h3><span class="badge">中西比较</span>
+ <p class="role">山东师范大学教授；美术课程标准修订者之一；长期做中西美术与美术教育比较。</p>
+ <p><b class="k y">怎么用</b>写中西比较、跨文化理解、中西融合类选题时的国内支点。</p>
+ <p class="src">义务教育/普通高中美术课程标准修订组</p>
+</div>
+
+<p class="hint">还可以引但不必都引：<b>奚传绩</b>（南京艺术学院，《美术教育词典》）、<b>陶旭泉</b>（四川师大，《中国美术课程改革基础理论》）、<b>甄巍</b>（北京师范大学）。</p>
+
+<h2 id="pol">③ 四份文件：必须逐字引，一个字都不能错<span>这是最容易白做无用功的地方</span></h2>
+
+<div class="card">
+ <button class="cp" data-cp="9">复制</button>
+ <h3>习近平给中央美术学院 8 位老教授的回信</h3><span class="badge">2018-08-30</span>
+ <p class="role">新华社 2018 年 8 月 30 日受权发布，中国政府网全文刊发。收信人：周令钊、戴泽、伍必端、詹建俊、闻立鹏、靳尚谊、邵大箴、薛永年。</p>
+ <div class="q">美术教育是美育的重要组成部分，对塑造美好心灵具有重要作用。……做好美育工作，要坚持立德树人，扎根时代生活，遵循美育特点，弘扬中华美育精神，让祖国青年一代身心都健康成长。</div>
+ <p><b class="k y">怎么用</b>申报书第一段定调，一句就够。这是审稿人最熟的句子，也是<b>最稳的开头</b>——比任何教育学黑话都管用。</p>
+ <p class="src">中国政府网 gov.cn/xinwen/2018-08/30/content_5317814.htm</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="10">复制</button>
+ <h3>《关于全面加强和改进新时代学校美育工作的意见》</h3><span class="badge">2020-10</span>
+ <p class="role">中共中央办公厅、国务院办公厅印发。</p>
+ <p><b class="k">关键词</b>「以美育人、以文化人」；美育是<b>审美教育、情操教育、心灵教育</b>；提出到 2022 年学校美育取得突破性进展、到 2035 年形成全覆盖的美育体系。</p>
+ <p><b class="k y">怎么用</b>解释「学校为什么该重视这件事」、申请课时/经费/场地时引这一份最有力。</p>
+ <p class="src">中国政府网 · 政策文件库（2020 年 10 月）</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="11">复制</button>
+ <h3>《义务教育艺术课程标准（2022年版）》</h3><span class="badge">初中用这个</span>
+ <p class="role">中华人民共和国教育部制定，2022 年 4 月颁布，2022 年秋季学期起执行。</p>
+ <p><b class="k g">核心素养 4 条</b><b>审美感知 · 艺术表现 · 创意实践 · 文化理解</b></p>
+ <p><b class="k g">艺术实践 4 类</b><b>欣赏 · 表现 · 创造 · 联系</b></p>
+ <p><b class="k r">最常犯的错</b>把「图像识读」「美术表现」「审美判断」写进初中材料——<b>那是高中课标的五条，不是初中的四条</b>。评委一眼就能看出来你没读课标。</p>
+ <p class="src">教育部官网 moe.gov.cn（2022 年 4 月）</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="12">复制</button>
+ <h3>《普通高中美术课程标准（2017年版2020年修订）》</h3><span class="badge">只有高中用</span>
+ <p class="role">教育部制定，2018 年颁布，2020 年修订。</p>
+ <p><b class="k g">核心素养 5 条</b><b>图像识读 · 美术表现 · 审美判断 · 创意实践 · 文化理解</b></p>
+ <p><b class="k y">怎么用</b>只有写高中课例、高中教师培训、高中教材分析时才用这五条。初中/小学一律用 2022 版艺术课标的四条。</p>
+ <p class="src">教育部官网 · 普通高中课程标准（2017 年版 2020 年修订）</p>
+</div>
+
+<h2 id="intl">④ 国际与港澳台：11 条，全是真刊真报告<span>按「有多著名」排，不按新旧排</span></h2>
+<p class="hint">每一条都标了分量和一句能直接用的话。不要一次全引，挑 1–2 条贴你的选题。</p>
+
+<div class="card">
+ <button class="cp" data-cp="13">复制</button>
+ <h3>OECD《Art for Art's Sake?》</h3><span class="badge">最硬的一份证据</span>
+ <p class="role">Winner, E., Goldstein, T. R., &amp; Vincent-Lancrin, S. (2013). <i>Art for Art's Sake? The Impact of Arts Education</i>. OECD Publishing. DOI: 10.1787/9789264180789-en</p>
+ <p><b class="k">分量</b>OECD 教育研究与创新系列，元分析 500 多项实证研究，各国政策文件反复引用。</p>
+ <p><b class="k">核心结论</b>艺术教育对「创新技能」三类（学科技能、思维与创造力、行为与社会技能）有正向关联；但「学美术能提高数学成绩」这类迁移证据<b>很弱、很不均匀</b>；视觉艺术与几何、空间推理之间有关联迹象。</p>
+ <p><b class="k y">怎么用</b>写「美术到底有什么用」时最硬的一份。它主动承认「别吹过头」——你照实写，反而比吹得天花乱坠更专业。</p>
+ <p class="src"><a href="https://www.oecd.org/en/publications/2013/06/art-for-art-s-sake_g1g21e09.html" target="_blank" rel="noopener">oecd.org 官方页面（可免费下载 PDF）</a></p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="14">复制</button>
+ <h3>Eisner《The Arts and the Creation of Mind》</h3><span class="badge">为美术正名</span>
+ <p class="role">Eisner, E. W. (2002). <i>The Arts and the Creation of Mind</i>. Yale University Press.</p>
+ <p><b class="k">分量</b>美国艺术教育界引用量最高的学者之一，DBAE（以学科为基础的美术教育）奠基者。</p>
+ <p><b class="k">核心</b>艺术不是「副科」，艺术本身就是心智发展的方式；美术训练发展的是别的学科给不了的那几种思维能力。</p>
+ <p><b class="k y">怎么用</b>为美术课正名、反驳「挤占课时」、写学校美育课程方案的开头时引。</p>
+ <p class="src">Yale University Press, 2002</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="15">复制</button>
+ <h3>工作室思维 Studio Habits of Mind</h3><span class="badge">直接能做评价表</span>
+ <p class="role">Hetland, L., Winner, E., Veenema, S., &amp; Sheridan, K. (2007). <i>Studio Thinking: The Real Benefits of Visual Arts Education</i>. Teachers College Press.（哈佛零点项目 Project Zero 成果）</p>
+ <p><b class="k g">八种思维</b>发展技艺 · 投入与坚持 · 构想（envision）· 表达 · 观察 · 反思（提问与解释／评估）· 拓展与探索 · 理解艺术世界</p>
+ <p><b class="k y">怎么用</b><b>这是你现在最该用的东西。</b>把课堂观察表直接按这八条做，比「构图/色彩/创意」三维打分专业得多，而且天然就是「表现性评估」——正好接上胡知凡讲的那套。</p>
+ <p class="src">Teachers College Press, 2007（2013 修订版）｜Project Zero, Harvard</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="16">复制</button>
+ <h3>视觉文化转向 Duncum</h3><span class="badge">奠基文献</span>
+ <p class="role">Duncum, P. (2001). Visual culture: Developments, definitions, and directions for art education. <i>Studies in Art Education</i>, 42(2), 101–112.</p>
+ <p><b class="k">分量</b>《Studies in Art Education》是美国国家美术教育协会（NAEA）旗舰刊，这篇是「视觉文化转向」的源头文献之一，被引极多。</p>
+ <p><b class="k">核心</b>美术课的对象不该只有名画，还包括广告、短视频、游戏、社交媒体图像——学生每天都在看的那些。</p>
+ <p><b class="k y">怎么用</b>写「短视频进课堂」「网络图像/表情包」「图像素养」这类选题，这是源头。</p>
+ <p class="src">Studies in Art Education, 42(2), 101–112</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="17">复制</button>
+ <h3>Freedman《Teaching Visual Culture》</h3><span class="badge">教「批判地看」</span>
+ <p class="role">Freedman, K. (2003). <i>Teaching Visual Culture: Curriculum, Aesthetics, and the Social Life of Art</i>. Teachers College Press.</p>
+ <p><b class="k">分量</b>视觉文化课程理论代表作；作者曾任《Studies in Art Education》主编。</p>
+ <p><b class="k">核心</b>在民主社会里教视觉文化，要教学生<b>批判地看</b>，不只是「欣赏」。</p>
+ <p><b class="k y">怎么用</b>写媒介素养、图像批判、社会议题类课例。</p>
+ <p class="src">Teachers College Press, 2003</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="18">复制</button>
+ <h3>Efland 等《Postmodern Art Education》</h3><span class="badge">课程重构</span>
+ <p class="role">Efland, A., Freedman, K., &amp; Stuhr, P. (1996). <i>Postmodern Art Education: An Approach to Curriculum</i>. Reston, VA: NAEA.</p>
+ <p><b class="k">核心</b>打通「高雅／通俗」的界线，强调多元文化与情境，反对单一的西方形式主义审美标准。</p>
+ <p><b class="k y">怎么用</b>写课程内容重构、乡土/民间美术进入课程的理论依据。</p>
+ <p class="src">National Art Education Association, 1996</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="19">复制</button>
+ <h3>日本：造型的见解与思考方式</h3><span class="badge">最贴中国课堂</span>
+ <p class="role">文部科学省《小学校学習指導要領（平成29年告示）解説 図画工作編》《中学校学習指導要領（平成29年告示）解説 美術編》</p>
+ <p><b class="k g">两个关键词</b>「<b>造形的な見方・考え方</b>」——把「看东西的角度」本身当作要教的能力，而不是副产品；「<b>主体的・対話的で深い学び</b>」——主动的、对话式的深度学习。</p>
+ <p><b class="k y">怎么用</b>写「深度学习」「对话式鉴赏」时，日本这条比引欧美更贴中国大班课堂，评审也更容易接受。</p>
+ <p><b class="k r">加分细节</b>日本小学叫「図画工作」，初中才叫「美術」——写对这一点，说明你真看过原文。</p>
+ <p class="src">文部科学省 mext.go.jp｜国立教育政策研究所 nier.go.jp 公开全文</p>
+</div>
+
+<div class="card star">
+ <button class="cp" data-cp="20">复制</button>
+ <h3>中国香港：2024 新版视觉艺术课程指引</h3><span class="badge">最新</span>
+ <p class="role">課程發展議會编订《視覺藝術科課程指引（小一至中六）》（2024），香港特别行政区政府教育局公布。</p>
+ <p><b class="k g">三个新重点</b>价值观教育与<b>国民身份认同</b>（欣赏中国书画、非遗、传统工艺）；<b>艺术科技（Arts Technology）</b>；视觉艺术在 <b>STEAM</b> 教育中的角色。</p>
+ <p><b class="k y">怎么用</b>写「STEAM + 美术」「艺术科技」「中华文化认同」，这条最新、最贴大湾区语境。</p>
+ <p><b class="k r">加分细节</b>2024 年才出的新版，很多人还在引 2017 版——你引 2024 版，一眼看出你在跟最新的。</p>
+ <p class="src">香港教育局 edb.gov.hk（va_cg_c_2024.pdf，全文公开）</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="21">复制</button>
+ <h3>中国台湾：三构面 + 美感教育</h3><span class="badge">做了十年，有成体系案例</span>
+ <p class="role">《十二年國民基本教育課程綱要·藝術領域》｜《教育部美感教育中長程計畫》第三期（2024–2028）</p>
+ <p><b class="k g">核心</b>视觉艺术三构面「<b>表现、鉴赏、实践</b>」；美感教育第三期以「<b>美感即生活</b>」为核心，从教室延伸到校园、社区、城市，用<b>设计思考</b>改造学习环境。</p>
+ <p><b class="k y">怎么用</b>写「校园/教室美感改造」「生活美感」「设计思考」——这套在台湾地区推了十来年，有成批可查的案例，比空谈「环境育人」扎实。</p>
+ <p class="src">教育部全球资讯网 · 美感教育成果分享平台 aade.project.edu.tw</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="22">复制</button>
+ <h3>英国：创造力可以被教</h3><span class="badge">反驳「美术就是玩玩」</span>
+ <p class="role">Durham Commission on Creativity and Education (2019). <i>Durham Commission on Creativity and Education: Report</i>. Arts Council England &amp; Durham University.</p>
+ <p><b class="k">分量</b>由英格兰艺术委员会主席 Nicholas Serota 主持，18 个月取证，直接推动英国课改政策讨论。</p>
+ <p><b class="k">核心结论</b>创造力可教，而且必须建立在扎实的学科知识上——原话是「创造力建立在深刻理解之上」（creativity is founded on deep understanding）；创意教学不该只是家境好的孩子的特权。</p>
+ <p><b class="k y">怎么用</b>反驳「创造力教不了」「美术课就是玩玩」。</p>
+ <p class="src">Arts Council England / Durham University, 2019（Durham 机构库全文公开）</p>
+</div>
+
+<div class="card">
+ <button class="cp" data-cp="23">复制</button>
+ <h3>美国：四个艺术过程</h3><span class="badge">最好的「国际对标」论据</span>
+ <p class="role">National Coalition for Core Arts Standards (2014). <i>National Core Arts Standards</i>. SEADAE.</p>
+ <p><b class="k g">四个过程</b>Creating（创造）· Presenting（呈现）· Responding（回应）· Connecting（联系），下设 11 条锚定标准。</p>
+ <p><b class="k y">怎么用</b>它和我国 2022 课标的「欣赏、表现、创造、联系」几乎一一对应——这是最省力也最有力的国际对标：<b>说明我们的课标方向和世界是一致的</b>，不是拍脑袋。</p>
+ <p class="src"><a href="https://www.nationalartsstandards.org/" target="_blank" rel="noopener">nationalartsstandards.org（全文公开）</a></p>
+</div>
+
+<h2 id="tpl">⑤ 直接抄：三段现成的话<span>把 ____ 换成你的内容</span></h2>
+<p class="hint">不要照抄进正文，是按这个句式改成你自己的。句式对了，评审读起来就顺。</p>
+
+<div class="tpl">
+ <h4>A｜申报书开头（80 字，定调）</h4>
+ <p>习近平总书记给中央美术学院 8 位老教授的回信指出，「美术教育是美育的重要组成部分，对塑造美好心灵具有重要作用」。《义务教育艺术课程标准（2022 年版）》将艺术课程核心素养确定为审美感知、艺术表现、创意实践、文化理解四个方面。<b>本单元据此设计 ____</b>，引导学生在 ____ 中完成 ____。</p>
+</div>
+
+<div class="tpl">
+ <h4>B｜理论依据（150 字，显专业）</h4>
+ <p>本设计以尹少淳提出的「大观念」教学为框架，用 KUD（知道—理解—做）三层表述学习目标；参照胡知凡「重理解的课程设计」路径，先确定学习成果与可接受的证据，再设计学习任务与评价。评价采用表现性任务与评分规则，观察维度借鉴 Hetland 等提出的「工作室思维」（Studio Habits of Mind）八项，与课标「欣赏、表现、创造、联系」四类艺术实践形成对应。</p>
+</div>
+
+<div class="tpl">
+ <h4>C｜国际对标（一句话，收口）</h4>
+ <p>美国《国家核心艺术标准》（2014）以创造、呈现、回应、联系四个艺术过程组织课程，与我国《义务教育艺术课程标准（2022 年版）》的欣赏、表现、创造、联系四类艺术实践高度一致。这表明素养导向、任务驱动是本轮全球美术课程的共同方向，本设计亦循此路径。</p>
+</div>
+
+<h2 id="trap">⑥ 一眼被毙的五个雷<span>都是我看过的真实翻车方式</span></h2>
+<ol class="traps">
+ <li><b>引错课标版本</b>初中材料里写「图像识读」「审美判断」。那是高中五条，初中是四条：审美感知、艺术表现、创意实践、文化理解。</li>
+ <li><b>通篇黑话，没有课堂证据</b>大概念、深度学习、跨学科写了一整页，没有一张学生作品、没有一组前后对比、没有一句学生原话。理论占两成，证据占八成。</li>
+ <li><b>文献和做法两张皮</b>前面引 OECD 讲创造力，后面还是「教师示范—学生临摹」。引了谁，就按谁的方法做，哪怕只做一小块。</li>
+ <li><b>引用过量</b>3000 字塞 15 个学者。评审只会觉得你在凑字数，反而看不见你的课。</li>
+ <li><b>用过期文件</b>香港还在引 2017 版（2024 已有新版）、日本还在引平成 20 年（现行是平成 29 年）、美育还在引 2015 年那份（2020 年已有中办国办新版）。</li>
+</ol>
+
+<div class="foot">
+ <a href="papers.html">去选题库（83 条）</a>
+ <a href="index.html">回这周能投的</a>
+</div>
+</main>
+
+<div id="toast"></div>
+<script>
+function toast(t){var e=document.getElementById('toast');e.textContent=t;e.classList.add('on');
+ setTimeout(function(){e.classList.remove('on')},1400)}
+document.addEventListener('click',function(e){
+ var b=e.target.closest('.cp');if(!b)return;
+ var c=b.closest('.card');
+ var t=c.innerText.replace(/^\s*复制\s*/,'').replace(/\n{2,}/g,'\n').trim();
+ var done=function(){toast('已复制，可直接粘进申报书')};
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(t).then(done,function(){toast('复制失败，长按选中手动复制')});
+ }else{
+  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');done()}catch(err){toast('复制失败，长按选中手动复制')}
+  ta.remove();
+ }
+});
+</script>
+</body>
+</html>
