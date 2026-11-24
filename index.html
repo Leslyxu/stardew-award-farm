@@ -534,7 +534,10 @@ $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
   fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
    .then(function(j){
     if(String(j.v)!==VER){
-      if(sessionStorage.getItem('rfTry')){ b.disabled=false; t('仍是旧版 v'+VER); return; }
+      if(sessionStorage.getItem('rfTry')){
+        sessionStorage.removeItem('rfTry'); t('强制重载…');
+        location.replace(location.pathname+'?r='+Date.now()); return;
+      }
       sessionStorage.setItem('rfTry','1'); t('载入 v'+j.v+'…');
       location.replace(location.pathname+'?r='+Date.now());
     } else {
