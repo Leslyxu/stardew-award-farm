@@ -228,7 +228,7 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
  <button class="pk" data-g="stu">发给学生<b>--</b></button>
 </nav>
 <p class="hint" id="hint"></p>
-<button class="copyall" id="copyAll" hidden>复制提前准备版 <b id="caN">0</b> 条（未开始，别当报名通知发）</button>
+<button class="copyall" id="copyAll" hidden>一键复制 <b id="caN">0</b> 条 · 直接发家长群</button>
 
 
 <div id="fallback"><div class="fb">
@@ -354,23 +354,26 @@ function toggle(id,btn){
 function lvTxt(v){return v==='国'?'国家级':(v==='省'?'省级':(v||'')+'级')}
 function blTag(it){return it.bl?'<span class="bl '+(it.bl==='国'?'g':'s')+'">'+esc(it.bl)+'</span>':''}
 function stuText(){
- var a=byGroup('stu'),L=['【白名单美术类赛事 · 提前准备用，现在还不能报名】',
-  '重要：下面 7 项的 2026 年通知和报名链接都还没出，现在不能报、也别填任何报名表。',
-  '等我把今年的确切通知和链接发到群里，那才是能报的时候。现在先让孩子按尺寸准备作品。',''];
- a.forEach(function(it,i){
-  L.push((i+1)+'｜'+it.nm);
-  L.push('　级别：'+(it.bl==='国'?'国家级':(it.bl==='省'?'广东省':'—'))+(it.no?'（白名单第 '+it.no+' 项）':''));
-  L.push('　主办：'+it.org);
-  L.push('　谁能报：'+(it.who||'小学—高中'));
-  L.push('　交什么：'+(it.what||''));
-  L.push('　往年怎么报：'+(it.how||''));
-  L.push('　往年时间：'+(it.next||'以官方通知为准')+'　（2026 年通知未出，仅供参考）');
-  L.push('　今年状态：通知未发，暂无报名链接，不要现在报名');
-  L.push('');
- });
- L.push('以上是教育部 / 广东省教育厅公布的白名单赛事，不收报名费，不与升学挂钩。');
- L.push('要寄原件的等通知下来再说，提前留一周；顺丰或京东，到付件组委会不收。');
- return L.join('\n');
+ return [
+ '各位家长好：',
+ '',
+ '整理了一份教育部和广东省白名单里的美术类赛事，全部免费、不与升学挂钩。这些赛事一般在上半年报名，现在报名通道还没开，不用交材料、也不用填报名表。请让孩子利用寒假先按下面的尺寸准备作品，报名通道开了老师会把正式链接发到群里，到时候直接交作品照片就行。',
+ '',
+ '【绘画、书法类 · 准备 1—2 件】',
+ '· 绘画不超过 40×60cm；国画四尺三开；绘本不少于 9 幅',
+ '· 书法不超过四尺对开，软笔写竖幅',
+ '· 摄影、造型、数字美术也算，题材不限',
+ '',
+ '【设计、AI 类 · 准备 1 件】',
+ '· 海洋文化创意设计：海报、文创、包装都行，看想法不看画功',
+ '· AI 辅助数字艺术：保留草稿、提示词、每一版怎么改的记录，不能只交 AI 出的图',
+ '',
+ '【集体项目 · 学校组队】',
+ '· 工作坊：一个主题 + 8—12 张学生作品 + 过程照片',
+ '· 美育成果展示：美术、书法、手工、表演都可以',
+ '',
+ '提醒：原件先别寄，等群里发了准确地址和标签再寄；每项不用准备太多；有问题先问我，不要自己找第三方机构报名。'
+ ].join('\n');
 }
 function heroHTML(it){
  var n=days(it.due), tl=TLDR[it.id]||['',''], pk=it.pk;
@@ -486,7 +489,7 @@ function openBox(){
  $('#sheet').classList.add('on');$('#mask').classList.add('on');
 }
 function openMsg(){
- $('#sheet').innerHTML='<h3>发家长群</h3><p class="sub">这是提前准备版：通知和链接都还没出，别当报名通知发</p>'+
+ $('#sheet').innerHTML='<h3>发家长群</h3><p class="sub">直接转家长群即可，家长看完不用再问</p>'+
   '<textarea id="msgBox" readonly>'+esc(stuText())+'</textarea>'+
   '<button class="cp" id="cpMsg">复制</button>';
  $('#sheet').classList.add('on');$('#mask').classList.add('on');
@@ -516,14 +519,14 @@ document.addEventListener('click',function(e){
    var r=$('#rest'),open=r.hidden;r.hidden=!open;
    $('#moreArr').textContent=open?'收起 ⌃':'展开 ⌄';
  }
- if(e.target.closest('#copyAll')){cpText(stuText(),'已复制提前准备版 '+byGroup('stu').length+' 条');return}
+ if(e.target.closest('#copyAll')){cpText(stuText(),'已复制 '+byGroup('stu').length+' 条，去家长群粘贴');return}
  if(e.target.closest('#boxBtn'))openBox();
  if(e.target.id==='msgBtn')openMsg();
  if(e.target.id==='mask')closeSheet();
- if(e.target.id==='cpMsg')cpText(stuText(),'已复制提前准备版（未开始，别当报名通知发）');
+ if(e.target.id==='cpMsg')cpText(stuText(),'已复制，去家长群粘贴');
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var BUILD='2026-11-24 22:16',VER='90';
+var BUILD='2026-11-24 22:20',VER='91';
 $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
 /* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
 (function(){
