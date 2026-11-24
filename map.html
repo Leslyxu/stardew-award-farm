@@ -131,6 +131,19 @@ table.stat td:first-child{white-space:nowrap;font-weight:800}
 .bigstat b{display:block;font-size:23px;font-weight:900;color:#b4531f;line-height:1.1}
 .bigstat span{font-size:11px;color:var(--ink3)}
 </style>
+<style>
+/* 容器与顶栏：与首页同一套 */
+.wrap{max-width:640px;margin:0 auto;padding:12px 14px 46px}
+.bar{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}
+.who{font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
+.date{font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.rgt{display:flex;align-items:center;gap:8px}
+#rf{font:inherit;font-size:11.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2px solid rgba(74,47,24,.28);border-radius:999px;padding:1px 9px 2px;cursor:pointer;line-height:1.6}
+#rf:active{transform:translate(1px,1px)}
+.note{font-size:11.5px;line-height:1.6;color:var(--ink3);background:var(--card);
+ border:1.5px dashed rgba(74,47,24,.3);border-radius:10px;padding:10px 12px;margin:12px 0}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -231,7 +244,7 @@ table.stat td:first-child{white-space:nowrap;font-weight:800}
 <footer class="foot">文献地图 · 数据来自 OpenAlex · 2026-11-24 抓取 · 样本与局限见页首</footer>
 </div>
 <script>
-var BUILD='2026-11-24 22:42',VER='95';
+var BUILD='2026-11-24 23:14',VER='96';
 (function(){
  var b=document.getElementById('rf'); if(!b) return;
  b.onclick=function(){b.disabled=true;b.textContent='重新拉取…';location.replace(location.pathname+'?r='+Date.now());};
