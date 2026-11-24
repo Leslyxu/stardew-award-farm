@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>职称与绩效真相 · 学会征文到底有没有用</title>
+<style>
+:root{--ink:#3a2a18;--ink2:#6b5638;--ink3:#a08c6c;--line:#4a2f18;
+--paper:#fdf6e5;--card:#fffdf6;--yellow:#ffd964;--green:#cdeaa5;--blue:#c3e2f7;--red:#e05a3a;--pink:#f7d6de}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);
+ font:15px/1.62 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+ background-image:radial-gradient(rgba(74,47,24,.045) 1px,transparent 1px);background-size:14px 14px;
+ padding:0 0 46px;-webkit-font-smoothing:antialiased}
+main,header{max-width:620px;margin:0 auto;padding:0 16px}
+header{padding-top:14px}
+.back{display:inline-block;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;
+ border:2px solid rgba(74,47,24,.3);border-radius:999px;padding:3px 11px;background:var(--card)}
+h1{font-size:23px;font-weight:900;margin:9px 0 3px;letter-spacing:-.01em}
+.sub{margin:0 0 12px;font-size:12.5px;color:var(--ink3);line-height:1.5}
+.nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin:0 0 14px;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2px solid rgba(74,47,24,.26);border-radius:999px;padding:5px 12px;text-decoration:none}
+.nav a b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.lead{background:var(--yellow);border:2.5px solid var(--line);border-radius:14px;
+ box-shadow:4px 4px 0 rgba(74,47,24,.85);padding:13px 15px;margin:0 0 22px}
+.lead p{margin:0 0 7px;font-size:13.5px;line-height:1.6}
+.lead p:last-child{margin:0}
+.lead b{font-weight:900}
+
+h2{font-size:16.5px;font-weight:900;margin:30px 0 4px;padding-left:9px;
+ border-left:5px solid var(--line);line-height:1.35}
+h2 span{display:block;font-size:11.5px;font-weight:700;color:var(--ink3);margin-top:3px;padding-left:0}
+.hint{font-size:12.5px;color:var(--ink2);margin:8px 0 12px;line-height:1.55}
+
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:13px;
+ box-shadow:3px 3px 0 rgba(74,47,24,.15);padding:13px 14px 12px;margin:0 0 11px;position:relative}
+.card.star{box-shadow:3px 3px 0 var(--red);border-color:var(--line)}
+.card h3{margin:0 0 2px;font-size:15px;font-weight:900;line-height:1.45;padding-right:56px}
+.badge{display:inline-block;font-size:10.5px;font-weight:800;color:var(--ink);
+ background:var(--green);border:1.5px solid var(--line);border-radius:999px;
+ padding:1px 8px;margin:0 0 8px;line-height:1.5}
+.card.star .badge{background:var(--pink)}
+.role{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:0 0 9px}
+.role b{color:var(--ink)}
+.card p{margin:0 0 8px;font-size:13.5px;line-height:1.62}
+.card p:last-of-type{margin-bottom:0}
+.card p b.k{display:inline-block;font-size:11px;font-weight:900;background:var(--blue);
+ border:1.5px solid var(--line);border-radius:5px;padding:0 5px;margin-right:5px;vertical-align:1.5px}
+.card p b.k.y{background:var(--yellow)}
+.card p b.k.g{background:var(--green)}
+.card p b.k.r{background:var(--pink)}
+.q{background:#f7f0dd;border-left:3px solid var(--ink3);border-radius:0 7px 7px 0;
+ padding:7px 10px;margin:0 0 8px;font-size:13px;line-height:1.6}
+.src{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:9px 0 0;
+ border-top:1.5px dashed rgba(74,47,24,.2);padding-top:8px;word-break:break-word}
+.src a{color:#22688f;font-weight:800;text-decoration:none;
+ border-bottom:2px solid rgba(34,104,143,.32);padding-bottom:1px}
+.src a:active{background:#e8f2f8}
+.cp{position:absolute;top:10px;right:10px;font:inherit;font-size:10.5px;font-weight:800;color:var(--ink2);
+ background:var(--card);border:1.8px solid rgba(74,47,24,.3);border-radius:999px;padding:2px 8px;cursor:pointer}
+.cp:active{background:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 14px;
+ background:var(--card);border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 9px;text-align:left;border-bottom:1.5px solid rgba(74,47,24,.16);vertical-align:top;line-height:1.5}
+th{background:#f2e8cf;font-weight:900;font-size:11.5px;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+table.who{table-layout:fixed;font-size:11.8px}
+table.who th,table.who td{white-space:normal;padding:8px 7px}
+table.who td:first-child{white-space:nowrap;font-size:12.5px}
+td b{font-weight:900}
+
+.tpl{background:var(--card);border:2.5px dashed var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.tpl h4{margin:0 0 7px;font-size:13px;font-weight:900}
+.tpl p{margin:0;font-size:13px;line-height:1.7}
+.tpl p+p{margin-top:8px}
+
+.warn{background:#fdeae2;border:2.5px solid var(--red);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.warn p{margin:0;font-size:13px;line-height:1.62}
+.warn p+p{margin-top:7px}
+.warn b{color:#a83318}
+
+ol.traps{padding-left:0;list-style:none;counter-reset:t;margin:0 0 10px}
+ol.traps li{counter-increment:t;position:relative;background:var(--card);border:2.5px solid var(--line);
+ border-radius:12px;padding:12px 14px 12px 42px;margin:0 0 10px;font-size:13.2px;line-height:1.62}
+ol.traps li::before{content:counter(t);position:absolute;left:12px;top:11px;width:21px;height:21px;
+ background:var(--red);color:#fff;font-size:12px;font-weight:900;border-radius:50%;
+ display:flex;align-items:center;justify-content:center}
+ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
+
+.foot{margin:26px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+.foot a{font-size:12.5px;font-weight:800;color:var(--ink);text-decoration:none;background:var(--card);
+ border:2.5px solid var(--line);border-radius:11px;padding:9px 13px;box-shadow:3px 3px 0 rgba(74,47,24,.15)}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(10px);
+ background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
+ border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 顶栏刷新 */
+.rfbar{display:flex;align-items:center;justify-content:space-between;margin:10px 0 0;
+ padding:7px 10px;background:var(--card);border:2px solid rgba(74,47,24,.22);border-radius:11px}
+.rfbar .bv{font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+#rf{font:inherit;font-size:11.5px;font-weight:800;color:var(--ink2);background:var(--paper);
+ border:2px solid rgba(74,47,24,.28);border-radius:999px;padding:1px 10px 2px;cursor:pointer;line-height:1.6}
+#rf:active{transform:translate(1px,1px)}
+#rf.stale{background:var(--yellow);border-color:var(--line);color:var(--ink)}
+#rf[disabled]{opacity:.6}
+</style>
+
+<style>
+table.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+table.tbl th,table.tbl td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.tbl th{background:rgba(74,47,24,.07);font-weight:900}
+table.tbl td:first-child{white-space:nowrap;font-weight:800}
+.yes{color:#1b7a3d;font-weight:900}.no{color:#c0392b;font-weight:900}.mid{color:#b4531f;font-weight:900}
+.traffic{border-radius:10px;padding:10px 12px;margin:9px 0;font-size:12.5px;line-height:1.6}
+.traffic.g{background:rgba(205,234,165,.5);border:1.5px solid #7aa84a}
+.traffic.r{background:rgba(224,90,58,.12);border:1.5px solid #c0392b}
+.traffic.y{background:rgba(255,217,100,.35);border:1.5px solid #b4531f}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="bar"><span class="who">宝安区 · 美术老师</span>
+ <span class="rgt"><span class="date" id="dt"></span>
+ <button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></span></div>
+ <h1>职称与绩效真相</h1>
+ <p class="sub">学会征文算不算发表、评职称认不认、绩效加不加分——按深圳市职称文件和广东标准逐条对，不按机构广告。</p>
+</header>
+<main>
+
+<div class="warn"><b>一句话结论</b><br>
+市教育学会这次是<b>主题论文征集（评优+汇编交流），不是发表、也不是帮你发论文</b>。对<b>职称评审基本没用</b>（不算正式发表、汇编不予认可）；对<b>校内绩效可能有一点用</b>，但要看你们学校自己的量化细则，而且分会很低、常被折半。真正评职称硬通货是：<b>有 CN/ISSN 刊号、三大网可查的正式发表</b>，或正式出版的著作、主持的课题、政府/教育局颁发的教学成果奖。</div>
+
+<h2 id="what">① 学会征文到底是什么<span>官方通知原文，不是机构宣传</span></h2>
+<div class="card">
+<h3>深圳市教育学会 2026 主题论文征集</h3><span class="badge">官方通知 · 2026-10-30 至 12-15</span>
+<p>官方原文对成果的说法是：<b>"对优秀论文择优汇编结集，作为学会学术交流资料；后续或结合学术研究需要联系出版部门出版（届时作者须签出版授权书）"</b>。</p>
+<p>拆成大白话：①先评优 → ②编进一本<b>内部交流册</b> → ③出版是"后续或可能"，不是承诺，更不是发知网期刊。2025 年度写得更直白："一等奖征文<b>编印成册交流</b>"。</p>
+<p class="src">深圳市教育学会官网通知 / 深圳开放大学转发　<a href="https://www.szou.edu.cn/html/1019/2026-11-05/content-15906.html" target="_blank" rel="noopener">看通知 ›</a></p>
+</div>
+<div class="warn"><b>别被广告带偏</b>：微信上"职称、评优加分好机会"那篇是<b>第三方机构（卖"参赛制作"服务）的推广文</b>，不是官方说法，也不能作为你学校认不认的依据。学会自己从没说过"评职称加分"。</div>
+
+<h2 id="zc">② 职称评审认什么<span>深圳市官方问答 + 广东标准原文</span></h2>
+<div class="card">
+<div class="traffic r"><b class="no">✗ 学会征文/获奖论文 → 不算</b><br>
+深圳市职称常见问答原文：论文须<b>已公开发表</b>（拿样刊才算，录用通知、清样稿都不算）；期刊须有 CN/ISSN 刊号、国家新闻出版署可查；<b>发表在论文集的一律不予认可</b>；须被知网/万方/维普之一收录。学会"汇编交流册"正属于"论文集"性质，<b>不符合</b>。</div>
+<div class="traffic g"><b class="yes">✓ 职称真正认的</b><br>
+① 有 CN/ISSN、三大网可查的<b>正式发表论文</b>（独立或第一作者）；② 正式出版著作（有 ISBN）；③ 主持的县级以上课题并结题；④ 政府/教育局颁发的教学成果奖。<br>
+广东标准（粤人社规〔2022〕30号）高级教师：论文可"至少1篇在正式刊物发表，<b>或在县级以上学术会议上宣读（需主办单位证明）</b>"——注意是"宣读"要证明，不是"征文获奖"。</div>
+<div class="traffic y"><b class="mid">△ 唯一可能的口子</b><br>
+如果你在学会的论坛/年会做<b>现场交流分享</b>，并让学会出具"会议宣读证明"，理论上对接"县级以上学术会议宣读"这条——但这要评委会认，且学会征文本身是征集不是会议宣读，别指望。最稳的还是正式发表。</div>
+<p class="src">深圳市政府《职称申报常见问题解答》/ 广东中小学教师职称标准 粤人社规〔2022〕30号</p>
+</div>
+
+<h2 id="jx">③ 绩效加不加分<span>看学校自己的细则，不是全市统一</span></h2>
+<div class="card">
+<p>绩效是<b>各校自己定量化细则</b>，没有全市统一标准。从各地公开的学校细则看，通行做法是：</p>
+<table class="tbl">
+<tr><th>成果类型</th><th>常见赋分（示例）</th><th>说明</th></tr>
+<tr><td>正式发表论文</td><td>国家级4 / 省级3 / 市级2</td><td>需 CN+ISSN；增刊、专刊、论文集不赋分</td></tr>
+<tr><td>教育学会获奖论文</td><td>省市级学会按教研室<b>折半</b></td><td>有细则直接写"省市级教育学会按省市级教研室论文折半赋分"</td></tr>
+<tr><td>指导学生获奖</td><td>按级别另算</td><td>和本人获奖同等重要，别只盯自己</td></tr>
+</table>
+<p>所以学会征文对绩效：<b class="mid">可能有，但折半、分值低、且有年度上限</b>。真正拉开绩效差距的是正式发表和获奖指导。你学校具体认不认、折多少，得看科研处那本绩效细则——这也是你上次说"科研处绩效审核口径"最硬的证据来源。</p>
+</div>
+
+<h2 id="yours">④ 你发给我的那些，有没有能用的<span>逐份核对过了</span></h2>
+<div class="card">
+<p>你发过两样：<b>2026投稿包.zip</b> 和一份<b>粘贴文本</b>。我逐份核对：</p>
+<table class="tbl">
+<tr><th>材料</th><th>里面是什么</th><th>能评职称/绩效吗</th></tr>
+<tr><td>投稿包 9 个文件夹</td><td>全是"要去投稿"的要求、正文草稿、申报表模板、作品占位</td><td class="no">✗ 一份都没发表，没有样刊、没有证书、没有收录证明</td></tr>
+<tr><td>粘贴文本</td><td>赛事/课题清单和写作话术，含"把你已发的论文打包评奖"等提示</td><td class="no">✗ 是清单和话术，不是成果本身</td></tr>
+</table>
+<p><b>结论：你发给我的材料里，目前没有任何一样是"已发表、能拿去评职称"的成果。</b>它们都是"准备去投"的。这也对得上——你一直在问"能不能直接帮我投"，说明都还在投稿阶段。</p>
+<p><b class="k y">建议</b>：如果评职称/绩效是你的实际目标，优先级应该是——<b>①先把一篇正式论文投到有刊号、三大网能查的期刊（周期 3—6 个月，要提前）</b>；②学会征文当练手和绩效小额加分，别当主力；③你那些赛事指导奖、课题，才是现在就能攒的硬材料。</p>
+</div>
+
+<div class="note">本页结论基于：深圳市职称评审申报指南（2025-12）、深圳市政府职称申报常见问题解答、广东省中小学教师职称评价标准（粤人社规〔2022〕30号）、深圳市教育学会 2026 征文官方通知、多所公办学校公开绩效细则。绩效部分各校不同，以你校科研处口径为准。</div>
+
+</main>
+<footer class="foot">职称与绩效真相 · 2026-11-24 · 按官方文件核对</footer>
+</div>
+<script>
+var BUILD='2026-11-24 22:40',VER='95';
+(function(){
+ var b=document.getElementById('rf'); if(!b) return;
+ b.onclick=function(){b.disabled=true;b.textContent='重新拉取…';location.replace(location.pathname+'?r='+Date.now());};
+ document.getElementById('dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
+})();
+</script>
+</body>
+</html>
