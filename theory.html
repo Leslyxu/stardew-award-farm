@@ -56,9 +56,11 @@ h2 span{display:block;font-size:11.5px;font-weight:700;color:var(--ink3);margin-
 .card p b.k.r{background:var(--pink)}
 .q{background:#f7f0dd;border-left:3px solid var(--ink3);border-radius:0 7px 7px 0;
  padding:7px 10px;margin:0 0 8px;font-size:13px;line-height:1.6}
-.src{font-size:11.5px;color:var(--ink3);line-height:1.55;margin:9px 0 0;
+.src{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:9px 0 0;
  border-top:1.5px dashed rgba(74,47,24,.2);padding-top:8px;word-break:break-word}
-.src a{color:var(--ink2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.src a{color:#22688f;font-weight:800;text-decoration:none;
+ border-bottom:2px solid rgba(34,104,143,.32);padding-bottom:1px}
+.src a:active{background:#e8f2f8}
 .cp{position:absolute;top:10px;right:10px;font:inherit;font-size:10.5px;font-weight:800;color:var(--ink2);
  background:var(--card);border:1.8px solid rgba(74,47,24,.3);border-radius:999px;padding:2px 8px;cursor:pointer}
 .cp:active{background:var(--yellow)}
@@ -98,6 +100,16 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
  border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 顶栏刷新 */
+.rfbar{display:flex;align-items:center;justify-content:space-between;margin:10px 0 0;
+ padding:7px 10px;background:var(--card);border:2px solid rgba(74,47,24,.22);border-radius:11px}
+.rfbar .bv{font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+#rf{font:inherit;font-size:11.5px;font-weight:800;color:var(--ink2);background:var(--paper);
+ border:2px solid rgba(74,47,24,.28);border-radius:999px;padding:1px 10px 2px;cursor:pointer;line-height:1.6}
+#rf:active{transform:translate(1px,1px)}
+#rf.stale{background:var(--yellow);border-color:var(--line);color:var(--ink)}
+#rf[disabled]{opacity:.6}
 </style>
 </head>
 <body>
@@ -112,6 +124,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
   <a href="#tpl">④ 选题公式</a>
   <a href="#trap">⑤ 三个雷</a>
  </div>
+<div class="rfbar"><span class="bv">v88 · 11-24 21:52 构建</span><button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></div>
 </header>
 
 <main>
@@ -127,7 +140,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <h3>《教育强国建设规划纲要（2024—2035年）》</h3><span class="badge">2025-01-19 中共中央、国务院</span>
  <div class="q">加快补齐体育、美育、劳动教育短板。……推进学校美育浸润行动。</div>
  <p><b class="k y">怎么用</b>目前最高层级、最新的美育依据，比 2020 年那份美育文件新。申报书开头引这句，比引任何外国文献都管用。</p>
- <p class="src">中国政府网 gov.cn/zhengce/202501/content_6999913.htm</p>
+ <p class="src">《教育强国建设规划纲要（2024—2035年）》· 2025-01-19　<a href="https://www.gov.cn/zhengce/202501/content_6999913.htm" target="_blank" rel="noopener">打开原文 ›</a></p></p>
 </div>
 
 <div class="card star">
@@ -136,7 +149,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <p class="role">《中小学人工智能通识教育指南（2025年版）》《中小学生成式人工智能使用指南（2025年版）》</p>
  <div class="q">禁止学生直接复制人工智能生成内容作为作业或考试答案，并限制在创造性任务中滥用人工智能。初中阶段可适度探索生成内容的逻辑性分析，指导学生交叉验证生成内容的合理性。</div>
  <p><b class="k y">怎么用</b>你的 AI 美术课只要出现「AI 出图、学生交上去」，就撞这条。AI 只能放在<b>参照、对比、质疑</b>三个环节。写案例时把这句原文引进去，评审立刻知道你读过。</p>
- <p class="src">中国政府网 gov.cn/lianbo/bumen/202505/content_7023810.htm</p>
+ <p class="src">《中小学人工智能通识教育指南》《中小学生生成式人工智能使用指南》· 2025-05　<a href="https://www.gov.cn/lianbo/bumen/202505/content_7023810.htm" target="_blank" rel="noopener">打开原文 ›</a></p></p>
 </div>
 
 <div class="card">
@@ -144,7 +157,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <h3>《美术教育研究》2026 年重点选题</h3><span class="badge">期刊自己公布</span>
  <p>新质生产力与跨学科美术教育 ｜ 数智时代美术专业教师队伍建设 ｜ AI 在美术创作中的应用及由此引申的艺术本体论 ｜ 美术类非遗的活态传承与创新转化 ｜ 博物馆美术馆美育及校馆合作育人 ｜ 艺术乡建</p>
  <p><b class="k y">怎么用</b>这是编辑明说要什么。投稿前对一遍，题目能对上其中一条，中的概率立刻不一样。</p>
- <p class="src">《美术教育研究》编辑部（ISSN 1674-9286，知网全文收录）</p>
+ <p class="src">《美术教育研究》编辑部《2026 年重点选题》（ISSN 1674-9286）　<a href="https://cn.bing.com/search?q=%E7%BE%8E%E6%9C%AF%E6%95%99%E8%82%B2%E7%A0%94%E7%A9%B6%202026%E5%B9%B4%20%E9%87%8D%E7%82%B9%E9%80%89%E9%A2%98" target="_blank" rel="noopener">去搜 ›</a></p></p>
 </div>
 
 <div class="card">
@@ -155,15 +168,15 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  · 《从「凝视」到「对话」：AI 重构美术鉴赏教学实施策略》，《中国美术教育》2026 年第 3 期，64—68 页<br>
  · 郭彩仪《AI赋能趣味美术课堂——以岭南版二年级〈吃瓜果的人〉为例》，广东教育学会 2025 年度学术讨论会论文集</p>
  <p><b class="k y">怎么用</b>看上面前两条：都在写「隐忧」「优势与隐忧」。再看最后一条：已经具体到岭南版某一课。泛泛写「AI 赋能美术教学」已经发不出去了。</p>
- <p class="src">中国知网 cnki.com.cn 检索「AI 美术 课堂」，按年份倒序</p>
+ <p class="src">中国知网 · 按年份倒序看　<a href="https://search.cnki.com.cn/Search/Result?content=AI%E7%BE%8E%E6%9C%AF%E8%AF%BE%E5%A0%82" target="_blank" rel="noopener">搜论文 ›</a></p></p>
 </div>
 
 <div class="card">
  <button class="cp">复制</button>
- <h3>学校美育浸润行动</h3><span class="badge">2023-12 通知，2024—2026 实施</span>
- <p>教育部《关于全面实施学校美育浸润行动的通知》，实施周期 2024—2026。今年是这个周期的收尾年，区里市里在收总结材料。</p>
- <p><b class="k y">怎么用</b>写「本校做法」时提这个行动名称，比说「我校重视美育」有效——它是个正在验收的项目名。</p>
- <p class="src">教育部官网 moe.gov.cn（2023 年 12 月）</p>
+ <h3>学校美育浸润行动</h3><span class="badge">教体艺〔2023〕5 号 · 2023-12-22</span>
+ <p>八项行动的原文。目标句写的是「到 2027 年，美育课程教育教学质量全面提升……建设一批学校美育名师工作室，培育一批国家级示范性学生艺术团」。所以验收不是卡在 2026 年底，但 2026 年正是各地开始收中期材料的时候。</p>
+ <p><b class="k y">怎么用</b>别只写「落实美育浸润行动」。写「对应第（三）项艺术实践活动普及行动：每学期一次全员展演，我校已连续 __ 学期」，把行动名落到具体条目上，评审一眼能对上。</p>
+ <p class="src">教育部官网 · 教体艺〔2023〕5 号　<a href="https://www.moe.gov.cn/srcsite/A17/moe_794/moe_628/202401/t20240102_1097467.html" target="_blank" rel="noopener">打开原文 ›</a></p></p>
 </div>
 
 <h2 id="who">② 谁在审你：只列「最近在讲什么」<span>不放简介，不解释为什么重要</span></h2>
@@ -189,7 +202,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <p>2024 年 2 月阿布扎比世界大会通过，90 国部长到场。2025 年 10 月 1 日在巴塞罗那发布《实施指南》，收了 52 国案例。</p>
  <p><b class="k">要点</b>艺术教育贯穿终身；数字技术是重点；强调本土与原住民文化；学校要和文化机构建立合作。</p>
  <p><b class="k y">怎么用</b>写「馆校合作」「非遗」「AI 与艺术教育」时，这是目前全球最高级别的依据，比任何学者都好使。</p>
- <p class="src">unesco.org/en/wccae2024（框架与指南均可下载）</p>
+ <p class="src">UNESCO《 arts education framework》· 2024-02 阿布扎比 / 2025-10 实施指南　<a href="https://cn.bing.com/search?q=UNESCO%20framework%20for%20arts%20education%20Abu%20Dhabi%202024" target="_blank" rel="noopener">去搜 ›</a></p></p>
 </div>
 
 <div class="card star">
@@ -199,7 +212,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <p><b class="k">结论</b>取消 EBacc（这个指标一直挤压艺术课时），Progress 8 改革后艺术与人文学科、语言等权；新设国家艺术与音乐教育中心；新国家课程 2027 年春公布、2028 年 9 月实施。</p>
  <div class="q">arts subjects are an entitlement rather than an optional extra</div>
  <p><b class="k y">怎么用</b>反驳「美术是副科、要让课时」时，这是最新、最硬的一条国家级表述。</p>
- <p class="src">AccessArt / Culture Commons 对报告的公开回应（2025-11）</p>
+ <p class="src">英国 Durham Commission 2025-11-05 最终报告　<a href="https://cn.bing.com/search?q=Curriculum%20and%20Assessment%20Review%20final%20report%202025%20arts" target="_blank" rel="noopener">去搜 ›</a></p></p>
 </div>
 
 <div class="card">
@@ -207,7 +220,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <h3>美国 NAEA 2026 年会</h3><span class="badge">2026-03-05—07 芝加哥</span>
  <p>主题 <b>REENVISION</b>。设「NAEA 会员 AI 工作组」专场《Best Practices in Artificial Intelligence in Art Education》，另有 AI＋AR＋游戏 的分场。</p>
  <p><b class="k y">怎么用</b>说明美国已经把 AI 当常规议题，不再是新鲜事——你写「AI 是趋势」已经晚了，得写「AI 具体怎么用、边界在哪」。</p>
- <p class="src">naea26.sched.com（议程公开）</p>
+ <p class="src">NAEA 2026 年会 · 2026-03-05 芝加哥 · 主题 REENVISION　<a href="https://cn.bing.com/search?q=NAEA%202026%20convention%20REENVISION%20Chicago" target="_blank" rel="noopener">去搜 ›</a></p></p>
 </div>
 
 <div class="card">
@@ -215,7 +228,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <h3>日本：生成 AI 利用指南 Ver.2.0</h3><span class="badge">2024-12-26 文部科学省</span>
  <p><b class="k">红线</b>小学生直接使用要慎重；明确把「用生成 AI 写报告、却以自己名义参加征文比赛」列为不当使用；担心过度依赖会妨碍创造力与个人特色。</p>
  <p><b class="k y">怎么用</b>和中国 2025 年指南同调。你要写「AI 辅助创作」，引中日两条一起说「两国都划了同一条线」，说服力比单引一条强。</p>
- <p class="src">mext.go.jp（日文原本 + 英译，均公开）</p>
+ <p class="src">日本文部科学省 · 生成AI利活用ガイドライン Ver.2.0 · 2024-12-26　<a href="https://cn.bing.com/search?q=%E6%96%87%E9%83%A8%E7%A7%91%E5%AD%A6%E7%9C%81%20%E7%94%9F%E6%88%90AI%20%E5%88%A9%E6%B4%BB%E7%94%A8%20%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%20Ver.2.0" target="_blank" rel="noopener">去搜 ›</a></p></p>
 </div>
 
 <div class="card">
@@ -224,7 +237,7 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
  <p><b>香港</b>：《视觉艺术科课程指引（小一至中六）》2024 版（课程发展议会编订，教育局公布），三个新重点——艺术科技（Arts Technology）、视觉艺术在 STEAM 中的角色、国民身份认同。</p>
  <p><b>台湾</b>：《十二年国教艺术领域课纲》三构面「表现、鉴赏、实践」；《美感教育中长程计划》第三期（2024—2028），核心是「美感即生活」，用设计思考改造学习环境。</p>
  <p><b class="k y">怎么用</b>写 STEAM、艺术科技、校园美感改造，这两条是最近的，且案例成体系。</p>
- <p class="src">香港教育局 edb.gov.hk（va_cg_c_2024.pdf）｜台湾美感教育成果分享平台 aade.project.edu.tw</p>
+ <p class="src">中国香港教育局《視覺藝術科課程指引》2024　<a href="https://cn.bing.com/search?q=site%3Aedb.gov.hk%20%E8%A6%96%E8%A6%BA%E8%97%9D%E8%A1%93%E7%A7%91%20%E8%AA%B2%E7%A8%8B%E6%8C%87%E5%BC%95%202024" target="_blank" rel="noopener">去搜 ›</a>　｜　中国台湾美感教育成果分享平台　<a href="https://aade.project.edu.tw/" target="_blank" rel="noopener">打开 ›</a></p></p>
 </div>
 
 <h2 id="tpl">④ 选题公式<span>AI 现在只能这么写</span></h2>
@@ -267,6 +280,32 @@ document.addEventListener('click',function(e){
   ta.remove();
  }
 });
+</script>
+
+<script>
+var BUILD='2026-11-24 21:52',VER='88';
+(function(){
+ var b=document.getElementById('rf'); if(!b) return;
+ function t(x){b.textContent=x}
+ fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+  .then(function(j){ if(String(j.v)!==VER){ b.classList.add('stale'); t('↻ 新版 v'+j.v); } })
+  .catch(function(){});
+ b.onclick=function(){
+  b.disabled=true; t('检查中…');
+  fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+   .then(function(j){
+    if(String(j.v)!==VER){
+      if(sessionStorage.getItem('rfTry')){ b.disabled=false; t('仍是旧版 v'+VER); return; }
+      sessionStorage.setItem('rfTry','1'); t('载入 v'+j.v+'…');
+      location.replace(location.pathname+'?r='+Date.now());
+    } else {
+      sessionStorage.removeItem('rfTry'); b.disabled=false; b.classList.remove('stale');
+      t('已是最新 ✓'); setTimeout(function(){t('↻ 刷新')},2000);
+    }
+   })
+   .catch(function(){ location.replace(location.pathname+'?r='+Date.now()); });
+ };
+})();
 </script>
 </body>
 </html>

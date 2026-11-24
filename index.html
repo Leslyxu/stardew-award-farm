@@ -30,6 +30,12 @@ main{max-width:520px;margin:0 auto;padding:0 16px 0}
 .who{font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
 .date{font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
 .date em{font-style:normal;color:#b8a584}
+.rgt{display:flex;align-items:center;gap:8px}
+#rf{font:inherit;font-size:11.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2px solid rgba(74,47,24,.28);border-radius:999px;padding:1px 9px 2px;cursor:pointer;line-height:1.6}
+#rf:active{transform:translate(1px,1px)}
+#rf.stale{background:var(--yellow);border-color:var(--line);color:var(--ink)}
+#rf[disabled]{opacity:.6}
 
 /* 三类切换 */
 .picks{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:11px 0 0}
@@ -215,7 +221,7 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
 <main>
 <div class="banner"><img src="banner.jpg" width="720" height="208" alt="奖杯农场" decoding="sync" fetchpriority="high"></div>
 <div class="bar"><span class="who">宝安区 · 美术老师</span>
-<span class="date" id="dt"></span></div>
+<span class="rgt"><span class="date" id="dt"></span><button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></span></div>
 
 <nav class="picks" id="picks">
  <button class="pk on" data-g="me">我要投<b>--</b></button>
@@ -514,10 +520,37 @@ document.addEventListener('click',function(e){
  if(e.target.id==='cpMsg')cpText(stuText(),'已复制，去家长群粘贴');
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var d=new Date();
-function p2(n){return n<10?'0'+n:''+n}
-$('#dt').textContent=p2(d.getMonth()+1)+'-'+p2(d.getDate())+' '+p2(d.getHours())+':'+p2(d.getMinutes())+' 更新';
+var BUILD='2026-11-24 21:52',VER='88';
+$('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
+/* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
+(function(){
+ var b=document.getElementById('rf'); if(!b) return;
+ function t(x){b.textContent=x}
+ fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+  .then(function(j){ if(String(j.v)!==VER){ b.classList.add('stale'); t('↻ 新版 v'+j.v); } })
+  .catch(function(){});
+ b.onclick=function(){
+  b.disabled=true; t('检查中…');
+  fetch('version.json?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+   .then(function(j){
+    if(String(j.v)!==VER){
+      if(sessionStorage.getItem('rfTry')){ b.disabled=false; t('仍是旧版 v'+VER); return; }
+      sessionStorage.setItem('rfTry','1'); t('载入 v'+j.v+'…');
+      location.replace(location.pathname+'?r='+Date.now());
+    } else {
+      sessionStorage.removeItem('rfTry'); b.disabled=false; b.classList.remove('stale');
+      t('已是最新 ✓'); setTimeout(function(){t('↻ 刷新')},2000);
+    }
+   })
+   .catch(function(){ location.replace(location.pathname+'?r='+Date.now()); });
+ };
+})();
+
 render('me');
+</script>
+<script>
+if(/[?&]r=\d+/.test(location.search)){var e=document.getElementById('dt');
+ if(e){e.title='已于 '+new Date().toLocaleTimeString('zh-CN')+' 重新拉取';}}
 </script>
 </body>
 </html>
