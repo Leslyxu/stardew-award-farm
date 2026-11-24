@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>文献地图 · 675→1199 篇文献的高频词与权威核查</title>
+<style>
+:root{--ink:#3a2a18;--ink2:#6b5638;--ink3:#a08c6c;--line:#4a2f18;
+--paper:#fdf6e5;--card:#fffdf6;--yellow:#ffd964;--green:#cdeaa5;--blue:#c3e2f7;--red:#e05a3a;--pink:#f7d6de}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);
+ font:15px/1.62 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+ background-image:radial-gradient(rgba(74,47,24,.045) 1px,transparent 1px);background-size:14px 14px;
+ padding:0 0 46px;-webkit-font-smoothing:antialiased}
+main,header{max-width:620px;margin:0 auto;padding:0 16px}
+header{padding-top:14px}
+.back{display:inline-block;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;
+ border:2px solid rgba(74,47,24,.3);border-radius:999px;padding:3px 11px;background:var(--card)}
+h1{font-size:23px;font-weight:900;margin:9px 0 3px;letter-spacing:-.01em}
+.sub{margin:0 0 12px;font-size:12.5px;color:var(--ink3);line-height:1.5}
+.nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin:0 0 14px;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--ink2);background:var(--card);
+ border:2px solid rgba(74,47,24,.26);border-radius:999px;padding:5px 12px;text-decoration:none}
+.nav a b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.lead{background:var(--yellow);border:2.5px solid var(--line);border-radius:14px;
+ box-shadow:4px 4px 0 rgba(74,47,24,.85);padding:13px 15px;margin:0 0 22px}
+.lead p{margin:0 0 7px;font-size:13.5px;line-height:1.6}
+.lead p:last-child{margin:0}
+.lead b{font-weight:900}
+
+h2{font-size:16.5px;font-weight:900;margin:30px 0 4px;padding-left:9px;
+ border-left:5px solid var(--line);line-height:1.35}
+h2 span{display:block;font-size:11.5px;font-weight:700;color:var(--ink3);margin-top:3px;padding-left:0}
+.hint{font-size:12.5px;color:var(--ink2);margin:8px 0 12px;line-height:1.55}
+
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:13px;
+ box-shadow:3px 3px 0 rgba(74,47,24,.15);padding:13px 14px 12px;margin:0 0 11px;position:relative}
+.card.star{box-shadow:3px 3px 0 var(--red);border-color:var(--line)}
+.card h3{margin:0 0 2px;font-size:15px;font-weight:900;line-height:1.45;padding-right:56px}
+.badge{display:inline-block;font-size:10.5px;font-weight:800;color:var(--ink);
+ background:var(--green);border:1.5px solid var(--line);border-radius:999px;
+ padding:1px 8px;margin:0 0 8px;line-height:1.5}
+.card.star .badge{background:var(--pink)}
+.role{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:0 0 9px}
+.role b{color:var(--ink)}
+.card p{margin:0 0 8px;font-size:13.5px;line-height:1.62}
+.card p:last-of-type{margin-bottom:0}
+.card p b.k{display:inline-block;font-size:11px;font-weight:900;background:var(--blue);
+ border:1.5px solid var(--line);border-radius:5px;padding:0 5px;margin-right:5px;vertical-align:1.5px}
+.card p b.k.y{background:var(--yellow)}
+.card p b.k.g{background:var(--green)}
+.card p b.k.r{background:var(--pink)}
+.q{background:#f7f0dd;border-left:3px solid var(--ink3);border-radius:0 7px 7px 0;
+ padding:7px 10px;margin:0 0 8px;font-size:13px;line-height:1.6}
+.src{font-size:11.5px;color:var(--ink2);line-height:1.55;margin:9px 0 0;
+ border-top:1.5px dashed rgba(74,47,24,.2);padding-top:8px;word-break:break-word}
+.src a{color:#22688f;font-weight:800;text-decoration:none;
+ border-bottom:2px solid rgba(34,104,143,.32);padding-bottom:1px}
+.src a:active{background:#e8f2f8}
+.cp{position:absolute;top:10px;right:10px;font:inherit;font-size:10.5px;font-weight:800;color:var(--ink2);
+ background:var(--card);border:1.8px solid rgba(74,47,24,.3);border-radius:999px;padding:2px 8px;cursor:pointer}
+.cp:active{background:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 14px;
+ background:var(--card);border:2.5px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 9px;text-align:left;border-bottom:1.5px solid rgba(74,47,24,.16);vertical-align:top;line-height:1.5}
+th{background:#f2e8cf;font-weight:900;font-size:11.5px;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+table.who{table-layout:fixed;font-size:11.8px}
+table.who th,table.who td{white-space:normal;padding:8px 7px}
+table.who td:first-child{white-space:nowrap;font-size:12.5px}
+td b{font-weight:900}
+
+.tpl{background:var(--card);border:2.5px dashed var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.tpl h4{margin:0 0 7px;font-size:13px;font-weight:900}
+.tpl p{margin:0;font-size:13px;line-height:1.7}
+.tpl p+p{margin-top:8px}
+
+.warn{background:#fdeae2;border:2.5px solid var(--red);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.warn p{margin:0;font-size:13px;line-height:1.62}
+.warn p+p{margin-top:7px}
+.warn b{color:#a83318}
+
+ol.traps{padding-left:0;list-style:none;counter-reset:t;margin:0 0 10px}
+ol.traps li{counter-increment:t;position:relative;background:var(--card);border:2.5px solid var(--line);
+ border-radius:12px;padding:12px 14px 12px 42px;margin:0 0 10px;font-size:13.2px;line-height:1.62}
+ol.traps li::before{content:counter(t);position:absolute;left:12px;top:11px;width:21px;height:21px;
+ background:var(--red);color:#fff;font-size:12px;font-weight:900;border-radius:50%;
+ display:flex;align-items:center;justify-content:center}
+ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
+
+.foot{margin:26px 0 0;display:flex;gap:8px;flex-wrap:wrap}
+.foot a{font-size:12.5px;font-weight:800;color:var(--ink);text-decoration:none;background:var(--card);
+ border:2.5px solid var(--line);border-radius:11px;padding:9px 13px;box-shadow:3px 3px 0 rgba(74,47,24,.15)}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(10px);
+ background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
+ border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 顶栏刷新 */
+.rfbar{display:flex;align-items:center;justify-content:space-between;margin:10px 0 0;
+ padding:7px 10px;background:var(--card);border:2px solid rgba(74,47,24,.22);border-radius:11px}
+.rfbar .bv{font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+#rf{font:inherit;font-size:11.5px;font-weight:800;color:var(--ink2);background:var(--paper);
+ border:2px solid rgba(74,47,24,.28);border-radius:999px;padding:1px 10px 2px;cursor:pointer;line-height:1.6}
+#rf:active{transform:translate(1px,1px)}
+#rf.stale{background:var(--yellow);border-color:var(--line);color:var(--ink)}
+#rf[disabled]{opacity:.6}
+</style>
+
+<style>
+.bar-row{display:flex;align-items:center;gap:8px;margin:0 0 9px;font-size:12.5px}
+.bar-row .lb{width:112px;flex:0 0 112px;color:var(--ink);font-weight:700}
+.bar-row .tr{flex:1;background:rgba(74,47,24,.09);border-radius:6px;height:20px;overflow:hidden}
+.bar-row .fl{display:block;height:20px;background:var(--green);border-radius:6px;min-width:3px}
+.bar-row.acc .fl{background:var(--pink)}
+.bar-row .pc{width:48px;flex:0 0 48px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:800}
+.note{font-size:11.5px;line-height:1.6;color:var(--ink3);background:var(--card);
+ border:1.5px dashed rgba(74,47,24,.3);border-radius:10px;padding:10px 12px;margin:12px 0}
+table.stat{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+table.stat th,table.stat td{padding:7px 6px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.stat th{background:rgba(74,47,24,.06);font-weight:900}
+table.stat td:first-child{white-space:nowrap;font-weight:800}
+.bigstat{display:flex;gap:8px;margin:10px 0}
+.bigstat div{flex:1;background:var(--card);border:2px solid var(--line);border-radius:12px;
+ padding:10px 8px;text-align:center}
+.bigstat b{display:block;font-size:23px;font-weight:900;color:#b4531f;line-height:1.1}
+.bigstat span{font-size:11px;color:var(--ink3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="bar"><span class="who">宝安区 · 美术老师</span>
+ <span class="rgt"><span class="date" id="dt"></span>
+ <button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></span></div>
+ <h1>文献地图</h1>
+ <p class="sub">不是挑几篇当宝典。用 8 本艺术教育核心期刊、1199 篇论文的标题和摘要做词频，看这个领域到底在研究什么、谁真被引用、你问的 training 有多少。</p>
+ </header>
+
+<main>
+<div class="warn"><b>先把方法说清，结论才敢信</b><br>
+样本：OpenAlex 数据库，8 本艺术教育期刊 2020—2025 年论文，去重后 <b>1199 篇</b>；其中纯美术教育四刊（Studies in Art Education、Visual Arts Research、International Journal of Art &amp; Design Education、Journal of Aesthetic Education）<b>641 篇</b>作为主样本。<br>
+做法：对标题＋摘要做正则匹配，统计“提到某概念的论文篇数”，占比＝篇数÷样本数。<br>
+局限：① 三本刊每本只取到 200 篇（接口上限），实际更多，数字是小样本下限；② 词频只说明“多少篇提到”，不等于“支持某观点”；③ 只覆盖英文期刊，中文文献不算在内。这些数字是“这个圈子在聊什么”的体检，不是真理。</div>
+
+<div class="bigstat">
+ <div><b>1199</b><span>篇论文（8 刊去重）</span></div>
+ <div><b>641</b><span>篇纯美术教育四刊</span></div>
+ <div><b>121</b><span>本领域最高被引次数</span></div>
+</div>
+
+<h2 id="freq">① 高频概念：这个领域到底在研究什么<span>纯美术教育四刊 641 篇，看“有多少篇提到”</span></h2>
+<div class="lead"><p><b>一句话：主流是教学、实践、师生和批判／社会议题；AI 和后人类都是小众。</b></p>
+ <p>这直接推翻我上一页的口径——我把只占 2% 的“后人类”写成了整个领域的转向，是以偏概全。</p></div>
+
+<div class="card">
+<div class="bar-row"><span class="lb">教学/ pedagogy</span><span class="tr"><span class="fl" style="width:100%"></span></span><span class="pc">46.5%</span></div>
+<div class="bar-row"><span class="lb">实践/ practice</span><span class="tr"><span class="fl" style="width:84.6%"></span></span><span class="pc">39.3%</span></div>
+<div class="bar-row"><span class="lb">学生/ learner</span><span class="tr"><span class="fl" style="width:82.8%"></span></span><span class="pc">38.4%</span></div>
+<div class="bar-row"><span class="lb">教师/ teacher</span><span class="tr"><span class="fl" style="width:69.9%"></span></span><span class="pc">32.4%</span></div>
+<div class="bar-row acc"><span class="lb">批判/社会正义</span><span class="tr"><span class="fl" style="width:67.9%"></span></span><span class="pc">31.5%</span></div>
+<div class="bar-row"><span class="lb">文化/ cultural</span><span class="tr"><span class="fl" style="width:45.6%"></span></span><span class="pc">21.2%</span></div>
+<div class="bar-row"><span class="lb">研究方法</span><span class="tr"><span class="fl" style="width:41.4%"></span></span><span class="pc">19.2%</span></div>
+<div class="bar-row"><span class="lb">创造力</span><span class="tr"><span class="fl" style="width:40.3%"></span></span><span class="pc">18.7%</span></div>
+<div class="bar-row"><span class="lb">反思</span><span class="tr"><span class="fl" style="width:37.3%"></span></span><span class="pc">17.3%</span></div>
+<div class="bar-row"><span class="lb">生态/可持续</span><span class="tr"><span class="fl" style="width:35.5%"></span></span><span class="pc">16.5%</span></div>
+<div class="bar-row"><span class="lb">情感/ affect</span><span class="tr"><span class="fl" style="width:31.9%"></span></span><span class="pc">14.8%</span></div>
+<div class="bar-row"><span class="lb">课程/ curriculum</span><span class="tr"><span class="fl" style="width:29.3%"></span></span><span class="pc">13.6%</span></div>
+<div class="bar-row"><span class="lb">技术/数字</span><span class="tr"><span class="fl" style="width:27.4%"></span></span><span class="pc">12.6%</span></div>
+<div class="bar-row"><span class="lb">身份/ identity</span><span class="tr"><span class="fl" style="width:20.5%"></span></span><span class="pc">9.5%</span></div>
+<div class="bar-row"><span class="lb">评价/ assessment</span><span class="tr"><span class="fl" style="width:19.4%"></span></span><span class="pc">9.0%</span></div>
+<div class="bar-row acc"><span class="lb">training（训练）</span><span class="tr"><span class="fl" style="width:11.0%"></span></span><span class="pc">5.1%</span></div>
+<div class="bar-row acc"><span class="lb">AI/生成式</span><span class="tr"><span class="fl" style="width:5.8%"></span></span><span class="pc">2.7%</span></div>
+<div class="bar-row acc"><span class="lb">后人类</span><span class="tr"><span class="fl" style="width:4.3%"></span></span><span class="pc">2.0%</span></div>
+<div class="bar-row acc"><span class="lb">新物质主义</span><span class="tr"><span class="fl" style="width:4.3%"></span></span><span class="pc">2.0%</span></div>
+<div class="bar-row acc"><span class="lb">视觉文化</span><span class="tr"><span class="fl" style="width:4.1%"></span></span><span class="pc">1.9%</span></div>
+<p class="src">数据来源：OpenAlex API，检索日期 2026-11-24，样本与算法见本页开头。粉色条是你特别问到、或我上一页说错的项。</p>
+</div>
+
+<div class="card">
+<button class="cp">复制</button>
+<h3>回答你问的 "training"</h3><span class="badge">33 篇 · 5.1%</span>
+<p>有，但它<b>不是艺术教育的核心理论</b>，只是散落在具体语境里的词。抽出来看，主要是三类：<b>dance training</b>（舞蹈训练与概念形成）、<b>pre-service teacher training</b>（职前教师培训）、<b>技能培训</b>（如设计团队合作的评价）。</p>
+<p>也就是说，你想找的“国外是不是有一套叫 training 的主流理论”——没有。它是个普通词，不是流派。真正的高频主线是上面那几条（教学、实践、师生、批判）。</p>
+</div>
+
+<h2 id="authority">② 权威核查：谁真的被引用<span>领域内引用量排名，不再拿Low引用文章当宝典</span></h2>
+<div class="lead"><p><b>一句话：这个领域最高被引才 121 次，多数论文个位数——人文社科不靠引用量堆。</b></p>
+ <p>我上一页标“高被引”的几篇 SAE 文章，实测引用量都很低，那个说法不严谨。下面是四刊里真正排前面的。</p></div>
+<div class="card">
+<table class="stat">
+<tr><th>被引</th><th>年份</th><th>题目（译）</th></tr>
+<tr><td>121</td><td>2025</td><td>文生图生成时代的艺术与图形设计教育（综述）</td></tr>
+<tr><td>72</td><td>2023</td><td>毁灭人类：自动化时代设计师的“去物质化”</td></tr>
+<tr><td>57</td><td>2020</td><td>通过艺术进行社会变革教育：一次自我审视</td></tr>
+<tr><td>51</td><td>2023</td><td>艺术教育中与 AI 的创造性与批判性纠缠</td></tr>
+<tr><td>44</td><td>2023</td><td>基于元宇宙的儿童学校空间设计学习</td></tr>
+<tr><td>38</td><td>2022</td><td>小学艺术教育中通过设计思维培养同理心</td></tr>
+<tr><td>35</td><td>2021</td><td>舞蹈训练与概念发展的关系</td></tr>
+<tr><td>33</td><td>2020</td><td>超越人类中心主义：艺术教育中的非人类动物问题</td></tr>
+</table>
+<p class="src">来源：OpenAlex cited_by_count，2026-11-24 抓取。数字会随时间变化；引用量低不等于水平低，只说明人文社科的引用习惯。</p>
+</div>
+
+<div class="warn"><b>所以你该拿什么当“权威”</b><br>
+不是看谁被引几千次（那是医学和计算机的世界），而是看：<b>①发在哪本刊</b>（SAE 是 NAEA 旗舰刊，本样本里排它前面的都是综述或跨刊热点）；<b>②是不是综述/元分析</b>（上面那篇 121 次的文生图综述就是）；<b>③和你的题目对不对口</b>。一篇对口的普通论文，比一篇不对口的高被引更有用。</div>
+
+<h2 id="trend">③ 年份趋势：AI 是不是在涨<span>全 8 刊，按年份看占比</span></h2>
+<div class="card">
+<table class="stat">
+<tr><th>年份</th><th>论文数</th><th>AI 相关占比</th></tr>
+<tr><td>2020</td><td>197</td><td>18.8%</td></tr>
+<tr><td>2021</td><td>127</td><td>19.7%</td></tr>
+<tr><td>2022</td><td>127</td><td>38.6%</td></tr>
+<tr><td>2023</td><td>133</td><td>58.6%</td></tr>
+<tr><td>2024</td><td>73</td><td>60.3%</td></tr>
+<tr><td>2025</td><td>18</td><td>55.6%</td></tr>
+</table>
+<p>AI 相关占比从 2020 年的约 19% 涨到 2023 年后的约 60%，<b>确实是近三年快速上升的方向</b>。但注意：2024—2025 样本量很小（接口上限和年份未收全），这个比例只能看趋势，不能当精确值。</p>
+<p><b class="k y">怎么用</b>你的 AI 案例赶的是上升期，方向对；但写理论依据时，别再说“整个领域都转向 AI 或后人类”——数据显示 AI 约占六成、后人类只有 2%，主流仍是教学与师生。把 AI 作为一个<b>正在增长的具体方向</b>来写，既准确又显得你读过文献。</p>
+</div>
+
+<div class="note"><b>还能怎么挖：</b>这份数据还藏着很多角度——比如“批判/社会正义”31.5% 里具体是哪些议题（去殖民、种族、性别）、高频实词前 45 名、每本刊的选题差异。你想看哪个，我直接从这个已抓好的库里出，不用重新编。</div>
+
+</main>
+<footer class="foot">文献地图 · 数据来自 OpenAlex · 2026-11-24 抓取 · 样本与局限见页首</footer>
+</div>
+<script>
+var BUILD='2026-11-24 22:35',VER='94';
+(function(){
+ var b=document.getElementById('rf'); if(!b) return;
+ b.onclick=function(){b.disabled=true;b.textContent='重新拉取…';location.replace(location.pathname+'?r='+Date.now());};
+ document.getElementById('dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
+ /* 复制按钮 */
+ document.querySelectorAll('.cp').forEach(function(btn){
+  btn.onclick=function(){
+   var c=btn.parentElement,t=c.innerText.replace(/^复制/,'').replace(/\n{2,}/g,'\n').trim();
+   navigator.clipboard.writeText(t).then(function(){var o=btn.textContent;btn.textContent='已复制';setTimeout(function(){btn.textContent=o},1500)});
+  };
+ });
+})();
+</script>
+</body>
+</html>
