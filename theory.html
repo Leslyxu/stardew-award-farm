@@ -124,13 +124,13 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
   <a href="#tpl">④ 选题公式</a>
   <a href="#trap">⑤ 三个雷</a>
  </div>
-<div class="rfbar"><span class="bv">v89 · 11-24 23:14 构建</span><button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></div>
+<div class="rfbar"><span class="bv" id="dt">构建中…</span><button id="rf" type="button" aria-label="重新拉取最新版本">↻ 刷新</button></div>
 </header>
 
 <main>
 <div class="warn" style="border-color:#b4531f">
- <b>更正（2026-11-24）：本页 ③ 段把"后人类转向"说成整个领域的方向，是用一小批论文下的过大结论。</b><br>
- 用 8 本核心期刊 1199 篇论文做词频后，实测：后人类只占 2.0%、新物质主义 2.0%，是小众；主流是教学 46.5%、实践 39.3%、师生与批判议题。完整数据与局限见 <a href="map.html" style="color:#22688f;font-weight:800">文献地图 ›</a>。下面 ③ 段的文献本身真实、可点开，但"领域整体转向"这个说法请以文献地图为准。
+ <b>更正（2026-11-24）：本页 ③ 段早前把"后人类转向"说成整个领域的方向，是用一期专题下的过大结论。</b><br>
+ 按四本有完整 2020—2025 卷期的刊、599 篇重算：后人类只占 1.7%（10 篇）、新物质主义 0.8%（5 篇）；主流是教学法 45.4%、教师 38.6%、实践 33.7%、学生 32.6%、批判议题 29.0%。哪个在涨、哪个在退，见 <a href="map.html" style="color:#22688f;font-weight:800">研究趋势 ›</a>。下面 ③ 段的文献本身真实、DOI 可点，但"领域整体转向"这个说法不成立。
 </div>
 <div class="lead">
  <p><b>国内外现在指向同一件事：AI 不能代笔，只能当参照。</b></p>
@@ -201,8 +201,8 @@ ol.traps li b{display:block;font-weight:900;margin-bottom:2px}
 <h2 id="intl">③ 国外理论前沿：顶刊上在讨论什么<span>不是政策，是学者正在提出的新理论。2024—2025，都能点开原文</span></h2>
 
 <div class="lead">
- <p><b>一句话：西方艺术教育理论这两年整体转向「后人类」。</b></p>
- <p>不再只谈「人怎么画、老师怎么教」，而是问「AI、材料、环境这些非人的东西，算不算课堂里的参与者」。顶刊 <b>Studies in Art Education</b>（美国艺术教育学会 NAEA 旗舰刊）2025 年第 66 卷第 4 期整期都在讨论这个。</p>
+ <p><b>一句话：2025 年冒出来的一批新理论集中在「后数字」和「人—AI—材料的关系」，但它是少数派，不是主流。</b></p>
+ <p>不再只谈「人怎么画、老师怎么教」，而是问「AI、材料、环境这些非人的东西，算不算课堂里的参与者」。下面几篇都出自 <b>Studies in Art Education</b>（NAEA 旗舰刊）2025 年第 66 卷第 4 期——<b>那是一期专题</b>，所以看起来密集；放到 599 篇里，后人类类议题只占 1.7%。当新观点读，别当领域共识。</p>
 </div>
 
 <div class="card star">
@@ -295,7 +295,8 @@ document.addEventListener('click',function(e){
 </script>
 
 <script>
-var BUILD='2026-11-24 23:14',VER='96';
+var BUILD='2026-11-25 00:10',VER='98';
+document.getElementById('dt').textContent='v'+VER+' · '+BUILD.slice(5)+' 构建';
 (function(){
  var b=document.getElementById('rf'); if(!b) return;
  function t(x){b.textContent=x}

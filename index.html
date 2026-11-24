@@ -214,6 +214,30 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
  background:var(--line);color:#fffdf6;font-size:12.5px;font-weight:700;padding:9px 16px;
  border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:99}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* 家长群这一档：只讲一件事，别堆任务 */
+.sbox{background:var(--card);border:2.5px solid var(--line);border-radius:14px;
+ box-shadow:4px 4px 0 rgba(74,47,24,.22);padding:14px 15px 13px;margin:0 0 11px}
+.sbox .sk{font-size:11px;font-weight:900;letter-spacing:.08em;color:#b4531f;margin:0 0 6px}
+.sbox h2{font-size:19px;font-weight:900;margin:0 0 8px;line-height:1.4;letter-spacing:-.01em}
+.sbox p{margin:0;font-size:13.5px;line-height:1.7;color:var(--ink2)}
+.sbox p b{color:var(--ink);font-weight:900}
+.sbox .go{display:block;width:100%;margin:12px 0 0;font:inherit;font-size:14.5px;font-weight:900;
+ color:#fffdf6;background:#2f7d4f;border:2.5px solid var(--line);border-radius:12px;padding:12px;
+ cursor:pointer;box-shadow:3px 3px 0 rgba(74,47,24,.25)}
+.sbox .go:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(74,47,24,.25)}
+.sbox.no{background:#f7f0dd;box-shadow:none;border-style:dashed}
+.sbox.no .sk{color:var(--ink3)}
+ul.no{margin:0;padding:0;list-style:none}
+ul.no li{position:relative;padding:0 0 0 20px;font-size:13px;line-height:1.85;color:var(--ink2)}
+ul.no li::before{content:"—";position:absolute;left:2px;color:#a08c6c;font-weight:900}
+.sh{font-size:13px;font-weight:900;margin:20px 0 8px;padding-left:8px;border-left:4px solid var(--line)}
+.srow{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:11px 12px;margin:0 0 9px}
+.srow b{display:block;font-size:13.5px;font-weight:900;line-height:1.45;margin:0 0 5px}
+.srow b .bl{display:inline-block;font-size:10px;padding:1px 4px;margin-right:5px;vertical-align:2px;line-height:1.5}
+.srow>span{display:block;font-size:12.2px;line-height:1.65;color:var(--ink2);margin:0 0 2px}
+.srow>span i{font-style:normal;font-weight:900;color:var(--ink3);margin-right:4px}
+.snote{font-size:11.5px;line-height:1.65;color:var(--ink3);background:var(--card);
+ border:1.5px dashed rgba(74,47,24,.3);border-radius:10px;padding:10px 12px;margin:12px 0 0}
 @media(max-width:360px){.days b{font-size:40px}.hero h2{font-size:17.5px}.pk{font-size:11.5px}}
 </style>
 </head>
@@ -225,18 +249,17 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
 
 <nav class="picks" id="picks">
  <button class="pk on" data-g="me">我要投<b>--</b></button>
- <button class="pk" data-g="stu">发给学生<b>--</b></button>
+ <button class="pk" data-g="stu">发家长群<b>--</b></button>
 </nav>
 <p class="hint" id="hint"></p>
 <button class="copyall" id="copyAll" hidden>一键复制 <b id="caN">0</b> 条 · 直接发家长群</button>
 
-
 <div id="fallback"><div class="fb">
- <p class="fbh">我要投 14 条 · 发给学生 7 条</p>
- <p class="fbm">现在最急：<b>AI 赋能学科育人案例（美术）</b> · <b>12-02 截止</b> · 交 2 个文件 · 自己登录宝教通上传</p>
+ <p class="fbh">我要投 14 条 · 家长群 7 条</p>
+ <p class="fbm">现在最急：<b>AI 赋能学科育人案例（美术）</b> · <b>12-02 截止</b> · 交 5 个文件 · 自己登录宝教通上传</p>
  <p class="fbl">市教育学会主题论文 12-15 ｜「美育一件事」12-31 ｜ 宝教通应用案例 01-24 ｜ 其余 11 项</p>
  <p class="fbn">看到这段，说明页面脚本没有运行起来。请用手机自带浏览器（Safari / Chrome）重新打开一次；仍然这样，就把这一屏截图发我。</p>
- <p class="fbn"><a href="papers.html">论文与课题库（83 条）›</a> ｜ <a href="theory.html">最新在做什么（2025—2026）›</a> ｜ <a href="map.html">文献地图（1199 篇词频）›</a> ｜ <a href="career.html">职称绩效真相›</a></p>
+ <p class="fbn"><a href="papers.html">论文与课题库（83 条）›</a> ｜ <a href="theory.html">理论前沿（2025—2026）›</a> ｜ <a href="map.html">研究趋势（什么在涨、什么在退）›</a> ｜ <a href="career.html">职称绩效真相›</a></p>
 </div></div>
 <p class="lead" id="lead1">这周最急</p>
 <article class="hero" id="hero"></article>
@@ -255,11 +278,11 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
 <a class="boxbtn paperbtn" href="theory.html"><span class="e"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.2 3.4 6.4 10 9.6l6.6-3.2z"/><path d="M5.3 8.1v4.2c0 1.4 2.1 2.5 4.7 2.5s4.7-1.1 4.7-2.5V8.1"/><path d="M16.6 6.4v4.6"/></svg></span>
  <span><b>最新在做什么</b><i>2025—2026 政策、期刊选题、国际动向</i></span><u>›</u></a>
 <a class="boxbtn paperbtn" href="map.html"><span class="e"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3.4" width="14" height="13.2" rx="1.6"/><path d="M6 7h8M6 10h8M6 13h5"/></svg></span>
- <span><b>文献地图</b><i>1199 篇论文的权威核查与高频词</i></span><u>›</u></a>
+ <span><b>研究趋势</b><i>国外顶刊这两年什么在涨、什么在退</i></span><u>›</u></a>
 <a class="boxbtn paperbtn" href="career.html"><span class="e"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5h12v13H4z"/><path d="M7 7h6M7 10h6M7 13h4"/></svg></span>
  <span><b>职称绩效真相</b><i>学会征文有没有用、评职称认什么</i></span><u>›</u></a>
 
-<div class="msgw"><button id="msgBtn">发家长群的话术</button></div>
+<div class="msgw"><button id="msgBtn">话术全文（可复制）</button></div>
 <div class="end"></div>
 </main>
 
@@ -295,12 +318,12 @@ function linkify(t){
    var u=st[+i];return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>'});
  return s
 }
-var GT={me:'我要投',stu:'发给学生'};
+var GT={me:'我要投',stu:'发家长群'};
 var _me=Object.keys(D).filter(function(k){return D[k].grp!=='stu'});
 var _cnt=function(h){return _me.filter(function(k){return (D[k].hand||'sch')===h}).length};
 var GH={me:_cnt('self')+' 条自己报 · '+_cnt('sch')+' 条学校代报 · '+_cnt('qv')+' 条学校组织',
-        stu:'教育部 5 条 + 广东 2 条，全免费，家长自己报'};
-var LEAD={me:['现在就该动这条','还能顺手做的'],stu:['最近的一条','其余按月份排']};
+        stu:'全部在白名单内、全免费。家长自己报，你只发一次话'};
+var LEAD={me:['现在就该动这条','还能顺手做的'],stu:['你要做的只有一步','家长照着做就行']};
 
 /* 老师档合并：art + self + sch 一起，有确切日期的按天数排，没日期的按季节排 */
 var SEA={'sz-mrpc-art':1,'sz-xsds-art':2,'kt-ba':3,'kt-sz':4,'ba-jzg-art':5,
@@ -359,38 +382,67 @@ function toggle(id,btn){
 }
 function lvTxt(v){return v==='国'?'国家级':(v==='省'?'省级':(v||'')+'级')}
 function blTag(it){return it.bl?'<span class="bl '+(it.bl==='国'?'g':'s')+'">'+esc(it.bl)+'</span>':''}
+/* 学生赛：单一数据源，表格和话术都从这里出，免得两处不一致 */
+var STU=[
+ {id:'cn-xws',nm:'「希望颂」全国青少年书画艺术大展',bl:'国',no:41,
+  when:'2 月下旬开系统，5 月初截稿，6 月底出成绩',where:'微信搜公众号「希望颂大展」，按提示填信息',
+  what:'线上报名 + 原作邮寄（不寄原件直接取消资格）',size:'国画、软笔：四尺对裁 138×34 或四尺三裁 69×46，必须竖幅；其他画种四开或八开；每人最多 2 幅'},
+ {id:'cn-paint-31',nm:'全国中小学生绘画书法作品比赛',bl:'国',no:35,
+  when:'3 月发文，4—6 月提交，7—8 月评审',where:'微信搜公众号「学与玩杂志」，进「智慧服务平台」',
+  what:'作品照片 + 孩子与作品合影；入围后按标签寄原件',size:'国画四尺三开；绘本不少于 9 幅；其他画种不超过 40×60cm；书法不超过四尺对开'},
+ {id:'cn-haiyang',nm:'全国中小学生海洋文化创意设计大赛',bl:'国',no:42,
+  when:'每年春季，以当年通知为准',where:'官网或公众号报名，入口每年会变',
+  what:'设计稿（电子版为主）+ 200 字创意说明',size:'海报、文创、包装、数字作品都收；不看画功，看想法'},
+ {id:'cn-aiart',nm:'全国青少年 AI 辅助生成数字艺术创作者大赛',bl:'国',no:45,
+  when:'新赛事，一般秋季，首届安排以官方通知为准',where:'按年度通知线上提交',
+  what:'数字作品 + 提示词与修改记录 + 原创说明',size:'必须说明 AI 参与了哪一步；纯 AI 一键出图不算'},
+ {id:'cn-meiyu',nm:'学校美育助力行动·青少年视觉艺术工作坊展示',bl:'国',no:46,
+  when:'每年春季，以官方通知为准',where:'学校组队申报，家长不用报',
+  what:'工作坊方案 + 8—12 张学生作品 + 过程记录',size:'以工作坊为单位，不是单张画；这项由老师带社团做'},
+ {id:'gd-hmqc',nm:'「翰墨青春 传承岭南」广东青少年书画大赛',bl:'省',no:29,
+  when:'3—6 月，现场赛一般在暑假前',where:'新快报渠道报名，初评先交照片',
+  what:'初评作品高清照片 + 报名表；入选后到现场出题现场画',size:'书法、美术两大组；代笔一查就取消资格'},
+ {id:'gd-yjhk',nm:'「粤见花开」广东省青少年美育成果展示大赛',bl:'省',no:28,
+  when:'每年上半年，以官方通知为准',where:'广东省青少年宫协会渠道报名',
+  what:'作品照片或视频 + 报名信息',size:'美术、书法、手工、表演都收；门槛最低，适合第一次参赛'}
+];
 function stuText(){
- return [
- '各位家长好：',
+ var L=['各位家长好：','',
+ '下面七项都在教育部和广东省教育厅的白名单里，全部免费，不与升学挂钩。这些比赛家长自己报就行，不用通过老师，也不用把作品交给我。',
  '',
- '整理了一份教育部和广东省白名单里的美术类赛事，全部免费、不与升学挂钩。现在报名通道还没开，不用交材料、不用填表。请让孩子利用寒假按下面各项的要求准备作品，报名通道开了老师会把正式链接发到群里，到时候直接交作品照片就行。',
- '',
- '一、全国中小学生绘画书法作品比赛（白名单第35项）',
- '五类选一：绘画（含绘本）、书法、摄影、造型（雕塑／陶艺／手工艺）、数字美术。',
- '尺寸：国画四尺三开；绘本不少于9幅；其他画种不超过40×60cm；书法不超过四尺对开。',
- '',
- '二、「希望颂」全国青少年书画艺术大展（白名单第41项）',
- '书法分软笔、硬笔；绘画分国画、儿童画、油画、素描、速写、水彩、水粉、数字美术，共十类。本届主题「美在身边」。',
- '尺寸：国画和软笔四尺对裁或四尺三裁、竖幅；其他画种四开或八开；数字美术A4—60×40cm。每人最多2幅。',
- '',
- '三、全国中小学生海洋文化创意设计大赛（白名单第42项）',
- '海洋主题创意设计：海报、文创、绘画、数字作品都可以。不看画功，看想法。',
- '',
- '四、全国青少年人工智能辅助生成数字艺术创作者大赛（白名单第45项）',
- '用AI辅助生成数字艺术作品，要保留草稿、提示词、每一版怎么改的记录。纯AI出图不算。',
- '',
- '五、学校美育助力行动·青少年视觉艺术传承与创新工作坊展示（白名单第46项）',
- '以工作坊为单位（不是单张画）：一个主题＋一组学生作品＋一套过程记录。学校组队申报。',
- '',
- '六、「翰墨青春 传承岭南」广东青少年书画大赛（广东省白名单第29项）',
- '书法、美术两组。初评交作品照片，入选后到现场出题、现场创作。',
- '',
- '七、「粤见花开」广东省青少年美育成果展示大赛（广东省白名单第28项）',
- '美术、书法、手工、表演都收，门槛低，适合第一次参赛的孩子。',
- '',
- '提醒：原件先别寄，等群里发了准确地址和标签再寄；每项不用准备太多；有问题先问我，不要自己找第三方机构报名。'
- ].join('\n');
+ '现在（11 月底）七项都还没开报名。这一步只做一件事：让孩子按尺寸先把作品画出来。通道一开，我把链接补到群里。',''];
+ STU.forEach(function(s,i){
+  L.push((i+1)+'、'+s.nm+'（'+(s.bl==='国'?'教育部':'广东省教育厅')+'白名单第'+s.no+'项）');
+  L.push('时间：'+s.when);
+  L.push('在哪报：'+s.where);
+  L.push('交什么：'+s.what);
+  L.push('尺寸／要求：'+s.size);
+  L.push('');
+ });
+ L.push('提醒：原件先别寄，等我发了准确地址和标签再寄；每项不用准备太多，挑孩子最想画的那个先做；任何要收费的第三方机构都不要信。');
+ return L.join('\n');
 }
+function renderStu(){
+ var t=STU.map(function(s){
+  return '<div class="srow"><b><span class="bl '+(s.bl==='国'?'g':'s')+'">'+s.bl+'</span>'+esc(s.nm)+'</b>'+
+   '<span><i>时间</i>'+esc(s.when)+'</span>'+
+   '<span><i>在哪报</i>'+esc(s.where)+'</span>'+
+   '<span><i>交什么</i>'+esc(s.what)+'</span>'+
+   '<span><i>要求</i>'+esc(s.size)+'</span></div>';
+ }).join('');
+ return '<div class="sbox">'+
+  '<h2>把下面这段话，复制发家长群</h2>'+
+  '<p>发完就不用管了。<b>不用收作品、不用代报名、不用登记名单、不用催</b>——话术里写了时间和入口，家长自己能报。等通道开了，再补一条链接。</p>'+
+  '<button class="go" id="cpStu2">复制这段话 · 直接发群</button></div>'+
+  '<div class="sbox no"><div class="sk">你不用做的事</div><ul class="no">'+
+  '<li>收作品、登记名单、做汇总表</li>'+
+  '<li>替家长注册账号、替学生填表</li>'+
+  '<li>找学校盖章、走学校统一报送</li>'+
+  '<li>一个个催——截止时间已经写在话术里</li></ul></div>'+
+  '<p class="sh">七项清单（家长照着看就行）</p>'+t+
+  '<p class="snote">唯一例外是第 5 项「工作坊展示」：那是学校组队，不是家长报名，由你带社团做，家长不用管。其余六项家长自己报。</p>';
+}
+
 function heroHTML(it){
  var n=days(it.due), tl=TLDR[it.id]||['',''], pk=it.pk;
  var meta=(n==null?'':(n===0?'今天截止 · ':mmdd(it.due)+' 截止 · '))+
@@ -436,10 +488,18 @@ function render(g){
    if(b) b.textContent=Object.keys(D).filter(function(x){return inG(D[x],k)}).length;
  });
  $('#hint').textContent=GH[cur];
- var ca=$('#copyAll');
- if(ca){ca.hidden=(cur!=='stu'); if(cur==='stu')$('#caN').textContent=a.length;}
+ var ca=$('#copyAll'); if(ca) ca.hidden=true;
  $('#lead1').textContent=LEAD[cur][0];
  $('#lead2').textContent=LEAD[cur][1];
+
+ if(cur==='stu'){
+  $('#hero').innerHTML=renderStu();
+  $('#duo').innerHTML=''; $('#duoDet').innerHTML='';
+  $('#duo').hidden=true; $('#rest').innerHTML=''; $('#rest').hidden=true;
+  $('#moreBtn').hidden=true; $('#lead2').hidden=true;
+  return;
+ }
+ $('#duo').hidden=false; $('#lead2').hidden=false;
 
  var h=a[0];
  $('#hero').innerHTML=h?heroHTML(h):'';
@@ -505,7 +565,7 @@ function openBox(){
  $('#sheet').classList.add('on');$('#mask').classList.add('on');
 }
 function openMsg(){
- $('#sheet').innerHTML='<h3>发家长群</h3><p class="sub">直接转家长群即可，家长看完不用再问</p>'+
+ $('#sheet').innerHTML='<h3>话术全文</h3><p class="sub">长按全选复制，粘到家长群即可</p>'+
   '<textarea id="msgBox" readonly>'+esc(stuText())+'</textarea>'+
   '<button class="cp" id="cpMsg">复制</button>';
  $('#sheet').classList.add('on');$('#mask').classList.add('on');
@@ -516,8 +576,10 @@ function cpText(t,okMsg){
    navigator.clipboard.writeText(t).then(function(){toast(okMsg)}).catch(fb);
  }else fb();
  function fb(){
-   var box=document.querySelector('#sheet textarea');var ok=false;
-   if(box){try{box.focus();box.select();box.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e){}}
+   var box=document.querySelector('#sheet textarea');
+   if(!box){openMsg();toast('已打开全文，长按选择复制');return}
+   var ok=false;
+   try{box.focus();box.select();box.setSelectionRange(0,99999);ok=document.execCommand('copy')}catch(e){}
    toast(ok?okMsg:'已选中，长按复制');
  }
 }
@@ -540,9 +602,10 @@ document.addEventListener('click',function(e){
  if(e.target.id==='msgBtn')openMsg();
  if(e.target.id==='mask')closeSheet();
  if(e.target.id==='cpMsg')cpText(stuText(),'已复制，去家长群粘贴');
+ if(e.target.id==='cpStu2')cpText(stuText(),'已复制，去家长群粘贴');
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var BUILD='2026-11-24 23:14',VER='96';
+var BUILD='2026-11-25 00:10',VER='98';
 $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
 /* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
 (function(){
