@@ -462,7 +462,7 @@ var _ac=function(h){return _art.filter(function(k){return (D[k].hand||'sch')===h
 var _ez=function(v){return _art.filter(function(k){return D[k].ez===v}).length};
 var GH={me:_cnt('self')+' 条自己报 · '+_cnt('sch')+' 条学校代报'+(_cnt('qv')?' · '+_cnt('qv')+' 条学校组织':'')+(_na.length?' · 学段不符 '+_na.length+' 条已剔除':''),
         art:'全程只交图 '+_ez('pure')+' 项 · 终评寄原件 '+_ez('final')+' 项 · 现场交 '+_ez('site')+' 项',
-        stu:'7 项教育部/省白名单赛事 · 按三步报名',
+        stu:'7 项白名单 · 5 项可投书法 · 按三步报名',
         kn:'硬数据 · 往哪发 · 怎么报，拿来就能用'};
 var LEAD={me:['第一项','其余项目'],art:['第一项','其余展览'],stu:['直接转发家长群','赛事明细'],kn:['研究数据速览','论文·课题·名家']};
 
@@ -538,10 +538,10 @@ function blTag(it){return it.bl?'<span class="bl '+(it.bl==='国'?'g':'s')+'">'+
 var STU=[
  {id:'cn-xws',nm:'「希望颂」全国青少年书画艺术大展',bl:'国',no:41,
   when:'2 月下旬开放报名，5 月初截稿，6 月底公布结果',where:'微信公众号「希望颂大展」→ 报名系统',
-  what:'线上填报 + 作品原件邮寄（未寄原件视为放弃）',size:'国画、软笔：四尺对裁 138×34cm 或四尺三裁 69×46cm，竖幅；其他画种四开或八开；数字美术 A4—60×40cm；每人限 2 幅'},
+  what:'线上填报 + 作品原件邮寄（未寄原件视为放弃）',size:'国画、软笔：四尺对裁 138×34cm 或四尺三裁 69×46cm，竖幅；其他画种四开或八开；数字美术 A4—60×40cm；每人限 2 幅',sf:1},
  {id:'cn-paint-31',nm:'全国中小学生绘画书法作品比赛',bl:'国',no:35,
   when:'3 月发文，4—6 月提交，7—8 月评审',where:'微信公众号「学与玩杂志」→ 智慧服务平台',
-  what:'作品照片 + 学生与作品合影；入围后按标签寄原件',size:'国画四尺三开；绘本不少于 9 幅；其他画种不超过 40×60cm；书法不超过四尺对开'},
+  what:'作品照片 + 学生与作品合影；入围后按标签寄原件',size:'国画四尺三开；绘本不少于 9 幅；其他画种不超过 40×60cm；书法不超过四尺对开',sf:1},
  {id:'cn-haiyang',nm:'全国中小学生海洋文化创意设计大赛',bl:'国',no:42,
   when:'每年春季，以当年通知为准',where:'主办方中国海洋发展基金会官方公众号（当年公告）',
   what:'设计稿电子版 + 200 字创意说明',size:'海报、文创、包装、数字作品均可；按年度主题创作'},
@@ -550,29 +550,32 @@ var STU=[
   what:'数字作品 + 提示词与修改记录 + 原创说明',size:'须说明 AI 参与的具体环节；纯 AI 生成不计'},
  {id:'gd-hmqc',nm:'「翰墨青春 传承岭南」广东青少年书画大赛',bl:'省',no:29,
   when:'3—6 月报名，现场赛在暑假前',where:'微信公众号「新快报」→ 大赛报名入口（当年公告）',
-  what:'初评：作品高清照片 + 报名表；入选后到现场命题创作',size:'书法、美术两组；现场创作，代笔取消资格'},
+  what:'初评：作品高清照片 + 报名表；入选后到现场命题创作',size:'书法、美术两组；现场创作，代笔取消资格',sf:1},
  {id:'gd-yjhk',nm:'「粤见花开」广东省青少年美育成果展示大赛',bl:'省',no:28,
   when:'每年上半年，以当年通知为准',where:'主办方广东省青少年宫协会官方渠道（当年公告）',
-  what:'作品照片或视频 + 报名信息',size:'美术、书法、手工、表演类均可'},
+  what:'作品照片或视频 + 报名信息',size:'美术、书法、手工、表演类均可',sf:1},
  {id:'cn-meiyu-workshop',nm:'学校美育助力行动·工作坊展示',bl:'国',no:46,
   when:'2026—2027 学年通知已发（11 月），以官网当年通知为准',where:'学校在人美艺教云平台统一报名（家长个人不能报）',
-  what:'8—12 名学生组一个工作坊，报名表 + 作品线上一次提交',size:'一个工作坊一个主题；绘画/书法/设计/摄影/AI 设计/环境设计均可'},
+  what:'8—12 名学生组一个工作坊，报名表 + 作品线上一次提交',size:'一个工作坊一个主题；绘画/书法/设计/摄影/AI 设计/环境设计均可',sf:1},
 ];
 
 /* 家长看得懂的补充信息：类型、报名入口路径、三步报名。url 仅填确认过的官网/系统，其余用公众号搜索路径 */
 var STUX={
- 'cn-xws':{type:'教育部白名单 · 书画',entry:'微信搜公众号「希望颂大展」→ 报名系统',steps:['关注公众号「希望颂大展」，点底部「报名系统」','网上填信息并上传作品照片','入选后按通知寄作品原件（未寄视为放弃）']},
+ 'cn-xws':{type:'教育部白名单 · 书画（含书法）',entry:'微信搜公众号「希望颂大展」→ 报名系统',steps:['关注公众号「希望颂大展」，点底部「报名系统」','网上填信息并上传作品照片','入选后按通知寄作品原件（未寄视为放弃）']},
  'cn-paint-31':{type:'教育部白名单 · 绘画/书法',entry:'微信搜公众号「学与玩杂志」→ 智慧服务平台',steps:['关注公众号「学与玩杂志」','进「智慧服务平台」报名，传作品照片+学生与作品合影','入围后按寄件标签寄原件']},
  'cn-haiyang':{type:'教育部白名单 · 设计',entry:'主办方「中国海洋发展基金会」官方公众号（当年公告）',steps:['关注中国海洋发展基金会公众号，等当年报名公告','按年度主题做设计稿，写200字创意说明','网上提交电子版']},
  'cn-aiart':{type:'教育部白名单 · 数字艺术',entry:'主办方「文化和旅游部艺术发展中心」官方渠道（当年公告）',steps:['关注主办方公告，确认首届报名时间','用AI辅助创作，保留提示词和修改记录','提交数字作品+原创说明；纯AI生成不计']},
- 'gd-hmqc':{type:'广东省白名单 · 书画（现场赛）',entry:'微信搜公众号「新快报」→ 大赛报名入口',steps:['关注公众号「新快报」，进大赛报名入口','初评：传作品高清照片+报名表','入选后到现场命题创作（代笔取消资格）']},
- 'gd-yjhk':{type:'广东省白名单 · 美育成果',entry:'主办方「广东省青少年宫协会」官方渠道（当年公告）',steps:['关注广东省青少年宫协会公告','提交作品照片或视频+报名信息','美术、书法、手工、表演类均可']},
- 'cn-meiyu-workshop':{type:'教育部白名单 · 学校组队（家长个人不能报，老师牵头）',entry:'人美艺教云平台 renmeijiaoyu.com/pages/art-submission-detail.html?id=16（学校统一报名）',steps:['这项要学校/美术老师牵头组队，家长个人报不了','老师组一个 8—12 人工作坊、本人作指导教师（每校限 1 个）','学校在平台填报名表+传作品，报名即参赛']}
+ 'gd-hmqc':{type:'广东省白名单 · 书画（含书法，现场赛）',entry:'微信搜公众号「新快报」→ 大赛报名入口',steps:['关注公众号「新快报」，进大赛报名入口','初评：传作品高清照片+报名表','入选后到现场命题创作（代笔取消资格）']},
+ 'gd-yjhk':{type:'广东省白名单 · 美育成果（含书法）',entry:'主办方「广东省青少年宫协会」官方渠道（当年公告）',steps:['关注广东省青少年宫协会公告','提交作品照片或视频+报名信息','美术、书法、手工、表演类均可']},
+ 'cn-meiyu-workshop':{type:'教育部白名单 · 学校组队（家长个人不能报，老师牵头 · 含书法）',entry:'人美艺教云平台 renmeijiaoyu.com/pages/art-submission-detail.html?id=16（学校统一报名）',steps:['这项要学校/美术老师牵头组队，家长个人报不了','老师组一个 8—12 人工作坊、本人作指导教师（每校限 1 个）','学校在平台填报名表+传作品，报名即参赛']}
 };
 function stuText(){
- var L=['各位家长：','',
- '下面这些比赛孩子有兴趣可以自己报名。每一项都写了「是什么比赛、什么时候报名、去哪报名、怎么报名」，照着做就行。',''];
- STU.forEach(function(s,i){
+ var list=stuF==='sf'?STU.filter(function(x){return !!x.sf}):STU;
+ var L=['各位家长：',''];
+ if(stuF==='sf') L.push('下面 '+list.length+' 项白名单比赛都能投书法作品，孩子练书法的可以选。每一项写了报名时间、去哪报、怎么报，照着做就行。');
+ else L.push('下面这些比赛孩子有兴趣可以自己报名。每一项都写了「是什么比赛、什么时候报名、去哪报名、怎么报名」，照着做就行。');
+ L.push('');
+ list.forEach(function(s,i){
   var x=STUX[s.id]||{};
   L.push((i+1)+'、'+s.nm);
   L.push('【比赛类型】'+(x.type||('白名单第'+s.no+'项')));
@@ -584,7 +587,6 @@ function stuText(){
   L.push('');
  });
  L.push('小提示：时间每年由主办方重新发布，报名前先看公众号当年公告；寄原作要等主办方发寄件通知，别自己先寄。');
- L.push('报名前先看公众号当年公告，时间与入口每年会重新发布。');
  return L.join('\n');
 }
 
@@ -657,7 +659,9 @@ return nav+
 })();
 
 function renderStu(){
- var t=STU.map(function(s){
+ var sfN=STU.filter(function(s){return !!s.sf}).length;
+ var list=stuF==='sf'?STU.filter(function(s){return !!s.sf}):STU;
+ var t=list.map(function(s){
   var x=STUX[s.id]||{};
   var steps=(x.steps||[]).map(function(t,j){return '<span><i>第'+(j+1)+'步</i>'+esc(t)+'</span>'}).join('');
   var m=String(x.entry||s.where||'').match(/(https?:\/\/[^\s，。]+)/);
@@ -670,9 +674,12 @@ function renderStu(){
    '<span><i>规格</i>'+esc(s.size)+'</span></div>';
  }).join('');
  return '<div class="sbox">'+
-  '<div class="sk">共 '+STU.length+' 项 · 按三步报名</div>'+
+  '<div class="sk">共 '+STU.length+' 项白名单 ·  '+sfN+' 项可投书法</div>'+
   '<h2>发给学生／家长的赛事清单</h2>'+
-  '<p>每一项都标了比赛类型、报名时间和三步报名法。复制后直接发家长群，家长照着做就能报。这 7 项都在教育部、广东省教育厅白名单内。</p>'+
+  '<div class="fseg" style="margin-top:9px">'+
+   '<button class="sf-stu fs'+(stuF!=='sf'?' on':'')+'" data-v="all">全部 '+STU.length+'</button>'+
+   '<button class="sf-stu fs'+(stuF==='sf'?' on':'')+'" data-v="sf">只看书法 '+sfN+'</button></div>'+
+  '<p>每一项都标了比赛类型、报名时间和三步报名法。复制后直接发家长群，家长照着做就能报。这 '+STU.length+' 项都在教育部、广东省教育厅白名单内。</p>'+
   '<button class="go" id="cpStu2">复制清单 · 转发给家长</button></div>'+
   '<p class="sh">赛事明细（按报名顺序）</p>'+t+
   '<p class="snote">报名时间与入口每年由主办方重新发布，以当年公告为准。作品原件等主办方发寄件通知后再寄。</p>';
@@ -710,7 +717,7 @@ function cardHTML(it,i){
 }
 var LANE={'cn-gz-metro':'art','cn-gz-zhc':'art','gd-msj':'art','gd-lncs':'art','sz-sx-2026':'art','wq-taoyi-2027':'art','sz-yinxiang-2027':'art','sz-pcjq-24':'art','cn-szwater':'art','sz-zgsc':'art','sz-jyxh-2026':'lw','gd-jyxh-essay':'lw','ba-ai-art':'bs','ba-meiyu-school':'bs','ba-bjt-case':'bs','ba-res-2026':'bs','kt-gd':'kt','kt-sz':'kt','kt-ba':'kt','cn-paint-31':'stu','cn-xws':'stu','cn-haiyang':'stu','cn-aiart':'stu','gd-hmqc':'stu','gd-yjhk':'stu','sz-mrpc-art':'art','sz-xsds-art':'art','ba-jzg-art':'art','gd-szhmy-art':'art','gd-wqamz-art':'art','sz-photo':'art','sz-photo-intl':'art','gd-apv':'art','cn-jpk':'bs','cn-zhigan':'art','cn-caanet':'art','gd-hmrj':'art','kt-gj':'kt','cn-zxxms':'lw','sz-pcjz':'bs','cn-yyqy':'art','cn-xfmy':'art','cn-hkms':'art','gd-hmxc':'art','cn-photo-theme':'art','gd-zgsy':'art','gd-lhz':'art','cn-jxh-ms':'lw','gd-myjb':'bs','cn-szsy':'bs','sz-myjb':'bs','cn-dafen':'art','sz-zxw':'art','gd-nyj':'art'};
 function ico(id){return ICON[LANE[id]||'bs']}
-var cur='me',artF='dir';
+var cur='me',artF='dir',stuF='all';
 
 function render(g){
  var fb=document.getElementById('fallback'); if(fb) fb.parentNode.removeChild(fb);
@@ -886,6 +893,8 @@ function toast(m){var el=$('#toast');el.textContent=m;el.classList.add('on');
  setTimeout(function(){el.classList.remove('on')},1800)}
 
 document.addEventListener('click',function(e){
+ var sv=e.target.closest('.sf-stu');
+ if(sv){stuF=sv.getAttribute('data-v');render('stu');return}
  var f=e.target.closest('.fs');
  if(f){artF=f.getAttribute('data-f');render('art');return}
  var g=e.target.closest('.pk');
