@@ -312,6 +312,30 @@ ul.no li::before{content:"—";position:absolute;left:2px;color:#a08c6c;font-wei
  main,header,.wrap,.sbox{max-width:min(1180px,calc(100% - 40px))!important;margin-left:auto!important;margin-right:auto!important;padding-left:20px;padding-right:20px}
  table{width:100%}
 }
+
+/* 投稿台账状态 */
+.stbadge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:900;line-height:1.4;
+ padding:1px 7px;border-radius:999px;border:2px solid var(--line);white-space:nowrap}
+.stbadge.done{background:#1a7f4b;color:#fff;border-color:#135f39}
+.stbadge.win{background:#ffd964;color:#5a3a00;border-color:#a9761b}
+.stbadge.want{background:#c3e2f7;color:#1d4a6e;border-color:#3f5b77}
+.stbadge.none{background:rgba(255,255,255,.6);color:var(--ink3);border-color:rgba(74,47,24,.3);font-weight:700}
+.card .stbadge{font-size:10px;padding:0 6px;margin-left:4px}
+.ledger-sum{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.ledger-sum span{flex:1;min-width:70px;text-align:center;border:2px solid var(--line);border-radius:10px;
+ padding:7px 4px;background:var(--card);box-shadow:2px 2px 0 rgba(74,47,24,.08)}
+.ledger-sum b{display:block;font-size:20px;line-height:1.2}
+.ledger-sum i{font-style:normal;font-size:11px;color:var(--ink3)}
+.ledger-bar{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
+.ledger-tip{font-size:12px;color:var(--ink2);background:rgba(255,217,100,.28);border:2px solid rgba(169,118,27,.4);
+ border-radius:10px;padding:9px 11px;margin:10px 0;line-height:1.6}
+.markbtn{font:inherit;font-size:13px;font-weight:800;cursor:pointer;border:2px solid var(--line);border-radius:9px;
+ padding:8px 12px;background:var(--card);color:var(--ink);box-shadow:2px 2px 0 rgba(74,47,24,.14)}
+.markbtn:active{transform:translate(1px,1px)}
+.markbtn.done{background:#1a7f4b;color:#fff;border-color:#135f39}.det-acts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px;padding-top:9px;border-top:1px dashed rgba(74,47,24,.25)}
+.det-acts>span{font-size:11px;color:var(--ink3);width:100%;margin-bottom:2px}
+.det-acts .markbtn{font-size:12px;padding:5px 10px}
+
 </style>
 </head>
 <body>
@@ -324,6 +348,7 @@ ul.no li::before{content:"—";position:absolute;left:2px;color:#a08c6c;font-wei
  <button class="pk on" data-g="me">我要投<b>--</b></button>
  <button class="pk" data-g="art">投作品<b>--</b></button>
  <button class="pk" data-g="stu">发家长群<b>--</b></button>
+ <button class="pk" data-g="lg">台账<b>0</b></button>
  <button class="pk" data-g="kn">科研<b>3</b></button>
 </nav>
 <p class="hint" id="hint"></p>
@@ -453,7 +478,7 @@ function linkify(t){
    var u=st[+i];return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>'});
  return s
 }
-var GT={me:'我要投',art:'投作品',stu:'发家长群',kn:'科研'};
+var GT={me:'我要投',art:'投作品',stu:'发家长群',lg:'投稿台账',kn:'科研'};
 var _me=Object.keys(D).filter(function(k){return D[k].grp!=='stu'&&D[k].grp!=='art'&&!D[k].na});
 var _na=Object.keys(D).filter(function(k){return D[k].grp!=='stu'&&D[k].grp!=='art'&&D[k].na});
 var _cnt=function(h){return _me.filter(function(k){return (D[k].hand||'sch')===h}).length};
@@ -461,10 +486,10 @@ var _art=Object.keys(D).filter(function(k){return D[k].grp==='art'});
 var _ac=function(h){return _art.filter(function(k){return (D[k].hand||'sch')===h}).length};
 var _ez=function(v){return _art.filter(function(k){return D[k].ez===v}).length};
 var GH={me:_cnt('self')+' 条自己报 · '+_cnt('sch')+' 条学校代报'+(_cnt('qv')?' · '+_cnt('qv')+' 条学校组织':'')+(_na.length?' · 学段不符 '+_na.length+' 条已剔除':''),
-        art:'全程只交图 '+_ez('pure')+' 项 · 终评寄原件 '+_ez('final')+' 项 · 现场交 '+_ez('site')+' 项',
+        art:'只发图片 '+_ez('pure')+' 项 · 终评寄原件 '+_ez('final')+' 项 · 现场交 '+_ez('site')+' 项',
         stu:'7 项白名单 · 5 项可投书法 · 按三步报名',
-        kn:'硬数据 · 往哪发 · 怎么报，拿来就能用'};
-var LEAD={me:['第一项','其余项目'],art:['第一项','其余展览'],stu:['直接转发家长群','赛事明细'],kn:['研究数据速览','论文·课题·名家']};
+        lg:'想投/已投/获奖都记在这，多电脑同步',kn:'硬数据 · 往哪发 · 怎么报，拿来就能用'};
+var LEAD={me:['第一项','其余项目'],art:['第一项','其余展览'],stu:['直接转发家长群','赛事明细'],lg:['我的投稿进度','台账明细'],kn:['研究数据速览','论文·课题·名家']};
 
 /* 老师档合并：art + self + sch 一起，有确切日期的按天数排，没日期的按季节排 */
 var SEA={'sz-mrpc-art':1,'sz-xsds-art':2,'kt-ba':3,'kt-sz':4,'ba-jzg-art':5,
@@ -515,7 +540,13 @@ function detHTML(it){
  var rows=(it.rows||[]).map(function(r){
    return '<div class="r"><b>'+esc(r[0])+'</b><span>'+linkify(r[1])+'</span></div>'}).join('');
  var head=handOf(it)?'<div class="r"><b>怎么交</b><span style="color:#b4531f;font-weight:700">'+esc(it.handTxt||'')+'</span></div>':'';
- return '<div class="det" style="display:none" id="d-'+it.id+'">'+head+rows+'</div>'
+ var st=stOf(it.id);
+ var mk='<div class="det-acts"><span>投稿状态（点一下标记）</span>'+
+   '<button class="markbtn'+(st==='want'?' done':'')+'" data-mk="want" data-id="'+it.id+'">想投</button>'+
+   '<button class="markbtn'+(st==='done'?' done':'')+'" data-mk="done" data-id="'+it.id+'">已投</button>'+
+   '<button class="markbtn'+(st==='win'?' done':'')+'" data-mk="win" data-id="'+it.id+'">获奖</button>'+
+   (st?'<button class="markbtn" data-mk="" data-id="'+it.id+'">清除</button>':'')+'</div>';
+ return '<div class="det" style="display:none" id="d-'+it.id+'">'+head+rows+mk+'</div>'
 }
 function toggle(id,btn){
  var d=document.getElementById('d-'+id);if(!d)return;
@@ -685,6 +716,44 @@ function renderStu(){
   '<p class="snote">报名时间与入口每年由主办方重新发布，以当年公告为准。作品原件等主办方发寄件通知后再寄。</p>';
 }
 
+function renderLedger(){
+ var all=Object.keys(D).map(function(k){return D[k]});
+ var done=all.filter(function(x){return stOf(x.id)==='done'});
+ var win=all.filter(function(x){return stOf(x.id)==='win'});
+ var want=all.filter(function(x){return stOf(x.id)==='want'});
+ var marked=done.length+win.length+want.length;
+ var sum='<div class="ledger-sum"><span><b>'+done.length+'</b><i>已投</i></span>'+
+   '<span><b>'+win.length+'</b><i>获奖</i></span>'+
+   '<span><b>'+want.length+'</b><i>想投</i></span>'+
+   '<span><b>'+(all.length-marked)+'</b><i>未投</i></span></div>';
+ var tip='<div class="ledger-tip">点比赛卡片的「看要求」，展开后能标「想投 / 已投 / 获奖」。'+
+   '标记先存在本机；要同步到其它电脑，点下面的「复制回报文本」发给 WorkBuddy，它写进云端台账，所有设备刷新即可见。</div>';
+ function grp(title,arr,st){
+  if(!arr.length) return '';
+  return '<p class="sh">'+title+'（'+arr.length+'）</p>'+arr.map(function(x){
+   return '<div class="srow"><b>'+esc(SN[x.id]||x.nm)+'</b>'+
+    '<span><i>级别</i>'+esc(x.lv||'')+'</span>'+
+    '<span><i>截止</i>'+esc(x.due?mmdd(x.due):(x.next||'待定'))+'</span>'+stBadge(x.id)+'</div>'
+  }).join('');
+ }
+ var body=grp('已获奖',win)+grp('已投',done)+grp('想投',want);
+ if(!marked) body='<p class="snote">还没标记任何比赛。点上方其它页签，展开比赛详情就能标记想投 / 已投 / 获奖。</p>';
+ return '<div class="sbox"><div class="sk">投稿台账 · 更新 '+(LG.updated||'本机')+'</div>'+
+  '<h2>我投过哪些 · 别重复投</h2>'+sum+tip+
+  '<button class="go" id="cpLg">复制回报文本 · 让 WorkBuddy 同步</button></div>'+
+  body;
+}
+function ledgerReport(){
+ var ids=Object.keys(LG.items).filter(function(k){return LG.items[k]});
+ if(!ids.length) return '台账暂无标记。';
+ var L=['投稿台账回报（请 WorkBuddy 写入 ledger.json 并推送）：',''];
+ ids.forEach(function(k){
+  var st=LG.items[k],nm=SN[k]||(D[k]?D[k].nm:k);
+  L.push(k+'|'+nm+'|'+st);
+ });
+ return L.join('\n');
+}
+
 function heroHTML(it){
  var n=days(it.due), tl=TLDR[it.id]||['',''], pk=it.pk;
  var meta=(n==null?'':(n===0?'今天截止 · ':mmdd(it.due)+' 截止 · '))+
@@ -692,10 +761,10 @@ function heroHTML(it){
  return '<div class="hrow"><span class="chip"><span class="e">'+ico(it.id)+'</span>'+
    lvTxt(it.lv)+' · '+esc(it.org)+'</span></div>'+
   daysHTML(it,1)+
-  '<h2>'+esc(SN[it.id]||it.nm)+'</h2>'+
+  '<h2>'+esc(SN[it.id]||it.nm)+' '+stBadge(it.id)+'</h2>'+
   '<p class="meta">'+meta+'</p>'+
   (it.ez?'<p class="ezl '+it.ez+'"><b>'+EZL[it.ez]+'</b><span>'+esc(it.ezTxt||'')+'</span></p>':'')+
-  (it.aw?'<p class="awl"><b>有奖级</b><span>'+esc(it.aw)+'</span></p>':'')+
+  (it.aw?'<p class="awl"><b>有奖次</b><span>'+esc(it.aw)+'</span></p>':'')+
   '<p class="tl"><i>·</i><span>'+esc(tl[0])+'</span></p>'+
   handLine(it)+
   '<div class="acts">'+
@@ -710,14 +779,49 @@ function cardHTML(it,i){
  else d='<span class="d">'+n+'<small>天</small></span>';
  return '<button class="card js-tog '+(i%2?'b':'g')+'" data-id="'+it.id+'">'+
   '<span class="e">'+ico(it.id)+'</span>'+d+
-  '<span class="t">'+(cur!=='stu'?'<span class="lvb lv-'+it.lv+'">'+it.lv+'</span>':'')+blTag(it)+esc(SN[it.id]||it.nm)+'</span>'+
-  (cur==='art'&&it.aw?'<span class="ezb awd">有奖</span>':'')+
+  '<span class="t">'+(cur!=='stu'?'<span class="lvb lv-'+it.lv+'">'+it.lv+'</span>':'')+blTag(it)+esc(SN[it.id]||it.nm)+stBadge(it.id)+'</span>'+
+  (cur==='art'&&it.aw?'<span class="ezb awd">有奖次</span>':'')+
   (cur==='art'&&it.ez&&!it.aw?ezBadge(it):'')+
   '<span class="s">'+HAND[handOf(it)]+' · '+esc(it.ch)+'</span></button>'
 }
 var LANE={'cn-gz-metro':'art','cn-gz-zhc':'art','gd-msj':'art','gd-lncs':'art','sz-sx-2026':'art','wq-taoyi-2027':'art','sz-yinxiang-2027':'art','sz-pcjq-24':'art','cn-szwater':'art','sz-zgsc':'art','sz-jyxh-2026':'lw','gd-jyxh-essay':'lw','ba-ai-art':'bs','ba-meiyu-school':'bs','ba-bjt-case':'bs','ba-res-2026':'bs','kt-gd':'kt','kt-sz':'kt','kt-ba':'kt','cn-paint-31':'stu','cn-xws':'stu','cn-haiyang':'stu','cn-aiart':'stu','gd-hmqc':'stu','gd-yjhk':'stu','sz-mrpc-art':'art','sz-xsds-art':'art','ba-jzg-art':'art','gd-szhmy-art':'art','gd-wqamz-art':'art','sz-photo':'art','sz-photo-intl':'art','gd-apv':'art','cn-jpk':'bs','cn-zhigan':'art','cn-caanet':'art','gd-hmrj':'art','kt-gj':'kt','cn-zxxms':'lw','sz-pcjz':'bs','cn-yyqy':'art','cn-xfmy':'art','cn-hkms':'art','gd-hmxc':'art','cn-photo-theme':'art','gd-zgsy':'art','gd-lhz':'art','cn-jxh-ms':'lw','gd-myjb':'bs','cn-szsy':'bs','sz-myjb':'bs','cn-dafen':'art','sz-zxw':'art','gd-nyj':'art'};
 function ico(id){return ICON[LANE[id]||'bs']}
+
 var cur='me',artF='dir',stuF='all';
+
+/* ===== 投稿台账：GitHub raw 只读 + localStorage 即时标记 ===== */
+var RAW_LEDGER='https://raw.githubusercontent.com/Leslyxu/stardew-award-farm/main/ledger.json';
+var LG={items:{},updated:''};
+try{LG.items=JSON.parse(localStorage.getItem('ledger_local')||'{}')}catch(e){}
+var LGdirty={};
+try{LGdirty=JSON.parse(localStorage.getItem('ledger_dirty')||'{}')}catch(e){}
+function saveLocal(){
+ try{
+  localStorage.setItem('ledger_local',JSON.stringify(LG.items));
+  localStorage.setItem('ledger_dirty',JSON.stringify(LGdirty));
+ }catch(e){}
+}
+function stOf(id){return LG.items[id]||''} // '' / want / done / win
+function stBadge(id){
+ var st=stOf(id),mp={done:'已投',win:'已获奖',want:'想投'};
+ if(!st) return '<span class="stbadge none">未投</span>';
+ return '<span class="stbadge '+st+'">'+mp[st]+'</span>';
+}
+function loadLedger(){
+ fetch(RAW_LEDGER+'?r='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+  .then(function(j){
+   if(j&&j.items){ // 云端为准；本地未同步的改动(dirty)保留
+    Object.keys(j.items).forEach(function(k){
+     if(!LGdirty[k]) LG.items[k]=j.items[k];
+    });
+    // 云端已含的 key，本地 dirty 视为已同步，清除
+    Object.keys(j.items).forEach(function(k){if(LGdirty[k]) delete LGdirty[k]});
+    LG.updated=j._updated||'';saveLocal();
+    try{render(cur)}catch(e){}
+   }
+  }).catch(function(){});
+}
+
 
 function render(g){
  var fb=document.getElementById('fallback'); if(fb) fb.parentNode.removeChild(fb);
@@ -732,11 +836,11 @@ if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
  if(fs){
   if(cur==='art'){
    fs.hidden=false;
-   fs.innerHTML='<button class="fs'+(artF==='dir'?' on':'')+'" data-f="dir">个人直投 <b>'+_art.filter(function(k){return D[k].hand==='self'}).length+'</b></button>'+
+   fs.innerHTML='<button class="fs'+(artF==='dir'?' on':'')+'" data-f="dir">自己投 <b>'+_art.filter(function(k){return D[k].hand==='self'}).length+'</b></button>'+
     '<button class="fs'+(artF==='sf'?' on':'')+'" data-f="sf">书法 <b>'+_art.filter(function(k){return D[k].sf}).length+'</b></button>'+
-    '<button class="fs'+(artF==='pure'?' on':'')+'" data-f="pure">全程只交图 <b>'+_ez('pure')+'</b></button>'+
-    '<button class="fs'+(artF==='aw'?' on':'')+'" data-f="aw">有奖级 <b>'+_art.filter(function(k){return D[k].aw}).length+'</b></button>'+
-    '<button class="fs'+(artF==='gov'?' on':'')+'" data-f="gov">市级以上 <b>'+_art.filter(function(k){return ['国','省','市'].indexOf(D[k].lv)>=0}).length+'</b></button>'+
+    '<button class="fs'+(artF==='pure'?' on':'')+'" data-f="pure">只发图片 <b>'+_ez('pure')+'</b></button>'+
+    '<button class="fs'+(artF==='aw'?' on':'')+'" data-f="aw">有奖次 <b>'+_art.filter(function(k){return D[k].aw}).length+'</b></button>'+
+    '<button class="fs'+(artF==='gov'?' on':'')+'" data-f="gov">市级及以上 <b>'+_art.filter(function(k){return ['国','省','市'].indexOf(D[k].lv)>=0}).length+'</b></button>'+
     '<button class="fs'+(artF==='all'?' on':'')+'" data-f="all">全部 <b>'+_art.length+'</b></button>';
   }else{fs.hidden=true;fs.innerHTML=''}
  }
@@ -744,7 +848,7 @@ if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
    b.classList.toggle('on',b.getAttribute('data-g')===cur)});
  Object.keys(GT).forEach(function(k){
    var b=$('#picks [data-g="'+k+'"] b');
-   if(b) b.textContent=(k==='kn')?'3':Object.keys(D).filter(function(x){return inG(D[x],k)&&!D[x].na}).length;
+   if(b) b.textContent=(k==='lg')?Object.keys(LG.items).filter(function(x){return LG.items[x]}).length:((k==='kn')?'3':Object.keys(D).filter(function(x){return inG(D[x],k)&&!D[x].na}).length);
  });
  $('#hint').textContent=GH[cur];
   var ca=$('#copyAll'); if(ca) ca.hidden=true;
@@ -763,6 +867,14 @@ if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
  if(cur==='stu'){
   var nb0=$('#naBox'); if(nb0){nb0.hidden=true;nb0.innerHTML=''}
   $('#hero').innerHTML=renderStu();
+  $('#duo').innerHTML=''; $('#duoDet').innerHTML='';
+  $('#duo').hidden=true; $('#rest').innerHTML=''; $('#rest').hidden=true;
+  $('#moreBtn').hidden=true; $('#lead2').hidden=true;
+  return;
+ }
+ if(cur==='lg'){
+  var nb1=$('#naBox'); if(nb1){nb1.hidden=true;nb1.innerHTML=''}
+  $('#hero').innerHTML=renderLedger();
   $('#duo').innerHTML=''; $('#duoDet').innerHTML='';
   $('#duo').hidden=true; $('#rest').innerHTML=''; $('#rest').hidden=true;
   $('#moreBtn').hidden=true; $('#lead2').hidden=true;
@@ -824,7 +936,7 @@ if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
     var hot=(n!=null&&n>=1&&n<=14)?' hot':'';
     var hd=handOf(it);
     var tg=(cur==='me')?('<span class="tag '+hd+'">'+HAND[hd]+'</span>'):'';
-    if(cur==='art'&&it.aw)tg='<span class="ezb awd">有奖</span>';
+    if(cur==='art'&&it.aw)tg='<span class="ezb awd">有奖次</span>';
     else if(cur==='art'&&it.ez)tg=ezBadge(it,1);
     return '<div class="row js-tog" data-id="'+it.id+'"'+(n!=null&&n<=0?' style="opacity:.55"':'')+'>'+
       '<span class="e">'+ico(it.id)+'</span><span class="nm">'+blTag(it)+esc(SN[it.id]||it.nm)+
@@ -893,6 +1005,12 @@ function toast(m){var el=$('#toast');el.textContent=m;el.classList.add('on');
  setTimeout(function(){el.classList.remove('on')},1800)}
 
 document.addEventListener('click',function(e){
+ var mk=e.target.closest('[data-mk]');
+ if(mk){
+  var id=mk.getAttribute('data-id'),v=mk.getAttribute('data-mk');
+  if(v){LG.items[id]=v;LGdirty[id]=1}else{delete LG.items[id];LGdirty[id]=1}
+  saveLocal(); render(cur); toast(v?('已标记'+({want:'想投',done:'已投',win:'获奖'}[v])+'（本机）'):'已清除'); return;
+ }
  var sv=e.target.closest('.sf-stu');
  if(sv){stuF=sv.getAttribute('data-v');render('stu');return}
  var f=e.target.closest('.fs');
@@ -912,6 +1030,7 @@ document.addEventListener('click',function(e){
   if(e.target.id==='mask')closeSheet();
  if(e.target.id==='cpMsg')cpText(stuText(),'已复制，去家长群粘贴');
  if(e.target.id==='cpStu2')cpText(stuText(),'已复制，去家长群粘贴');
+ if(e.target.id==='cpLg')cpText(ledgerReport(),'回报文本已复制，发给 WorkBuddy 同步');
  if(e.target.id==='cpPaper')cpText(KN_TPL.paper,'论文选题公式已复制');
  if(e.target.id==='cpKt')cpText(KN_TPL.kt,'课题申报模板已复制');
  if(e.target.id==='cpLw')cpText(KN_TPL.lw,'投稿邮件模板已复制');
@@ -920,7 +1039,7 @@ document.addEventListener('click',function(e){
    if(t){var d=t.closest('details'); if(d)d.open=true; t.scrollIntoView({behavior:'smooth',block:'start'});}}
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var BUILD='2026-11-27 22:57',VER='126';
+var BUILD='2026-11-27 23:35',VER='128';
 $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
 /* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
 (function(){
@@ -935,6 +1054,7 @@ $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
  };
 })();
 
+loadLedger();
 render('me');
 </script>
 <script>
