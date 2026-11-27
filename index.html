@@ -86,9 +86,6 @@ body:not(.js) #rest,body:not(.js) #hint,body:not(.js) .picks .pk b{display:none!
 .fs b{font-size:12px;font-weight:900;color:var(--ink3);font-variant-numeric:tabular-nums}
 .fs.on{background:var(--green);border-color:var(--line);color:var(--ink);box-shadow:3px 3px 0 rgba(74,47,24,.2)}
 .fs.on b{color:var(--ink)}
-.eznote{margin:9px 0 0;border:1.5px dashed #cec6b8;border-radius:12px;padding:10px 12px;background:#fbf9f5}
-.eznote span{display:block;font-size:11.5px;color:#6b5a44;line-height:1.6}
-.eznote span b{display:block;font-size:12px;color:#8a5a2b;font-weight:900;margin-bottom:3px}
 .ezb{flex:0 0 auto;display:inline-block;font-size:10px;font-weight:900;line-height:1.5;padding:0 4px;border-radius:4px;
  border:1.5px solid currentColor;white-space:nowrap;margin-top:1px;align-self:flex-start}
 .ezb.pure{color:#2f7d4f;background:rgba(255,255,255,.5)}
@@ -309,6 +306,12 @@ ul.no li::before{content:"—";position:absolute;left:2px;color:#a08c6c;font-wei
 .tpl{background:#fffdf6;border:2px dashed #b4531f;border-radius:10px;padding:10px 12px;margin:8px 0;
  font-size:12.8px;line-height:1.7;color:var(--ink2)}
 @media(max-width:360px){.days b{font-size:40px}.hero h2{font-size:17.5px}.pk{font-size:11.5px}}
+
+/* 宽屏/横屏铺满：平板与横屏不再锁在窄栏 */
+@media(min-width:640px){
+ main,header,.wrap,.sbox{max-width:min(1180px,calc(100% - 40px))!important;margin-left:auto!important;margin-right:auto!important;padding-left:20px;padding-right:20px}
+ table{width:100%}
+}
 </style>
 </head>
 <body>
@@ -325,8 +328,6 @@ ul.no li::before{content:"—";position:absolute;left:2px;color:#a08c6c;font-wei
 </nav>
 <p class="hint" id="hint"></p>
 <div class="fseg" id="fseg" hidden></div>
-<div class="eznote" id="lvNote" hidden><span><b>为什么区里的奖“不算数”</b>区里统计「市级以上荣誉」只认市教育局及以上的红头文件——宝教通上的活动是区教科院发的，属区级荣誉，评优有用但占不了“市级”名额。最省事就是你选的路：个人直投，不用学校盖章、不等区转发，自己发图/系统上传——「投作品」页第一个筛选「个人直投」全是这类，其中市省级的有：中美协水彩展（12-20 截）、「仰望秋岳」（12-30 截）、「乡风墨韵」（2027-02-25 截）、市政协书画展（明年 3 月）、大芬双年展（2028 年 3 月）、省美协线上系统（常年）。另两条备用：① 市教育局体系比赛（美育教师基本功市赛、写生大赛）经区教科院选拔；② 市、省文件经区转发、学校报送（美润鹏城、翰墨薪传、数字素养）——要等单位通知，不急就先放着。</span></div>
-<div class="eznote" id="ezNote" hidden><span><b>发图拿奖的赛看「有奖级」</b>摄影（本体就是电子文件）· 数字插画与设计（本体是文件）· 纯线上展 · 教师文件类（课例、论文、案例）。要挂墙的美术展，终评必然调原作——这是展出形式决定的，不是主办方临时加码。</span></div>
 <button class="copyall" id="copyAll" hidden>一键复制 <b id="caN">0</b> 条 · 直接发家长群</button>
 
 <div id="fallback"><div class="fb">
@@ -715,7 +716,7 @@ if(cur==='art'&&artF==='sf'){a=a.filter(function(x){return !!x.sf})}
 if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
  if(cur==='art'&&artF==='aw'){a=a.filter(function(x){return !!x.aw}).sort(function(x,y){return (y.aw?1:0)-(x.aw?1:0)})}
  if(cur==='art'&&artF==='gov'){a=a.filter(function(x){return ['国','省','市'].indexOf(x.lv)>=0})}
- var fs=$('#fseg'),en=$('#ezNote');
+ var fs=$('#fseg');
  if(fs){
   if(cur==='art'){
    fs.hidden=false;
@@ -727,9 +728,6 @@ if(cur==='art'&&artF==='pure'){a=a.filter(function(x){return x.ez==='pure'})}
     '<button class="fs'+(artF==='all'?' on':'')+'" data-f="all">全部 <b>'+_art.length+'</b></button>';
   }else{fs.hidden=true;fs.innerHTML=''}
  }
- if(en) en.hidden=(cur!=='art');
- var ln=$('#lvNote');
- if(ln) ln.hidden=(cur!=='me');
  $('#picks').querySelectorAll('.pk').forEach(function(b){
    b.classList.toggle('on',b.getAttribute('data-g')===cur)});
  Object.keys(GT).forEach(function(k){
@@ -908,7 +906,7 @@ document.addEventListener('click',function(e){
    if(t){var d=t.closest('details'); if(d)d.open=true; t.scrollIntoView({behavior:'smooth',block:'start'});}}
  if(e.target.id==='cpPk')cpText(window.__pkBody||'','已复制，粘到 Word 里改校名');
 });
-var BUILD='2026-11-27 22:31',VER='124';
+var BUILD='2026-11-27 22:41',VER='125';
 $('#dt').textContent=BUILD.slice(5)+' 更新 · v'+VER;
 /* 真刷新：比对远端 version.json，确认有新版才重载（带随机参数绕过缓存） */
 (function(){

@@ -85,6 +85,12 @@ h1{font-size:22px;font-weight:900;margin:9px 0 2px;letter-spacing:-.01em}
 .desk .dq{display:flex;flex-wrap:wrap;gap:6px}
 .desk .dq button{font:inherit;font-size:11.5px;font-weight:800;background:#fffdf6;color:var(--ink);border:2px solid var(--line);border-radius:8px;padding:6px 8px;cursor:pointer}
 .desk .dq button:active{transform:translate(1px,1px)}
+
+/* 宽屏/横屏铺满：平板与横屏不再锁在窄栏 */
+@media(min-width:640px){
+ main,header,.wrap,.sbox{max-width:min(1180px,calc(100% - 40px))!important;margin-left:auto!important;margin-right:auto!important;padding-left:20px;padding-right:20px}
+ table{width:100%}
+}
 </style>
 </head>
 <body>
@@ -181,7 +187,7 @@ render();
 </script>
 
 <script>
-var BUILD='2026-11-27 22:31',VER='124';
+var BUILD='2026-11-27 22:41',VER='125';
 document.getElementById('dt').textContent='v'+VER+' · '+BUILD.slice(5)+' 构建';
 (function(){
  var b=document.getElementById('rf'); if(!b) return;
